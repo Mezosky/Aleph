@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="frontend/public/logo-256.png" alt="Aleph logo" width="160">
+
 # א · ALEPH
 
 **Entiende la evidencia detrás del debate público.**
