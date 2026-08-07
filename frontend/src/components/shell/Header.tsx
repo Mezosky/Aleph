@@ -18,13 +18,12 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { to: '/', label: 'Análisis', end: true },
-  { to: '/analizar', label: 'Analizar documento' },
+  { to: '/', label: 'La Megarreforma', end: true },
+  { to: '/documento/18216-05', label: 'Evidencia' },
   { to: '/metodologia', label: 'Metodología' },
 ]
 
-const LINK_BASE =
-  'whitespace-nowrap rounded-data px-2 py-1 text-caption transition-colors duration-200 ease-subtle'
+const LINK_BASE = 'whitespace-nowrap rounded-data px-2 py-1 text-caption transition-colors duration-200 ease-subtle'
 
 function navClass({ isActive }: { isActive: boolean }): string {
   return isActive
@@ -36,7 +35,9 @@ export default function Header() {
   return (
     <header
       className="sticky top-0 z-50 border-b border-line-hairline bg-surface-page backdrop-blur-md"
-      style={{ backgroundColor: 'color-mix(in srgb, var(--surface-page) 84%, transparent)' }}
+      style={{
+        backgroundColor: 'color-mix(in srgb, var(--surface-page) 84%, transparent)',
+      }}
     >
       <a
         href="#content"
@@ -47,11 +48,7 @@ export default function Header() {
 
       <div className="mx-auto w-full max-w-shell px-5 sm:px-8">
         <div className="flex items-center justify-between gap-4 py-3 md:h-16 md:py-0">
-          <NavLink
-            to="/"
-            aria-label="Aleph — inicio"
-            className="group inline-flex items-center gap-2.5 rounded-data"
-          >
+          <NavLink to="/" aria-label="Aleph — inicio" className="group inline-flex items-center gap-2.5 rounded-data">
             <img
               src={`${import.meta.env.BASE_URL}logo-64.png`}
               alt=""
@@ -61,9 +58,7 @@ export default function Header() {
               decoding="async"
               className="h-7 w-7 shrink-0 transition-transform duration-300 ease-subtle group-hover:scale-105"
             />
-            <span className="text-caption font-semibold uppercase tracking-[0.22em] text-ink-primary">
-              Aleph
-            </span>
+            <span className="text-caption font-semibold uppercase tracking-[0.22em] text-ink-primary">Aleph</span>
           </NavLink>
 
           <div className="flex items-center gap-2 sm:gap-4">
@@ -80,10 +75,7 @@ export default function Header() {
 
         {/* Below `md` the nav moves to its own row and scrolls inside itself, so
             a narrow viewport never produces horizontal page scroll. */}
-        <nav
-          aria-label="Secciones"
-          className="-mx-2 flex gap-1 overflow-x-auto pb-2 md:hidden"
-        >
+        <nav aria-label="Secciones" className="-mx-2 flex gap-1 overflow-x-auto pb-2 md:hidden">
           {NAV_ITEMS.map((item) => (
             <NavLink key={item.to} to={item.to} end={item.end} className={navClass}>
               {item.label}

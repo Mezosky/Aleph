@@ -1,46 +1,138 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import ActorProfileSection from '@/components/actors/ActorProfileSection'
-import { describeDataError, getPropositions, loadAnalysis } from '@/lib/data'
-import { formatConfidence, formatDateTime } from '@/lib/format'
-import type { AnalysisBundle } from '@/types/aleph'
+import { describeDataError, loadMegareformaDossier, loadMegareformaSources } from '@/lib/data'
+import type { MegareformaDossier, MegareformaSources } from '@/types/megareforma'
 
 export default function Reform() {
   const { slug = '' } = useParams()
-  const [bundle, setBundle] = useState<AnalysisBundle | null>(null)
+  const [dossier, setDossier] = useState<MegareformaDossier | null>(null)
+  const [sources, setSources] = useState<MegareformaSources | null>(null)
   const [error, setError] = useState<string | null>(null)
+
   useEffect(() => {
     const controller = new AbortController()
-    loadAnalysis(slug, controller.signal).then(setBundle, (reason: unknown) => {
-      if (!controller.signal.aborted) setError(describeDataError(reason))
-    })
+    Promise.all([loadMegareformaDossier(controller.signal), loadMegareformaSources(controller.signal)]).then(
+      ([nextDossier, nextSources]) => {
+        setDossier(nextDossier)
+        setSources(nextSources)
+      },
+      (reason: unknown) => {
+        if (!controller.signal.aborted) setError(describeDataError(reason))
+      },
+    )
     return () => controller.abort()
-  }, [slug])
+  }, [])
 
-  if (error) return <section><h1 className="text-title font-semibold">No pudimos cargar el análisis</h1><p className="mt-4 text-body text-ink-secondary">{error}</p></section>
-  if (!bundle) return <p role="status" className="text-body text-ink-secondary">Cargando análisis…</p>
+  if (slug !== '18216-05')
+    return (
+      <section>
+        <h1 className="text-title font-semibold">Este despliegue contiene un solo dossier</h1>
+        <p className="mt-4 text-body text-ink-secondary">
+          La demo congelada analiza exclusivamente el boletín 18216-05.
+        </p>
+        <Link to="/" className="mt-5 inline-block text-caption font-semibold underline">
+          Volver a la Megarreforma
+        </Link>
+      </section>
+    )
+  if (error)
+    return (
+      <p role="alert" className="border border-status-critical p-5">
+        {error}
+      </p>
+    )
+  if (!dossier || !sources)
+    return (
+      <p role="status" className="text-body text-ink-secondary">
+        Cargando evidencia…
+      </p>
+    )
 
-  const propositions = getPropositions(bundle)
   return (
     <article>
-      {bundle.data_status === 'synthetic' && <p role="note" className="border-l-4 border-status-warning bg-surface-sunken p-4 text-caption text-ink-primary"><strong>Demostración sintética.</strong> No describe declaraciones ni publicaciones reales.</p>}
-      <header className="mt-8 max-w-4xl">
-        <p className="text-micro uppercase tracking-wide text-ink-muted">{bundle.document.identity.document_type} · {bundle.document.identity.status}</p>
-        <h1 className="mt-3 text-display font-semibold">{bundle.document.identity.title}</h1>
-        <p className="mt-5 max-w-prose text-lede text-ink-secondary">{bundle.document.identity.summary}</p>
-        <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-4 text-caption"><div><dt className="text-ink-muted">Preparación</dt><dd className="mt-1 font-semibold">{bundle.readiness.overall_score}/100</dd></div><div><dt className="text-ink-muted">Confianza de evidencia</dt><dd className="mt-1 font-semibold">{formatConfidence(bundle.readiness.confidence.evidence_confidence)}</dd></div><div><dt className="text-ink-muted">Generado</dt><dd className="mt-1 font-semibold">{formatDateTime(bundle.generated_at)}</dd></div></dl>
+      <header className="max-w-4xl">
+        <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
+          Expediente auditable · {dossier.document.id}
+        </p>
+        <h1 className="mt-4 text-display font-semibold">Evidencia del dossier</h1>
+        <p className="mt-5 max-w-3xl text-lede text-ink-secondary">
+          Pasajes literales del PDF, fuentes originales capturadas y límites declarados. Ningún perfil de actor entra en
+          la evaluación factual.
+        </p>
       </header>
 
-      <nav aria-label="Secciones del análisis" className="mt-10 overflow-x-auto border-y border-line-hairline py-3 text-caption"><div className="flex min-w-max gap-6">{['resumen','medidas','impacto','afirmaciones','evidencia','actores','metodologia'].map((item) => <a key={item} href={`#${item}`} className="capitalize text-ink-secondary hover:text-ink-primary">{item}</a>)}</div></nav>
+      <section className="mt-12 border-y border-line-hairline py-6">
+        <dl className="grid gap-6 text-caption sm:grid-cols-3">
+          <div>
+            <dt className="text-ink-muted">Documento</dt>
+            <dd className="mt-1 font-semibold">Informe DIPRES N°84</dd>
+          </div>
+          <div>
+            <dt className="text-ink-muted">Huella SHA-256</dt>
+            <dd className="mt-1 break-all font-mono text-micro">{dossier.document.sha256}</dd>
+          </div>
+          <div>
+            <dt className="text-ink-muted">Modelo</dt>
+            <dd className="mt-1 font-semibold">{dossier.model.name} · local</dd>
+          </div>
+        </dl>
+      </section>
 
-      <section id="resumen" className="mt-14"><h2 className="text-title font-semibold">Qué dice el documento</h2><p className="mt-3 text-body text-ink-secondary">{propositions.length} proposiciones atómicas, cada una ligada a un pasaje verificable.</p></section>
-      <section id="medidas" className="mt-10 grid gap-4 md:grid-cols-2">{bundle.provisions.slice(0, 8).map((provision) => <article key={provision.id} className="border border-line-hairline p-5"><p className="text-micro text-ink-muted">{provision.ref_label ?? provision.id}</p><h3 className="mt-2 text-lede font-semibold">{provision.title}</h3><p className="mt-3 text-caption text-ink-secondary">{provision.summary}</p></article>)}</section>
+      <section className="mt-16">
+        <h2 className="text-title font-semibold">Pasajes que sostienen el resumen</h2>
+        <div className="mt-7 space-y-4">
+          {dossier.objectives.map((objective) => (
+            <article key={objective.id} className="border border-line-hairline bg-surface-card p-5 sm:p-6">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <h3 className="text-lede font-semibold">{objective.title}</h3>
+                <span className="text-micro font-semibold uppercase text-ink-muted">
+                  PDF · página {objective.page} · cita verificada
+                </span>
+              </div>
+              <blockquote className="mt-4 border-l-2 border-line-strong pl-4 text-body text-ink-primary">
+                “{objective.source_quote}”
+              </blockquote>
+              <p className="mt-4 text-caption text-ink-secondary">
+                <span className="font-semibold text-ink-primary">Límite:</span> {objective.caveat}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <section id="afirmaciones" className="mt-16 border-t border-line-hairline pt-10"><h2 className="text-title font-semibold">Afirmaciones evaluadas</h2><div className="mt-6 space-y-4">{bundle.claims.map((claim) => <article id={claim.id} key={claim.id} className="scroll-mt-24 border border-line-hairline bg-surface-card p-5"><div className="flex flex-wrap justify-between gap-3"><span className="text-micro uppercase text-ink-muted">{claim.statement_type}</span><span className="text-caption font-semibold">{claim.blind_evaluation.verdict}</span></div><p className="mt-3 text-body text-ink-primary">{claim.text}</p><details className="mt-4"><summary className="cursor-pointer text-caption font-semibold">Ver razonamiento y evidencia</summary><p className="mt-3 text-caption text-ink-secondary">{claim.blind_evaluation.reasoning}</p></details></article>)}</div></section>
-
-      <div id="actores"><ActorProfileSection profiles={bundle.actor_profiles?.actors ?? []} claims={bundle.claims} /></div>
-      <section id="evidencia" className="mt-16 border-t border-line-hairline pt-10"><h2 className="text-title font-semibold">Evidencia</h2><p className="mt-3 text-body text-ink-secondary">{bundle.evidence.length} piezas; la autoridad de la fuente no sustituye su relevancia para la pregunta.</p></section>
-      <section id="metodologia" className="mt-16 border-t border-line-hairline pt-10"><h2 className="text-title font-semibold">Método y límites</h2><ul className="mt-4 max-w-prose list-disc space-y-2 pl-5 text-body text-ink-secondary">{bundle.methodology.limitations.map((item) => <li key={item}>{item}</li>)}</ul><Link to="/metodologia" className="mt-5 inline-block text-caption font-semibold underline underline-offset-4">Leer metodología completa →</Link></section>
+      <section className="mt-20 border-t border-line-hairline pt-10">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-micro uppercase text-ink-muted">Registro de adquisición</p>
+            <h2 className="mt-2 text-title font-semibold">{sources.capture_count} fuentes capturadas</h2>
+          </div>
+          <a
+            href={dossier.document.pdf_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-caption font-semibold underline underline-offset-4"
+          >
+            Abrir PDF canónico ↗
+          </a>
+        </div>
+        <ol className="mt-7 divide-y divide-line-hairline border-y border-line-hairline">
+          {sources.items.map((source, index) => (
+            <li key={source.id} className="grid gap-2 py-4 text-caption sm:grid-cols-[3rem_10rem_1fr_auto]">
+              <span className="tabular text-ink-muted">{String(index + 1).padStart(2, '0')}</span>
+              <span className="font-semibold">{source.publisher}</span>
+              <span className="text-ink-secondary">{source.title}</span>
+              <a
+                href={source.original_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold underline"
+              >
+                Original ↗
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section>
     </article>
   )
 }

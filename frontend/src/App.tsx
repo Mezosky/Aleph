@@ -18,8 +18,6 @@ import Layout from '@/components/shell/Layout'
 
 const Home = lazy(() => import('@/pages/Home'))
 const Reform = lazy(() => import('@/pages/Reform'))
-const Article = lazy(() => import('@/pages/Article'))
-const Analyze = lazy(() => import('@/pages/Analyze'))
 const Methodology = lazy(() => import('@/pages/Methodology'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
@@ -97,8 +95,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
           Esta vista no pudo mostrarse
         </h1>
         <p className="mt-4 text-body text-ink-secondary">
-          Algo falló al construir la página. No se perdió ningún dato: el análisis se sirve como
-          archivos estáticos y puedes volver a intentarlo.
+          Algo falló al construir la página. No se perdió ningún dato: el análisis se sirve como archivos estáticos y
+          puedes volver a intentarlo.
         </p>
         <p className="mt-4 rounded-data border border-line-hairline bg-surface-sunken p-4 font-mono text-caption text-ink-secondary">
           {error.message || 'Error desconocido'}
@@ -164,8 +162,6 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/documento/:slug" element={<Reform />} />
-              <Route path="/noticia/:id" element={<Article />} />
-              <Route path="/analizar" element={<Analyze />} />
               <Route path="/metodologia" element={<Methodology />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

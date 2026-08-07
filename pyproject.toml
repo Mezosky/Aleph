@@ -47,6 +47,11 @@ dev = [
   "ruff>=0.6",
   "jsonschema>=4.21",
 ]
+# Explicit offline-publication acquisition. Browser binaries are installed
+# separately by Playwright and never enter the repository or deployed site.
+acquisition = [
+  "playwright>=1.62",
+]
 
 [project.urls]
 Homepage = "https://mezosky.github.io/Aleph/"

@@ -45,20 +45,24 @@ afterwards, to analyse framing — and the attributed stage takes the verdict as
 raises if it tries to change it. A minister and an opposition spokesperson get the same rubric,
 because the evaluator cannot tell them apart.
 
-**No opaque numbers, no single political axis.** There is no left–right score anywhere in this
-product; policy effects are described on seven named axes with two named poles each. And no score
-exists without its `components[]` — the individual contributions, signed, with evidence
-references. A pydantic validator *raises* if you try to publish a score with an empty component
-list. Click any number and you get the derivation, the counter-evidence, and the uncertainty.
+**No opaque numbers.** A meter is allowed only when both poles name a concrete question and its
+components and source IDs ship beside it. The benchmark includes a left/right economic-policy
+axis because readers asked that question, but it classifies mechanisms (state provision versus
+market/investment incentives); it never ranks people, truth or moral worth. Click any meter to
+see its derivation, counter-evidence and uncertainty.
 
 ---
 
-## Two modes
+## The deployed dossier
 
-| | |
-|---|---|
-| **A · Precomputed analyses** | Curated documents, deeply processed ahead of time and exported to static JSON. Works with no backend at all — this is what GitHub Pages serves. |
-| **B · Analyse any PDF** | Upload a file or paste a URL and watch the seven warm-stage phases run. Requires the Aleph API. |
+GitHub Pages is intentionally a **single-document, precomputed edition**. It analyses the exact
+DIPRES PDF [Informe Financiero N°84/22.04.2026](https://www.dipres.gob.cl/604/articles-409825_doc_pdf.pdf)
+for Boletín 18.216-05. There is no “analyse a new document” control on the public site. The PDF,
+news sweep, screenshots, actor profiles and model outputs are prepared offline and exported as
+frozen JSON and image assets. The browser makes **zero LLM calls** and needs no API or database.
+
+The general pipeline and upload API remain in this repository for local research and tests; they
+are not part of this benchmark deployment.
 
 ---
 
@@ -94,12 +98,14 @@ PostgreSQL is part of that stack. Uploaded bytes, source snapshots, analysis
 runs and phase artifacts survive API restarts; rerunning a document creates a
 new version linked by `supersedes_run_id` and never updates the earlier result.
 
-### Local Blackwell inference
+### Local Blackwell inference and model choice
 
-The GPU profile is pinned to
+For the available 96 GB NVIDIA Blackwell GPU, the dossier is pinned to
 `nvidia/Qwen3.5-122B-A10B-NVFP4@98915d837c4e7c87ac8296d02e89de19b3207e6d`.
-It serves an OpenAI-compatible endpoint inside the Compose network and uses no
-hosted inference API.
+The 122B mixture-of-experts checkpoint is the strongest model in the evaluated local set that
+fits with decoding headroom in NVFP4. It serves an OpenAI-compatible endpoint inside the Compose
+network and uses no hosted inference API. Pinning the exact revision makes later dossier exports
+comparable; changing “latest” cannot silently change the analysis.
 
 ```bash
 # First launch: downloads the pinned checkpoint into the model_cache volume.
@@ -141,22 +147,20 @@ retrieval counters in another terminal:
 ~/aleph-progress -w
 ```
 
-### Live news acquisition
+### Dossier news acquisition
 
-Network retrieval is never implicit. Poll only registry entries whose feeds and
-robots policy have been verified, and preserve exact feed/article bytes in the
-append-only database, with:
+Network retrieval is never implicit. The benchmark uses a deliberately broad,
+viewpoint-neutral seed registry and preserves exact response bytes, one top-fold
+screenshot, hashes and retrieval gaps in the append-only database:
 
 ```bash
-.venv/bin/python scripts/refresh.py --fetch \
-  --query "18216-05 megarreforma reconstrucción desarrollo económico social" \
-  --max-articles 20
+.venv/bin/python scripts/capture_megareforma_sources.py --allow-network
 ```
 
-Repeated runs update first/last observation times and deduplicate articles by
-canonical URL and content hash; they do not overwrite prior scrape runs or
-retrieval snapshots. Omit `--fetch` to regenerate deterministic static demo
-data without network access.
+The committed run captured 23 of 33 curated sources. Ten inaccessible targets remain published
+as gaps rather than disappearing from the denominator (including six El País pages that returned
+access-restriction screens rather than articles). News cards link to the original page and
+display the locally archived screenshot; inclusion in the registry is relevance, not endorsement.
 
 Analyse a document through the library:
 
@@ -204,17 +208,15 @@ tests/          offline test suite
 
 ## Deployment
 
-The public site is a **static presentation layer**. GitHub Pages runs no Python, no scrapers, no
-database — it serves precomputed JSON from `frontend/public/data/`, and the site is fully
-functional with the analysis API switched off.
+The public site is a **static presentation layer**. GitHub Pages runs no Python, scraper,
+database or LLM — it serves precomputed JSON and images from `frontend/public/data/`.
 
 A push to `main` runs lint → Python tests → schema validation → frontend typecheck and build →
 container build, and **a failing test blocks the deploy**. The site publishes to
 `https://mezosky.github.io/Aleph/`, which is why Vite's `base` is `/Aleph/`.
 
-The API URL is injected at build time through `VITE_ALEPH_API_URL` and is not coupled to any
-hosting provider. Everything under `VITE_*` is compiled into public JavaScript, so no model
-credential is ever referenced there — those live only in the API's own environment.
+No model URL or credential is compiled into the benchmark frontend. Every analytical artifact is
+already frozen before `npm run build`.
 
 ---
 
@@ -240,11 +242,12 @@ therefore persist a real document analysis, but readiness still withholds
 claim verdicts until a frozen evidence set has been collected. `QwenProvider` requires the local
 GPU profile (or another explicitly configured OpenAI-compatible endpoint).
 
-**The bundled analysis is synthetic.** Every dataset in `frontend/public/data/` carries
-`"data_status": "synthetic"` and the UI shows a banner saying so. The outlets are invented, the
-speakers are generic roles, and no quotation is attributed to any real person or publication.
-It exists to exercise the rendering path and the schema contract — it is not an analysis of any
-real reform, and it should not be read as one.
+**The public benchmark is real and date-bounded.** The site loads
+`frontend/public/data/megareforma/dossier.json` and its captured-source registry. It clearly
+distinguishes the initial 22 April financial report from the bill later amended by Congress. Old
+synthetic fixtures remain in the repository only to exercise the generic schema and regression
+tests; the Vite publication step removes them from `dist`. Actor portraits carry Wikimedia licensing and factual profiles
+remain structurally outside the blind verdict path.
 
 The first benchmark document is Chilean (Boletín 18.216-05), but that fact lives only in data
 files. No section, layout, actor, or query is hard-coded anywhere in `aleph/` — an arbitrary PDF

@@ -134,10 +134,13 @@ higher.
 
 ---
 
-## 7. Describing effects without a political axis
+## 7. Describing effects on named, inspectable axes
 
-Aleph does not reduce a document to left-versus-right. That collapse smuggles in the very
-assumptions the product exists to expose.
+Aleph does not reduce truth, people or an entire document to one opaque left-versus-right score.
+The Megarreforma edition does include an explicitly political *economic-instrument* meter because
+that is a reader question: its poles are “more state provision/redistribution” and “more market/
+investment incentives”, and every counted mechanism is exposed. It is descriptive, symmetric and
+never used to derive a factual verdict.
 
 Instead, effects are placed on **seven named axes**, each scored −100..+100 between two *named
 poles*:
@@ -160,6 +163,11 @@ direction, magnitude, evidence quality, time horizon, whether the effect is dire
 causal chain (and if so, what that chain is), plus the supporting evidence and the remaining
 uncertainties. Where evidence is thin the answer is `uncertain` with low evidence quality — not a
 guess.
+
+The coverage meter follows the same rule. It counts whether a captured story is centred on a
+critical/opposition argument, a descriptive/negotiation frame, or a favourable/government
+argument. It describes the frozen collection, not the inherent bias or reliability of an outlet.
+Neutral portraits may label the poles; degrading or asymmetric political imagery is prohibited.
 
 ---
 

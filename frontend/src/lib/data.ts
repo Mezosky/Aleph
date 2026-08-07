@@ -22,6 +22,7 @@ import type {
   Proposition,
   SiteIndex,
 } from '@/types/aleph'
+import type { MegareformaDossier, MegareformaSources } from '@/types/megareforma'
 
 /* ------------------------------------------------------------------ *
  * URLs
@@ -44,6 +45,8 @@ export const DATA_PATHS = {
   claims: (slug: string) => `claims/${slug}.json`,
   evidence: (slug: string) => `evidence/${slug}.json`,
   latestNews: 'news/latest.json',
+  megareformaDossier: 'megareforma/dossier.json',
+  megareformaSources: 'megareforma/sources.json',
 } as const
 
 /* ------------------------------------------------------------------ *
@@ -110,7 +113,10 @@ const pending = new Map<string, PendingRequest>()
 async function fetchJson(url: string, signal: AbortSignal): Promise<unknown> {
   let response: Response
   try {
-    response = await fetch(url, { signal, headers: { Accept: 'application/json' } })
+    response = await fetch(url, {
+      signal,
+      headers: { Accept: 'application/json' },
+    })
   } catch (cause) {
     if (isAbortError(cause)) throw cause
     throw new DataError(
@@ -163,7 +169,11 @@ async function loadJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   let entry = pending.get(url)
   if (!entry) {
     const controller = new AbortController()
-    const created: PendingRequest = { controller, waiters: 0, promise: Promise.resolve() }
+    const created: PendingRequest = {
+      controller,
+      waiters: 0,
+      promise: Promise.resolve(),
+    }
     created.promise = fetchJson(url, controller.signal).then(
       (value) => {
         cache.set(url, value)
@@ -230,11 +240,27 @@ export async function loadSiteIndex(signal?: AbortSignal): Promise<SiteIndex> {
   const url = dataUrl(DATA_PATHS.siteIndex)
   const value = await loadJson<SiteIndex>(url, signal)
   if (!value || !Array.isArray(value.analyses)) {
-    throw new DataError(
-      'parse',
-      'El índice del sitio no tiene la forma esperada: falta la lista de análisis.',
-      url,
-    )
+    throw new DataError('parse', 'El índice del sitio no tiene la forma esperada: falta la lista de análisis.', url)
+  }
+  return value
+}
+
+/** Frozen, canonical dossier used by the single-document GitHub Pages build. */
+export async function loadMegareformaDossier(signal?: AbortSignal): Promise<MegareformaDossier> {
+  const url = dataUrl(DATA_PATHS.megareformaDossier)
+  const value = await loadJson<MegareformaDossier>(url, signal)
+  if (!value || value.data_status !== 'real_frozen_snapshot' || !Array.isArray(value.objectives)) {
+    throw new DataError('parse', 'El dossier congelado no tiene la forma esperada.', url)
+  }
+  return value
+}
+
+/** Captured original-source cards, including screenshots and stated retrieval gaps. */
+export async function loadMegareformaSources(signal?: AbortSignal): Promise<MegareformaSources> {
+  const url = dataUrl(DATA_PATHS.megareformaSources)
+  const value = await loadJson<MegareformaSources>(url, signal)
+  if (!value || !Array.isArray(value.items) || !Array.isArray(value.gaps)) {
+    throw new DataError('parse', 'El registro de fuentes no tiene la forma esperada.', url)
   }
   return value
 }

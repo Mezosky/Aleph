@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Aleph — static presentation layer. Renders precomputed analysis bundles and, when configured, talks to the Aleph analysis API.",
+  "description": "Aleph — frozen, single-document Megarreforma dossier generated entirely offline.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

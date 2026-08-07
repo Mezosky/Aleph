@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/megareforma_sources.json",
+  "type": "object",
+  "required": ["schema_version", "document_id", "retrieval_cutoff", "scrape_run_id", "capture_count", "gap_count", "items", "gaps"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "document_id": {"const": "18216-05"},
+    "retrieval_cutoff": {"type": "string", "format": "date-time"},
+    "scrape_run_id": {"type": "string", "pattern": "^[a-f0-9]{32}$"},
+    "capture_count": {"type": "integer", "minimum": 0},
+    "gap_count": {"type": "integer", "minimum": 0},
+    "items": {"type": "array", "items": {"type": "object", "required": ["id", "publisher", "kind", "perspective", "published_at", "url", "title", "summary", "snapshot_id", "screenshot", "screenshot_sha256", "captured_at", "original_url"], "properties": {"id": {"type": "string"}, "publisher": {"type": "string"}, "kind": {"enum": ["official_record", "news"]}, "perspective": {"type": "string"}, "published_at": {"type": "string", "format": "date-time"}, "url": {"type": "string", "format": "uri"}, "title": {"type": "string"}, "summary": {"type": "string"}, "snapshot_id": {"type": "string"}, "screenshot": {"type": "string"}, "screenshot_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "captured_at": {"type": "string", "format": "date-time"}, "original_url": {"type": "string", "format": "uri"}, "new_observation": {"type": "boolean"}}, "additionalProperties": false}},
+    "gaps": {"type": "array", "items": {"type": "object", "required": ["id", "url", "error"], "properties": {"id": {"type": "string"}, "url": {"type": "string", "format": "uri"}, "error": {"type": "string"}}, "additionalProperties": false}}
+  },
+  "additionalProperties": false
+}

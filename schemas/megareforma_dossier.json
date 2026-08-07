@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/megareforma_dossier.json",
+  "title": "Frozen Megareforma dossier",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "retrieval_cutoff", "data_status", "document", "model", "summary", "objectives", "meters", "debate", "actors", "counts"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "retrieval_cutoff": {"type": "string", "format": "date-time"},
+    "data_status": {"const": "real_frozen_snapshot"},
+    "document": {
+      "type": "object",
+      "required": ["id", "title", "source_url", "pdf_url", "date", "page_count", "sha256", "scope_note"],
+      "properties": {
+        "id": {"const": "18216-05"},
+        "title": {"type": "string", "minLength": 20},
+        "short_title": {"type": "string"},
+        "source_url": {"type": "string", "format": "uri"},
+        "pdf_url": {"type": "string", "format": "uri"},
+        "date": {"type": "string", "format": "date"},
+        "page_count": {"const": 46},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "scope_note": {"type": "string", "minLength": 80}
+      },
+      "additionalProperties": false
+    },
+    "model": {
+      "type": "object",
+      "required": ["name", "revision", "execution", "runtime_calls"],
+      "properties": {
+        "name": {"type": "string"},
+        "revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "execution": {"const": "local_gpu_offline"},
+        "runtime_calls": {"const": 0}
+      },
+      "additionalProperties": false
+    },
+    "summary": {"type": "string", "minLength": 80},
+    "objectives": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "plain_language", "mechanism", "affected_groups", "source_quote", "page", "caveat", "quote_verified"],
+        "properties": {
+          "id": {"type": "string"},
+          "category": {"type": "string"},
+          "title": {"type": "string", "minLength": 5},
+          "plain_language": {"type": "string", "minLength": 20},
+          "mechanism": {"type": "string", "minLength": 20},
+          "affected_groups": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "source_quote": {"type": "string", "minLength": 12},
+          "page": {"type": "integer", "minimum": 1, "maximum": 46},
+          "caveat": {"type": "string", "minLength": 10},
+          "quote_verified": {"const": true},
+          "quote_grounding_method": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "meters": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "title", "question", "left_label", "center_label", "right_label", "value", "confidence", "explanation", "methodology", "evidence"],
+        "properties": {
+          "id": {"type": "string"},
+          "kind": {"enum": ["editorial_tone", "policy_tradeoff", "public_interest"]},
+          "title": {"type": "string"},
+          "question": {"type": "string"},
+          "left_label": {"type": "string"},
+          "center_label": {"type": "string"},
+          "right_label": {"type": "string"},
+          "value": {"type": "number", "minimum": 0, "maximum": 100},
+          "confidence": {"enum": ["low", "medium", "high"]},
+          "explanation": {"type": "string", "minLength": 30},
+          "methodology": {"type": "string", "minLength": 30},
+          "evidence": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["label", "value", "source_ids"], "properties": {"label": {"type": "string"}, "value": {"type": "number"}, "source_ids": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false}},
+          "pole_actor_ids": {"type": "object", "required": ["left", "right"], "properties": {"left": {"type": "array", "items": {"type": "string"}}, "right": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false}
+        },
+        "additionalProperties": false
+      }
+    },
+    "debate": {"type": "array", "minItems": 3},
+    "actors": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "role", "institution", "affiliation", "position_summary", "image", "image_alt", "image_credit", "image_license", "image_source_url", "roles", "legal_record", "sources"],
+        "properties": {
+          "id": {"type": "string"}, "name": {"type": "string"}, "role": {"type": "string"}, "institution": {"type": "string"}, "affiliation": {"type": "string"}, "position_summary": {"type": "string"}, "image": {"type": "string"}, "image_alt": {"type": "string"}, "image_credit": {"type": "string"}, "image_license": {"type": "string"}, "image_source_url": {"type": "string", "format": "uri"}, "roles": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "legal_record": {"type": "array", "maxItems": 0}, "sources": {"type": "array", "minItems": 2}
+        },
+        "additionalProperties": false
+      }
+    },
+    "counts": {
+      "type": "object",
+      "required": ["propositions", "sources_curated", "sources_captured", "capture_gaps", "model_runs_completed"],
+      "properties": {
+        "propositions": {"type": "integer", "minimum": 1}, "sources_curated": {"type": "integer", "minimum": 1}, "sources_captured": {"type": "integer", "minimum": 0}, "capture_gaps": {"type": "integer", "minimum": 0}, "model_runs_completed": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

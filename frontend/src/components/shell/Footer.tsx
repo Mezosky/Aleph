@@ -22,14 +22,11 @@ export default function Footer() {
               <span aria-hidden="true" className="font-serif text-lede leading-none text-ink-primary">
                 א
               </span>
-              <span className="text-caption font-semibold uppercase tracking-[0.22em] text-ink-primary">
-                Aleph
-              </span>
+              <span className="text-caption font-semibold uppercase tracking-[0.22em] text-ink-primary">Aleph</span>
             </p>
             <p className="mt-3 text-body text-ink-secondary">
-              Aleph lee un documento público, extrae sus afirmaciones, las contrasta con la fuente
-              primaria sin saber quién las hizo, y muestra la evidencia y las contradicciones para que
-              cualquiera pueda revisarlas.
+              Aleph lee un documento público, extrae sus afirmaciones, las contrasta con la fuente primaria sin saber
+              quién las hizo, y muestra la evidencia y las contradicciones para que cualquiera pueda revisarlas.
             </p>
           </div>
 
@@ -41,14 +38,6 @@ export default function Footer() {
                   className="text-ink-secondary underline-offset-4 transition-colors duration-200 ease-subtle hover:text-ink-primary hover:underline"
                 >
                   Metodología y límites
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/analizar"
-                  className="text-ink-secondary underline-offset-4 transition-colors duration-200 ease-subtle hover:text-ink-primary hover:underline"
-                >
-                  Analizar un documento
                 </Link>
               </li>
               <li>
@@ -66,20 +55,17 @@ export default function Footer() {
           </nav>
         </div>
 
-        <p
-          role="note"
-          className="mt-10 max-w-prose border-l-2 border-line-strong pl-4 text-caption text-ink-secondary"
-        >
-          <span className="font-semibold text-ink-primary">Datos sintéticos.</span> El análisis de
-          ejemplo incluido en este sitio fue generado para demostrar el producto. No describe ninguna
-          declaración real de ninguna persona ni de ningún medio real, y no debe citarse como análisis
-          de una reforma real.
+        <p role="note" className="mt-10 max-w-prose border-l-2 border-line-strong pl-4 text-caption text-ink-secondary">
+          <span className="font-semibold text-ink-primary">Instantánea real y congelada.</span> Este despliegue sólo
+          presenta el informe financiero DIPRES N°84 de 22 de abril de 2026 y fuentes recuperadas hasta la fecha de
+          corte indicada. El modelo se ejecutó localmente; esta página no llama a una IA ni analiza documentos del
+          visitante.
         </p>
 
         <p className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-1 text-micro uppercase tracking-wide text-ink-muted">
           <span className="tabular">Contrato de datos v{ALEPH_SCHEMA_VERSION}</span>
           <span aria-hidden="true">·</span>
-          <span>Sin puntaje de sesgo. Sin eje izquierda–derecha.</span>
+          <span>Perfiles separados del veredicto · medidores con componentes auditables</span>
         </p>
       </div>
     </footer>

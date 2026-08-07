@@ -1,6 +1,21 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
+import { rmSync } from 'node:fs'
+import { resolve } from 'node:path'
+
+function pruneLegacyDemoData() {
+  return {
+    name: 'prune-legacy-demo-data',
+    closeBundle() {
+      // Generic synthetic fixtures remain available to tests, but the public
+      // single-dossier build must not publish them as parallel analyses.
+      for (const path of ['data/index.json', 'data/claims', 'data/evidence', 'data/news', 'data/reforms']) {
+        rmSync(resolve('dist', path), { recursive: true, force: true })
+      }
+    },
+  }
+}
 
 /**
  * The site is published at https://mezosky.github.io/Aleph/, so every asset and
@@ -13,7 +28,7 @@ import { fileURLToPath, URL } from 'node:url'
  */
 export default defineConfig(({ mode }) => ({
   base: process.env.VITE_BASE ?? '/Aleph/',
-  plugins: react(),
+  plugins: [react(), pruneLegacyDemoData()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

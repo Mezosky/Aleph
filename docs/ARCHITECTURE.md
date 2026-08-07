@@ -161,7 +161,7 @@ recorded as a diagnostic and is never the headline figure.
 
 ---
 
-## 6. Deployment: static by default, live when available
+## 6. Deployment: an offline producer and a frozen public dossier
 
 ```mermaid
 flowchart LR
@@ -171,7 +171,7 @@ flowchart LR
         F -->|"reads"| D
     end
 
-    subgraph api["Aleph API — optional, self-hosted"]
+    subgraph api["Offline analysis environment — never part of Pages"]
         S["FastAPI"]
         P["Warm stage → pipeline"]
         L["LLMProvider<br/>Qwen3.5 · vLLM · local · mock"]
@@ -182,14 +182,14 @@ flowchart LR
     end
 
     U["Browser"] --> F
-    F -.->|"VITE_ALEPH_API_URL<br/>(only for live PDF analysis)"| S
     P -->|"export"| D
 ```
 
-GitHub Pages serves static files and nothing else — no Python, no scrapers, no database, no
-persistent container. So the site's default mode reads **precomputed JSON** and works with the
-analysis API completely offline. The API is needed only for *Mode B*, analysing a new PDF on
-demand, and its URL is injected at build time via `VITE_ALEPH_API_URL`.
+GitHub Pages serves static files and nothing else — no Python, scrapers, database, model or
+persistent container. The benchmark reads only the precomputed Megarreforma dossier and captured
+images. It deliberately has no upload route and no browser-to-API edge. The general FastAPI service
+remains an offline/self-hosted producer: a completed, validated run is exported into the static
+directory before deployment.
 
 No API key ever reaches the frontend bundle. Everything under `VITE_*` is compiled into public
 JavaScript, which is exactly why the model credentials live only in the API's environment.

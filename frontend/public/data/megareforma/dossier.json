@@ -1,0 +1,580 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-07T13:31:23.592656Z",
+  "retrieval_cutoff": "2026-08-07T13:00:00Z",
+  "data_status": "real_frozen_snapshot",
+  "document": {
+    "id": "18216-05",
+    "title": "Informe Financiero N°84: Proyecto de Ley para la Reconstrucción Nacional y el Desarrollo Económico y Social",
+    "short_title": "La Megarreforma",
+    "source_url": "https://www.dipres.gob.cl/604/w3-article-409825.html",
+    "pdf_url": "https://www.dipres.gob.cl/604/articles-409825_doc_pdf.pdf",
+    "date": "2026-04-22",
+    "page_count": 46,
+    "sha256": "af5a1867f6b0c1924186a08084462792e70db719bf9137637ebc12056f2ab7d2",
+    "scope_note": "El PDF es el informe financiero del proyecto ingresado el 22 de abril de 2026, no el texto finalmente modificado por el Congreso. La trayectoria legislativa posterior se muestra como una capa separada."
+  },
+  "model": {
+    "name": "nvidia/Qwen3.5-122B-A10B-NVFP4",
+    "revision": "98915d837c4e7c87ac8296d02e89de19b3207e6d",
+    "execution": "local_gpu_offline",
+    "runtime_calls": 0
+  },
+  "summary": "Este informe financiero detalla una megareforma chilena que busca reactivar la economía mediante rebajas tributarias a empresas, simplificación de permisos ambientales y laborales, y fondos de emergencia para reconstrucción tras incendios, afectando a diversos sectores productivos y grupos sociales.",
+  "objectives": [
+    {
+      "id": "objective:1",
+      "category": "reconstruction",
+      "title": "Ampliación del Fondo de Emergencia",
+      "plain_language": "Se aumenta el dinero disponible para reparar daños por incendios en Valparaíso, Ñuble y Biobío, extendiendo la vigencia del fondo hasta 2028 para cubrir gastos urgentes.",
+      "mechanism": "La ley incrementa el financiamiento del Fondo de Emergencia Transitorio por Incendios en 400.000 millones de pesos y extiende su cobertura geográfica y temporal mediante un decreto conjunto.",
+      "affected_groups": [
+        "Gobiernos regionales de Valparaíso, Ñuble y Biobío",
+        "Municipalidades afectadas",
+        "Empresas de reconstrucción"
+      ],
+      "caveat": "El gasto total depende de la ejecución real de los proyectos presentados por los ministerios y la disponibilidad de recursos en la Ley de Presupuestos.",
+      "page": 1,
+      "source_quote": "se extiende su cobertura para cubrir las necesidades de gasto en las regiones de ñuble y del biobío, zonas afectadas durante enero de 2026",
+      "quote_verified": true,
+      "quote_grounding_method": "deterministic_exact_anchor"
+    },
+    {
+      "id": "objective:2",
+      "category": "higher_education",
+      "title": "Postergación de la Gratuidad Universitaria",
+      "plain_language": "Se retrasa el acceso a la educación gratuita para los deciles 7 al 10, elevando los requisitos de ingreso económico necesarios para calificar y congelando nuevas instituciones por dos años.",
+      "mechanism": "Se cambia el indicador de activación de PIB Tendencial a PIB No Minero y se aumentan los umbrales porcentuales de ingreso, además de suspender el ingreso de nuevas IES al sistema.",
+      "affected_groups": [
+        "Estudiantes de los deciles 7 al 10",
+        "Nuevas instituciones de educación superior",
+        "Familias de ingresos medios"
+      ],
+      "caveat": "El ahorro fiscal estimado depende de proyecciones de matrícula y aranceles que pueden variar según la evolución demográfica y económica futura.",
+      "page": 2,
+      "source_quote": "se eleva los umbrales de activación de cada tramo (deciles 7 a 10) en 6 puntos porcentuales respecto de los valores vigentes",
+      "quote_verified": true,
+      "quote_grounding_method": "deterministic_exact_anchor"
+    },
+    {
+      "id": "objective:3",
+      "category": "environmental_permits",
+      "title": "Agilización de Evaluaciones Ambientales",
+      "plain_language": "Se simplifican los trámites para proyectos ambientales, permitiendo que ciertas modificaciones tecnológicas no requieran nueva evaluación y limitando el tiempo que los tribunales pueden detener proyectos aprobados.",
+      "mechanism": "Se eliminan mínimos de potencia para el SEIA, se restringen recursos administrativos contra resoluciones favorables y se establecen plazos máximos de 30 días para medidas cautelares judiciales.",
+      "affected_groups": [
+        "Empresas energéticas y mineras",
+        "Desarrolladores de proyectos de infraestructura",
+        "Organizaciones ambientalistas"
+      ],
+      "caveat": "La reducción de plazos podría generar riesgos de evaluación incompleta si no se mantienen los estándares técnicos de protección ambiental.",
+      "page": 3,
+      "source_quote": "solo requerirán una nueva evaluación ambiental cuando impliquen una modificación sustantiva en la magnitud o duración de sus impactos ambientales",
+      "quote_verified": true,
+      "quote_grounding_method": "deterministic_exact_anchor"
+    },
+    {
+      "id": "objective:4",
+      "category": "copyright_data_mining",
+      "title": "Excepción para Minería de Datos",
+      "plain_language": "Se permite a las empresas y científicos copiar y analizar obras protegidas por derechos de autor sin pedir permiso ni pagar, siempre que sea para extraer datos y hacer estadísticas.",
+      "mechanism": "Se incorpora una excepción específica en la Ley de Propiedad Intelectual que autoriza la reproducción y adaptación de obras lícitas exclusivamente para fines de extracción y análisis de datos.",
+      "affected_groups": [
+        "Empresas de tecnología e inteligencia artificial",
+        "Centros de investigación científica",
+        "Titulares de derechos de autor"
+      ],
+      "caveat": "La medida solo aplica a obras lícitamente publicadas y no cubre usos comerciales directos de las obras originales más allá del análisis de datos.",
+      "page": 8,
+      "source_quote": "se permite, sin requerir autorización ni remuneración al titular de los derechos, realizar actos de reproducción, adaptación, distribución o comunicación al público",
+      "quote_verified": true,
+      "quote_grounding_method": "deterministic_exact_anchor"
+    },
+    {
+      "id": "objective:5",
+      "category": "senior_property_tax",
+      "title": "Exención de Impuestos para Adultos Mayores",
+      "plain_language": "Las personas de 65 años o más no pagarán el impuesto territorial de su vivienda principal, siempre que sea su residencia habitual y coincida con su domicilio electoral.",
+      "mechanism": "Se establece una exención total del impuesto territorial para un único inmueble de personas naturales mayores de 65 años, sujeto a una declaración jurada ante el SII.",
+      "affected_groups": [
+        "Personas mayores de 65 años",
+        "Municipalidades que reciben menos ingresos",
+        "Hogares de adultos mayores"
+      ],
+      "caveat": "El beneficio requiere que el municipio reciba compensación del Fondo Común Municipal, lo cual depende de la aprobación presupuestaria anual.",
+      "page": 8,
+      "source_quote": "se establece una exención total del impuesto territorial respecto de la vivienda principal de personas naturales de 65 o más años de edad",
+      "quote_verified": true,
+      "quote_grounding_method": "deterministic_exact_anchor"
+    },
+    {
+      "id": "objective:6",
+      "category": "business_tax_investment",
+      "title": "Rebaja de Impuestos a Empresas",
+      "plain_language": "Se reduce gradualmente el impuesto que pagan las empresas sobre sus ganancias, bajando la tasa desde el 27% hasta el 23% en los próximos años para incentivar la inversión.",
+      "mechanism": "Se modifica la tasa del Impuesto de Primera Categoría de forma escalonada entre 2026 y 2029, integrando el sistema tributario y eliminando la restitución de créditos progresivamente.",
+      "affected_groups": [
+        "Empresas del régimen Semi Integrado",
+        "Pequeñas y medianas empresas",
+        "Inversionistas extranjeros"
+      ],
+      "caveat": "El impacto fiscal neto depende de que el crecimiento económico generado por la rebaja compense la menor tasa impositiva, lo cual es una proyección incierta.",
+      "page": 9,
+      "source_quote": "se establece una reducción gradual de la tasa del impuesto de primera categoría aplicable a las rentas devengadas o percibidas a partir del año comercial 2026",
+      "quote_verified": true,
+      "quote_grounding_method": "deterministic_exact_anchor"
+    }
+  ],
+  "meters": [
+    {
+      "id": "coverage-position",
+      "kind": "editorial_tone",
+      "title": "Tendencia de la cobertura reunida",
+      "question": "¿Las 18 piezas de prensa capturadas priorizan críticas/oposición o argumentos favorables del Gobierno?",
+      "left_label": "Crítica / oposición",
+      "center_label": "Descriptiva",
+      "right_label": "Favorable / Gobierno",
+      "value": 42,
+      "confidence": "medium",
+      "explanation": "La muestra curada contiene más piezas centradas en objeciones fiscales, distributivas o ambientales que piezas centradas en la defensa gubernamental. Eso describe esta colección y su encuadre; no prueba que un medio o una posición sea falsa.",
+      "methodology": "Se clasificó cada pieza por el argumento que su título y foco principal presentan: 8 críticas/oposición o alertas fiscales, 5 descriptivas o de negociación y 5 favorables/gubernamentales. Posición = promedio ponderado 0/50/100. Las fuentes oficiales no entran en este medidor.",
+      "evidence": [
+        {
+          "label": "Críticas, oposición o alerta fiscal",
+          "value": 8,
+          "source_ids": [
+            "biobio-opposition-23-doubts",
+            "latercera-yeomans-dialogue",
+            "latercera-cfa-nine-risks",
+            "latercera-grau-inequality",
+            "emol-fa-reversal",
+            "emol-opposition-withdrawal",
+            "cnn-tc-challenges",
+            "cnn-acevedo-analysis"
+          ]
+        },
+        {
+          "label": "Descriptivas, trámite o negociación",
+          "value": 5,
+          "source_ids": [
+            "biobio-parisi-negotiation",
+            "emol-chamber-vote",
+            "emol-senate-battle",
+            "emol-environment-amendments",
+            "ciper-final-compensation"
+          ]
+        },
+        {
+          "label": "Favorables o voz de Gobierno",
+          "value": 5,
+          "source_ids": [
+            "biobio-quiroz-adjustments",
+            "biobio-senate-advance",
+            "cooperativa-senate-timing",
+            "cnn-quiroz-growth",
+            "meganoticias-quiroz-explains"
+          ]
+        }
+      ],
+      "pole_actor_ids": {
+        "left": [
+          "gael-yeomans",
+          "nicolas-grau"
+        ],
+        "right": [
+          "jose-antonio-kast",
+          "jorge-quiroz"
+        ]
+      }
+    },
+    {
+      "id": "policy-orientation",
+      "kind": "policy_tradeoff",
+      "title": "Orientación económica del proyecto ingresado",
+      "question": "¿Los mecanismos del informe descansan más en provisión/redistribución estatal o en incentivos de mercado e inversión privada?",
+      "left_label": "Más Estado / izquierda económica",
+      "center_label": "Combinado",
+      "right_label": "Más mercado / derecha económica",
+      "value": 79,
+      "confidence": "high",
+      "explanation": "Aunque incluye gasto de reconstrucción y beneficios focalizados, el núcleo económico privilegia rebajas tributarias, integración, invariabilidad y menores fricciones para proyectos privados. Es una descripción de instrumentos, no una nota moral ni una clasificación de personas.",
+      "methodology": "Codificación de 13 familias materiales del informe: 3 expanden gasto o alivios focalizados, 8 incentivan capital/inversión o reducen carga regulatoria y 2 combinan ambas lógicas. Se ponderan por presencia, no por efecto fiscal.",
+      "evidence": [
+        {
+          "label": "Gasto o alivio focalizado",
+          "value": 3,
+          "source_ids": [
+            "dipres-financial-report"
+          ]
+        },
+        {
+          "label": "Combinación",
+          "value": 2,
+          "source_ids": [
+            "dipres-financial-report"
+          ]
+        },
+        {
+          "label": "Incentivo a inversión/mercado",
+          "value": 8,
+          "source_ids": [
+            "dipres-financial-report"
+          ]
+        }
+      ],
+      "pole_actor_ids": {
+        "left": [
+          "gael-yeomans",
+          "nicolas-grau"
+        ],
+        "right": [
+          "jose-antonio-kast",
+          "jorge-quiroz"
+        ]
+      }
+    },
+    {
+      "id": "environment-tradeoff",
+      "kind": "policy_tradeoff",
+      "title": "Permisos ambientales",
+      "question": "¿Las modificaciones ponen el acento en cautela ambiental o en velocidad y certeza de tramitación?",
+      "left_label": "Más cautela",
+      "center_label": "Equilibrio",
+      "right_label": "Más velocidad",
+      "value": 72,
+      "confidence": "high",
+      "explanation": "El texto amplía algunos controles —por ejemplo, incorpora centrales sin mínimo de potencia— pero contiene más reglas dirigidas a evitar reevaluaciones, limitar rondas y acotar cautelares.",
+      "methodology": "Conteo de salvaguardas y aceleradores explícitos en páginas 3 a 6: 2 salvaguardas, 5 aceleradores y una regla mixta. No estima el daño o beneficio final.",
+      "evidence": [
+        {
+          "label": "Salvaguardas nuevas",
+          "value": 2,
+          "source_ids": [
+            "dipres-financial-report"
+          ]
+        },
+        {
+          "label": "Reglas mixtas",
+          "value": 1,
+          "source_ids": [
+            "dipres-financial-report"
+          ]
+        },
+        {
+          "label": "Aceleradores o límites de plazo",
+          "value": 5,
+          "source_ids": [
+            "dipres-financial-report",
+            "emol-environment-amendments"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forecast-dependence",
+      "kind": "public_interest",
+      "title": "Dependencia de proyecciones",
+      "question": "¿El balance fiscal que se comunica proviene de efectos mecánicos observables o de crecimiento futuro modelado?",
+      "left_label": "Efecto mecánico",
+      "center_label": "Mixto",
+      "right_label": "Proyección futura",
+      "value": 84,
+      "confidence": "high",
+      "explanation": "Una parte importante del cierre fiscal a largo plazo depende del crecimiento que el propio informe atribuye a las medidas. El documento lo presenta como una estimación con escenarios y elasticidades, no como recaudación ya observada.",
+      "methodology": "Lectura de tablas 12 a 14 y anexo metodológico: se separan cambios directos de gasto/ingreso de la recaudación atribuida a mayor PIB. La aguja mide dependencia del supuesto, no probabilidad de éxito.",
+      "evidence": [
+        {
+          "label": "Elasticidad ingreso–PIB asumida",
+          "value": 1,
+          "source_ids": [
+            "dipres-financial-report",
+            "cfa-comments"
+          ]
+        },
+        {
+          "label": "Holgura por punto extra de PIB",
+          "value": 0.13,
+          "source_ids": [
+            "dipres-financial-report"
+          ]
+        },
+        {
+          "label": "Horizonte máximo de tabla",
+          "value": 25,
+          "source_ids": [
+            "dipres-financial-report"
+          ]
+        }
+      ]
+    }
+  ],
+  "debate": [
+    {
+      "id": "growth-pays",
+      "title": "¿El crecimiento compensará las rebajas y nuevos gastos?",
+      "subtitle": "Finanzas públicas · proyección, no hecho",
+      "positions": [
+        {
+          "side": "government",
+          "actor_ids": [
+            "jorge-quiroz",
+            "jose-antonio-kast"
+          ],
+          "claim": "Las rebajas, permisos e incentivos elevarán inversión, empleo y PIB; ese mayor crecimiento generará ingresos fiscales.",
+          "source_ids": [
+            "dipres-financial-report",
+            "cnn-quiroz-growth"
+          ]
+        },
+        {
+          "side": "opposition",
+          "actor_ids": [
+            "nicolas-grau",
+            "gael-yeomans"
+          ],
+          "claim": "Las compensaciones descansan en supuestos optimistas y pueden terminar presionando deuda o gasto social.",
+          "source_ids": [
+            "latercera-grau-inequality",
+            "biobio-opposition-23-doubts",
+            "cfa-comments"
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "verdict_label": "Aún condicional",
+      "assessment": "La oposición tiene razón en que la compensación no está demostrada: el anexo usa una trayectoria alternativa del PIB, elasticidad unitaria y una regla de holgura. El Gobierno sí documenta el mecanismo y sus supuestos, pero eso vuelve la afirmación evaluable, no verdadera de antemano.",
+      "what_would_resolve_it": "Recaudación, inversión, empleo y PIB observados contra un escenario contrafactual publicado, con revisión independiente durante varios años.",
+      "source_ids": [
+        "dipres-financial-report",
+        "cfa-comments",
+        "latercera-cfa-nine-risks",
+        "cnn-quiroz-growth"
+      ]
+    },
+    {
+      "id": "hidden-tax-reform",
+      "title": "¿Es una “reforma tributaria encubierta”?",
+      "subtitle": "Contenido verificable y etiqueta retórica",
+      "positions": [
+        {
+          "side": "government",
+          "actor_ids": [
+            "jorge-quiroz"
+          ],
+          "claim": "Es un proyecto de reconstrucción y reactivación que reúne medidas urgentes en distintas áreas.",
+          "source_ids": [
+            "dipres-financial-report",
+            "meganoticias-quiroz-explains"
+          ]
+        },
+        {
+          "side": "opposition",
+          "actor_ids": [
+            "gael-yeomans"
+          ],
+          "claim": "El paquete altera tantos elementos tributarios que funciona materialmente como una reforma tributaria.",
+          "source_ids": [
+            "elpais-opposition-tax-reform",
+            "biobio-opposition-23-doubts"
+          ]
+        }
+      ],
+      "verdict": "mixed",
+      "verdict_label": "Núcleo cierto, etiqueta debatible",
+      "assessment": "El núcleo factual de la crítica está respaldado: el informe dedica un bloque extenso a tasa corporativa, integración, créditos, ganancias de capital, contribuciones, IVA e invariabilidad. “Encubierta” atribuye una intención que el documento no puede probar; su título también incluye desarrollo económico y social.",
+      "what_would_resolve_it": "No hay una medición que resuelva una etiqueta política. Sí se puede comparar, artículo por artículo, cuántas normas tributarias quedaron en el texto final.",
+      "source_ids": [
+        "dipres-financial-report",
+        "elpais-opposition-tax-reform",
+        "chamber-reports"
+      ]
+    },
+    {
+      "id": "permits-environment",
+      "title": "¿Agiliza permisos sin debilitar la protección ambiental?",
+      "subtitle": "Dos efectos distintos",
+      "positions": [
+        {
+          "side": "government",
+          "actor_ids": [
+            "jorge-quiroz"
+          ],
+          "claim": "Evita duplicaciones y reduce incertidumbre y plazos para proyectos ya evaluados.",
+          "source_ids": [
+            "dipres-financial-report",
+            "emol-environment-amendments"
+          ]
+        },
+        {
+          "side": "opposition",
+          "actor_ids": [
+            "gael-yeomans"
+          ],
+          "claim": "Limitar reevaluaciones, recursos y cautelares puede trasladar riesgo desde inversionistas a comunidades y ecosistemas.",
+          "source_ids": [
+            "cnn-tc-challenges",
+            "emol-opposition-withdrawal"
+          ]
+        }
+      ],
+      "verdict": "mixed",
+      "verdict_label": "Agiliza; protección no demostrada",
+      "assessment": "El Gobierno tiene respaldo textual para decir que el procedimiento se acorta. El mismo texto restringe reevaluaciones y duración de cautelares, por lo que no permite concluir que la protección queda intacta. También agrega controles en centrales y monitoreo acuícola: el efecto neto requiere aplicación real.",
+      "what_would_resolve_it": "Tiempos de tramitación, litigios, anulaciones de RCA, incidentes y daño ambiental antes/después, separados por tipo de proyecto.",
+      "source_ids": [
+        "dipres-financial-report",
+        "emol-environment-amendments",
+        "cnn-tc-challenges"
+      ]
+    }
+  ],
+  "actors": [
+    {
+      "id": "jose-antonio-kast",
+      "name": "José Antonio Kast",
+      "role": "Presidente de la República",
+      "institution": "Presidencia de Chile",
+      "affiliation": "Partido Republicano",
+      "position_summary": "Impulsor del proyecto, presentado por su Gobierno como una vía de reconstrucción, reactivación y empleo.",
+      "image": "megareforma/actors/jose-antonio-kast.png",
+      "image_alt": "Retrato oficial de José Antonio Kast",
+      "image_credit": "Estado de Chile",
+      "image_license": "CC BY 3.0 CL",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Retrato_Presidente_Jos%C3%A9_Antonio_Kast.png",
+      "roles": [
+        "Presidente de Chile, 2026–2030",
+        "Diputado, 2002–2018"
+      ],
+      "legal_record": [],
+      "sources": [
+        {
+          "label": "Presidencia de Chile",
+          "url": "https://www.gob.cl/instituciones/presidencia/",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_Antonio_Kast",
+          "kind": "wikipedia"
+        },
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Retrato_Presidente_Jos%C3%A9_Antonio_Kast.png",
+          "kind": "wikimedia"
+        }
+      ]
+    },
+    {
+      "id": "jorge-quiroz",
+      "name": "Jorge Quiroz",
+      "role": "Ministro de Hacienda",
+      "institution": "Ministerio de Hacienda",
+      "affiliation": "Independiente; Gobierno de José Antonio Kast",
+      "position_summary": "Conductor económico del proyecto; defiende sus incentivos a inversión, crecimiento y empleo.",
+      "image": "megareforma/actors/jorge-quiroz.jpg",
+      "image_alt": "Retrato oficial de Jorge Quiroz",
+      "image_credit": "Estado de Chile",
+      "image_license": "CC BY 3.0 CL",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:JORGE-QUIROZ.jpg",
+      "roles": [
+        "Ministro de Hacienda desde el 11 de marzo de 2026",
+        "Consultor económico hasta enero de 2026"
+      ],
+      "legal_record": [],
+      "sources": [
+        {
+          "label": "Ministerio de Hacienda",
+          "url": "https://www.hacienda.cl/ministerio/ministro",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Jorge_Quiroz",
+          "kind": "wikipedia"
+        },
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:JORGE-QUIROZ.jpg",
+          "kind": "wikimedia"
+        }
+      ]
+    },
+    {
+      "id": "gael-yeomans",
+      "name": "Gael Yeomans",
+      "role": "Diputada por el distrito 13",
+      "institution": "Cámara de Diputadas y Diputados",
+      "affiliation": "Frente Amplio",
+      "position_summary": "Voz opositora en la discusión; ha combinado disposición al diálogo con objeciones tributarias y fiscales.",
+      "image": "megareforma/actors/gael-yeomans.jpg",
+      "image_alt": "Retrato oficial de Gael Yeomans",
+      "image_credit": "Biblioteca del Congreso Nacional de Chile",
+      "image_license": "CC BY-SA 3.0 CL",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Diputados_2026_Gael_Fernanda_Yeomans_Araya.jpg",
+      "roles": [
+        "Diputada, periodo 2026–2030",
+        "Representante del distrito 13 de la Región Metropolitana"
+      ],
+      "legal_record": [],
+      "sources": [
+        {
+          "label": "Cámara de Diputadas y Diputados",
+          "url": "https://camara.cl/diputados/detalle/asistencia_sala.aspx?prmId=1087",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Gael_Yeomans",
+          "kind": "wikipedia"
+        },
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Diputados_2026_Gael_Fernanda_Yeomans_Araya.jpg",
+          "kind": "wikimedia"
+        }
+      ]
+    },
+    {
+      "id": "nicolas-grau",
+      "name": "Nicolás Grau",
+      "role": "Exministro de Hacienda",
+      "institution": "Gobierno de Chile, periodo 2022–2026",
+      "affiliation": "Frente Amplio",
+      "position_summary": "Crítico opositor del proyecto; cuestiona sus supuestos de crecimiento, su efecto distributivo y el riesgo fiscal.",
+      "image": "megareforma/actors/nicolas-grau.jpg",
+      "image_alt": "Retrato oficial de Nicolás Grau",
+      "image_credit": "Estado de Chile",
+      "image_license": "CC BY 3.0 CL",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Nicol%C3%A1s_Grau_Veloso_(cropped).jpg",
+      "roles": [
+        "Ministro de Hacienda, agosto de 2025–marzo de 2026",
+        "Ministro de Economía, 2022–2025"
+      ],
+      "legal_record": [],
+      "sources": [
+        {
+          "label": "Senado: acusación constitucional rechazada",
+          "url": "https://www.senado.cl/comunicaciones/noticias/senado-desestima-acusacion-constitucional-en-contra-del-exministro-grau",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Nicol%C3%A1s_Grau",
+          "kind": "wikipedia"
+        },
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Nicol%C3%A1s_Grau_Veloso_(cropped).jpg",
+          "kind": "wikimedia"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "propositions": 452,
+    "sources_curated": 33,
+    "sources_captured": 23,
+    "capture_gaps": 10,
+    "model_runs_completed": 1
+  }
+}

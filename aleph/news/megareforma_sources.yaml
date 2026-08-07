@@ -1,0 +1,206 @@
+schema_version: "1.0.0"
+document_id: "18216-05"
+retrieval_cutoff: "2026-08-07T13:00:00Z"
+notes: >-
+  Deliberately broad, viewpoint-neutral seed set for the Megareforma dossier.
+  Inclusion means relevance to the bill or its legislative path, not endorsement.
+
+sources:
+  - id: dipres-financial-report
+    publisher: Dirección de Presupuestos
+    kind: official_record
+    perspective: primary_document
+    published_at: "2026-04-22T00:00:00Z"
+    url: https://www.dipres.gob.cl/604/w3-article-409825.html
+  - id: government-announcement
+    publisher: Gobierno de Chile
+    kind: official_record
+    perspective: government
+    published_at: "2026-04-13T00:00:00Z"
+    url: https://www.gob.cl/noticias/presidente-cadena-nacional-anuncia-detalles-proyecto-recontruccion-nacional/
+  - id: chamber-bill-record
+    publisher: Cámara de Diputadas y Diputados
+    kind: official_record
+    perspective: legislative_record
+    published_at: "2026-04-22T00:00:00Z"
+    url: https://www.camara.cl/legislacion/ProyectosDeLey/votaciones.aspx?prmBOLETIN=18216-05&prmID=18872
+  - id: chamber-reports
+    publisher: Cámara de Diputadas y Diputados
+    kind: official_record
+    perspective: legislative_record
+    published_at: "2026-07-22T00:00:00Z"
+    url: https://www.camara.cl/legislacion/proyectosdeley/informes.aspx?prmBOLETIN=18216-05&prmID=18872
+  - id: senate-particular-vote
+    publisher: Senado de la República
+    kind: official_record
+    perspective: legislative_record
+    published_at: "2026-07-15T00:00:00Z"
+    url: https://www.senado.cl/comunicaciones/noticias/senado-comienza-votacion-en-particular-del-proyecto-de-reconstruccion
+  - id: senate-session-43
+    publisher: Senado de la República
+    kind: official_record
+    perspective: legislative_record
+    published_at: "2026-07-15T00:00:00Z"
+    url: https://www.senado.cl/actividad-legislativa/sala-de-sesiones/sesiones-de-sala/10227
+  - id: supreme-court-report
+    publisher: Corte Suprema de Chile
+    kind: official_record
+    perspective: judicial_analysis
+    published_at: "2026-05-08T00:00:00Z"
+    url: https://www.biobiochile.cl/static/documentos/2026/05/corte-suprema-ley-de-reconstruccion.pdf
+  - id: cfa-comments
+    publisher: Consejo Fiscal Autónomo
+    kind: official_record
+    perspective: fiscal_analysis
+    published_at: "2026-05-05T00:00:00Z"
+    url: https://cdn.hacienda.cl/asset/cfa/attachment/de6f734132638b8bc9523ab6890053631d093087738eb92029e609cbd927935a/1780086443
+  - id: biobio-opposition-23-doubts
+    publisher: BioBioChile
+    kind: news
+    perspective: opposition_claims
+    published_at: "2026-05-05T15:00:00Z"
+    url: https://www.biobiochile.cl/noticias/economia/actualidad-economica/2026/05/05/las-23-dudas-de-las-oposiciones-ante-la-ley-de-reconstruccion-senalan-inconsistencias-en-las-cifras.shtml
+  - id: biobio-parisi-negotiation
+    publisher: BioBioChile
+    kind: news
+    perspective: negotiation
+    published_at: "2026-05-07T12:02:00Z"
+    url: https://www.biobiochile.cl/noticias/nacional/chile/2026/05/07/megarreforma-parisi-habla-de-acuerdos-con-quiroz-pero-deja-definicion-final-en-manos-de-diputados.shtml
+  - id: biobio-quiroz-adjustments
+    publisher: BioBioChile
+    kind: news
+    perspective: government
+    published_at: "2026-05-28T11:08:00Z"
+    url: https://www.biobiochile.cl/noticias/nacional/chile/2026/05/28/quiroz-matiza-idea-de-ajustes-a-megarreforma-tras-informe-de-finanzas-publicas-puede-ser-eso-o-nada.shtml
+  - id: biobio-senate-advance
+    publisher: BioBioChile
+    kind: news
+    perspective: government
+    published_at: "2026-07-16T03:08:00Z"
+    url: https://www.biobiochile.cl/noticias/nacional/chile/2026/07/16/ministro-quiroz-y-presidenta-del-senado-celebran-avance-de-megarreforma-y-destacan-impacto-en-empleo.shtml
+  - id: elpais-opposition-tax-reform
+    publisher: El País Chile
+    kind: news
+    perspective: opposition_claims
+    published_at: "2026-04-14T00:00:00Z"
+    url: https://elpais.com/chile/2026-04-14/la-oposicion-carga-contra-la-reforma-tributaria-encubierta-de-kast.html
+  - id: elpais-ai-copyright
+    publisher: El País Chile
+    kind: news
+    perspective: critical_analysis
+    published_at: "2026-04-24T00:00:00Z"
+    url: https://elpais.com/chile/2026-04-24/kast-impulsa-una-norma-que-abre-la-puerta-al-uso-sin-control-de-contenidos-de-la-ia.html
+  - id: elpais-cfa-risks
+    publisher: El País Chile
+    kind: news
+    perspective: fiscal_analysis
+    published_at: "2026-05-06T00:00:00Z"
+    url: https://elpais.com/chile/2026-05-06/la-megarreforma-de-kast-recibe-una-dura-critica-del-consejo-fiscal-autonomo-por-diversos-riesgos-para-las-finanzas-publicas.html
+  - id: elpais-chamber-approval
+    publisher: El País Chile
+    kind: news
+    perspective: legislative_update
+    published_at: "2026-05-20T00:00:00Z"
+    url: https://elpais.com/chile/2026-05-20/el-pleno-de-la-camara-de-diputados-aprueba-en-la-votacion-general-la-megarreforma-de-kast.html
+  - id: elpais-tc-challenges
+    publisher: El País Chile
+    kind: news
+    perspective: opposition_claims
+    published_at: "2026-07-22T00:00:00Z"
+    url: https://elpais.com/chile/2026-07-22/la-oposicion-lleva-a-la-megarreforma-de-kast-al-tribunal-constitucional-con-tres-requerimientos.html
+  - id: elpais-final-approval
+    publisher: El País Chile
+    kind: news
+    perspective: legislative_update
+    published_at: "2026-08-05T00:00:00Z"
+    url: https://elpais.com/chile/2026-08-05/kast-logra-aprobar-su-megarreforma-economica-en-el-congreso-en-el-tiempo-record-de-tres-meses.html
+  - id: latercera-yeomans-dialogue
+    publisher: La Tercera
+    kind: news
+    perspective: opposition_claims
+    published_at: "2026-05-03T00:00:00Z"
+    url: https://www.latercera.com/politica/noticia/diputada-gael-yeomans-fa-podemos-ser-una-oposicion-firme-y-que-a-la-vez-dialogue/
+  - id: latercera-cfa-nine-risks
+    publisher: La Tercera
+    kind: news
+    perspective: fiscal_analysis
+    published_at: "2026-05-05T00:00:00Z"
+    url: https://www.latercera.com/pulso/noticia/el-critico-informe-del-cfa-que-detecta-nueve-riegos-directos-que-la-megarreforma-le-provocaria-a-las-finanzas-publicas/
+  - id: latercera-grau-inequality
+    publisher: La Tercera
+    kind: news
+    perspective: opposition_claims
+    published_at: "2026-08-06T00:00:00Z"
+    url: https://www.latercera.com/pulso/noticia/grau-dice-que-la-megarreforma-va-a-aumentar-la-desigualdad-y-descuida-las-finanzas-publicas-va-a-envejecer-mal/
+  - id: eldinamo-cfa-reaction
+    publisher: El Dínamo
+    kind: news
+    perspective: mixed_reaction
+    published_at: "2026-05-06T00:00:00Z"
+    url: https://www.eldinamo.cl/politica/2026/05/06/oposicion-endurece-el-tono-contra-megarreforma-tras-lapidario-informe-del-cfa-y-el-oficialismo-minimiza-alertas/
+  - id: emol-chamber-vote
+    publisher: Emol
+    kind: news
+    perspective: legislative_update
+    published_at: "2026-05-20T10:25:00Z"
+    url: https://www.emol.com/noticias/Nacional/2026/05/20/1200525/votacion-diputados-proyecto-reconstruccion-general.html
+  - id: emol-senate-battle
+    publisher: Emol
+    kind: news
+    perspective: negotiation
+    published_at: "2026-06-25T22:01:00Z"
+    url: https://www.emol.com/noticias/Nacional/2026/06/25/1203855/reconstruccion-batalla-despues-legislar.html
+  - id: emol-fa-reversal
+    publisher: Emol
+    kind: news
+    perspective: opposition_claims
+    published_at: "2026-06-30T23:37:00Z"
+    url: https://www.emol.com/noticias/Nacional/2026/06/30/1204310/frente-amplio-por-megarreforma.html
+  - id: emol-environment-amendments
+    publisher: Emol
+    kind: news
+    perspective: legislative_update
+    published_at: "2026-07-07T11:56:00Z"
+    url: https://www.emol.com/noticias/Economia/2026/07/07/1204922/indicaciones-gobierno-reconstruccion.html
+  - id: emol-opposition-withdrawal
+    publisher: Emol
+    kind: news
+    perspective: opposition_claims
+    published_at: "2026-07-08T01:07:00Z"
+    url: https://www.emol.com/noticias/Nacional/2026/07/07/1204986/medio-ambiente-senado-despacha-reconstruccion.html
+  - id: cooperativa-senate-timing
+    publisher: Cooperativa
+    kind: news
+    perspective: government
+    published_at: "2026-06-24T00:33:00Z"
+    url: https://www.cooperativa.cl/noticias/site/artic/20260624/pags-movil2/20260624003218.html
+  - id: cnn-tc-challenges
+    publisher: CNN Chile
+    kind: news
+    perspective: opposition_claims
+    published_at: "2026-08-06T00:00:00Z"
+    url: https://www.cnnchile.com/pais/megarreforma-tribunal-constitucional-requerimientos-invariabilidad-rca/
+  - id: cnn-quiroz-growth
+    publisher: CNN Chile
+    kind: news
+    perspective: government
+    published_at: "2026-08-05T00:00:00Z"
+    url: https://www.cnnchile.com/pais/ministro-quiroz-celebra-despacho-de-ley-de-reconstruccion-y-asegura-que-chile-comienza-nuevamente-a-crecer/
+  - id: cnn-acevedo-analysis
+    publisher: CNN Chile
+    kind: news
+    perspective: fiscal_analysis
+    published_at: "2026-08-05T00:00:00Z"
+    url: https://www.cnnchile.com/lodijeronencnn/exdirector-de-la-dipres-matias-acevedo-sobre-la-megarreforma-analiza-que-la-construccion-sera-el-sector-mas-dinamico-a-corto-plazo/
+  - id: meganoticias-quiroz-explains
+    publisher: Meganoticias
+    kind: news
+    perspective: government
+    published_at: "2026-08-05T00:00:00Z"
+    url: https://www.meganoticias.cl/nacional/528727-jorge-quiroz-explica-megarreforma-cadena-nacional-kast-empleo-impuestos-contribuciones-05-08-2026.html
+  - id: ciper-final-compensation
+    publisher: CIPER Chile
+    kind: news
+    perspective: legislative_update
+    published_at: "2026-08-04T00:00:00Z"
+    url: https://www.ciperchile.cl/2026/08/04/radar-04-08-26/
