@@ -33,7 +33,7 @@ dependencies = [
 # (in CI, in a batch job) without pulling a web framework.
 api = [
   "alembic>=1.14",
-  "fastapi>=0.110",
+  "fastapi>=0.141.1",
   "psycopg[binary]>=3.2",
   "sqlalchemy>=2.0",
   "uvicorn[standard]>=0.29",
