@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-07T15:46:08.763672Z",
+  "execution": "local_gpu_offline",
+  "runtime_calls": 0,
+  "methodology": "Síntesis Qwen local sobre paquetes de evidencia con fuentes permitidas por tema; el código rechaza temas duplicados y referencias fuera del paquete. Las notas comparadas no sustituyen una evaluación causal específica para Chile.",
+  "topics": [
+    {
+      "id": "corporate_tax_growth",
+      "bottom_line": "La evidencia internacional sugiere que las rebajas fiscales pueden impulsar la inversión tangible, pero no garantizan crecimiento del PIB ni salarios, y a menudo reducen la recaudación corporativa sin datos chilenos que validen el efecto específico de este proyecto.",
+      "findings": [
+        "La inversión responde al costo de capital, pero la magnitud varía según la firma, el activo y el diseño de la política.",
+        "En el caso de EE.UU. 2017, la inversión tangible aumentó un 11%, pero la recaudación corporativa cayó un 40% y el impacto en salarios fue menor al anunciado.",
+        "Las rebajas estatales en otros contextos elevaron la actividad económica principalmente durante recesiones, no en todos los ciclos."
+      ],
+      "application_to_reform": "El proyecto chileno podría incentivar la inversión tangible si se diseña para reducir el costo de capital, pero no debe asumirse que generará autofinanciamiento o crecimiento sostenido sin evidencia local que lo respalde.",
+      "limits": "Ninguna estimación disponible identifica el efecto causal específico de este proyecto en la economía chilena, y los resultados dependen de factores como el diseño de la política y el ciclo económico vigente.",
+      "source_ids": [
+        "research-oecd-corporate-investment-2023",
+        "research-aea-us-tax-cut-2024",
+        "research-nber-tax-cuts-employment"
+      ],
+      "title": "Impuestos corporativos, inversión y crecimiento",
+      "question": "¿Bajar el impuesto a las empresas hace crecer la economía?"
+    },
+    {
+      "id": "fiscal_self_financing",
+      "bottom_line": "Las proyecciones de crecimiento no equivalen a observaciones causales de autofinanciamiento, ya que la evidencia muestra caídas de recaudación y efectos fiscales dependientes del ciclo económico y de supuestos modelados.",
+      "findings": [
+        "La revisión AEA encuentra crecimiento positivo tras recortes fiscales, pero también una gran caída en la recaudación que contradice el autofinanciamiento.",
+        "El informe DIPRES modela compensación fiscal basándose en una trayectoria alternativa del PIB y supuestos explícitos, no en datos observados.",
+        "El CFA chileno reportó riesgos fiscales significativos asociados a estas proyecciones de crecimiento sin recaudación compensatoria."
+      ],
+      "application_to_reform": "Cualquier reforma que dependa del autofinanciamiento debe considerar que las proyecciones de crecimiento no son garantías de equilibrio fiscal y que los efectos reales dependen del ciclo económico.",
+      "limits": "Una proyección no es una observación causal, y los modelos de compensación fiscal requieren supuestos que pueden no reflejar la realidad económica futura.",
+      "source_ids": [
+        "research-aea-us-tax-cut-2024",
+        "research-nber-tax-cuts-employment",
+        "cfa-comments",
+        "dipres-financial-report"
+      ],
+      "title": "¿El crecimiento paga la rebaja?",
+      "question": "¿Puede una rebaja tributaria autofinanciarse?"
+    },
+    {
+      "id": "environmental_permits",
+      "bottom_line": "Simplificar trámites ambientales puede acelerar la inversión, pero la velocidad procedimental no garantiza protección ambiental equivalente, requiriendo coordinación y capacidad técnica para evitar riesgos.",
+      "findings": [
+        "Trámites largos y descoordinados pueden frenar la inversión, incluso en proyectos verdes, según la OECD 2025.",
+        "Simplificar procesos funciona mejor cuando se combina con coordinación institucional, capacidad técnica y digitalización.",
+        "El informe chileno limita reevaluaciones y cautelares, pero acortar plazos no demuestra equivalencia en la protección ambiental."
+      ],
+      "application_to_reform": "La reforma debe priorizar la coordinación y la evaluación de riesgos junto con la simplificación de plazos para asegurar que la velocidad no comprometa la protección ambiental.",
+      "limits": "Acortar plazos demuestra velocidad procedimental, pero no equivalencia de protección ambiental, y la evidencia no garantiza que la simplificación por sí sola maximice la inversión verde.",
+      "source_ids": [
+        "research-oecd-environmental-permitting",
+        "dipres-financial-report",
+        "supreme-court-report"
+      ],
+      "title": "Permisos rápidos y protección ambiental",
+      "question": "¿Acortar permisos mantiene la misma protección?"
+    },
+    {
+      "id": "housing_property_tax",
+      "bottom_line": "Los impuestos recurrentes a inmuebles son más eficientes que los de transacción, pero las desgravaciones pueden capitalizarse en precios y afectar a hogares con patrimonio pero poco ingreso.",
+      "findings": [
+        "Cuando la oferta de vivienda responde poco, las desgravaciones a propietarios pueden capitalizarse parcialmente en los precios de mercado.",
+        "Los impuestos recurrentes a inmuebles son más eficientes que los de transacción según la OECD, pero requieren análisis de focalización.",
+        "Hogares con patrimonio inmobiliario pero poco ingreso pueden enfrentar iliquidez si se implementan impuestos recurrentes sin compensación."
+      ],
+      "application_to_reform": "El proyecto debe analizar la focalización y la compensación municipal para evitar que los impuestos recurrentes afecten desproporcionadamente a hogares con baja liquidez.",
+      "limits": "La evidencia no demuestra que las desgravaciones siempre beneficien a los objetivos de política, y la eficiencia de los impuestos recurrentes depende de la capacidad de pago de los hogares.",
+      "source_ids": [
+        "research-oecd-housing-taxation",
+        "dipres-financial-report",
+        "ciper-final-compensation"
+      ],
+      "title": "Vivienda, IVA y contribuciones",
+      "question": "¿Las exenciones abaratan la vivienda y protegen a quien lo necesita?"
+    },
+    {
+      "id": "higher_education",
+      "bottom_line": "La gratuidad se asocia con mayor acceso de jóvenes vulnerables, pero la evidencia no aísla la causalidad y persisten barreras de preparación y calidad que limitan el impacto educativo final.",
+      "findings": [
+        "La gratuidad coincide con una mejora de 7 puntos en el acceso de jóvenes cuyos padres no terminaron secundaria entre 2012 y 2023.",
+        "La asociación observada no aísla por sí sola la causalidad, ya que otros factores pueden influir en el aumento del acceso.",
+        "Persisten barreras de preparación, calidad y financiamiento que limitan el impacto educativo final más allá del acceso inicial."
+      ],
+      "application_to_reform": "La reforma debe abordar no solo el acceso, sino también la preparación y la calidad educativa para maximizar el impacto de la gratuidad en los resultados de aprendizaje.",
+      "limits": "El informe posterga umbrales futuros y estima ahorro, pero no el efecto educativo final, y la evidencia no demuestra que la gratuidad por sí sola resuelva las barreras de calidad.",
+      "source_ids": [
+        "research-oecd-chile-education-2025",
+        "dipres-financial-report"
+      ],
+      "title": "Gratuidad, acceso y costo fiscal",
+      "question": "¿Postergar la expansión de gratuidad cambia la movilidad educativa?"
+    },
+    {
+      "id": "text_data_mining",
+      "bottom_line": "Permitir minería de texto reduce costos de autorización, pero la evidencia comparada no demuestra que cualquier amplitud maximice la innovación ni que sea neutral para los titulares de derechos.",
+      "findings": [
+        "El estudio WIPO muestra que el acceso lícito, la finalidad y la seguridad de copias son decisiones separables en los regímenes de minería de texto.",
+        "Permitir minería reduce costos de autorización, pero no garantiza que maximice la innovación en todos los contextos.",
+        "La evidencia comparada no demuestra que la amplitud de la minería sea neutral para los titulares de derechos de autor."
+      ],
+      "application_to_reform": "La reforma debe definir claramente el acceso lícito, la finalidad y las medidas de seguridad para equilibrar la reducción de costos con la protección de los titulares.",
+      "limits": "La evidencia no demuestra que cualquier amplitud de minería maximice la innovación, y los efectos sobre los titulares de derechos dependen del diseño específico del régimen.",
+      "source_ids": [
+        "research-wipo-text-data-mining",
+        "dipres-financial-report"
+      ],
+      "title": "Minería de datos, innovación y derechos de autor",
+      "question": "¿Una excepción amplia es necesaria para innovar?"
+    }
+  ],
+  "model": {
+    "provider": "qwen",
+    "name": "nvidia/Qwen3.5-122B-A10B-NVFP4",
+    "usage": {
+      "prompt_tokens": 1327,
+      "completion_tokens": 1806,
+      "total_tokens": 3133
+    },
+    "structured_output_mode": "json_schema"
+  }
+}

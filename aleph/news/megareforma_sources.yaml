@@ -204,3 +204,146 @@ sources:
     perspective: legislative_update
     published_at: "2026-08-04T00:00:00Z"
     url: https://www.ciperchile.cl/2026/08/04/radar-04-08-26/
+
+  # Official timeline and negotiation records added in the second sweep.
+  - id: presidency-chain-transcript
+    publisher: Presidencia de Chile
+    kind: official_record
+    format: transcript
+    perspective: government
+    published_at: "2026-04-15T00:00:00Z"
+    title: Cadena nacional de presentación del proyecto de reconstrucción
+    summary: Transcripción oficial del anuncio presidencial; permite separar las promesas políticas del contenido del informe financiero.
+    url: https://prensa.presidencia.cl/discurso.aspx?id=325585
+  - id: senate-negotiation-table-start
+    publisher: Senado de la República
+    kind: official_record
+    format: article
+    perspective: negotiation
+    published_at: "2026-07-01T00:00:00Z"
+    url: https://www.senado.cl/comunicaciones/noticias/mesa-politica-y-tecnica-por-reconstruccion-inicia-su-trabajo
+  - id: senate-negotiation-table-progress
+    publisher: Senado de la República
+    kind: official_record
+    format: video
+    perspective: negotiation
+    published_at: "2026-07-03T00:00:00Z"
+    url: https://www.senado.cl/comunicaciones/noticias/mesa-tecnica-politica-por-megarreforma-valora-acercamientos-en-busqueda-de
+
+  # Additional reporting and audiovisual coverage. A video card links to the
+  # publisher's player; the static Aleph site never embeds third-party code.
+  - id: biobio-initial-measures
+    publisher: BioBioChile
+    kind: news
+    format: article
+    perspective: legislative_update
+    published_at: "2026-04-15T00:00:00Z"
+    url: https://www.biobiochile.cl/noticias/nacional/chile/2026/04/15/rebaja-de-impuestos-y-credito-al-empleo-formal-las-claves-del-plan-de-reconstruccion-de-kast.shtml
+  - id: latercera-video-details
+    publisher: La Tercera TV
+    kind: news
+    format: video
+    perspective: legislative_update
+    published_at: "2026-04-15T00:00:00Z"
+    url: https://www.latercera.com/videos/noticia/los-detalles-de-la-megarreforma-del-presidente-kast/
+  - id: df-video-announcement
+    publisher: Diario Financiero
+    kind: news
+    format: video
+    perspective: government
+    published_at: "2026-04-15T00:00:00Z"
+    url: https://www.df.cl/df-video/ahora-en-df-kast-presenta-los-ejes-de-su-plan-de-reconstruccion-en-cadena
+  - id: as-video-announcement
+    publisher: AS Chile
+    kind: news
+    format: video
+    perspective: government
+    published_at: "2026-04-15T00:00:00Z"
+    url: https://chile.as.com/videos/presidente-kast-sorprende-a-todos-en-cadena-nacional-y-presenta-nuevo-proyecto-habra-voces-que-diran-que-favorece-a-los-mas-ricos-f202604-v/
+  - id: 24horas-parisi-negotiation
+    publisher: 24 Horas
+    kind: news
+    format: video
+    perspective: negotiation
+    published_at: "2026-05-06T00:00:00Z"
+    url: https://www.24horas.cl/actualidad/politica/parisi-y-caida-del-acuerdo-pdg-gobierno-por-megarreforma-las-puertas-abiertas
+  - id: cooperativa-parisi-interview
+    publisher: Cooperativa
+    kind: news
+    format: audio
+    perspective: negotiation
+    published_at: "2026-05-11T08:38:00Z"
+    url: https://www.cooperativa.cl/noticias/pais/politica/agenda-legislativa/franco-parisi-dio-su-opinion-favorable-al-pdg-diputados-definiran/2026-05-11/083751.html
+  - id: 24horas-senate-committee-video
+    publisher: 24 Horas
+    kind: news
+    format: video
+    perspective: legislative_update
+    published_at: "2026-07-14T00:00:00Z"
+    url: https://www.24horas.cl/actualidad/politica/comision-de-hacienda-del-senado-despacha-a-sala-la-megarreforma
+
+  # Global empirical and institutional evidence. These entries are displayed
+  # in their own evidence section and never enter the press-position meter.
+  - id: research-oecd-corporate-investment-2023
+    publisher: OECD
+    kind: research
+    format: report
+    perspective: technical_reference
+    published_at: "2023-07-01T00:00:00Z"
+    title: How does corporate taxation affect business investment?
+    summary: "Evidencia agregada y a nivel de empresa: la respuesta de la inversión varía por firma, activo y diseño tributario; una menor tasa no produce un efecto uniforme."
+    url: https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/07/how-does-corporate-taxation-affect-business-investment_bf34611b/04e682d7-en.pdf
+  - id: research-aea-us-tax-cut-2024
+    publisher: American Economic Association
+    kind: research
+    format: paper
+    perspective: technical_reference
+    published_at: "2024-08-01T00:00:00Z"
+    title: Lessons from the Biggest Business Tax Cut in US History
+    summary: "Revisión de la reforma estadounidense de 2017: aumentó inversión tangible, pero el crecimiento y los salarios subieron menos de lo prometido y cayó la recaudación corporativa."
+    url: https://www.aeaweb.org/articles?id=10.1257%2Fjep.38.3.61
+  - id: research-nber-tax-cuts-employment
+    publisher: NBER
+    kind: research
+    format: paper
+    perspective: technical_reference
+    published_at: "2018-10-01T00:00:00Z"
+    title: To Cut or Not to Cut? On the Impact of Corporate Taxes on Employment and Income
+    summary: "Estudio cuasiexperimental subnacional: las rebajas corporativas elevaron actividad principalmente cuando fueron aplicadas durante recesiones."
+    url: https://www.nber.org/papers/w20753
+  - id: research-oecd-environmental-permitting
+    publisher: OECD
+    kind: research
+    format: report
+    perspective: technical_reference
+    published_at: "2025-10-22T00:00:00Z"
+    title: Regulating for the planet — OECD Regulatory Policy Outlook 2025
+    summary: Los permisos lentos pueden frenar inversión verde, pero simplificar exige mantener evaluación de riesgos, coordinación, capacidad técnica y participación.
+    url: https://www.oecd.org/en/publications/oecd-regulatory-policy-outlook-2025_56b60e39-en/full-report/regulating-for-the-planet_a5fdd03c.html
+  - id: research-oecd-housing-taxation
+    publisher: OECD
+    kind: research
+    format: report
+    perspective: technical_reference
+    published_at: "2022-07-21T00:00:00Z"
+    title: Housing Taxation in OECD Countries
+    summary: Las desgravaciones a propietarios pueden capitalizarse en precios cuando la oferta responde poco; los impuestos recurrentes tienen efectos distintos a los de transacción.
+    url: https://www.oecd.org/en/publications/housing-taxation-in-oecd-countries_03dfe007-en/full-report/component-4.html
+  - id: research-oecd-chile-education-2025
+    publisher: OECD
+    kind: research
+    format: report
+    perspective: technical_reference
+    published_at: "2025-09-09T00:00:00Z"
+    title: Education at a Glance 2025 — Chile
+    summary: La gratuidad coincide con avances de movilidad intergeneracional, aunque persisten barreras previas de acceso, calidad y una alta participación del gasto privado.
+    url: https://www.oecd.org/en/publications/education-at-a-glance-2025_1a3543e2-en/chile_e68ee91a-en.html
+  - id: research-wipo-text-data-mining
+    publisher: WIPO
+    kind: research
+    format: report
+    perspective: technical_reference
+    published_at: "2024-03-15T00:00:00Z"
+    title: Study on limitations and exceptions for text and data mining
+    summary: Comparación internacional de excepciones de minería de textos y datos; acceso lícito, finalidad, opt-out y remuneración son decisiones de diseño separadas.
+    url: https://www.wipo.int/edocs/mdocs/copyright/en/sccr_44/sccr_44_4.pdf

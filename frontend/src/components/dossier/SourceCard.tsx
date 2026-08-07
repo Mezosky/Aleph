@@ -2,6 +2,8 @@ import { dataUrl } from '@/lib/data'
 import type { CapturedSource } from '@/types/megareforma'
 
 export default function SourceCard({ source }: { source: CapturedSource }) {
+  const kindLabel = source.kind === 'official_record' ? 'registro oficial' : source.kind === 'research' ? 'evidencia comparada' : 'prensa'
+  const formatLabel = source.format === 'video' ? 'video' : source.format === 'audio' ? 'audio' : source.format === 'transcript' ? 'transcripción' : null
   return (
     <article className="group flex h-full flex-col overflow-hidden border border-line-hairline bg-surface-card">
       <a
@@ -19,7 +21,7 @@ export default function SourceCard({ source }: { source: CapturedSource }) {
       </a>
       <div className="flex flex-1 flex-col p-4">
         <p className="text-micro uppercase tracking-wide text-ink-muted">
-          {source.publisher} · {source.kind === 'official_record' ? 'registro oficial' : 'prensa'}
+          {source.publisher} · {kindLabel}{formatLabel ? ` · ${formatLabel}` : ''}
         </p>
         <h3 className="mt-2 text-body font-semibold leading-snug text-ink-primary">{source.title}</h3>
         {source.summary && <p className="mt-2 line-clamp-3 text-caption text-ink-secondary">{source.summary}</p>}
@@ -29,7 +31,7 @@ export default function SourceCard({ source }: { source: CapturedSource }) {
           rel="noopener noreferrer"
           className="mt-auto pt-4 text-caption font-semibold text-ink-primary underline underline-offset-4"
         >
-          Abrir publicación original ↗
+          {source.format === 'video' ? 'Ver video original ↗' : source.format === 'audio' ? 'Escuchar original ↗' : 'Abrir publicación original ↗'}
         </a>
       </div>
     </article>

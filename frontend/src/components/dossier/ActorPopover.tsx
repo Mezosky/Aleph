@@ -32,7 +32,10 @@ export default function ActorPopover({ actor }: { actor: ActorProfile }) {
           </span>
         </span>
         <span className="mt-3 block border-t border-line-hairline pt-3 text-micro font-normal text-ink-muted">
-          Foto: {actor.image_credit} · {actor.image_license}. Perfil factual; no interviene en el veredicto.
+          {actor.public_record[0]?.assessment}
+        </span>
+        <span className="mt-2 block text-micro font-normal text-ink-muted">
+          Foto: {actor.image_credit} · {actor.image_license}. Historial factual; no interviene en el veredicto.
         </span>
       </span>
     </span>

@@ -89,9 +89,9 @@
       "minItems": 4,
       "items": {
         "type": "object",
-        "required": ["id", "name", "role", "institution", "affiliation", "position_summary", "image", "image_alt", "image_credit", "image_license", "image_source_url", "roles", "legal_record", "sources"],
+        "required": ["id", "name", "role", "institution", "affiliation", "position_summary", "image", "image_alt", "image_credit", "image_license", "image_source_url", "roles", "legal_record", "public_record", "record_caveat", "sources"],
         "properties": {
-          "id": {"type": "string"}, "name": {"type": "string"}, "role": {"type": "string"}, "institution": {"type": "string"}, "affiliation": {"type": "string"}, "position_summary": {"type": "string"}, "image": {"type": "string"}, "image_alt": {"type": "string"}, "image_credit": {"type": "string"}, "image_license": {"type": "string"}, "image_source_url": {"type": "string", "format": "uri"}, "roles": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "legal_record": {"type": "array", "maxItems": 0}, "sources": {"type": "array", "minItems": 2}
+          "id": {"type": "string"}, "name": {"type": "string"}, "role": {"type": "string"}, "institution": {"type": "string"}, "affiliation": {"type": "string"}, "position_summary": {"type": "string"}, "image": {"type": "string"}, "image_alt": {"type": "string"}, "image_credit": {"type": "string"}, "image_license": {"type": "string"}, "image_source_url": {"type": "string", "format": "uri"}, "roles": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "legal_record": {"type": "array", "maxItems": 0}, "public_record": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["date", "action", "outcome", "assessment", "status", "source_ids"], "properties": {"date": {"type": "string"}, "action": {"type": "string"}, "outcome": {"type": "string"}, "assessment": {"type": "string"}, "status": {"enum": ["observed", "pending", "not_testable"]}, "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}}}, "additionalProperties": false}}, "record_caveat": {"type": "string", "minLength": 60}, "sources": {"type": "array", "minItems": 2}
         },
         "additionalProperties": false
       }

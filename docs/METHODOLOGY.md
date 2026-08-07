@@ -251,6 +251,19 @@ deduplicate repeat observations, while scrape-run rows and first/last-seen times
 history of what was checked and when. Discovery alone does not create a factual verdict: an item
 must still enter a frozen evidence set and pass the same claim-level evaluation path.
 
+Comparative evidence is a separate bounded layer. Each policy question has an allow-list of source
+ids and a compact evidence packet that distinguishes reported association, causal identification
+and projection. Qwen produces structured explanations over that packet; the runtime rejects an
+unknown topic, a duplicate topic or any citation outside the allow-list. An OECD or journal result
+from another jurisdiction therefore informs the mechanism but cannot be presented as the measured
+effect of the Chilean law.
+
+Actor history is also isolated from factual evaluation. Profiles may show roles and dated public
+actions with an observed, pending or non-testable outcome. They carry no aggregate score, and the
+blind-path guard prevents the evaluator from receiving them. Past conduct can answer “what did this
+person do and what happened next?”; it cannot answer “is this new statement true?” without evidence
+about the statement itself.
+
 ---
 
 ## 11. Known limitations
@@ -266,8 +279,9 @@ must still enter a frozen evidence set and pass the same claim-level evaluation 
   requires. It does not adjudicate whether they will hold.
 - **Coarse magnitudes are deliberate.** Effect sizes are small/medium/large rather than precise
   figures, because false precision would overstate what the evidence supports.
-- **The bundled sample data is synthetic** and describes no real statement by any real person or
-  outlet.
+- **Generic pipeline fixtures are synthetic.** The single-document Megareforma dossier is a real,
+  frozen evidence snapshot and labels itself accordingly; synthetic fixtures are excluded from the
+  deployed Vite bundle.
 
 ---
 

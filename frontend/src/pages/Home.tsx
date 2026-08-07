@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import ActorPopover from '@/components/dossier/ActorPopover'
 import DossierMeter from '@/components/dossier/DossierMeter'
 import SourceCard from '@/components/dossier/SourceCard'
-import { describeDataError, loadMegareformaDossier, loadMegareformaSources } from '@/lib/data'
-import type { MegareformaDossier, MegareformaSources } from '@/types/megareforma'
+import { describeDataError, loadMegareformaDossier, loadMegareformaSources, loadMegareformaTheory } from '@/lib/data'
+import type { MegareformaDossier, MegareformaSources, MegareformaTheory } from '@/types/megareforma'
 
 const VERDICT_STYLE = {
   supported: 'border-status-good',
@@ -25,14 +25,16 @@ function Loading() {
 export default function Home() {
   const [dossier, setDossier] = useState<MegareformaDossier | null>(null)
   const [sources, setSources] = useState<MegareformaSources | null>(null)
+  const [theory, setTheory] = useState<MegareformaTheory | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const controller = new AbortController()
-    Promise.all([loadMegareformaDossier(controller.signal), loadMegareformaSources(controller.signal)]).then(
-      ([nextDossier, nextSources]) => {
+    Promise.all([loadMegareformaDossier(controller.signal), loadMegareformaSources(controller.signal), loadMegareformaTheory(controller.signal)]).then(
+      ([nextDossier, nextSources, nextTheory]) => {
         setDossier(nextDossier)
         setSources(nextSources)
+        setTheory(nextTheory)
       },
       (reason: unknown) => {
         if (!controller.signal.aborted) setError(describeDataError(reason))
@@ -43,6 +45,7 @@ export default function Home() {
 
   const actors = useMemo(() => new Map(dossier?.actors.map((actor) => [actor.id, actor]) ?? []), [dossier])
   const sourceById = useMemo(() => new Map(sources?.items.map((source) => [source.id, source]) ?? []), [sources])
+  const gapById = useMemo(() => new Map(sources?.gaps.map((gap) => [gap.id, gap]) ?? []), [sources])
 
   if (error)
     return (
@@ -50,7 +53,7 @@ export default function Home() {
         {error}
       </p>
     )
-  if (!dossier || !sources) return <Loading />
+  if (!dossier || !sources || !theory) return <Loading />
 
   return (
     <>
@@ -235,6 +238,51 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="evidencia-comparada" className="mt-24 border-t border-line-hairline pt-12">
+        <div className="max-w-3xl">
+          <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">Teoría y evidencia global</p>
+          <h2 className="mt-3 text-title font-semibold text-ink-primary">¿Qué sabemos fuera de este debate?</h2>
+          <p className="mt-4 text-body text-ink-secondary">
+            El modelo local contrastó cada mecanismo con evidencia empírica e institucional internacional. No traslada
+            automáticamente un resultado extranjero a Chile: separa lo respaldado, lo condicional y lo que aún debe medirse.
+          </p>
+        </div>
+        <div className="mt-8 grid gap-5 lg:grid-cols-2">
+          {theory.topics.map((topic) => (
+            <article key={topic.id} className="border border-line-hairline bg-surface-card p-6 sm:p-8">
+              <p className="text-micro font-semibold uppercase tracking-wide text-ink-muted">Pregunta comparada</p>
+              <h3 className="mt-2 text-lede font-semibold text-ink-primary">{topic.question}</h3>
+              <p className="mt-4 border-l-2 border-line-strong pl-4 text-body text-ink-primary">{topic.bottom_line}</p>
+              <ul className="mt-5 space-y-2 pl-5 text-caption text-ink-secondary">
+                {topic.findings.map((finding) => <li key={finding} className="list-disc">{finding}</li>)}
+              </ul>
+              <p className="mt-5 text-caption text-ink-secondary">
+                <span className="font-semibold text-ink-primary">Aplicado a la reforma:</span> {topic.application_to_reform}
+              </p>
+              <details className="mt-4 border-t border-line-hairline pt-3">
+                <summary className="cursor-pointer text-caption font-semibold">Límites y referencias</summary>
+                <p className="mt-3 text-caption text-ink-secondary">{topic.limits}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {topic.source_ids.map((id) => {
+                    const source = sourceById.get(id)
+                    const gap = gapById.get(id)
+                    const href = source?.original_url ?? gap?.url
+                    return href ? (
+                      <a key={id} href={href} target="_blank" rel="noopener noreferrer" className="border border-line-hairline px-2 py-1 text-micro underline-offset-2 hover:underline">
+                        {source?.publisher ?? id} {gap ? '(no archivada)' : ''} ↗
+                      </a>
+                    ) : null
+                  })}
+                </div>
+              </details>
+            </article>
+          ))}
+        </div>
+        <p className="mt-5 text-micro text-ink-muted">
+          Qwen local · {theory.model.usage.total_tokens.toLocaleString('es-CL')} tokens · salida JSON validada · 0 llamadas de IA desde esta página.
+        </p>
+      </section>
+
       <section id="actores" className="mt-24 border-t border-line-hairline pt-12">
         <div className="max-w-3xl">
           <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">Quién es quién</p>
@@ -244,7 +292,7 @@ export default function Home() {
             cambian un veredicto factual.
           </p>
         </div>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {dossier.actors.map((actor) => (
             <article key={actor.id} className="border border-line-hairline bg-surface-card p-4">
               <img
@@ -260,6 +308,21 @@ export default function Home() {
               <p className="mt-3 text-micro text-ink-muted">
                 Foto: {actor.image_credit} · {actor.image_license}
               </p>
+              <details className="mt-4 border-t border-line-hairline pt-3">
+                <summary className="cursor-pointer text-caption font-semibold">Trayectoria y acciones verificadas</summary>
+                <ul className="mt-3 space-y-1 text-caption text-ink-secondary">
+                  {actor.roles.map((role) => <li key={role}>· {role}</li>)}
+                </ul>
+                {actor.public_record.map((record) => (
+                  <div key={`${record.date}-${record.action}`} className="mt-4 border-l-2 border-line-strong pl-3 text-caption text-ink-secondary">
+                    <p className="font-semibold text-ink-primary">{record.date} · {record.status === 'pending' ? 'resultado pendiente' : record.status === 'observed' ? 'resultado observado' : 'no medible'}</p>
+                    <p className="mt-1">{record.action}</p>
+                    <p className="mt-2"><span className="font-semibold text-ink-primary">Resultado:</span> {record.outcome}</p>
+                    <p className="mt-2">{record.assessment}</p>
+                  </div>
+                ))}
+                <p className="mt-4 text-micro text-ink-muted">{actor.record_caveat}</p>
+              </details>
             </article>
           ))}
         </div>
@@ -276,7 +339,7 @@ export default function Home() {
             </p>
           </div>
           <p className="text-caption text-ink-secondary">
-            {sources.capture_count} capturas · {sources.gap_count} brechas
+              {sources.capture_count} capturas · {sources.items.filter((source) => source.format === 'video' || source.format === 'audio').length} videos/audio · {sources.gap_count} brechas
           </p>
         </div>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

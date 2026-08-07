@@ -130,14 +130,14 @@
       "id": "coverage-position",
       "kind": "editorial_tone",
       "title": "Tendencia de la cobertura reunida",
-      "question": "¿Las 18 piezas de prensa capturadas priorizan críticas/oposición o argumentos favorables del Gobierno?",
+      "question": "¿Las 25 piezas de prensa capturadas priorizan críticas/oposición o argumentos favorables del Gobierno?",
       "left_label": "Crítica / oposición",
       "center_label": "Descriptiva",
       "right_label": "Favorable / Gobierno",
-      "value": 42,
+      "value": 48,
       "confidence": "medium",
       "explanation": "La muestra curada contiene más piezas centradas en objeciones fiscales, distributivas o ambientales que piezas centradas en la defensa gubernamental. Eso describe esta colección y su encuadre; no prueba que un medio o una posición sea falsa.",
-      "methodology": "Se clasificó cada pieza por el argumento que su título y foco principal presentan: 8 críticas/oposición o alertas fiscales, 5 descriptivas o de negociación y 5 favorables/gubernamentales. Posición = promedio ponderado 0/50/100. Las fuentes oficiales no entran en este medidor.",
+      "methodology": "Se clasificó cada pieza por el argumento que su título y foco principal presentan: 8 críticas/oposición o alertas fiscales, 10 descriptivas o de negociación y 7 favorables/gubernamentales. Posición = promedio ponderado 0/50/100. Las fuentes oficiales no entran en este medidor.",
       "evidence": [
         {
           "label": "Críticas, oposición o alerta fiscal",
@@ -155,24 +155,31 @@
         },
         {
           "label": "Descriptivas, trámite o negociación",
-          "value": 5,
+          "value": 10,
           "source_ids": [
             "biobio-parisi-negotiation",
             "emol-chamber-vote",
             "emol-senate-battle",
             "emol-environment-amendments",
-            "ciper-final-compensation"
+            "ciper-final-compensation",
+            "biobio-initial-measures",
+            "latercera-video-details",
+            "24horas-parisi-negotiation",
+            "cooperativa-parisi-interview",
+            "24horas-senate-committee-video"
           ]
         },
         {
           "label": "Favorables o voz de Gobierno",
-          "value": 5,
+          "value": 7,
           "source_ids": [
             "biobio-quiroz-adjustments",
             "biobio-senate-advance",
             "cooperativa-senate-timing",
             "cnn-quiroz-growth",
-            "meganoticias-quiroz-explains"
+            "meganoticias-quiroz-explains",
+            "df-video-announcement",
+            "as-video-announcement"
           ]
         }
       ],
@@ -446,6 +453,20 @@
         "Diputado, 2002–2018"
       ],
       "legal_record": [],
+      "public_record": [
+        {
+          "date": "2026-04-15",
+          "action": "Presentó en cadena nacional los ejes de reconstrucción, rebajas tributarias y reactivación que luego ingresaron al Congreso.",
+          "outcome": "El Congreso despachó el proyecto tras modificaciones y negociación transversal; los efectos económicos todavía no son observables.",
+          "assessment": "Se verifica la autoría política y el avance legislativo. No se puede evaluar aún si las promesas de crecimiento y empleo se cumplieron.",
+          "status": "pending",
+          "source_ids": [
+            "presidency-chain-transcript",
+            "senate-particular-vote"
+          ]
+        }
+      ],
+      "record_caveat": "Este registro describe acciones y resultados públicos verificables. No es una nota de credibilidad y nunca cambia por sí solo el veredicto de una afirmación.",
       "sources": [
         {
           "label": "Presidencia de Chile",
@@ -481,6 +502,20 @@
         "Consultor económico hasta enero de 2026"
       ],
       "legal_record": [],
+      "public_record": [
+        {
+          "date": "2026-05-28",
+          "action": "Defendió la rebaja tributaria y aceptó públicamente que el paquete podía requerir ajustes frente al escenario fiscal.",
+          "outcome": "El texto avanzó con modificaciones; inversión, empleo, PIB y recaudación posteriores aún no permiten contrastar su proyección.",
+          "assessment": "Su cambio de énfasis es observable y calibró la certeza del argumento, pero la promesa económica continúa pendiente de datos ex post.",
+          "status": "pending",
+          "source_ids": [
+            "biobio-quiroz-adjustments",
+            "cfa-comments"
+          ]
+        }
+      ],
+      "record_caveat": "El historial evalúa afirmaciones y decisiones concretas con su desenlace disponible; no convierte experiencia profesional o afiliación en evidencia factual.",
       "sources": [
         {
           "label": "Ministerio de Hacienda",
@@ -516,6 +551,20 @@
         "Representante del distrito 13 de la Región Metropolitana"
       ],
       "legal_record": [],
+      "public_record": [
+        {
+          "date": "2026-05-03",
+          "action": "Definió una oposición firme pero abierta al diálogo y formuló objeciones al alcance tributario y fiscal del paquete.",
+          "outcome": "La Cámara aprobó la idea de legislar y el proyecto cambió durante su tramitación; la etiqueta política no tiene un resultado causal medible.",
+          "assessment": "La disposición declarada al diálogo puede contrastarse con la tramitación, pero no prueba por sí sola autoría de los acuerdos finales.",
+          "status": "not_testable",
+          "source_ids": [
+            "latercera-yeomans-dialogue",
+            "emol-chamber-vote"
+          ]
+        }
+      ],
+      "record_caveat": "Una posición partidaria se registra como hecho atribuido, no como indicador de honestidad. Sólo se evalúan acciones o predicciones con resultado identificable.",
       "sources": [
         {
           "label": "Cámara de Diputadas y Diputados",
@@ -551,6 +600,20 @@
         "Ministro de Economía, 2022–2025"
       ],
       "legal_record": [],
+      "public_record": [
+        {
+          "date": "2026-08-06",
+          "action": "Afirmó que el proyecto aumentará la desigualdad y descuidará las finanzas públicas.",
+          "outcome": "La afirmación es prospectiva: al corte del dossier no existen datos posteriores suficientes para medir desigualdad o sostenibilidad fiscal atribuibles a la ley.",
+          "assessment": "La alerta coincide con riesgos de diseño identificados por fuentes fiscales, pero el efecto final sigue sin observarse.",
+          "status": "pending",
+          "source_ids": [
+            "latercera-grau-inequality",
+            "cfa-comments"
+          ]
+        }
+      ],
+      "record_caveat": "Los cargos anteriores aportan contexto, pero Aleph no los usa como atajo para validar o descartar esta predicción. Se requiere evidencia posterior comparable.",
       "sources": [
         {
           "label": "Senado: acusación constitucional rechazada",
@@ -568,13 +631,262 @@
           "kind": "wikimedia"
         }
       ]
+    },
+    {
+      "id": "paulina-nunez",
+      "name": "Paulina Núñez",
+      "role": "Presidenta del Senado",
+      "institution": "Senado de la República",
+      "affiliation": "Renovación Nacional",
+      "position_summary": "Condujo la mesa política y técnica que buscó acuerdos para destrabar la tramitación del proyecto.",
+      "image": "megareforma/actors/paulina-nunez.jpg",
+      "image_alt": "Retrato oficial de Paulina Núñez",
+      "image_credit": "Biblioteca del Congreso Nacional de Chile",
+      "image_license": "CC BY-SA 3.0 CL",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senadora_Paulina_N%C3%BA%C3%B1ez_Urrutia_(2022).jpg",
+      "roles": [
+        "Presidenta del Senado desde marzo de 2026",
+        "Senadora por Antofagasta desde 2022",
+        "Diputada, 2010–2018"
+      ],
+      "legal_record": [],
+      "public_record": [
+        {
+          "date": "2026-07-01",
+          "action": "Convocó y encabezó una mesa política y técnica transversal sobre la Megarreforma.",
+          "outcome": "Dos días después la mesa informó acercamientos; el Senado continuó la votación particular y el proyecto fue despachado posteriormente.",
+          "assessment": "La acción de coordinación y el avance institucional están documentados. El resultado final no puede atribuirse a una sola participante.",
+          "status": "observed",
+          "source_ids": [
+            "senate-negotiation-table-start",
+            "senate-negotiation-table-progress"
+          ]
+        }
+      ],
+      "record_caveat": "Se registra la conducción institucional y su resultado observable, sin convertir la pertenencia partidaria ni el cargo en una evaluación personal.",
+      "sources": [
+        {
+          "label": "Senado de Chile",
+          "url": "https://www.senado.cl/comunicaciones/noticias/nuevo-senado-inicio-funciones-y-eligio-paulina-nunez-como-presidenta-e-ivan",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Paulina_N%C3%BA%C3%B1ez",
+          "kind": "wikipedia"
+        },
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Senadora_Paulina_N%C3%BA%C3%B1ez_Urrutia_(2022).jpg",
+          "kind": "wikimedia"
+        }
+      ]
+    },
+    {
+      "id": "franco-parisi",
+      "name": "Franco Parisi",
+      "role": "Líder del Partido de la Gente",
+      "institution": "Partido de la Gente",
+      "affiliation": "Partido de la Gente",
+      "position_summary": "Participó fuera del Congreso en negociaciones entre el PDG y Hacienda y dejó la decisión formal a su bancada.",
+      "image": "megareforma/actors/franco-parisi.png",
+      "image_alt": "Retrato de Franco Parisi",
+      "image_credit": "Franco Parisi / Wikimedia Commons",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Franco_Parisi.png",
+      "roles": [
+        "Fundador y referente del Partido de la Gente",
+        "Candidato presidencial en 2013, 2021 y 2025",
+        "Economista y académico"
+      ],
+      "legal_record": [],
+      "public_record": [
+        {
+          "date": "2026-05-06",
+          "action": "Comunicó la ruptura del entendimiento PDG–Gobierno y luego reabrió la negociación con Hacienda.",
+          "outcome": "Las conversaciones continuaron y el proyecto avanzó, pero las votaciones pertenecen a parlamentarios y no a Parisi.",
+          "assessment": "Se observa influencia negociadora y un cambio de posición táctica; no corresponde atribuirle individualmente el resultado legislativo.",
+          "status": "observed",
+          "source_ids": [
+            "24horas-parisi-negotiation",
+            "biobio-parisi-negotiation",
+            "cooperativa-parisi-interview"
+          ]
+        }
+      ],
+      "record_caveat": "La ficha separa influencia pública de poder institucional: negociar o recomendar un voto no equivale a emitirlo ni demuestra el efecto de la política.",
+      "sources": [
+        {
+          "label": "Servel — partidos constituidos",
+          "url": "https://www.servel.cl/partidos-politicos/partidos-constituidos/",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Franco_Parisi",
+          "kind": "wikipedia"
+        },
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Franco_Parisi.png",
+          "kind": "wikimedia"
+        }
+      ]
+    },
+    {
+      "id": "paulina-vodanovic",
+      "name": "Paulina Vodanovic",
+      "role": "Senadora por el Maule",
+      "institution": "Senado de la República",
+      "affiliation": "Partido Socialista",
+      "position_summary": "Integró la mesa transversal de negociación desde la oposición y participó en la búsqueda de acuerdos.",
+      "image": "megareforma/actors/paulina-vodanovic.jpg",
+      "image_alt": "Retrato oficial de Paulina Vodanovic",
+      "image_credit": "Senado de Chile",
+      "image_license": "CC BY 3.0 CL",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senadora_Paulina_Vodanovic.jpg",
+      "roles": [
+        "Senadora por el Maule, 2023–2034",
+        "Presidenta del Partido Socialista desde 2022",
+        "Subsecretaria para las Fuerzas Armadas, 2015–2018"
+      ],
+      "legal_record": [],
+      "public_record": [
+        {
+          "date": "2026-07-03",
+          "action": "Participó como representante opositora en la mesa política y técnica de la reforma.",
+          "outcome": "La mesa informó acercamientos y el trámite siguió; el registro no individualiza qué cambio provino de cada integrante.",
+          "assessment": "La participación está confirmada, pero una evaluación de eficacia individual sería una inferencia no sustentada por el acta pública.",
+          "status": "observed",
+          "source_ids": [
+            "senate-negotiation-table-progress"
+          ]
+        }
+      ],
+      "record_caveat": "La presencia en una mesa acredita participación, no autoría exclusiva de un acuerdo. Aleph evita transformar proximidad institucional en mérito o culpa.",
+      "sources": [
+        {
+          "label": "Perfil del Senado",
+          "url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores/paulina-vodanovic-rojas-sen",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Paulina_Vodanovic",
+          "kind": "wikipedia"
+        },
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Senadora_Paulina_Vodanovic.jpg",
+          "kind": "wikimedia"
+        }
+      ]
+    },
+    {
+      "id": "javier-macaya",
+      "name": "Javier Macaya",
+      "role": "Senador por O'Higgins",
+      "institution": "Senado de la República",
+      "affiliation": "Unión Demócrata Independiente",
+      "position_summary": "Participó por el oficialismo en la mesa política y técnica de negociación de la reforma.",
+      "image": "megareforma/actors/javier-macaya.jpg",
+      "image_alt": "Retrato oficial de Javier Macaya",
+      "image_credit": "Biblioteca del Congreso Nacional de Chile",
+      "image_license": "CC BY-SA 3.0 CL",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senador_Javier_Ignacio_Macaya_Danus.jpg",
+      "roles": [
+        "Senador por O'Higgins, 2022–2030",
+        "Diputado, 2010–2022",
+        "Presidente de la UDI, 2020–2024"
+      ],
+      "legal_record": [],
+      "public_record": [
+        {
+          "date": "2026-07-03",
+          "action": "Integró la mesa de negociación como representante del oficialismo.",
+          "outcome": "La instancia reportó acercamientos antes de la votación particular, sin atribuir acuerdos específicos a un integrante.",
+          "assessment": "La participación es verificable; el efecto individual sobre el texto final no puede inferirse de la comunicación pública.",
+          "status": "observed",
+          "source_ids": [
+            "senate-negotiation-table-progress"
+          ]
+        }
+      ],
+      "record_caveat": "La trayectoria parlamentaria entrega contexto institucional, pero no sirve como puntaje de veracidad ni como sustituto del texto y las votaciones.",
+      "sources": [
+        {
+          "label": "Perfil del Senado",
+          "url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores/javier-macaya-danus-sen",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Javier_Macaya",
+          "kind": "wikipedia"
+        },
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Senador_Javier_Ignacio_Macaya_Danus.jpg",
+          "kind": "wikimedia"
+        }
+      ]
+    },
+    {
+      "id": "ivan-moreira",
+      "name": "Iván Moreira",
+      "role": "Vicepresidente del Senado",
+      "institution": "Senado de la República",
+      "affiliation": "Unión Demócrata Independiente",
+      "position_summary": "Como integrante de la mesa del Senado, participó en la conducción institucional durante la negociación y votación.",
+      "image": "megareforma/actors/ivan-moreira.jpg",
+      "image_alt": "Retrato oficial de Iván Moreira",
+      "image_credit": "Biblioteca del Congreso Nacional de Chile",
+      "image_license": "CC BY-SA 3.0 CL",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senador_Iv%C3%A1n_Moreira_Barros_(2022).jpg",
+      "roles": [
+        "Vicepresidente del Senado desde marzo de 2026",
+        "Senador desde 2014",
+        "Diputado, 1994–2014"
+      ],
+      "legal_record": [],
+      "public_record": [
+        {
+          "date": "2026-07-01",
+          "action": "Participó, como vicepresidente del Senado, en la instalación de la mesa política y técnica.",
+          "outcome": "La instancia continuó trabajando y reportó acercamientos; el proyecto avanzó a votación particular.",
+          "assessment": "El rol de conducción está documentado. El expediente disponible no permite asignar causalmente el acuerdo final a una persona.",
+          "status": "observed",
+          "source_ids": [
+            "senate-negotiation-table-start",
+            "senate-negotiation-table-progress"
+          ]
+        }
+      ],
+      "record_caveat": "El cargo y la experiencia legislativa contextualizan la intervención, pero no aumentan ni reducen la validez factual de sus declaraciones.",
+      "sources": [
+        {
+          "label": "Senado de Chile",
+          "url": "https://www.senado.cl/comunicaciones/noticias/nuevo-senado-inicio-funciones-y-eligio-paulina-nunez-como-presidenta-e-ivan",
+          "kind": "official"
+        },
+        {
+          "label": "Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Iv%C3%A1n_Moreira",
+          "kind": "wikipedia"
+        },
+        {
+          "label": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Senador_Iv%C3%A1n_Moreira_Barros_(2022).jpg",
+          "kind": "wikimedia"
+        }
+      ]
     }
   ],
   "counts": {
     "propositions": 452,
-    "sources_curated": 33,
-    "sources_captured": 23,
-    "capture_gaps": 10,
+    "sources_curated": 50,
+    "sources_captured": 36,
+    "capture_gaps": 14,
     "model_runs_completed": 1
   }
 }

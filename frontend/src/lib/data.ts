@@ -22,7 +22,7 @@ import type {
   Proposition,
   SiteIndex,
 } from '@/types/aleph'
-import type { MegareformaDossier, MegareformaSources } from '@/types/megareforma'
+import type { MegareformaDossier, MegareformaSources, MegareformaTheory } from '@/types/megareforma'
 
 /* ------------------------------------------------------------------ *
  * URLs
@@ -47,6 +47,7 @@ export const DATA_PATHS = {
   latestNews: 'news/latest.json',
   megareformaDossier: 'megareforma/dossier.json',
   megareformaSources: 'megareforma/sources.json',
+  megareformaTheory: 'megareforma/theory.json',
 } as const
 
 /* ------------------------------------------------------------------ *
@@ -261,6 +262,16 @@ export async function loadMegareformaSources(signal?: AbortSignal): Promise<Mega
   const value = await loadJson<MegareformaSources>(url, signal)
   if (!value || !Array.isArray(value.items) || !Array.isArray(value.gaps)) {
     throw new DataError('parse', 'El registro de fuentes no tiene la forma esperada.', url)
+  }
+  return value
+}
+
+/** Comparative evidence synthesized offline by the pinned local model. */
+export async function loadMegareformaTheory(signal?: AbortSignal): Promise<MegareformaTheory> {
+  const url = dataUrl(DATA_PATHS.megareformaTheory)
+  const value = await loadJson<MegareformaTheory>(url, signal)
+  if (!value || value.execution !== 'local_gpu_offline' || !Array.isArray(value.topics)) {
+    throw new DataError('parse', 'El análisis comparado no tiene la forma esperada.', url)
   }
   return value
 }

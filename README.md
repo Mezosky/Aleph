@@ -157,10 +157,22 @@ screenshot, hashes and retrieval gaps in the append-only database:
 .venv/bin/python scripts/capture_megareforma_sources.py --allow-network
 ```
 
-The committed run captured 23 of 33 curated sources. Ten inaccessible targets remain published
-as gaps rather than disappearing from the denominator (including six El País pages that returned
-access-restriction screens rather than articles). News cards link to the original page and
-display the locally archived screenshot; inclusion in the registry is relevance, not endorsement.
+The committed sweep covers 50 curated targets: 36 captured sources, including 25 press pieces,
+six videos, one audio item and four comparative-research records. Fourteen inaccessible targets
+remain published as gaps rather than disappearing from the denominator. Cards link to the original
+publication and display the locally archived screenshot; audiovisual players are not embedded, so
+the deployed page sends no request to a publisher until the reader opens the original.
+
+Comparative questions run as a second, accumulated local-GPU analysis. The model may only cite the
+source ids in each topic packet, and code rejects an invented reference before export:
+
+```bash
+.venv/bin/python scripts/analyze_comparative_evidence.py
+```
+
+The frozen result covers corporate tax and investment, fiscal self-financing, environmental
+permitting, housing taxation, higher-education access and text/data-mining exceptions. Foreign
+evidence is presented as a benchmark, never as an automatic forecast for Chile.
 
 Analyse a document through the library:
 

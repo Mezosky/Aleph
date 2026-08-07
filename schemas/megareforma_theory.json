@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/megareforma_theory.json",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "execution", "runtime_calls", "methodology", "topics", "model"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "execution": {"const": "local_gpu_offline"},
+    "runtime_calls": {"const": 0},
+    "methodology": {"type": "string", "minLength": 100},
+    "topics": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "question", "bottom_line", "findings", "application_to_reform", "limits", "source_ids"],
+        "properties": {
+          "id": {"enum": ["corporate_tax_growth", "fiscal_self_financing", "environmental_permits", "housing_property_tax", "higher_education", "text_data_mining"]},
+          "title": {"type": "string", "minLength": 8},
+          "question": {"type": "string", "minLength": 15},
+          "bottom_line": {"type": "string", "minLength": 40},
+          "findings": {"type": "array", "minItems": 2, "maxItems": 4, "items": {"type": "string", "minLength": 25}},
+          "application_to_reform": {"type": "string", "minLength": 40},
+          "limits": {"type": "string", "minLength": 30},
+          "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "model": {
+      "type": "object",
+      "required": ["provider", "name", "usage", "structured_output_mode"],
+      "properties": {
+        "provider": {"const": "qwen"},
+        "name": {"type": "string"},
+        "usage": {"type": "object", "required": ["prompt_tokens", "completion_tokens", "total_tokens"], "properties": {"prompt_tokens": {"type": "integer", "minimum": 1}, "completion_tokens": {"type": "integer", "minimum": 1}, "total_tokens": {"type": "integer", "minimum": 1}}, "additionalProperties": false},
+        "structured_output_mode": {"enum": ["json_schema", "json_object", "prompt"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

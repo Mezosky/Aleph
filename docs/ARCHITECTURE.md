@@ -252,6 +252,7 @@ Aleph/
 │   ├── framing/             # the eight framing dimensions
 │   ├── impact/              # seven policy axes, beneficiary and cost-bearer maps
 │   ├── neutrality/          # six perturbations, runner, metrics
+│   ├── dossier/             # bounded document brief + comparative-evidence synthesis
 │   ├── llm/                 # LLMProvider, QwenProvider, MockProvider
 │   ├── export/              # AnalysisBundle assembly, static site export
 │   └── pipeline.py          # warm-stage orchestration + readiness gate

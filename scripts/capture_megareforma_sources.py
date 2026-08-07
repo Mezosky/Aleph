@@ -128,6 +128,7 @@ def _upsert_observation(
         metadata = {
             "manifest_id": item["id"],
             "kind": item["kind"],
+            "format": item.get("format", "article"),
             "perspective": item["perspective"],
             "screenshot_path": screenshot_path,
             "screenshot_sha256": screenshot_sha256,
@@ -162,12 +163,29 @@ def main() -> int:
     parser.add_argument("--allow-network", action="store_true", required=True)
     parser.add_argument("--database-url", default="sqlite:///./data/aleph.db")
     parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument(
+        "--start-at",
+        type=int,
+        default=0,
+        help="Resume at this zero-based manifest index and retain earlier exported results.",
+    )
     args = parser.parse_args()
 
     from playwright.sync_api import sync_playwright
 
     manifest = yaml.safe_load(MANIFEST.read_text(encoding="utf-8"))
     seeds = list(manifest["sources"])
+    previous_results: list[dict] = []
+    previous_failures: list[dict] = []
+    if args.start_at > 0:
+        previous_path = OUT / "sources.json"
+        if not previous_path.exists():
+            raise SystemExit("--start-at requires an existing sources.json export")
+        previous = json.loads(previous_path.read_text(encoding="utf-8"))
+        retained_ids = {seed["id"] for seed in seeds[: args.start_at]}
+        previous_results = [item for item in previous["items"] if item["id"] in retained_ids]
+        previous_failures = [item for item in previous["gaps"] if item["id"] in retained_ids]
+        seeds = seeds[args.start_at :]
     if args.limit > 0:
         seeds = seeds[: args.limit]
     OUT.mkdir(parents=True, exist_ok=True)
@@ -187,8 +205,9 @@ def main() -> int:
             )
         )
 
-    results: list[dict] = []
-    failures: list[dict] = []
+    results: list[dict] = list(previous_results)
+    failures: list[dict] = list(previous_failures)
+    processed = 0
     last_host = ""
     with httpx.Client(follow_redirects=True) as client, sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -209,33 +228,64 @@ def main() -> int:
                 allowed, robots = _robots_allows(client, url)
                 if not allowed:
                     raise RuntimeError(f"robots policy did not permit capture ({robots})")
-                response = page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-                if response is None:
-                    raise RuntimeError("navigation returned no main response")
-                page.wait_for_timeout(1800)
-                body = response.body()
-                title = _meta(page, 'meta[property="og:title"]') or page.title() or seed["id"]
-                visible_text = page.locator("body").inner_text(timeout=10_000).lower()
-                blocked_markers = (
-                    "el acceso está restringido temporalmente",
-                    "ssl handshake failed",
-                    "access denied",
-                )
-                if response.status >= 400 or any(
-                    marker in visible_text for marker in blocked_markers
-                ):
-                    raise RuntimeError(
-                        f"origin returned a blocked/error page (HTTP {response.status}, title={title!r})"
-                    )
-                if title.strip().lower() in {"elpais.com", "access denied"}:
-                    raise RuntimeError(f"origin did not expose the article page (title={title!r})")
-                summary = (
-                    _meta(page, 'meta[property="og:description"]')
-                    or _meta(page, 'meta[name="description"]')
-                    or "Fuente relevante para el expediente de la Megareforma."
-                )
                 screenshot = SCREENSHOTS / f"{seed['id']}.jpg"
-                page.screenshot(path=str(screenshot), type="jpeg", quality=68, full_page=False)
+                if urlsplit(url).path.lower().endswith(".pdf"):
+                    import pymupdf
+
+                    pdf_response = client.get(url, headers={"User-Agent": USER_AGENT}, timeout=60)
+                    pdf_response.raise_for_status()
+                    body = pdf_response.content
+                    if not body.startswith(b"%PDF"):
+                        raise RuntimeError("PDF endpoint did not return a PDF")
+                    document = pymupdf.open(stream=body, filetype="pdf")
+                    pixmap = document[0].get_pixmap(matrix=pymupdf.Matrix(1.35, 1.35), alpha=False)
+                    pixmap.save(str(screenshot))
+                    document.close()
+                    status = pdf_response.status_code
+                    content_type = pdf_response.headers.get("content-type")
+                    title = str(seed.get("title") or seed["id"])
+                    summary = str(
+                        seed.get("summary")
+                        or "Documento técnico conservado como referencia del expediente."
+                    )
+                else:
+                    response = page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+                    if response is None:
+                        raise RuntimeError("navigation returned no main response")
+                    page.wait_for_timeout(1800)
+                    body = response.body()
+                    title = str(
+                        seed.get("title")
+                        or _meta(page, 'meta[property="og:title"]')
+                        or page.title()
+                        or seed["id"]
+                    )
+                    visible_text = page.locator("body").inner_text(timeout=10_000).lower()
+                    blocked_markers = (
+                        "el acceso está restringido temporalmente",
+                        "ssl handshake failed",
+                        "access denied",
+                        "debe identificarse para acceder",
+                    )
+                    if response.status >= 400 or any(
+                        marker in visible_text for marker in blocked_markers
+                    ):
+                        raise RuntimeError(
+                            f"origin returned a blocked/error page (HTTP {response.status}, title={title!r})"
+                        )
+                    if title.strip().lower() in {"elpais.com", "access denied"}:
+                        raise RuntimeError(
+                            f"origin did not expose the article page (title={title!r})"
+                        )
+                    summary = str(
+                        seed.get("summary")
+                        or _meta(page, 'meta[property="og:description"]')
+                        or _meta(page, 'meta[name="description"]')
+                        or "Fuente relevante para el expediente de la Megareforma."
+                    )
+                    page.screenshot(path=str(screenshot), type="jpeg", quality=68, full_page=False)
+                    status = response.status
+                    content_type = response.headers.get("content-type")
                 screenshot_bytes = screenshot.read_bytes()
                 snapshot_id = _snapshot(
                     database,
@@ -243,8 +293,8 @@ def main() -> int:
                     source_id=f"src:dossier-{seed['id']}",
                     url=url,
                     content=body,
-                    status=response.status,
-                    content_type=response.headers.get("content-type"),
+                    status=status,
+                    content_type=content_type,
                 )
                 item = {
                     **seed,
@@ -265,22 +315,24 @@ def main() -> int:
                 )
                 item["new_observation"] = is_new
                 results.append(item)
-                print(
-                    f"[{len(results)}/{len(seeds)}] {seed['publisher']}: {title[:80]}", flush=True
-                )
+                processed += 1
+                print(f"[{processed}/{len(seeds)}] {seed['publisher']}: {title[:80]}", flush=True)
             except Exception as exc:  # noqa: BLE001 - every gap is retained
                 failure = {"id": seed["id"], "url": url, "error": f"{type(exc).__name__}: {exc}"}
                 failures.append(failure)
+                processed += 1
                 print(f"GAP {seed['id']}: {failure['error']}", flush=True)
             finally:
                 with database.sessions.begin() as session:
                     run = session.get(ScrapeRunRow, run_id)
+                    current_results = results[len(previous_results) :]
+                    current_failures = failures[len(previous_failures) :]
                     run.sources_checked += 1
-                    run.items_seen = len(results)
-                    run.items_new = sum(bool(item["new_observation"]) for item in results)
-                    run.relevant_items = len(results)
-                    run.article_snapshots = len(results)
-                    run.failures = list(failures)
+                    run.items_seen = len(current_results)
+                    run.items_new = sum(bool(item["new_observation"]) for item in current_results)
+                    run.relevant_items = len(current_results)
+                    run.article_snapshots = len(current_results)
+                    run.failures = list(current_failures)
                     run.updated_at = utcnow()
         context.close()
         browser.close()

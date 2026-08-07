@@ -56,7 +56,18 @@ export interface ActorProfile {
   image_source_url: string
   roles: string[]
   legal_record: []
+  public_record: ActorPublicRecord[]
+  record_caveat: string
   sources: ActorSource[]
+}
+
+export interface ActorPublicRecord {
+  date: string
+  action: string
+  outcome: string
+  assessment: string
+  status: 'observed' | 'pending' | 'not_testable'
+  source_ids: string[]
 }
 
 export interface DebatePosition {
@@ -117,7 +128,8 @@ export interface MegareformaDossier {
 export interface CapturedSource {
   id: string
   publisher: string
-  kind: 'official_record' | 'news'
+  kind: 'official_record' | 'news' | 'research'
+  format?: 'article' | 'video' | 'audio' | 'transcript' | 'report' | 'paper'
   perspective: string
   published_at: string
   url: string
@@ -144,4 +156,30 @@ export interface MegareformaSources {
   gap_count: number
   items: CapturedSource[]
   gaps: SourceGap[]
+}
+
+export interface TheoryTopic {
+  id: 'corporate_tax_growth' | 'fiscal_self_financing' | 'environmental_permits' | 'housing_property_tax' | 'higher_education' | 'text_data_mining'
+  title: string
+  question: string
+  bottom_line: string
+  findings: string[]
+  application_to_reform: string
+  limits: string
+  source_ids: string[]
+}
+
+export interface MegareformaTheory {
+  schema_version: string
+  generated_at: string
+  execution: 'local_gpu_offline'
+  runtime_calls: 0
+  methodology: string
+  topics: TheoryTopic[]
+  model: {
+    provider: 'qwen'
+    name: string
+    usage: { prompt_tokens: number; completion_tokens: number; total_tokens: number }
+    structured_output_mode: 'json_schema' | 'json_object' | 'prompt'
+  }
 }
