@@ -92,6 +92,10 @@
     "source_registry": {
       "$ref": "source_registry.json",
       "description": "Optional. The registry of sources and outlets referenced by this bundle, carrying identifiers and descriptive metadata only — no prestige or credibility ranking exists anywhere in Aleph."
+    },
+    "actor_profiles": {
+      "$ref": "actor_profile.json",
+      "description": "Optional attributed-stage context. This object is structurally barred from blind evaluation and must be rendered separately from verdicts."
     }
   },
   "required": [

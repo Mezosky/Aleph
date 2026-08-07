@@ -22,7 +22,6 @@ __pycache__/
 build/
 dist/
 pip-wheel-metadata/
-.python-version
 
 # Test / lint caches
 .pytest_cache/

@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/actor_profile.json",
+  "title": "Actor Profile",
+  "description": "A factual dossier on a public figure who speaks about a document under analysis.\n\nWHY THIS EXISTS: knowing who is speaking is genuinely useful for understanding framing, declared conflicts of interest, and rhetorical patterns.\n\nWHAT IT MUST NEVER DO: influence whether a claim is true. Aleph's factual verdicts are produced by an evaluator that is structurally incapable of seeing speaker identity (see claim.json#/$defs/blind_evaluation). A profile is consumed ONLY by the attributed second stage, which takes the blind verdict as frozen input. Using a person's record to discount their claims is the same error as using their office to endorse them — an ad hominem shortcut that this product exists to eliminate.\n\nThere is therefore deliberately NO trustworthiness score, NO bias score, NO credibility rating and NO 'background' flag anywhere in this schema. Recording that a person holds an office, declared an interest, or was convicted by a named court is a fact. Aggregating those into a number that tells a reader how much to believe them is not, and Aleph does not do it.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "generated_at": { "$ref": "common.json#/$defs/timestamp" },
+
+    "usable_in_blind_evaluation": {
+      "description": "Always false. Present as a machine-visible assertion that this record belongs to the attributed stage only. A pipeline that passes a profile into blind evaluation is violating the product's core guarantee.",
+      "const": false
+    },
+
+    "actors": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/actor" }
+    }
+  },
+  "required": ["schema_version", "data_status", "generated_at", "usable_in_blind_evaluation", "actors"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "title": "Public actor",
+      "description": "A named public figure, or an anonymised role when the individual is not the point. Aleph prefers roles over names wherever the analysis does not genuinely require the individual.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "pattern": "^actor:[A-Za-z0-9._:-]+$"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The person's name as publicly used. Required to be accurate; if identity is uncertain, the entry must not be created."
+        },
+        "is_natural_person": {
+          "type": "boolean",
+          "description": "False for institutions, parties and organisations, which have no presumption-of-innocence considerations but also no personal legal record."
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "ISO-3166 alpha-2 where applicable, e.g. 'CL'."
+        },
+        "roles": {
+          "type": "array",
+          "description": "Offices held. Institutional position is context for framing analysis; it is never evidence about whether a statement is true.",
+          "items": { "$ref": "#/$defs/role" }
+        },
+        "affiliations": {
+          "type": "array",
+          "description": "Party, coalition, union, guild or trade-body membership, recorded as fact. NOTE: this field exists for transparency and for the neutrality suite's party_swap perturbation. It is never an input to a factual verdict.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "organisation": { "type": "string" },
+              "kind": {
+                "type": "string",
+                "enum": ["party", "coalition", "union", "business_association", "ngo", "professional_body", "other"]
+              },
+              "from": { "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }] },
+              "to": { "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }] },
+              "source": { "$ref": "common.json#/$defs/source_ref" }
+            },
+            "required": ["organisation", "kind", "source"],
+            "additionalProperties": false
+          }
+        },
+        "declared_interests": {
+          "type": "array",
+          "description": "Entries from official declarations of interest and assets, where such a register exists and is public. This is the single most legitimate 'who is speaking' signal, because it is self-declared, official, and directly relevant to whether an actor has a material stake in a provision.",
+          "items": { "$ref": "#/$defs/declared_interest" }
+        },
+        "legal_record": {
+          "type": "array",
+          "description": "Judicial or administrative proceedings, sourced ONLY to primary official records. See legal_record_entry for the constraints — they are strict on purpose.",
+          "items": { "$ref": "#/$defs/legal_record_entry" }
+        },
+        "claim_track_record": { "$ref": "#/$defs/claim_track_record" },
+        "framing_pattern": { "$ref": "#/$defs/framing_pattern" },
+        "profile_uncertainties": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/uncertainty" }
+        },
+        "sources": {
+          "type": "array",
+          "description": "Every source used to build this profile, so the whole record is auditable.",
+          "items": { "$ref": "common.json#/$defs/source_ref" }
+        }
+      },
+      "required": ["id", "display_name", "is_natural_person", "roles", "sources"],
+      "additionalProperties": false,
+
+      "not": {
+        "anyOf": [
+          { "required": ["trust_score"] },
+          { "required": ["credibility"] },
+          { "required": ["credibility_score"] },
+          { "required": ["bias_score"] },
+          { "required": ["political_leaning"] },
+          { "required": ["reputation"] },
+          { "required": ["background_flag"] },
+          { "required": ["integrity_score"] },
+          { "required": ["reliability_score"] }
+        ]
+      },
+      "$comment": "The `not` guard is redundant against additionalProperties:false and is kept deliberately: it states in machine-readable form that these fields are forbidden by design, so a future loosening of the schema cannot quietly reintroduce a reputation score.",
+      "allOf": [
+        {
+          "if": { "properties": { "is_natural_person": { "const": false } }, "required": ["is_natural_person"] },
+          "then": { "properties": { "legal_record": { "maxItems": 0 } } }
+        }
+      ]
+    },
+
+    "role": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "e.g. 'ministro/a de Hacienda', 'alcalde/sa', 'diputado/a', 'senador/a', 'presidente/a'."
+        },
+        "institution": { "type": "string" },
+        "level": {
+          "type": "string",
+          "enum": ["national_executive", "national_legislative", "regional", "municipal", "judicial", "central_bank", "agency", "civil_society", "private_sector", "other"]
+        },
+        "from": { "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }] },
+        "to": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }],
+          "description": "Null means currently held."
+        },
+        "source": { "$ref": "common.json#/$defs/source_ref" }
+      },
+      "required": ["title", "level", "source"],
+      "additionalProperties": false
+    },
+
+    "declared_interest": {
+      "type": "object",
+      "description": "A self-declared interest from an official register. Relevance to the document under analysis is stated explicitly rather than left for the reader to infer.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["asset", "shareholding", "directorship", "employment", "consultancy", "property", "debt", "family_interest", "other"]
+        },
+        "description": { "type": "string" },
+        "declared_on": { "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }] },
+        "relevance_to_document": {
+          "type": "string",
+          "description": "How, concretely, this interest relates to a provision in the document under analysis — or 'none identified'. A conflict of interest is only meaningful relative to a specific decision.",
+          "minLength": 1
+        },
+        "relevant_provision_ids": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "source": {
+          "allOf": [
+            { "$ref": "common.json#/$defs/source_ref" },
+            {
+              "properties": {
+                "tier": {
+                  "enum": ["primary_document", "official_technical_report", "legislative_record", "statistical_dataset"],
+                  "description": "Declarations must come from the official register, not from reporting about it."
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": ["kind", "description", "relevance_to_document", "source"],
+      "additionalProperties": false
+    },
+
+    "legal_record_entry": {
+      "type": "object",
+      "title": "Legal or administrative proceeding",
+      "description": "STRICT BY DESIGN. An accusation is not a conviction, and a person's legal history says nothing about whether a given statement of theirs is factually correct.\n\nRules enforced here:\n1. `status` is required — nothing may be recorded without saying where the proceeding stands.\n2. `source` must be a primary official record (judicial ruling, official gazette, oversight body). Journalism may be listed under `additional_coverage` for context, but may NEVER be the basis of an entry.\n3. `presumption_note` is required whenever the matter is unresolved, so an open investigation can never be displayed as if it were a finding.\n4. There is no severity score and no aggregate. A reader sees the record; Aleph does not grade the person.",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "Neutral factual description of the matter. No characterisation, no adjectives."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "investigation_reported",
+            "formally_investigated",
+            "charged",
+            "trial_ongoing",
+            "convicted",
+            "acquitted",
+            "dismissed",
+            "case_closed",
+            "administrative_sanction",
+            "sanction_overturned",
+            "unknown"
+          ]
+        },
+        "resolved": {
+          "type": "boolean",
+          "description": "True only for convicted / acquitted / dismissed / case_closed / sanction_overturned."
+        },
+        "body": {
+          "type": "string",
+          "description": "The court or authority, named exactly."
+        },
+        "date": { "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }] },
+        "presumption_note": {
+          "type": ["string", "null"],
+          "description": "Required text when the matter is unresolved, stating that the person is presumed innocent and that no inference about their statements follows. Null is permitted only when resolved is true."
+        },
+        "source": {
+          "allOf": [
+            { "$ref": "common.json#/$defs/source_ref" },
+            {
+              "properties": {
+                "tier": {
+                  "enum": ["primary_document", "legislative_record", "official_technical_report"],
+                  "description": "Primary official record only. A news report about a case is not a case record."
+                }
+              },
+              "required": ["url"]
+            }
+          ]
+        },
+        "additional_coverage": {
+          "type": "array",
+          "description": "Journalism about the matter, for context only. Never sufficient on its own to create an entry.",
+          "items": { "$ref": "common.json#/$defs/source_ref" }
+        }
+      },
+      "required": ["summary", "status", "resolved", "body", "source", "presumption_note"],
+      "additionalProperties": false,
+
+      "allOf": [
+        {
+          "if": { "properties": { "resolved": { "const": false } }, "required": ["resolved"] },
+          "then": {
+            "properties": { "presumption_note": { "type": "string", "minLength": 30 } },
+            "$comment": "An unresolved matter cannot be published without the presumption-of-innocence statement."
+          }
+        },
+        {
+          "if": { "properties": { "resolved": { "const": true } }, "required": ["resolved"] },
+          "then": {
+            "properties": {
+              "status": { "enum": ["convicted", "acquitted", "dismissed", "case_closed", "sanction_overturned"] },
+              "presumption_note": { "type": "null" }
+            }
+          },
+          "else": {
+            "properties": {
+              "status": { "enum": ["investigation_reported", "formally_investigated", "charged", "trial_ongoing", "administrative_sanction", "unknown"] }
+            }
+          }
+        }
+      ]
+    },
+
+    "claim_track_record": {
+      "type": "object",
+      "title": "Track record from Aleph's own blind evaluations",
+      "description": "The only 'reliability' signal Aleph will produce, and it is deliberately not a score.\n\nIt reports how claims attributed to this actor fared when Aleph evaluated them WITHOUT knowing who said them. Because the evaluation was blind, this is evidence Aleph generated rather than reputation it inherited.\n\nIt must always be displayed with `sample_size` and `caveat`, because a handful of claims supports no generalisation about a person — and a poor record still says nothing about whether their NEXT claim is true.",
+      "properties": {
+        "sample_size": { "type": "integer", "minimum": 0 },
+        "by_verdict": {
+          "type": "object",
+          "description": "Counts per verdict. Keys are the verdict enum values.",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_statement_type": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "evaluated_claim_ids": {
+          "type": "array",
+          "description": "So a reader can open every underlying claim and check the work.",
+          "items": { "$ref": "common.json#/$defs/id" },
+          "uniqueItems": true
+        },
+        "period": {
+          "type": "object",
+          "properties": {
+            "from": { "$ref": "common.json#/$defs/date" },
+            "to": { "$ref": "common.json#/$defs/date" }
+          },
+          "required": ["from", "to"],
+          "additionalProperties": false
+        },
+        "caveat": {
+          "type": "string",
+          "minLength": 40,
+          "description": "Required. Must state that this is a small, non-random sample drawn only from claims Aleph happened to analyse, and that it does not predict the truth of any future statement."
+        }
+      },
+      "required": ["sample_size", "by_verdict", "evaluated_claim_ids", "caveat"],
+      "additionalProperties": false
+    },
+
+    "framing_pattern": {
+      "type": "object",
+      "description": "Aggregated observations from the attributed analysis stage: recurring emphases, recurring omissions, and rhetorical patterns. Descriptive only — this characterises how someone argues, not whether they are right.",
+      "properties": {
+        "recurring_emphases": { "type": "array", "items": { "type": "string" } },
+        "recurring_omissions": { "type": "array", "items": { "type": "string" } },
+        "certainty_tendency": {
+          "type": "string",
+          "enum": ["overstates", "calibrated", "understates", "insufficient_data"],
+          "description": "Whether stated confidence has historically matched the evidence, measured against Aleph's own blind evaluations."
+        },
+        "components": {
+          "type": "array",
+          "description": "The observations behind each characterisation, so none of it is opaque.",
+          "items": { "$ref": "common.json#/$defs/component" }
+        },
+        "confidence": { "$ref": "common.json#/$defs/confidence" }
+      },
+      "required": ["components", "confidence"],
+      "additionalProperties": false
+    }
+  }
+}

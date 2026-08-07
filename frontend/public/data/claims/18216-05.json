@@ -1,0 +1,2884 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "synthetic",
+  "generated_at": "2026-08-07T12:00:00Z",
+  "document_id": "doc:18216-05",
+  "claims": [
+    {
+      "id": "clm:1",
+      "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos.",
+      "normalised_text": "El informe financiero adjunto estima el costo fiscal neto del paquete en 0,4% del PIB para el ejercicio 2027.",
+      "statement_type": "fact",
+      "topic_refs": [
+        "node:costo-fiscal-neto",
+        "node:paquete-fiscal"
+      ],
+      "made_at": "2026-08-04T13:00:00Z",
+      "provenance": {
+        "source_id": "art:meridiano:1",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 115,
+          "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [
+        {
+          "value": 0.4,
+          "kind": "percentage",
+          "unit": "% del PIB",
+          "raw_text": "cuatro décimas del producto"
+        }
+      ],
+      "money": [
+        {
+          "amount": 0.4,
+          "currency": "CLP",
+          "unit": "percent_of_gdp",
+          "year": 2027,
+          "basis": "annual"
+        }
+      ],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que el costo neto del paquete es de 0,4% del producto interno bruto.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:5",
+            "ev:6",
+            "ev:14",
+            "ev:7"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "supported",
+        "reasoning": "El informe financiero adjunto contiene esa cifra para el ejercicio 2027 (ev:5), y la afirmación se limita a lo que el informe estima. La verificación se detiene ahí: que el informe estime 0,4% no establece que el costo efectivo sea 0,4%, y la propia sección de limitaciones declara excluir la respuesta de inversión (ev:6). El veredicto sostiene la afirmación tal como está formulada, no la proyección subyacente.",
+        "evidence_refs": [
+          "ev:5",
+          "ev:14"
+        ],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.78,
+          "model_confidence": 0.8,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El veredicto no se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "Ninguna estimación independiente contrasta la cifra oficial."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "vocería de Hacienda",
+        "speaker_id": "actor:vocaria-hacienda",
+        "outlet_id": "src:demo-diario-meridiano",
+        "framing_notes": [
+          "Presenta una proyección con la gramática de un dato observado.",
+          "Une en una sola frase una cifra verificable y una afirmación distributiva que exige otra verificación."
+        ],
+        "historical_consistency": {
+          "assessment": "consistent",
+          "prior_claim_refs": [
+            "clm:13"
+          ],
+          "note": "Coherente con declaraciones previas del mismo rol sobre el calendario del paquete."
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "urgency_framing",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 0,
+              "char_end": 34,
+              "text": "El costo neto es de cuatro décimas"
+            },
+            "note": "La cifra se entrega sin rango ni supuesto, lo que transmite más certeza que la fuente."
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "pass",
+          "note": "El informe financiero contiene la cifra citada para 2027.",
+          "evidence_refs": [
+            "ev:5"
+          ]
+        },
+        {
+          "check": "data_consistency",
+          "result": "pass",
+          "note": "La cifra es consistente con las partidas de gasto e ingreso del articulado.",
+          "evidence_refs": [
+            "ev:1",
+            "ev:2",
+            "ev:3"
+          ]
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "pass",
+          "note": "0,4% del PIB coincide con el saldo de las partidas proyectadas en el informe.",
+          "evidence_refs": [
+            "ev:5"
+          ]
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La afirmación no infiere nada más allá de lo que el informe declara.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "na",
+          "note": "La afirmación no asserta una relación causal.",
+          "evidence_refs": []
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "Se enuncia como cifra cerrada, sin mencionar el supuesto de crecimiento de 2,3% ni el rango implícito.",
+          "evidence_refs": [
+            "ev:5",
+            "ev:6"
+          ]
+        },
+        {
+          "check": "context_completeness",
+          "result": "fail",
+          "note": "Omite que el informe excluye explícitamente la respuesta de inversión.",
+          "evidence_refs": [
+            "ev:6"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "pass",
+          "note": "La cifra corresponde al ejercicio 2027 y la afirmación se hizo en 2026.",
+          "evidence_refs": [
+            "ev:5"
+          ]
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "fail",
+          "note": "No hay una segunda estimación independiente del costo neto en el conjunto.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "pass",
+          "note": "Ninguna evidencia más sólida contradice que el informe contenga esa cifra.",
+          "evidence_refs": [
+            "ev:5"
+          ]
+        }
+      ],
+      "contradicts": [
+        "clm:5"
+      ],
+      "cluster_id": "cluster:1",
+      "omitted_context": [
+        {
+          "statement": "El informe financiero declara no modelar la respuesta de la inversión privada a la sobretasa.",
+          "why_it_matters": "Si esa respuesta es relevante, la recaudación neta sería menor y el costo neto mayor que el estimado.",
+          "evidence_refs": [
+            "ev:6"
+          ],
+          "materiality": "medium"
+        }
+      ],
+      "article_id": "art:meridiano:1",
+      "proposition_refs": [
+        "prov:18216-05:1",
+        "prov:18216-05:4",
+        "prov:18216-05:5"
+      ]
+    },
+    {
+      "id": "clm:2",
+      "text": "El fondo transfiere a los municipios 0,18% del producto cada año, sin excepciones.",
+      "normalised_text": "El artículo 7° dota anualmente al Fondo de Estabilización Territorial con recursos equivalentes al 0,18% del producto interno bruto.",
+      "statement_type": "fact",
+      "topic_refs": [
+        "node:fondo-territorial",
+        "node:municipios"
+      ],
+      "made_at": "2026-08-05T17:40:00Z",
+      "provenance": {
+        "source_id": "art:contrapunto:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 82,
+          "text": "El fondo transfiere a los municipios 0,18% del producto cada año, sin excepciones."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [
+        {
+          "value": 0.18,
+          "kind": "percentage",
+          "unit": "% del PIB",
+          "raw_text": "0,18% del producto"
+        }
+      ],
+      "money": [
+        {
+          "amount": 0.18,
+          "currency": "CLP",
+          "unit": "percent_of_gdp",
+          "year": 2027,
+          "basis": "annual"
+        }
+      ],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que el fondo transfiere anualmente a los municipios el 0,18% del producto interno bruto.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:3",
+            "ev:4",
+            "ev:8"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "supported",
+        "reasoning": "El artículo 7° fija esa dotación en esos términos (ev:3). La afirmación describe el contenido del texto y es exacta en ese plano. La coletilla 'sin excepciones' se verifica por separado: el articulado no establece excepciones a la dotación, aunque sí condiciona la transferencia a un reglamento pendiente (ev:4), lo que afecta al calendario y no al monto.",
+        "evidence_refs": [
+          "ev:3"
+        ],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.86,
+          "model_confidence": 0.82,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El veredicto se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "El texto fija el monto; la transferencia efectiva depende de un reglamento pendiente."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "presidencia de la asociación de municipios",
+        "speaker_id": "actor:asociacion-municipios",
+        "outlet_id": "src:demo-el-contrapunto",
+        "framing_notes": [
+          "'Sin excepciones' introduce un énfasis que el texto no necesita: la norma no contempla excepciones al monto, pero sí una condición de entrada en vigor."
+        ],
+        "historical_consistency": {
+          "assessment": "consistent",
+          "prior_claim_refs": [],
+          "note": "El mismo rol ha sostenido la cifra desde el ingreso del proyecto."
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "none_detected",
+            "span": null,
+            "note": null
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "pass",
+          "note": "El artículo 7° contiene la dotación en esos términos.",
+          "evidence_refs": [
+            "ev:3"
+          ]
+        },
+        {
+          "check": "data_consistency",
+          "result": "pass",
+          "note": "No hay otra cifra de dotación en el documento.",
+          "evidence_refs": [
+            "ev:3"
+          ]
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "pass",
+          "note": "0,18% es la cifra impresa; no hay conversión de unidades involucrada.",
+          "evidence_refs": [
+            "ev:3"
+          ]
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La afirmación no excede lo que el texto dice.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "na",
+          "note": "No se afirma una relación causal.",
+          "evidence_refs": []
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "pass",
+          "note": "No hay proyección involucrada: es una cifra normativa, no estimada.",
+          "evidence_refs": []
+        },
+        {
+          "check": "context_completeness",
+          "result": "fail",
+          "note": "Omite que la transferencia no puede efectuarse antes del reglamento.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "pass",
+          "note": "La afirmación describe una norma vigente en su formulación actual.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "pass",
+          "note": "El texto primario es corroboración suficiente para el contenido de una norma.",
+          "evidence_refs": [
+            "ev:3"
+          ]
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "pass",
+          "note": "Ninguna evidencia más sólida ofrece otra cifra.",
+          "evidence_refs": []
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": "cluster:2",
+      "omitted_context": [
+        {
+          "statement": "El artículo 7° no puede transferir recursos mientras no se dicte el reglamento que fija la fórmula de distribución.",
+          "why_it_matters": "Un lector podría entender que las transferencias ya están operando, cuando la norma aún no tiene fórmula aplicable.",
+          "evidence_refs": [
+            "ev:4"
+          ],
+          "materiality": "large"
+        }
+      ],
+      "article_id": "art:contrapunto:2",
+      "proposition_refs": [
+        "prov:18216-05:5",
+        "prop:18216-05:7"
+      ]
+    },
+    {
+      "id": "clm:3",
+      "text": "Este es el mayor aumento de impuestos de los últimos treinta años.",
+      "normalised_text": "El aumento de la carga tributaria que produce este paquete es el mayor registrado en los últimos treinta años.",
+      "statement_type": "fact",
+      "topic_refs": [
+        "node:sobretasa-utilidades",
+        "node:paquete-fiscal"
+      ],
+      "made_at": "2026-08-06T18:30:00Z",
+      "provenance": {
+        "source_id": "art:boletin:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 66,
+          "text": "Este es el mayor aumento de impuestos de los últimos treinta años."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [
+        {
+          "value": 30.0,
+          "kind": "duration",
+          "unit": "años",
+          "raw_text": "los últimos treinta años"
+        }
+      ],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que este es el mayor aumento de impuestos de los últimos treinta años.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:7",
+            "ev:1",
+            "ev:5"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "contradicted",
+        "reasoning": "La única medida de mayor recaudación del paquete es la sobretasa de 2 pp (ev:1), cuyo efecto proyectado equivale a +0,6 pp del PIB. La serie disponible registra al menos dos aumentos anuales mayores dentro de la ventana de treinta años que la afirmación invoca (ev:7). Bajo la definición de esa serie, la afirmación es falsa. Se registra que la serie es sintética y que otra definición de 'aumento de impuestos' podría ordenar los casos de otro modo; eso no rescata la afirmación tal como fue enunciada, porque quien la hace no propone una definición alternativa.",
+        "evidence_refs": [
+          "ev:7",
+          "ev:1"
+        ],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.62,
+          "model_confidence": 0.74,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El veredicto se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "La serie de comparación es sintética y su definición de carga tributaria es la única disponible."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "diputado/a de oposición",
+        "speaker_id": "actor:oposicion-finanzas",
+        "outlet_id": "src:demo-boletin-economico",
+        "framing_notes": [
+          "Elige como clase de comparación 'aumento de impuestos' y no 'efecto neto en la carga', lo que excluye del cálculo las rebajas del mismo paquete."
+        ],
+        "historical_consistency": {
+          "assessment": "insufficient_history",
+          "prior_claim_refs": [],
+          "note": "No hay declaraciones previas de este rol en el conjunto."
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "loaded_comparison",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 0,
+              "char_end": 57,
+              "text": "el mayor aumento de impuestos de los últimos treinta años"
+            },
+            "note": "La comparación superlativa fija el marco antes de que la magnitud sea discutida."
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "fail",
+          "note": "Ninguna pieza del conjunto afirma la comparación histórica que se enuncia.",
+          "evidence_refs": []
+        },
+        {
+          "check": "data_consistency",
+          "result": "fail",
+          "note": "La serie disponible registra dos aumentos anuales mayores en la ventana invocada.",
+          "evidence_refs": [
+            "ev:7"
+          ]
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "fail",
+          "note": "El aumento proyectado (+0,6 pp del PIB) es menor que +1,4 y +1,1 pp registrados en la serie.",
+          "evidence_refs": [
+            "ev:7"
+          ]
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La afirmación es una comparación bien formada; su problema es empírico, no lógico.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "na",
+          "note": "No se afirma una relación causal.",
+          "evidence_refs": []
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "Se enuncia como hecho cerrado una comparación que depende por completo de la definición de carga tributaria usada.",
+          "evidence_refs": [
+            "ev:7"
+          ]
+        },
+        {
+          "check": "context_completeness",
+          "result": "fail",
+          "note": "Omite que el paquete contiene además rebajas tributarias que reducen la carga neta.",
+          "evidence_refs": [
+            "ev:1"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "pass",
+          "note": "La ventana de treinta años es coherente con la fecha de la afirmación.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "fail",
+          "note": "No hay una segunda serie independiente que permita contrastar el orden de magnitudes.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "fail",
+          "note": "La serie disponible es evidencia más sólida que la afirmación y apunta en sentido contrario.",
+          "evidence_refs": [
+            "ev:7"
+          ]
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": "cluster:4",
+      "omitted_context": [
+        {
+          "statement": "El mismo paquete reduce a cero el impuesto de timbres para empresas pequeñas y crea un crédito del 15% a la inversión.",
+          "why_it_matters": "La carga tributaria neta del paquete es menor que la de su única medida de alza considerada aisladamente.",
+          "evidence_refs": [
+            "ev:1"
+          ],
+          "materiality": "large"
+        }
+      ],
+      "article_id": "art:boletin:2",
+      "proposition_refs": [
+        "prov:18216-05:1"
+      ]
+    },
+    {
+      "id": "clm:4",
+      "text": "Ningún hogar de los primeros cuatro deciles pagará más impuestos por este paquete.",
+      "normalised_text": "Ningún hogar perteneciente a los cuatro primeros deciles de ingreso soportará una carga tributaria mayor como consecuencia de este paquete.",
+      "statement_type": "fact",
+      "topic_refs": [
+        "node:hogares-deciles-1-4",
+        "node:sobretasa-utilidades"
+      ],
+      "made_at": "2026-08-04T13:00:00Z",
+      "provenance": {
+        "source_id": "art:meridiano:1",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 82,
+          "text": "Ningún hogar de los primeros cuatro deciles pagará más impuestos por este paquete."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que ningún hogar de los cuatro primeros deciles pagará más impuestos por este paquete.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:2",
+            "ev:1",
+            "ev:6",
+            "ev:14"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "partially_supported",
+        "reasoning": "Ninguna disposición del articulado impone un tributo a las personas naturales: la única medida de alza recae sobre contribuyentes de primera categoría con ingresos brutos sobre 100.000 UF (ev:1), y los hogares del tramo reciben una transferencia (ev:2). En el plano de la carga legal directa la afirmación se sostiene. No se sostiene en el plano de la incidencia: el informe financiero declara no modelar el traslado del impuesto corporativo a precios o salarios (ev:6), de modo que la parte de la afirmación que exige ausencia de efecto no está establecida por ninguna evidencia disponible.",
+        "evidence_refs": [
+          "ev:1",
+          "ev:2",
+          "ev:6"
+        ],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.64,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El veredicto se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "No hay estudio de incidencia del impuesto corporativo en el conjunto."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "vocería de Hacienda",
+        "speaker_id": "actor:vocaria-hacienda",
+        "outlet_id": "src:demo-diario-meridiano",
+        "framing_notes": [
+          "Sustituye 'no hay un impuesto dirigido a este grupo' por 'este grupo no pagará más', que es una afirmación más fuerte."
+        ],
+        "historical_consistency": {
+          "assessment": "consistent",
+          "prior_claim_refs": [
+            "clm:1"
+          ],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "technical_obfuscation",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 0,
+              "char_end": 23,
+              "text": "no pagará más impuestos"
+            },
+            "note": "La expresión desliza el plano legal al plano económico sin señalarlo."
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "pass",
+          "note": "El articulado no contiene ningún tributo sobre personas naturales.",
+          "evidence_refs": [
+            "ev:1",
+            "ev:2"
+          ]
+        },
+        {
+          "check": "data_consistency",
+          "result": "pass",
+          "note": "Las partidas del informe son consistentes con esa lectura.",
+          "evidence_refs": [
+            "ev:5"
+          ]
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "na",
+          "note": "La afirmación no contiene una cifra que verificar.",
+          "evidence_refs": []
+        },
+        {
+          "check": "logical_validity",
+          "result": "fail",
+          "note": "De 'no hay tributo legal sobre el grupo' no se sigue 'el grupo no paga más', que es lo afirmado.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "fail",
+          "note": "La ausencia de efecto indirecto se asevera sin evidencia de incidencia.",
+          "evidence_refs": [
+            "ev:6"
+          ]
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "Se enuncia como certeza una proposición que el propio informe declara no haber modelado.",
+          "evidence_refs": [
+            "ev:6"
+          ]
+        },
+        {
+          "check": "context_completeness",
+          "result": "fail",
+          "note": "Omite el canal de traslado del impuesto corporativo a precios o salarios.",
+          "evidence_refs": [
+            "ev:6"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "pass",
+          "note": "La afirmación se refiere al régimen que entra en vigor en 2027.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "fail",
+          "note": "Ninguna fuente independiente evalúa la incidencia sobre hogares.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "pass",
+          "note": "Ninguna evidencia más sólida establece lo contrario; el punto es que nada lo establece en ningún sentido.",
+          "evidence_refs": []
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": "cluster:1",
+      "omitted_context": [
+        {
+          "statement": "El informe financiero declara no modelar el traslado de la sobretasa a precios o salarios.",
+          "why_it_matters": "Sin esa modelación, la afirmación sobre incidencia no está respaldada ni refutada por la evidencia disponible.",
+          "evidence_refs": [
+            "ev:6"
+          ],
+          "materiality": "medium"
+        }
+      ],
+      "article_id": "art:meridiano:1",
+      "proposition_refs": [
+        "prov:18216-05:1",
+        "prov:18216-05:4"
+      ]
+    },
+    {
+      "id": "clm:5",
+      "text": "El costo neto será a lo menos el doble del informado una vez que se incorpore la caída de recaudación por menor inversión.",
+      "normalised_text": "El costo fiscal neto efectivo del paquete en 2027 será igual o superior a 0,8% del PIB, una vez incorporada la menor recaudación derivada de una caída de la inversión.",
+      "statement_type": "forecast",
+      "topic_refs": [
+        "node:costo-fiscal-neto",
+        "node:sobretasa-utilidades"
+      ],
+      "made_at": "2026-08-06T12:00:00Z",
+      "provenance": {
+        "source_id": "art:canalsur:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 122,
+          "text": "El costo neto será a lo menos el doble del informado una vez que se incorpore la caída de recaudación por menor inversión."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [],
+      "money": [
+        {
+          "amount": 0.8,
+          "currency": "CLP",
+          "unit": "percent_of_gdp",
+          "year": 2027,
+          "basis": "annual"
+        }
+      ],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que el costo fiscal neto será al menos el doble de la cifra oficial una vez incorporada la caída de recaudación por menor inversión.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:5",
+            "ev:6",
+            "ev:10"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "forecast_conditional",
+        "reasoning": "La afirmación es una proyección sobre un ejercicio futuro y no puede ser verdadera ni falsa hoy. Su premisa —que la estimación oficial excluye la respuesta de inversión— es correcta y está declarada en la propia fuente (ev:6). Su conclusión cuantitativa no lo está: el rango de elasticidad disponible va de -0,2 a -1,8 puntos y en cuatro de siete especificaciones no se distingue de cero (ev:10), de modo que 'al menos el doble' se sitúa en el extremo del rango sin justificar por qué. Se evalúa como condicional y se listan los supuestos que debería cumplir.",
+        "evidence_refs": [
+          "ev:6",
+          "ev:10"
+        ],
+        "assumptions_required": [
+          "Que la elasticidad de la inversión se sitúe en el extremo alto del rango disponible (-1,8 puntos o más).",
+          "Que la caída de inversión se traduzca íntegramente en menor recaudación dentro del mismo ejercicio.",
+          "Que no operen los efectos compensatorios del crédito a la inversión del artículo 5°."
+        ],
+        "confidence": {
+          "evidence_confidence": 0.36,
+          "model_confidence": 0.6,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El veredicto no se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "Ninguna evidencia observa el resultado; la afirmación versa sobre un ejercicio futuro."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "economista de una federación empresarial",
+        "speaker_id": "actor:federacion-empresarial",
+        "outlet_id": "src:demo-canal-sur-noticias",
+        "framing_notes": [
+          "Elige el extremo del rango disponible y lo presenta como el caso base."
+        ],
+        "historical_consistency": {
+          "assessment": "shifted",
+          "prior_claim_refs": [],
+          "note": "El mismo rol había descrito antes el efecto como 'incierto'."
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "unfalsifiable_prediction",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 0,
+              "char_end": 19,
+              "text": "a lo menos el doble"
+            },
+            "note": "El 'a lo menos' impide que la predicción sea refutada por cualquier resultado alto."
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "fail",
+          "note": "Ningún texto disponible afirma la magnitud proyectada.",
+          "evidence_refs": []
+        },
+        {
+          "check": "data_consistency",
+          "result": "fail",
+          "note": "El rango de la literatura no sostiene el extremo elegido.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "fail",
+          "note": "'Al menos el doble' requiere una elasticidad en el extremo del rango, sin justificación.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La inferencia es válida si se conceden sus premisas; el problema está en las premisas.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "fail",
+          "note": "La cadena sobretasa → menor inversión → menor recaudación se asevera sin cuantificar ningún eslabón.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "No se enuncia rango ni condiciones, pese a que la evidencia subyacente es un intervalo amplio.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        },
+        {
+          "check": "context_completeness",
+          "result": "pass",
+          "note": "Sí menciona que la cifra oficial excluye la respuesta de inversión, que es el punto material.",
+          "evidence_refs": [
+            "ev:6"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "na",
+          "note": "La afirmación se refiere a un ejercicio que aún no ocurre.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "fail",
+          "note": "No hay una segunda estimación independiente del efecto.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "fail",
+          "note": "El rango disponible, que es evidencia más sólida que la afirmación, no sostiene el extremo invocado.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        }
+      ],
+      "contradicts": [
+        "clm:1"
+      ],
+      "cluster_id": "cluster:1",
+      "omitted_context": [
+        {
+          "statement": "El crédito tributario del 15% a la inversión en activo fijo opera en sentido contrario a la sobretasa.",
+          "why_it_matters": "El efecto neto sobre la inversión depende del saldo de ambas medidas, no sólo de la sobretasa.",
+          "evidence_refs": [
+            "prov:18216-05:3"
+          ],
+          "materiality": "medium"
+        }
+      ],
+      "article_id": "art:canalsur:2",
+      "proposition_refs": [
+        "prov:18216-05:1"
+      ]
+    },
+    {
+      "id": "clm:6",
+      "text": "La sobretasa reducirá la inversión privada en 1,2 puntos en dos años.",
+      "normalised_text": "La sobretasa del artículo 3° reducirá la inversión privada en 1,2 puntos porcentuales dentro de los dos años siguientes a su entrada en vigor.",
+      "statement_type": "forecast",
+      "topic_refs": [
+        "node:sobretasa-utilidades",
+        "node:sector-construccion"
+      ],
+      "made_at": "2026-08-06T12:00:00Z",
+      "provenance": {
+        "source_id": "art:canalsur:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 69,
+          "text": "La sobretasa reducirá la inversión privada en 1,2 puntos en dos años."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [
+        {
+          "value": -1.2,
+          "kind": "percentage_point",
+          "unit": "pp",
+          "raw_text": "1,2 puntos"
+        }
+      ],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que la sobretasa reducirá la inversión privada en 1,2 puntos en dos años.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:10",
+            "ev:1",
+            "ev:6"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "forecast_conditional",
+        "reasoning": "La cifra cae dentro del rango disponible (-0,2 a -1,8 puntos) pero la evidencia no singulariza un valor: cuatro de siete especificaciones incluyen el cero (ev:10). Una predicción puntual extraída de un intervalo amplio no es falsa, es condicional: depende del supuesto de elasticidad, del horizonte y de que el diseño estudiado sea comparable. Se registra como tal y se listan esos supuestos.",
+        "evidence_refs": [
+          "ev:10"
+        ],
+        "assumptions_required": [
+          "Que la elasticidad aplicable sea la del punto medio del rango publicado y no un valor cercano a cero.",
+          "Que los resultados del estudio disponible sean trasladables a esta jurisdicción y a este diseño.",
+          "Que el horizonte de dos años baste para que el efecto se materialice."
+        ],
+        "confidence": {
+          "evidence_confidence": 0.4,
+          "model_confidence": 0.62,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El veredicto no se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "El intervalo de la evidencia incluye el cero en la mayoría de las especificaciones."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "economista de una federación empresarial",
+        "speaker_id": "actor:federacion-empresarial",
+        "outlet_id": "src:demo-canal-sur-noticias",
+        "framing_notes": [
+          "Reporta el punto medio de un rango amplio como si fuera un resultado."
+        ],
+        "historical_consistency": {
+          "assessment": "consistent",
+          "prior_claim_refs": [
+            "clm:5"
+          ],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "cherry_picked_statistic",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 0,
+              "char_end": 10,
+              "text": "1,2 puntos"
+            },
+            "note": "Un valor puntual extraído de un intervalo que incluye el cero."
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "na",
+          "note": "No es una afirmación sobre el contenido de un texto.",
+          "evidence_refs": []
+        },
+        {
+          "check": "data_consistency",
+          "result": "pass",
+          "note": "El valor está dentro del rango publicado.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "fail",
+          "note": "Se reporta el punto medio de un intervalo amplio como si fuese la estimación.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La inferencia es válida bajo sus supuestos.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "fail",
+          "note": "El vínculo causal se asevera con más firmeza de la que la evidencia sostiene.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "No se menciona el intervalo ni que varias especificaciones incluyen el cero.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        },
+        {
+          "check": "context_completeness",
+          "result": "fail",
+          "note": "Omite el crédito a la inversión, que opera en sentido contrario.",
+          "evidence_refs": [
+            "prov:18216-05:3"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "na",
+          "note": "El horizonte todavía no transcurre.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "fail",
+          "note": "Un único estudio sostiene el rango; no hay corroboración independiente.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "fail",
+          "note": "El propio estudio invocado es evidencia contra la precisión de la cifra.",
+          "evidence_refs": [
+            "ev:10"
+          ]
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": "cluster:1",
+      "omitted_context": [],
+      "article_id": "art:canalsur:2",
+      "proposition_refs": [
+        "prov:18216-05:1"
+      ]
+    },
+    {
+      "id": "clm:7",
+      "text": "El diseño del paquete privilegia el alivio inmediato por sobre la inversión de largo plazo.",
+      "normalised_text": "En el conjunto de las disposiciones del paquete, las destinadas a alivio inmediato superan en magnitud a las destinadas a inversión de horizonte largo.",
+      "statement_type": "interpretation",
+      "topic_refs": [
+        "node:aporte-hogares",
+        "node:credito-inversion",
+        "node:fondo-territorial"
+      ],
+      "made_at": "2026-08-06T08:00:00Z",
+      "provenance": {
+        "source_id": "art:meridiano:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 91,
+          "text": "El diseño del paquete privilegia el alivio inmediato por sobre la inversión de largo plazo."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que el diseño del paquete privilegia el alivio inmediato por sobre la inversión de largo plazo.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:2",
+            "ev:3",
+            "ev:5"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "partially_supported",
+        "reasoning": "Es una lectura defendible y no una afirmación cerrada. Las dos partidas de alivio (transferencia y seguro de cesantía) superan en monto anual a las dos de inversión (crédito y Fondo), lo que sostiene la lectura. En contra: el Fondo tiene dotación permanente mientras la transferencia expira a los 24 meses, de modo que el orden se invierte si se compara el valor presente en lugar del flujo anual. La interpretación se sostiene bajo una métrica y no bajo la otra, y ninguna de las dos es la métrica correcta por definición.",
+        "evidence_refs": [
+          "ev:2",
+          "ev:3"
+        ],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.58,
+          "model_confidence": 0.64,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El veredicto se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "La conclusión depende de si se compara flujo anual o valor presente."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "analista de una confederación sindical",
+        "speaker_id": "actor:confederacion-sindical",
+        "outlet_id": "src:demo-diario-meridiano",
+        "framing_notes": [
+          "La comparación implícita es de flujo anual, lo que no se explicita."
+        ],
+        "historical_consistency": {
+          "assessment": "consistent",
+          "prior_claim_refs": [],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "none_detected",
+            "span": null,
+            "note": null
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "pass",
+          "note": "Las cuatro disposiciones citadas existen y tienen los montos indicados.",
+          "evidence_refs": [
+            "ev:2",
+            "ev:3"
+          ]
+        },
+        {
+          "check": "data_consistency",
+          "result": "pass",
+          "note": "Los montos anuales sostienen la comparación bajo esa métrica.",
+          "evidence_refs": [
+            "ev:5"
+          ]
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "fail",
+          "note": "La comparación no fija la métrica: flujo anual y valor presente ordenan las partidas al revés.",
+          "evidence_refs": [
+            "ev:5"
+          ]
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La inferencia es válida dentro de la métrica implícita.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "na",
+          "note": "No se afirma una relación causal.",
+          "evidence_refs": []
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "Se enuncia como lectura única una comparación sensible a la métrica elegida.",
+          "evidence_refs": []
+        },
+        {
+          "check": "context_completeness",
+          "result": "fail",
+          "note": "Omite que la transferencia tiene sunset a 24 meses y el Fondo no.",
+          "evidence_refs": [
+            "prov:18216-05:4",
+            "prov:18216-05:5"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "pass",
+          "note": "La comparación es coherente con las fechas de vigencia del articulado.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "na",
+          "note": "Una interpretación no se corrobora con una segunda fuente; se discute con razones.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "pass",
+          "note": "Ninguna evidencia más sólida invalida la lectura; sólo la relativiza.",
+          "evidence_refs": []
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": "cluster:3",
+      "omitted_context": [
+        {
+          "statement": "El aporte de estabilización expira a los 24 meses; la dotación del Fondo territorial es permanente.",
+          "why_it_matters": "Con horizonte largo, la partida de inversión supera a la de alivio, invirtiendo la conclusión.",
+          "evidence_refs": [
+            "prov:18216-05:4",
+            "prov:18216-05:5"
+          ],
+          "materiality": "large"
+        }
+      ],
+      "article_id": "art:meridiano:2",
+      "proposition_refs": [
+        "prov:18216-05:3",
+        "prov:18216-05:4",
+        "prov:18216-05:5",
+        "prov:18216-05:6"
+      ]
+    },
+    {
+      "id": "clm:8",
+      "text": "El procedimiento ambiental abreviado se incorporó a pedido de una industria específica.",
+      "normalised_text": "La indicación que incorporó el artículo 10 al proyecto fue propuesta por un actor de una industria determinada.",
+      "statement_type": "interpretation",
+      "topic_refs": [
+        "node:procedimiento-ambiental",
+        "node:sector-construccion"
+      ],
+      "made_at": "2026-08-06T18:30:00Z",
+      "provenance": {
+        "source_id": "art:boletin:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 87,
+          "text": "El procedimiento ambiental abreviado se incorporó a pedido de una industria específica."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que el procedimiento ambiental abreviado se incorporó a pedido de una industria específica.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:9",
+            "ev:1"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "unsupported",
+        "reasoning": "El único registro disponible sobre el origen de la indicación es un acta que no consigna quién la propuso (ev:9). La afirmación no está respaldada por ninguna pieza del conjunto. Tampoco está refutada: el silencio del acta no prueba lo contrario. 'Sin respaldo' es el resultado correcto y no debe leerse como 'falso'.",
+        "evidence_refs": [
+          "ev:9"
+        ],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.2,
+          "model_confidence": 0.5,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El veredicto no se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "No hay registro del origen de la indicación en ninguna fuente del conjunto."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "diputado/a de oposición",
+        "speaker_id": "actor:oposicion-finanzas",
+        "outlet_id": "src:demo-boletin-economico",
+        "framing_notes": [
+          "Presenta como establecida una atribución de origen que ninguna fuente consigna."
+        ],
+        "historical_consistency": {
+          "assessment": "insufficient_history",
+          "prior_claim_refs": [],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "anecdote_as_evidence",
+            "span": null,
+            "note": "La atribución se apoya en la plausibilidad del relato, no en un registro."
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "fail",
+          "note": "Ningún texto disponible atribuye el origen de la indicación.",
+          "evidence_refs": [
+            "ev:9"
+          ]
+        },
+        {
+          "check": "data_consistency",
+          "result": "na",
+          "note": "No hay datos que confrontar.",
+          "evidence_refs": []
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "na",
+          "note": "La afirmación no contiene cifras.",
+          "evidence_refs": []
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La afirmación está bien formada; carece de respaldo, no de coherencia.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "fail",
+          "note": "Atribuye una causa (el pedido de un actor) sin evidencia de esa causa.",
+          "evidence_refs": [
+            "ev:9"
+          ]
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "Se enuncia como hecho establecido algo sobre lo cual el registro guarda silencio.",
+          "evidence_refs": [
+            "ev:9"
+          ]
+        },
+        {
+          "check": "context_completeness",
+          "result": "fail",
+          "note": "Omite que el acta no consigna el origen de ninguna indicación de esa sesión.",
+          "evidence_refs": [
+            "ev:9"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "pass",
+          "note": "La fecha de la indicación es coherente con la del acta.",
+          "evidence_refs": [
+            "ev:9"
+          ]
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "fail",
+          "note": "No hay ninguna fuente, ni una.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "na",
+          "note": "No hay evidencia más sólida en ninguna dirección.",
+          "evidence_refs": []
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": null,
+      "omitted_context": [],
+      "article_id": "art:boletin:2",
+      "proposition_refs": [
+        "prov:18216-05:8"
+      ]
+    },
+    {
+      "id": "clm:9",
+      "text": "Es un error de diseño que el país va a lamentar durante una década.",
+      "normalised_text": "El paquete constituye un error de diseño cuyas consecuencias serán lamentadas durante una década.",
+      "statement_type": "opinion",
+      "topic_refs": [
+        "node:paquete-fiscal"
+      ],
+      "made_at": "2026-08-06T18:30:00Z",
+      "provenance": {
+        "source_id": "art:boletin:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 67,
+          "text": "Es un error de diseño que el país va a lamentar durante una década."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que el paquete es un error de diseño que el país lamentará durante una década.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "not_a_factual_claim",
+        "reasoning": "'Error de diseño' y 'lamentar' son valoraciones, no descripciones de un estado de cosas: ningún dato las haría verdaderas o falsas. Aleph no fuerza una valoración a un marco de verdadero/falso, porque hacerlo daría a una opinión la apariencia de un hecho verificado. Se registra como lo que es y se muestra distinta de un hecho.",
+        "evidence_refs": [],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.9,
+          "model_confidence": 0.86,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El veredicto no se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": null
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "diputado/a de oposición",
+        "speaker_id": "actor:oposicion-finanzas",
+        "outlet_id": "src:demo-boletin-economico",
+        "framing_notes": [
+          "Enunciada en la gramática de una constatación, no de una opinión."
+        ],
+        "historical_consistency": {
+          "assessment": "not_assessed",
+          "prior_claim_refs": [],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "moral_framing",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 0,
+              "char_end": 44,
+              "text": "un error de diseño que el país va a lamentar"
+            },
+            "note": "La valoración se presenta con la forma de un pronóstico."
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "na",
+          "note": "Una valoración no se contrasta con un pasaje.",
+          "evidence_refs": []
+        },
+        {
+          "check": "data_consistency",
+          "result": "na",
+          "note": "No hay proposición empírica que confrontar con datos.",
+          "evidence_refs": []
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "na",
+          "note": "No hay cifras.",
+          "evidence_refs": []
+        },
+        {
+          "check": "logical_validity",
+          "result": "na",
+          "note": "No hay inferencia que evaluar.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "na",
+          "note": "No se afirma una relación causal verificable.",
+          "evidence_refs": []
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "na",
+          "note": "No es una proyección con supuestos declarables.",
+          "evidence_refs": []
+        },
+        {
+          "check": "context_completeness",
+          "result": "na",
+          "note": "La categoría no aplica a una valoración.",
+          "evidence_refs": []
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "na",
+          "note": "No hay fecha que verificar.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "na",
+          "note": "Una opinión no se corrobora con fuentes.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "na",
+          "note": "Ninguna evidencia puede contradecir una preferencia.",
+          "evidence_refs": []
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": "cluster:4",
+      "omitted_context": [],
+      "article_id": "art:boletin:2",
+      "proposition_refs": []
+    },
+    {
+      "id": "clm:10",
+      "text": "Los municipios deberían recibir una proporción fija e irreductible de la recaudación, no un fondo sujeto a reglamento.",
+      "normalised_text": "Corresponde que los municipios reciban una proporción fija de la recaudación en lugar de un fondo cuya distribución dependa de un reglamento.",
+      "statement_type": "normative",
+      "topic_refs": [
+        "node:fondo-territorial",
+        "node:municipios"
+      ],
+      "made_at": "2026-08-05T17:40:00Z",
+      "provenance": {
+        "source_id": "art:contrapunto:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 118,
+          "text": "Los municipios deberían recibir una proporción fija e irreductible de la recaudación, no un fondo sujeto a reglamento."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que los municipios deberían recibir una proporción fija de la recaudación en lugar de un fondo sujeto a reglamento.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:4"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "not_a_factual_claim",
+        "reasoning": "La afirmación dice lo que debería ocurrir, no lo que ocurre. Su premisa fáctica —que el fondo está sujeto a un reglamento pendiente— es correcta y se verifica por separado (clm:14). La preferencia entre dos diseños institucionales no es verificable y no se le asigna veredicto.",
+        "evidence_refs": [],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.9,
+          "model_confidence": 0.84,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El veredicto no se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": null
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "presidencia de la asociación de municipios",
+        "speaker_id": "actor:asociacion-municipios",
+        "outlet_id": "src:demo-el-contrapunto",
+        "framing_notes": [
+          "Combina una premisa fáctica verificable con una prescripción que no lo es."
+        ],
+        "historical_consistency": {
+          "assessment": "consistent",
+          "prior_claim_refs": [
+            "clm:2"
+          ],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "none_detected",
+            "span": null,
+            "note": null
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "na",
+          "note": "Una prescripción no se contrasta con un pasaje.",
+          "evidence_refs": []
+        },
+        {
+          "check": "data_consistency",
+          "result": "na",
+          "note": "No hay proposición empírica.",
+          "evidence_refs": []
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "na",
+          "note": "No hay cifras.",
+          "evidence_refs": []
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La preferencia está formulada de manera coherente con su premisa fáctica.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "causal_support",
+          "result": "na",
+          "note": "No se afirma una relación causal.",
+          "evidence_refs": []
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "na",
+          "note": "No es una proyección.",
+          "evidence_refs": []
+        },
+        {
+          "check": "context_completeness",
+          "result": "pass",
+          "note": "La premisa fáctica que invoca es exacta y está evidenciada.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "na",
+          "note": "No hay fecha que verificar.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "na",
+          "note": "Una prescripción no se corrobora con fuentes.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "na",
+          "note": "Ninguna evidencia puede contradecir un deber ser.",
+          "evidence_refs": []
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": "cluster:2",
+      "omitted_context": [],
+      "article_id": "art:contrapunto:2",
+      "proposition_refs": [
+        "prov:18216-05:5",
+        "prov:18216-05:10"
+      ]
+    },
+    {
+      "id": "clm:11",
+      "text": "La mitad de las empresas pequeñas ni siquiera sabe que existe la rebaja del impuesto de timbres.",
+      "normalised_text": "Aproximadamente el 50% de las empresas con ingresos anuales de hasta 25.000 UF desconoce la existencia de la rebaja del impuesto de timbres.",
+      "statement_type": "fact",
+      "topic_refs": [
+        "node:rebaja-timbres",
+        "node:pymes"
+      ],
+      "made_at": "2026-08-06T12:00:00Z",
+      "provenance": {
+        "source_id": "art:canalsur:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 96,
+          "text": "La mitad de las empresas pequeñas ni siquiera sabe que existe la rebaja del impuesto de timbres."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [
+        {
+          "value": 50.0,
+          "kind": "percentage",
+          "unit": "%",
+          "raw_text": "La mitad"
+        }
+      ],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que aproximadamente la mitad de las empresas pequeñas desconoce la rebaja del impuesto de timbres.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:16",
+            "ev:1"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "unverifiable",
+        "reasoning": "La afirmación es empírica y podría comprobarse con una encuesta, pero no hay ninguna en el conjunto: la búsqueda correspondiente quedó registrada como vacío de recuperación. Lo único disponible es que el articulado no impone obligación de difusión (ev:16), que no responde la pregunta. 'No verificable' describe el estado de la evidencia y no es un juicio sobre quien habla.",
+        "evidence_refs": [
+          "ev:16"
+        ],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.1,
+          "model_confidence": 0.42,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El veredicto se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "No existe en el conjunto ninguna medición del conocimiento de la medida."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "economista de una federación empresarial",
+        "speaker_id": "actor:federacion-empresarial",
+        "outlet_id": "src:demo-canal-sur-noticias",
+        "framing_notes": [
+          "Una proporción redonda presentada sin fuente."
+        ],
+        "historical_consistency": {
+          "assessment": "not_assessed",
+          "prior_claim_refs": [],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "cherry_picked_statistic",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 0,
+              "char_end": 8,
+              "text": "La mitad"
+            },
+            "note": "Cifra redonda sin origen declarado."
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "na",
+          "note": "No es una afirmación sobre el contenido de un texto.",
+          "evidence_refs": []
+        },
+        {
+          "check": "data_consistency",
+          "result": "fail",
+          "note": "No hay datos con los cuales confrontarla.",
+          "evidence_refs": [
+            "ev:16"
+          ]
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "fail",
+          "note": "La cifra de 50% no proviene de ninguna medición disponible.",
+          "evidence_refs": []
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La afirmación está bien formada.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "na",
+          "note": "No se afirma una relación causal.",
+          "evidence_refs": []
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "Se enuncia una proporción precisa sin fuente ni margen.",
+          "evidence_refs": []
+        },
+        {
+          "check": "context_completeness",
+          "result": "na",
+          "note": "No hay contexto omitido determinable sin la medición.",
+          "evidence_refs": []
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "na",
+          "note": "La medida entra en vigor en 2027; el conocimiento actual no es contrastable con nada.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "fail",
+          "note": "Cero fuentes.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "na",
+          "note": "No hay evidencia en ninguna dirección.",
+          "evidence_refs": []
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": null,
+      "omitted_context": [],
+      "article_id": "art:canalsur:2",
+      "proposition_refs": [
+        "prov:18216-05:2"
+      ]
+    },
+    {
+      "id": "clm:12",
+      "text": "La extensión a ocho meses del seguro de cesantía alcanza sólo a los contratos a plazo fijo y por obra o faena.",
+      "normalised_text": "La extensión de cinco a ocho giros del fondo solidario de cesantía se aplica únicamente a trabajadores con contrato a plazo fijo o por obra o faena determinada.",
+      "statement_type": "fact",
+      "topic_refs": [
+        "node:seguro-cesantia",
+        "node:trabajadores-plazo-fijo"
+      ],
+      "made_at": "2026-08-06T08:00:00Z",
+      "provenance": {
+        "source_id": "art:meridiano:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 110,
+          "text": "La extensión a ocho meses del seguro de cesantía alcanza sólo a los contratos a plazo fijo y por obra o faena."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [
+        {
+          "value": 8.0,
+          "kind": "count",
+          "unit": "meses",
+          "raw_text": "ocho meses"
+        }
+      ],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que la extensión a ocho meses del seguro de cesantía alcanza sólo a los contratos a plazo fijo y por obra o faena.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "supported",
+        "reasoning": "El artículo 8° delimita expresamente el alcance a esos contratos e incluye una excepción explícita para los contratos indefinidos. La afirmación reproduce el texto sin ampliarlo ni recortarlo. Es exactamente el tipo de afirmación que la evidencia primaria puede establecer por completo.",
+        "evidence_refs": [],
+        "assumptions_required": [],
+        "confidence": {
+          "evidence_confidence": 0.88,
+          "model_confidence": 0.85,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El veredicto no se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "El pasaje proviene de un fixture sintético, no del documento real."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "analista de una confederación sindical",
+        "speaker_id": "actor:confederacion-sindical",
+        "outlet_id": "src:demo-diario-meridiano",
+        "framing_notes": [
+          "Enuncia la limitación de alcance, que las coberturas resumidas suelen omitir."
+        ],
+        "historical_consistency": {
+          "assessment": "consistent",
+          "prior_claim_refs": [],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "none_detected",
+            "span": null,
+            "note": null
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "pass",
+          "note": "El artículo 8° delimita el alcance en esos términos y excluye el contrato indefinido.",
+          "evidence_refs": [
+            "prov:18216-05:6"
+          ]
+        },
+        {
+          "check": "data_consistency",
+          "result": "pass",
+          "note": "No hay otra disposición sobre la materia que pudiera contradecirla.",
+          "evidence_refs": []
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "pass",
+          "note": "La cifra de ocho meses corresponde al tope de giros del texto.",
+          "evidence_refs": [
+            "prov:18216-05:6"
+          ]
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "No hay inferencia: es una lectura literal.",
+          "evidence_refs": []
+        },
+        {
+          "check": "causal_support",
+          "result": "na",
+          "note": "No se afirma una relación causal.",
+          "evidence_refs": []
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "pass",
+          "note": "No hay proyección ni estimación involucrada.",
+          "evidence_refs": []
+        },
+        {
+          "check": "context_completeness",
+          "result": "pass",
+          "note": "El requisito de doce cotizaciones se menciona en la misma pieza informativa.",
+          "evidence_refs": [
+            "prov:18216-05:6"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "pass",
+          "note": "La vigencia del artículo comienza el 1 de abril de 2027.",
+          "evidence_refs": [
+            "prov:18216-05:6"
+          ]
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "pass",
+          "note": "El texto primario basta para establecer el contenido de una norma.",
+          "evidence_refs": [
+            "prov:18216-05:6"
+          ]
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "pass",
+          "note": "Ninguna evidencia más sólida dice otra cosa.",
+          "evidence_refs": []
+        }
+      ],
+      "contradicts": [],
+      "cluster_id": "cluster:3",
+      "omitted_context": [],
+      "article_id": "art:meridiano:2",
+      "proposition_refs": [
+        "prov:18216-05:6",
+        "prop:18216-05:9",
+        "prop:18216-05:10"
+      ]
+    },
+    {
+      "id": "clm:13",
+      "text": "Las transferencias del fondo territorial comenzarán durante el primer trimestre de 2027.",
+      "normalised_text": "El Fondo de Estabilización Territorial efectuará su primera transferencia a municipios dentro del primer trimestre de 2027.",
+      "statement_type": "forecast",
+      "topic_refs": [
+        "node:fondo-territorial",
+        "node:reglamento-fondo"
+      ],
+      "made_at": "2026-08-04T13:00:00Z",
+      "provenance": {
+        "source_id": "art:meridiano:1",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 88,
+          "text": "Las transferencias del fondo territorial comenzarán durante el primer trimestre de 2027."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que las transferencias del fondo territorial comenzarán durante el primer trimestre de 2027.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:4",
+            "ev:11",
+            "ev:13",
+            "ev:14"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "forecast_conditional",
+        "reasoning": "El calendario depende de un acto administrativo que aún no consta: el reglamento que fija la fórmula de distribución (ev:4). Mientras no exista, el artículo 7° no tiene regla aplicable. La afirmación es por tanto condicional a que el reglamento se dicte dentro del plazo y a que la ejecución comience sin rezago. No es verdadera ni falsa hoy y no se le asigna un veredicto fáctico.",
+        "evidence_refs": [
+          "ev:4"
+        ],
+        "assumptions_required": [
+          "Que el reglamento se dicte dentro de los 180 días que fija el artículo primero transitorio.",
+          "Que la primera transferencia no requiera un acto presupuestario adicional.",
+          "Que no se produzca el rezago de ejecución observado en fondos comparables."
+        ],
+        "confidence": {
+          "evidence_confidence": 0.32,
+          "model_confidence": 0.6,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El veredicto se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "El hecho decisivo —la dictación del reglamento— aún no ha ocurrido."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "vocería de Hacienda",
+        "speaker_id": "actor:vocaria-hacienda",
+        "outlet_id": "src:demo-diario-meridiano",
+        "framing_notes": [
+          "Presenta un calendario condicional como un compromiso cerrado."
+        ],
+        "historical_consistency": {
+          "assessment": "consistent",
+          "prior_claim_refs": [
+            "clm:1"
+          ],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "none_detected",
+            "span": null,
+            "note": null
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "pass",
+          "note": "El plazo de 180 días para el reglamento está en el texto.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "data_consistency",
+          "result": "na",
+          "note": "No hay datos de ejecución con los cuales contrastar.",
+          "evidence_refs": []
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "na",
+          "note": "No hay cifra que verificar.",
+          "evidence_refs": []
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La afirmación es compatible con el plazo legal.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "causal_support",
+          "result": "na",
+          "note": "No se afirma una relación causal.",
+          "evidence_refs": []
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "Se enuncia como certeza un calendario que depende de un acto pendiente.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "context_completeness",
+          "result": "fail",
+          "note": "Omite que la transferencia requiere un reglamento que aún no consta dictado.",
+          "evidence_refs": [
+            "ev:4",
+            "ev:13"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "na",
+          "note": "El período aludido todavía no transcurre.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "fail",
+          "note": "Ninguna fuente independiente confirma el calendario.",
+          "evidence_refs": []
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "fail",
+          "note": "La evidencia de rezago en fondos comparables apunta en sentido contrario.",
+          "evidence_refs": [
+            "ev:11"
+          ]
+        }
+      ],
+      "contradicts": [
+        "clm:14"
+      ],
+      "cluster_id": "cluster:2",
+      "omitted_context": [
+        {
+          "statement": "A la fecha de la afirmación no consta la dictación del reglamento que fija la fórmula de distribución.",
+          "why_it_matters": "Sin reglamento el Fondo no tiene regla de reparto aplicable, de modo que el calendario anunciado no está asegurado.",
+          "evidence_refs": [
+            "ev:4",
+            "ev:13"
+          ],
+          "materiality": "large"
+        }
+      ],
+      "article_id": "art:meridiano:1",
+      "proposition_refs": [
+        "prov:18216-05:5",
+        "prov:18216-05:10"
+      ]
+    },
+    {
+      "id": "clm:14",
+      "text": "Sin reglamento no hay fórmula, y sin fórmula no hay transferencia: esto no parte antes de 2028.",
+      "normalised_text": "El Fondo de Estabilización Territorial no efectuará transferencias a municipios antes del año 2028.",
+      "statement_type": "forecast",
+      "topic_refs": [
+        "node:fondo-territorial",
+        "node:reglamento-fondo"
+      ],
+      "made_at": "2026-08-05T17:40:00Z",
+      "provenance": {
+        "source_id": "art:contrapunto:2",
+        "source_kind": "article",
+        "url": null,
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "span": {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 95,
+          "text": "Sin reglamento no hay fórmula, y sin fórmula no hay transferencia: esto no parte antes de 2028."
+        },
+        "extractor": "aleph-fixture/0.1.0"
+      },
+      "quantities": [],
+      "money": [],
+      "blind_evaluation": {
+        "evaluator_version": "aleph-blind-evaluator/0.1.0-mock",
+        "redacted_context": {
+          "claim_text": "Quien habla sostiene que el fondo territorial no efectuará transferencias antes de 2028 porque el reglamento aún no existe.",
+          "context_excerpts": [
+            "El pasaje se presenta sin atribución: no se indica quién lo dijo, en qué medio ni desde qué posición institucional.",
+            "Se acompaña la evidencia listada en evidence_ids, en ese orden."
+          ],
+          "evidence_ids": [
+            "ev:4",
+            "ev:11",
+            "ev:13",
+            "ev:15"
+          ],
+          "withheld": [
+            "speaker_name",
+            "speaker_role",
+            "party",
+            "coalition",
+            "government_or_opposition_status",
+            "outlet",
+            "outlet_prestige",
+            "author",
+            "publication_venue",
+            "institutional_affiliation"
+          ],
+          "redaction_version": "aleph-redactor/0.1.0"
+        },
+        "verdict": "forecast_conditional",
+        "reasoning": "La premisa es correcta y verificable: sin reglamento no hay fórmula de distribución (ev:4), y al 5 de agosto de 2026 no consta su dictación (ev:13). La conclusión sobre la fecha no lo es: el plazo legal de 180 días permite que el reglamento exista antes de 2027, y la evidencia de rezago se basa en cinco casos (ev:11). Es una proyección condicional, no un hecho, y se registra con los supuestos de los que depende.",
+        "evidence_refs": [
+          "ev:4",
+          "ev:11",
+          "ev:13"
+        ],
+        "assumptions_required": [
+          "Que el reglamento no se dicte dentro del plazo de 180 días.",
+          "Que el rezago medio de catorce meses observado en cinco casos comparables se repita aquí."
+        ],
+        "confidence": {
+          "evidence_confidence": 0.42,
+          "model_confidence": 0.6,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El veredicto se apoya en el texto primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El conjunto contiene pocas fuentes originales distintas."
+            },
+            {
+              "factor": "retrieval_completeness",
+              "effect": "lowers",
+              "note": "La recuperación en línea está deshabilitada: la evidencia disponible es la del fixture."
+            }
+          ],
+          "limiting_factor": "La base de comparación para el rezago son cinco casos."
+        },
+        "uncertainties": [
+          {
+            "statement": "Todo el conjunto de evidencia es sintético; el veredicto demuestra el procedimiento, no describe ninguna afirmación real.",
+            "kind": "out_of_scope",
+            "resolvable_by": "Ejecutar el mismo procedimiento sobre evidencia recuperada realmente."
+          }
+        ]
+      },
+      "attributed_analysis": {
+        "applied_after_verdict": true,
+        "speaker_role": "presidencia de la asociación de municipios",
+        "speaker_id": "actor:asociacion-municipios",
+        "outlet_id": "src:demo-el-contrapunto",
+        "framing_notes": [
+          "Convierte una premisa verificable en una fecha cerrada."
+        ],
+        "historical_consistency": {
+          "assessment": "consistent",
+          "prior_claim_refs": [
+            "clm:2",
+            "clm:10"
+          ],
+          "note": null
+        },
+        "rhetorical_pattern": [
+          {
+            "pattern": "urgency_framing",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 0,
+              "char_end": 27,
+              "text": "esto no parte antes de 2028"
+            },
+            "note": "La fecha cerrada dramatiza una dependencia administrativa real."
+          }
+        ]
+      },
+      "checks_applied": [
+        {
+          "check": "direct_textual_evidence",
+          "result": "pass",
+          "note": "La dependencia del reglamento está en el texto.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "data_consistency",
+          "result": "pass",
+          "note": "La evidencia de rezago apunta en la dirección de la afirmación.",
+          "evidence_refs": [
+            "ev:11"
+          ]
+        },
+        {
+          "check": "quantitative_correctness",
+          "result": "na",
+          "note": "No hay cifra que verificar.",
+          "evidence_refs": []
+        },
+        {
+          "check": "logical_validity",
+          "result": "pass",
+          "note": "La cadena premisa-conclusión es válida bajo los supuestos declarados.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "causal_support",
+          "result": "pass",
+          "note": "El mecanismo es normativo y directo: sin fórmula no hay reparto posible.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "uncertainty_handling",
+          "result": "fail",
+          "note": "La fecha se enuncia como certeza pese a depender de un acto administrativo pendiente.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "context_completeness",
+          "result": "fail",
+          "note": "Omite que el plazo legal permite dictar el reglamento antes de 2027.",
+          "evidence_refs": [
+            "ev:4"
+          ]
+        },
+        {
+          "check": "temporal_correctness",
+          "result": "na",
+          "note": "El período aludido todavía no transcurre.",
+          "evidence_refs": []
+        },
+        {
+          "check": "independent_corroboration",
+          "result": "pass",
+          "note": "Dos fuentes independientes sostienen la premisa: el texto y el reportaje.",
+          "evidence_refs": [
+            "ev:4",
+            "ev:13"
+          ]
+        },
+        {
+          "check": "contradiction_with_stronger_evidence",
+          "result": "pass",
+          "note": "Ninguna evidencia más sólida establece que el reglamento ya exista.",
+          "evidence_refs": []
+        }
+      ],
+      "contradicts": [
+        "clm:13"
+      ],
+      "cluster_id": "cluster:2",
+      "omitted_context": [],
+      "article_id": "art:contrapunto:2",
+      "proposition_refs": [
+        "prov:18216-05:5",
+        "prov:18216-05:10"
+      ]
+    }
+  ]
+}

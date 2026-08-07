@@ -1,0 +1,1409 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "synthetic",
+  "generated_at": "2026-08-07T12:00:00Z",
+  "document_id": "doc:18216-05",
+  "evidence": [
+    {
+      "id": "ev:1",
+      "source_ref": {
+        "id": "doc:18216-05",
+        "title": "Articulado del proyecto — artículo 3°",
+        "url": "https://www.dipres.gob.cl/604/articles-409825_doc_pdf.pdf",
+        "publisher": null,
+        "published_at": "2026-05-12",
+        "tier": "primary_document",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "primary_document",
+      "statement": "El artículo 3° del articulado establece una sobretasa de dos puntos porcentuales para contribuyentes con ingresos brutos anuales sobre 100.000 UF, por los años tributarios 2027 a 2031.",
+      "spans": [
+        {
+          "page": 3,
+          "section_id": "sec:2.1",
+          "char_start": 1880,
+          "char_end": 1978,
+          "text": "una sobretasa de dos puntos porcentuales sobre la base imponible del impuesto de primera categoría"
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:3"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Qué tasa y qué umbral fija el texto para la sobretasa?",
+        "relevance": 0.98,
+        "can_establish": [
+          "que el texto fija una sobretasa de 2 puntos porcentuales",
+          "que el umbral de aplicación son 100.000 UF de ingresos brutos anuales"
+        ],
+        "cannot_establish": [
+          "que la sobretasa recaudará el monto proyectado",
+          "que la sobretasa se mantendrá tras 2031"
+        ],
+        "why": "El texto operativo es decisivo sobre lo que la norma dice y no dice nada sobre sus efectos."
+      },
+      "strength": "high",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [
+        {
+          "value": 2.0,
+          "kind": "percentage_point",
+          "unit": "pp",
+          "raw_text": "dos puntos porcentuales"
+        }
+      ],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.9,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "raises",
+            "note": "Pasaje citado del texto operativo."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:2",
+      "source_ref": {
+        "id": "doc:18216-05",
+        "title": "Articulado del proyecto — artículo 6°",
+        "url": "https://www.dipres.gob.cl/604/articles-409825_doc_pdf.pdf",
+        "publisher": null,
+        "published_at": "2026-05-12",
+        "tier": "primary_document",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "primary_document",
+      "statement": "El artículo 6° crea un aporte mensual de $42.000 por hogar para los cuatro primeros deciles, pagadero durante veinticuatro meses.",
+      "spans": [
+        {
+          "page": 5,
+          "section_id": "sec:3.1",
+          "char_start": 450,
+          "char_end": 507,
+          "text": "un aporte mensual de estabilización, de $42.000 por hogar"
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:4"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Qué monto y qué duración fija el texto para la transferencia a hogares?",
+        "relevance": 0.97,
+        "can_establish": [
+          "que el monto mensual por hogar es $42.000",
+          "que el pago dura veinticuatro meses"
+        ],
+        "cannot_establish": [
+          "que todos los hogares elegibles lo recibirán",
+          "que el aporte compensará el efecto de otras medidas"
+        ],
+        "why": "Establece el contenido de la norma; la incidencia efectiva es otra cuestión."
+      },
+      "strength": "high",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [
+        {
+          "value": 24.0,
+          "kind": "duration",
+          "unit": "meses",
+          "raw_text": "veinticuatro meses"
+        }
+      ],
+      "money": [
+        {
+          "amount": 42000.0,
+          "currency": "CLP",
+          "unit": "unit",
+          "year": 2026,
+          "basis": "monthly"
+        }
+      ],
+      "confidence": {
+        "evidence_confidence": 0.9,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "raises",
+            "note": "Pasaje citado del texto operativo."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:3",
+      "source_ref": {
+        "id": "doc:18216-05",
+        "title": "Articulado del proyecto — artículo 7°",
+        "url": "https://www.dipres.gob.cl/604/articles-409825_doc_pdf.pdf",
+        "publisher": null,
+        "published_at": "2026-05-12",
+        "tier": "primary_document",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "primary_document",
+      "statement": "El artículo 7° dota el Fondo de Estabilización Territorial con recursos anuales equivalentes al 0,18% del producto interno bruto.",
+      "spans": [
+        {
+          "page": 6,
+          "section_id": "sec:3.2",
+          "char_start": 420,
+          "char_end": 502,
+          "text": "se dotará anualmente con recursos equivalentes al 0,18% del producto interno bruto"
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:2"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Qué dotación anual fija el texto para el fondo municipal?",
+        "relevance": 0.96,
+        "can_establish": [
+          "que la dotación anual es 0,18% del PIB",
+          "que la fórmula pondera población, ingresos propios por habitante y ruralidad"
+        ],
+        "cannot_establish": [
+          "que los recursos se transferirán efectivamente en 2027",
+          "qué recibirá cada municipio en particular"
+        ],
+        "why": "Fija la magnitud de la dotación; nada dice sobre el calendario de ejecución."
+      },
+      "strength": "high",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [
+        {
+          "value": 0.18,
+          "kind": "percentage",
+          "unit": "% del PIB",
+          "raw_text": "0,18% del producto interno bruto"
+        }
+      ],
+      "money": [
+        {
+          "amount": 0.18,
+          "currency": "CLP",
+          "unit": "percent_of_gdp",
+          "year": 2027,
+          "basis": "annual"
+        }
+      ],
+      "confidence": {
+        "evidence_confidence": 0.9,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "raises",
+            "note": "Pasaje citado del texto operativo."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:4",
+      "source_ref": {
+        "id": "doc:18216-05",
+        "title": "Articulado del proyecto — artículo primero transitorio",
+        "url": "https://www.dipres.gob.cl/604/articles-409825_doc_pdf.pdf",
+        "publisher": null,
+        "published_at": "2026-05-12",
+        "tier": "primary_document",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "primary_document",
+      "statement": "El artículo primero transitorio entrega a un reglamento, a dictarse dentro de 180 días desde la publicación, la fórmula de distribución del Fondo.",
+      "spans": [
+        {
+          "page": 9,
+          "section_id": "sec:4.4",
+          "char_start": 1540,
+          "char_end": 1636,
+          "text": "Un reglamento, dictado dentro de los ciento ochenta días siguientes a la publicación de esta ley"
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:14"
+      ],
+      "contradicts": [
+        "clm:13"
+      ],
+      "evidential_relevance": {
+        "question": "¿De qué depende que el Fondo pueda transferir recursos?",
+        "relevance": 0.93,
+        "can_establish": [
+          "que la fórmula de distribución no está en la ley sino en un reglamento pendiente",
+          "que el plazo para dictarlo es de 180 días desde la publicación"
+        ],
+        "cannot_establish": [
+          "que el reglamento se dictará dentro del plazo",
+          "en qué fecha comenzarán las transferencias"
+        ],
+        "why": "Establece una dependencia normativa; no permite predecir el comportamiento administrativo."
+      },
+      "strength": "high",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [
+        {
+          "value": 180.0,
+          "kind": "duration",
+          "unit": "días",
+          "raw_text": "ciento ochenta días"
+        }
+      ],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.9,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "raises",
+            "note": "Pasaje citado del texto operativo."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:5",
+      "source_ref": {
+        "id": "src:demo-informe-financiero",
+        "title": "Informe financiero adjunto (documento de demostración)",
+        "url": null,
+        "publisher": "autoridad presupuestaria del ejecutivo (rol genérico)",
+        "published_at": "2026-07-02",
+        "tier": "official_technical_report",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "official_technical_report",
+      "statement": "El informe financiero adjunto proyecta un costo fiscal neto de 0,4% del PIB para 2027, bajo un supuesto de crecimiento real de 2,3% anual.",
+      "spans": [
+        {
+          "page": 11,
+          "section_id": "sec:5.2",
+          "char_start": 320,
+          "char_end": 414,
+          "text": "El costo fiscal neto del conjunto de medidas se estima en 0,4% del PIB para el ejercicio 2027."
+        },
+        {
+          "page": 10,
+          "section_id": "sec:5.1",
+          "char_start": 210,
+          "char_end": 282,
+          "text": "Las proyecciones suponen un crecimiento real del producto de 2,3% anual."
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:1"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Cuál es el costo fiscal neto estimado del paquete para 2027?",
+        "relevance": 0.9,
+        "can_establish": [
+          "que el órgano responsable estimó un costo neto de 0,4% del PIB para 2027",
+          "que esa estimación depende de un crecimiento supuesto de 2,3%"
+        ],
+        "cannot_establish": [
+          "que el costo efectivo será 0,4% del PIB",
+          "que no existan otras estimaciones con supuestos distintos"
+        ],
+        "why": "Un informe de costeo es decisivo sobre lo que su autor estimó y no sobre si la estimación se cumplirá."
+      },
+      "strength": "medium",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [
+        {
+          "value": 0.4,
+          "kind": "percentage",
+          "unit": "% del PIB",
+          "raw_text": "0,4% del PIB"
+        },
+        {
+          "value": 2.3,
+          "kind": "percentage",
+          "unit": "% real anual",
+          "raw_text": "2,3% anual"
+        }
+      ],
+      "money": [
+        {
+          "amount": 0.4,
+          "currency": "CLP",
+          "unit": "percent_of_gdp",
+          "year": 2027,
+          "basis": "annual"
+        }
+      ],
+      "confidence": {
+        "evidence_confidence": 0.68,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:6",
+      "source_ref": {
+        "id": "src:demo-informe-financiero",
+        "title": "Informe financiero adjunto — sección de limitaciones",
+        "url": null,
+        "publisher": "autoridad presupuestaria del ejecutivo (rol genérico)",
+        "published_at": "2026-07-02",
+        "tier": "official_technical_report",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "official_technical_report",
+      "statement": "El propio informe financiero declara que no incorpora una respuesta conductual de la inversión privada a la sobretasa.",
+      "spans": [
+        {
+          "page": 12,
+          "section_id": "sec:5.3",
+          "char_start": 150,
+          "char_end": 226,
+          "text": "El presente ejercicio no incorpora una respuesta conductual de la inversión."
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:5"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿La estimación oficial incluye el efecto de la sobretasa sobre la inversión?",
+        "relevance": 0.88,
+        "can_establish": [
+          "que la estimación oficial excluye explícitamente la respuesta de inversión",
+          "que el propio órgano advierte que la recaudación neta podría ser menor"
+        ],
+        "cannot_establish": [
+          "cuál sería la magnitud de esa respuesta",
+          "que la respuesta de inversión sea grande o pequeña"
+        ],
+        "why": "Una limitación declarada acota lo que la propia estimación puede sostener; no cuantifica lo omitido."
+      },
+      "strength": "medium",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.68,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:7",
+      "source_ref": {
+        "id": "src:demo-serie-carga-tributaria",
+        "title": "Serie sintética de carga tributaria 1995–2025 (conjunto de demostración Aleph)",
+        "url": null,
+        "publisher": "conjunto de demostración Aleph",
+        "published_at": "2026-06-30",
+        "tier": "statistical_dataset",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "statistical_dataset",
+      "statement": "En la serie sintética de carga tributaria del conjunto de demostración, dos aumentos anuales de los últimos treinta años superan el aumento proyectado para este paquete.",
+      "spans": [
+        {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 80,
+          "text": "1998: +1,4 pp del PIB · 2014: +1,1 pp del PIB · proyección 2027: +0,6 pp del PIB"
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [],
+      "contradicts": [
+        "clm:3"
+      ],
+      "evidential_relevance": {
+        "question": "¿Es el aumento tributario proyectado el mayor de los últimos treinta años?",
+        "relevance": 0.85,
+        "can_establish": [
+          "que en la serie de demostración existen dos aumentos anuales mayores que el proyectado"
+        ],
+        "cannot_establish": [
+          "que la serie describa la recaudación real de ninguna jurisdicción",
+          "que la comparación se sostenga bajo otra definición de carga tributaria"
+        ],
+        "why": "Una serie permite ordenar magnitudes; su validez depende íntegramente de la definición usada, y esta serie es sintética."
+      },
+      "strength": "medium",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [
+        {
+          "value": 1.4,
+          "kind": "percentage_point",
+          "unit": "pp del PIB",
+          "raw_text": "+1,4 pp del PIB"
+        },
+        {
+          "value": 0.6,
+          "kind": "percentage_point",
+          "unit": "pp del PIB",
+          "raw_text": "+0,6 pp del PIB"
+        }
+      ],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.68,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:8",
+      "source_ref": {
+        "id": "src:demo-serie-municipal",
+        "title": "Serie sintética de ingresos propios municipales por habitante (conjunto de demostración Aleph)",
+        "url": null,
+        "publisher": "conjunto de demostración Aleph",
+        "published_at": "2026-06-30",
+        "tier": "statistical_dataset",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "statistical_dataset",
+      "statement": "En la serie municipal sintética, la razón entre el decil superior e inferior de ingresos propios por habitante es de 9,3 a 1.",
+      "spans": [
+        {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 63,
+          "text": "Razón decil 10 / decil 1 de ingresos propios por habitante: 9,3"
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:2"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Qué tan desigual es la base de ingresos propios que la fórmula del Fondo debe compensar?",
+        "relevance": 0.72,
+        "can_establish": [
+          "que la dispersión de ingresos propios por habitante es amplia en la serie de demostración"
+        ],
+        "cannot_establish": [
+          "que la fórmula del Fondo compense esa dispersión",
+          "que estas razones correspondan a municipios reales"
+        ],
+        "why": "Describe la dispersión de la base, no el efecto de la fórmula que aún no existe."
+      },
+      "strength": "medium",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [
+        {
+          "value": 9.3,
+          "kind": "ratio",
+          "unit": null,
+          "raw_text": "9,3"
+        }
+      ],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.68,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:9",
+      "source_ref": {
+        "id": "src:demo-acta-comision",
+        "title": "Acta sintética de la comisión — sesión del 18 de junio de 2026",
+        "url": null,
+        "publisher": "registro legislativo de demostración",
+        "published_at": "2026-06-18",
+        "tier": "legislative_record",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "legislative_record",
+      "statement": "El acta sintética registra que la indicación que incorporó el procedimiento ambiental abreviado fue presentada por la comisión sin dejar constancia de su origen.",
+      "spans": [
+        {
+          "page": 4,
+          "section_id": null,
+          "char_start": 1180,
+          "char_end": 1277,
+          "text": "Se aprueba la indicación que incorpora el artículo 10, sin constancia del origen de la propuesta."
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [],
+      "contradicts": [
+        "clm:8"
+      ],
+      "evidential_relevance": {
+        "question": "¿Quién propuso el procedimiento ambiental abreviado?",
+        "relevance": 0.6,
+        "can_establish": [
+          "que el acta no consigna el origen de la indicación"
+        ],
+        "cannot_establish": [
+          "que la indicación se haya originado en algún sector en particular",
+          "que no exista otro registro donde conste el origen"
+        ],
+        "why": "Un acta establece lo que quedó consignado. El silencio del acta no prueba una hipótesis sobre el origen ni la refuta."
+      },
+      "strength": "low",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.42,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:10",
+      "source_ref": {
+        "id": "src:demo-estudio-elasticidad",
+        "title": "Estudio sintético sobre elasticidad de la inversión a sobretasas transitorias",
+        "url": null,
+        "publisher": "revista de demostración Aleph",
+        "published_at": "2025-11-14",
+        "tier": "peer_reviewed",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "peer_reviewed",
+      "statement": "El estudio sintético reporta un rango de respuesta de la inversión de entre -0,2 y -1,8 puntos ante sobretasas transitorias de dos puntos, con intervalos amplios.",
+      "spans": [
+        {
+          "page": 12,
+          "section_id": null,
+          "char_start": 430,
+          "char_end": 570,
+          "text": "El efecto estimado se sitúa entre -0,2 y -1,8 puntos, con intervalos de confianza que incluyen cero en cuatro de las siete especificaciones."
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [],
+      "contradicts": [
+        "clm:6"
+      ],
+      "evidential_relevance": {
+        "question": "¿Cuánto cae la inversión privada ante una sobretasa transitoria de dos puntos?",
+        "relevance": 0.78,
+        "can_establish": [
+          "que las estimaciones disponibles cubren un rango amplio",
+          "que en varias especificaciones el efecto no se distingue de cero"
+        ],
+        "cannot_establish": [
+          "que el efecto sea exactamente -1,2 puntos",
+          "que el rango se traslade a esta jurisdicción y a este diseño"
+        ],
+        "why": "Un rango amplio es evidencia contra una cifra puntual, no evidencia a favor de otra cifra puntual."
+      },
+      "strength": "medium",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [
+        {
+          "value": -1.8,
+          "kind": "percentage_point",
+          "unit": "pp",
+          "raw_text": "-1,8 puntos"
+        },
+        {
+          "value": -0.2,
+          "kind": "percentage_point",
+          "unit": "pp",
+          "raw_text": "-0,2 puntos"
+        }
+      ],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.68,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:11",
+      "source_ref": {
+        "id": "src:demo-centro-estudios",
+        "title": "Nota sintética sobre rezago de ejecución de inversión municipal",
+        "url": null,
+        "publisher": "centro de estudios de demostración",
+        "published_at": "2026-07-20",
+        "tier": "expert_analysis",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "expert_analysis",
+      "statement": "La nota sintética estima que la ejecución de nuevos fondos de inversión municipal comienza, en promedio, catorce meses después de su creación legal.",
+      "spans": [
+        {
+          "page": 3,
+          "section_id": null,
+          "char_start": 220,
+          "char_end": 326,
+          "text": "El rezago medio entre creación legal y primera ejecución es de catorce meses en los cinco casos revisados."
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:14"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Cuánto tarda un fondo de inversión municipal en ejecutar recursos?",
+        "relevance": 0.66,
+        "can_establish": [
+          "que en los cinco casos revisados el rezago medio fue de catorce meses"
+        ],
+        "cannot_establish": [
+          "que este Fondo tendrá el mismo rezago",
+          "que cinco casos sean una base suficiente para una expectativa general"
+        ],
+        "why": "Cinco casos son un indicio, no una base. La relevancia es real pero acotada."
+      },
+      "strength": "low",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [
+        {
+          "value": 14.0,
+          "kind": "duration",
+          "unit": "meses",
+          "raw_text": "catorce meses"
+        }
+      ],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.42,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:12",
+      "source_ref": {
+        "id": "src:demo-boletin-economico",
+        "title": "Boletín Económico — análisis del informe financiero",
+        "url": null,
+        "publisher": "Boletín Económico",
+        "published_at": "2026-08-05",
+        "tier": "journalism",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "journalism",
+      "statement": "Un artículo de análisis contrasta la proyección oficial con el rango del estudio de elasticidad y señala que el informe no modela la respuesta de inversión.",
+      "spans": [
+        {
+          "page": null,
+          "section_id": null,
+          "char_start": 1240,
+          "char_end": 1332,
+          "text": "El informe deja fuera la respuesta de inversión, que la literatura sitúa en un rango amplio."
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Qué diferencias señala la cobertura entre la proyección oficial y la literatura?",
+        "relevance": 0.5,
+        "can_establish": [
+          "que un medio publicó ese contraste el 5 de agosto de 2026"
+        ],
+        "cannot_establish": [
+          "que el contraste sea correcto",
+          "que la proyección oficial sea errónea"
+        ],
+        "why": "Un artículo establece que algo fue publicado. Lo que afirma se decide con la evidencia primaria, no con el artículo."
+      },
+      "strength": "low",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.42,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:13",
+      "source_ref": {
+        "id": "src:demo-el-contrapunto",
+        "title": "El Contrapunto — reportaje sobre el calendario del Fondo",
+        "url": null,
+        "publisher": "El Contrapunto",
+        "published_at": "2026-08-05",
+        "tier": "journalism",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "journalism",
+      "statement": "Un reportaje informa que, a la fecha de publicación, no constaba la dictación del reglamento del Fondo.",
+      "spans": [
+        {
+          "page": null,
+          "section_id": null,
+          "char_start": 860,
+          "char_end": 951,
+          "text": "A la fecha no consta la dictación del reglamento que debe fijar la fórmula de distribución."
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:14"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Se ha dictado el reglamento del Fondo?",
+        "relevance": 0.55,
+        "can_establish": [
+          "que al 5 de agosto de 2026 el medio no encontró constancia del reglamento"
+        ],
+        "cannot_establish": [
+          "que el reglamento no exista",
+          "que no vaya a dictarse dentro del plazo legal"
+        ],
+        "why": "La ausencia de constancia en una búsqueda periodística no equivale a la ausencia del acto."
+      },
+      "strength": "low",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.42,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:14",
+      "source_ref": {
+        "id": "src:demo-declaracion-hacienda",
+        "title": "Punto de prensa de la vocería de Hacienda (declaración de demostración)",
+        "url": null,
+        "publisher": "vocería de Hacienda (rol genérico)",
+        "published_at": "2026-08-04",
+        "tier": "political_statement",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "political_statement",
+      "statement": "En un punto de prensa, la vocería de Hacienda afirmó que el costo neto del paquete es de 0,4% del PIB y que ningún hogar de los cuatro primeros deciles pagará más impuestos.",
+      "spans": [
+        {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 115,
+          "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos."
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:1",
+        "clm:4"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Qué afirmó públicamente el ejecutivo sobre el costo del paquete?",
+        "relevance": 0.95,
+        "can_establish": [
+          "que la afirmación fue hecha públicamente el 4 de agosto de 2026"
+        ],
+        "cannot_establish": [
+          "que la cifra sea correcta",
+          "que la afirmación sobre los deciles cubra la incidencia indirecta"
+        ],
+        "why": "Una declaración es evidencia máxima de que se dijo algo y evidencia débil de que lo dicho sea verdadero."
+      },
+      "strength": "low",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.42,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:15",
+      "source_ref": {
+        "id": "src:demo-declaracion-municipios",
+        "title": "Declaración de la presidencia de la asociación de municipios (declaración de demostración)",
+        "url": null,
+        "publisher": "presidencia de la asociación de municipios (rol genérico)",
+        "published_at": "2026-08-05",
+        "tier": "political_statement",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "political_statement",
+      "statement": "La presidencia de la asociación de municipios declaró que el Fondo no operará antes de 2028 porque el reglamento aún no existe.",
+      "spans": [
+        {
+          "page": null,
+          "section_id": null,
+          "char_start": 0,
+          "char_end": 95,
+          "text": "Sin reglamento no hay fórmula, y sin fórmula no hay transferencia: esto no parte antes de 2028."
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [
+        "clm:14"
+      ],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Qué sostiene el gremio municipal sobre el calendario del Fondo?",
+        "relevance": 0.92,
+        "can_establish": [
+          "que la afirmación fue hecha públicamente el 5 de agosto de 2026"
+        ],
+        "cannot_establish": [
+          "que el Fondo efectivamente no operará antes de 2028"
+        ],
+        "why": "Igual que cualquier declaración: establece la posición del actor, no el hecho del mundo."
+      },
+      "strength": "low",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.42,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "neutral",
+            "note": "El ítem no es el documento primario."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    },
+    {
+      "id": "ev:16",
+      "source_ref": {
+        "id": "doc:18216-05",
+        "title": "Articulado del proyecto — ausencia de norma de difusión",
+        "url": "https://www.dipres.gob.cl/604/articles-409825_doc_pdf.pdf",
+        "publisher": null,
+        "published_at": "2026-05-12",
+        "tier": "primary_document",
+        "independence": "original_reporting",
+        "language": "es-CL"
+      },
+      "tier": "primary_document",
+      "statement": "El articulado no contiene ninguna disposición sobre difusión o información a los contribuyentes acerca de la rebaja del impuesto de timbres.",
+      "spans": [
+        {
+          "page": 4,
+          "section_id": "sec:2.2",
+          "char_start": 620,
+          "char_end": 730,
+          "text": "Artículo 4°.— Redúcese a cero, hasta el 31 de diciembre de 2029, la tasa del impuesto de timbres y estampillas"
+        }
+      ],
+      "retrieved_at": "2026-08-07T09:00:00Z",
+      "supports": [],
+      "contradicts": [],
+      "evidential_relevance": {
+        "question": "¿Qué proporción de las empresas pequeñas conoce la rebaja del impuesto de timbres?",
+        "relevance": 0.08,
+        "can_establish": [
+          "que el texto no impone una obligación de difusión"
+        ],
+        "cannot_establish": [
+          "qué proporción de empresas conoce la medida",
+          "que el desconocimiento sea alto o bajo"
+        ],
+        "why": "El texto no puede responder una pregunta sobre conocimiento del público. Se registra precisamente para mostrar que la pregunta quedó sin evidencia."
+      },
+      "strength": "insufficient",
+      "independence": "original_reporting",
+      "derived_from_evidence_id": null,
+      "quantities": [],
+      "money": [],
+      "confidence": {
+        "evidence_confidence": 0.15,
+        "model_confidence": 0.74,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "raises",
+            "note": "Pasaje citado del texto operativo."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "neutral",
+            "note": "Ítem original, no una reproducción de otro."
+          }
+        ],
+        "limiting_factor": "Todo el conjunto es sintético: ninguna fuente real fue consultada."
+      },
+      "uncertainties": [
+        {
+          "statement": "El ítem pertenece a un conjunto sintético y no corresponde a ninguna fuente real.",
+          "kind": "out_of_scope",
+          "resolvable_by": "Ejecutar la recuperación en línea sobre el registro de fuentes real."
+        }
+      ],
+      "extraction_method": "aleph-fixture/0.1.0",
+      "notes": null
+    }
+  ],
+  "evidence_sets": [
+    {
+      "id": "ev:set-costo-neto",
+      "question": "¿Cuál será el costo fiscal neto del paquete en 2027?",
+      "evidence_ids": [
+        "ev:5",
+        "ev:6",
+        "ev:10",
+        "ev:12",
+        "ev:14"
+      ],
+      "strength": "medium",
+      "independent_source_count": 3,
+      "gaps": [
+        "No hay una estimación independiente del costo neto elaborada fuera del ejecutivo.",
+        "Falta el anexo metodológico con la elasticidad de inversión supuesta."
+      ],
+      "summary": "El conjunto establece qué estimó el órgano responsable y que su ejercicio excluye la respuesta de inversión. No establece cuál será el costo efectivo: ninguna pieza del conjunto observa el resultado, sólo proyecciones.",
+      "confidence": {
+        "evidence_confidence": 0.55,
+        "model_confidence": 0.7,
+        "basis": [
+          {
+            "factor": "evidence_agreement",
+            "effect": "neutral",
+            "note": "Las piezas no se contradicen; responden preguntas distintas."
+          },
+          {
+            "factor": "source_independence",
+            "effect": "lowers",
+            "note": "Dos de cinco piezas provienen del mismo informe."
+          },
+          {
+            "factor": "retrieval_completeness",
+            "effect": "lowers",
+            "note": "La recuperación en línea está deshabilitada."
+          }
+        ],
+        "limiting_factor": "Ninguna evidencia observa el resultado; todas son proyecciones o declaraciones."
+      }
+    },
+    {
+      "id": "ev:set-calendario-fondo",
+      "question": "¿Comenzarán las transferencias del Fondo territorial durante 2027?",
+      "evidence_ids": [
+        "ev:4",
+        "ev:11",
+        "ev:13",
+        "ev:14",
+        "ev:15"
+      ],
+      "strength": "low",
+      "independent_source_count": 4,
+      "gaps": [
+        "No hay constancia documental del estado de tramitación del reglamento.",
+        "No hay una serie de rezagos de ejecución con base suficiente."
+      ],
+      "summary": "El conjunto establece que la operación del Fondo depende de un reglamento pendiente y que dos actores discrepan sobre el calendario. No permite decidir la fecha: el hecho que la decidiría todavía no ocurre.",
+      "confidence": {
+        "evidence_confidence": 0.34,
+        "model_confidence": 0.62,
+        "basis": [
+          {
+            "factor": "primary_source_coverage",
+            "effect": "raises",
+            "note": "La dependencia normativa está en el texto."
+          },
+          {
+            "factor": "retrieval_completeness",
+            "effect": "lowers",
+            "note": "Falta el registro administrativo del reglamento."
+          }
+        ],
+        "limiting_factor": "El hecho decisivo es futuro; ninguna evidencia actual puede establecerlo."
+      }
+    },
+    {
+      "id": "ev:set-magnitud-historica",
+      "question": "¿Es este el mayor aumento tributario de los últimos treinta años?",
+      "evidence_ids": [
+        "ev:1",
+        "ev:7"
+      ],
+      "strength": "medium",
+      "independent_source_count": 2,
+      "gaps": [
+        "La serie disponible es sintética; no hay una serie oficial en el conjunto.",
+        "No está fijada la definición de 'aumento tributario' que la comparación usa."
+      ],
+      "summary": "Bajo la definición de la serie disponible, dos aumentos anuales previos superan al proyectado. La conclusión cambia si se adopta otra definición, y la serie no describe ninguna jurisdicción real.",
+      "confidence": {
+        "evidence_confidence": 0.48,
+        "model_confidence": 0.66,
+        "basis": [
+          {
+            "factor": "claim_ambiguity",
+            "effect": "lowers",
+            "note": "La comparación depende de la definición elegida."
+          }
+        ],
+        "limiting_factor": "La serie es sintética."
+      }
+    }
+  ],
+  "retrieval_gaps": [
+    {
+      "question": "¿Qué proporción de las empresas pequeñas conoce la rebaja del impuesto de timbres?",
+      "queries_tried": [
+        "encuesta conocimiento rebaja impuesto de timbres pequeñas empresas",
+        "difusión medidas tributarias pymes serie"
+      ],
+      "expected_source_kind": "statistical_dataset",
+      "note": "No se recuperó ninguna encuesta. Bajo ALEPH_RETRIEVAL_MODE=manual no se realizan peticiones de red, de modo que la ausencia refleja la política de recuperación y no necesariamente la inexistencia de la fuente."
+    },
+    {
+      "question": "¿Existe una estimación del costo del paquete elaborada fuera del ejecutivo?",
+      "queries_tried": [
+        "estimación independiente costo fiscal paquete estabilización",
+        "contra-informe costeo proyecto 18.216-05"
+      ],
+      "expected_source_kind": "expert_analysis",
+      "note": "No hay contra-estimación en el conjunto. Es la razón principal por la que la diversidad de evidencia está baja."
+    },
+    {
+      "question": "¿Consta administrativamente el estado de tramitación del reglamento del Fondo?",
+      "queries_tried": [
+        "reglamento fondo estabilización territorial estado de tramitación"
+      ],
+      "expected_source_kind": "legislative_record",
+      "note": "No se recuperó registro administrativo alguno; la recuperación está deshabilitada."
+    }
+  ]
+}

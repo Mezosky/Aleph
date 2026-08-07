@@ -13,7 +13,7 @@ import { fileURLToPath, URL } from 'node:url'
  */
 export default defineConfig(({ mode }) => ({
   base: process.env.VITE_BASE ?? '/Aleph/',
-  plugins: [react()],
+  plugins: react(),
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -26,9 +26,16 @@ export default defineConfig(({ mode }) => ({
     // library out keeps the initial route light on slow connections.
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom', 'react-router-dom'],
-          charts: ['recharts'],
+        manualChunks(id) {
+          if (id.includes('node_modules/recharts')) return 'charts'
+          if (
+            id.includes('node_modules/react/') ||
+            id.includes('node_modules/react-dom/') ||
+            id.includes('node_modules/react-router')
+          ) {
+            return 'react'
+          }
+          return undefined
         },
       },
     },

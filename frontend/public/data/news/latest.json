@@ -1,0 +1,4774 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "synthetic",
+  "generated_at": "2026-08-07T12:00:00Z",
+  "notice": "Conjunto de datos SINTETICO. Ningun texto, cifra, cita, medio ni declaracion de este conjunto corresponde a una persona, un organismo o una publicacion real. Fue generado para demostrar la interfaz de Aleph y no constituye un analisis de ninguna reforma real.",
+  "retrieval_mode": "manual",
+  "retrieval_note": "La recuperación en línea está deshabilitada. Ningún medio real fue consultado y ninguno de estos titulares fue publicado por nadie.",
+  "counts": {
+    "articles": 9,
+    "distinct_outlets": 5,
+    "original_reporting": 6,
+    "clusters": 4
+  },
+  "items": [
+    {
+      "article": {
+        "id": "art:boletin:2",
+        "url": null,
+        "headline": "¿Es el mayor aumento de impuestos en treinta años? Qué dice la serie",
+        "dek": "La comparación depende de la definición de carga tributaria que se use, y bajo la disponible hay dos episodios mayores.",
+        "publisher": {
+          "id": "src:demo-boletin-economico",
+          "name": "Boletín Económico"
+        },
+        "author": "Verificación",
+        "published_at": "2026-08-06T19:45:00Z",
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "language": "es-CL",
+        "article_type": "fact_check",
+        "word_count": 780,
+        "neutral_summary": "Verificación de la afirmación de que el paquete constituye el mayor aumento de impuestos de las últimas tres décadas. Reproduce la serie de carga tributaria disponible, señala dos episodios anuales mayores y advierte que la conclusión depende de la definición usada. Recoge también dos afirmaciones adicionales del mismo interviniente: una atribución de origen del artículo 10 y una valoración sobre el diseño del paquete.",
+        "body_available": true,
+        "paywalled": false,
+        "claim_ids": [
+          "clm:3",
+          "clm:8",
+          "clm:9"
+        ],
+        "quotations": [
+          {
+            "text": "Este es el mayor aumento de impuestos de los últimos treinta años.",
+            "speaker_role": "diputado/a de oposición",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 200,
+              "char_end": 266,
+              "text": "Este es el mayor aumento de impuestos de los últimos treinta años."
+            },
+            "claim_id": "clm:3"
+          },
+          {
+            "text": "El procedimiento ambiental abreviado se incorporó a pedido de una industria específica.",
+            "speaker_role": "diputado/a de oposición",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 290,
+              "char_end": 377,
+              "text": "El procedimiento ambiental abreviado se incorporó a pedido de una industria específica."
+            },
+            "claim_id": "clm:8"
+          },
+          {
+            "text": "Es un error de diseño que el país va a lamentar durante una década.",
+            "speaker_role": "diputado/a de oposición",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 380,
+              "char_end": 447,
+              "text": "Es un error de diseño que el país va a lamentar durante una década."
+            },
+            "claim_id": "clm:9"
+          }
+        ],
+        "predictions": [],
+        "framing_profile_id": "framing:boletin-2",
+        "impact_emphasis": [
+          {
+            "axis": "redistribution_vs_growth",
+            "emphasis": 0.4,
+            "direction_emphasised": "mixed",
+            "note": null
+          },
+          {
+            "axis": "environment_vs_project_acceleration",
+            "emphasis": 0.15,
+            "direction_emphasised": "positive",
+            "note": null
+          }
+        ],
+        "omitted_context": [],
+        "primary_source_grounding": [
+          {
+            "ref": "ev:7",
+            "kind": "linked",
+            "note": null
+          },
+          {
+            "ref": "ev:1",
+            "kind": "quoted_directly",
+            "note": null
+          },
+          {
+            "ref": "ev:9",
+            "kind": "named_without_link",
+            "note": null
+          }
+        ],
+        "independence": "original_reporting",
+        "derived_from_article_id": null,
+        "cluster_ids": [
+          "cluster:4"
+        ],
+        "confidence": {
+          "evidence_confidence": 0.8,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El cuerpo del artículo estaba disponible y cita material primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "neutral",
+              "note": "Observación original dentro del conjunto."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético: ningún medio real publicó este texto."
+        }
+      },
+      "document_slug": "18216-05",
+      "document_title": "Paquete fiscal de demostración",
+      "framing_profile": {
+        "id": "framing:boletin-2",
+        "article_id": "art:boletin:2",
+        "profile_version": "aleph-framing/0.1.0",
+        "generated_at": "2026-08-07T12:00:00Z",
+        "dimensions": {
+          "selection_asymmetry": {
+            "score": 30,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Tres afirmaciones de un solo interviniente",
+                "direction": "negative",
+                "weight": 36,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "El contraste es con evidencia, no con otra voz",
+                "direction": "positive",
+                "weight": -6,
+                "evidence_refs": [
+                  "ev:7"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:7"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Verifica tres afirmaciones de un mismo interviniente sin recoger otras posiciones, lo que es propio del formato."
+          },
+          "loaded_language": {
+            "score": 16,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Titular interrogativo en lugar de afirmativo",
+                "direction": "positive",
+                "weight": -10,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "'episodios mayores' como caracterización propia",
+                "direction": "negative",
+                "weight": 26,
+                "evidence_refs": [
+                  "ev:7"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:7"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Registro de verificación, con el titular en forma de pregunta."
+          },
+          "context_omission": {
+            "score": 24,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Menciona las rebajas del mismo paquete",
+                "direction": "positive",
+                "weight": -20,
+                "evidence_refs": [
+                  "ev:1"
+                ],
+                "note": null
+              },
+              {
+                "label": "No explicita que la serie usada es sintética",
+                "direction": "negative",
+                "weight": 44,
+                "evidence_refs": [
+                  "ev:7"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:1",
+              "ev:7"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Señala que el paquete también contiene rebajas, que es el contexto material."
+          },
+          "certainty_inflation": {
+            "score": 14,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Dependencia de la definición explicitada",
+                "direction": "positive",
+                "weight": -18,
+                "evidence_refs": [
+                  "ev:7"
+                ],
+                "note": null
+              },
+              {
+                "label": "La cifra de la serie se presenta sin margen",
+                "direction": "negative",
+                "weight": 32,
+                "evidence_refs": [
+                  "ev:7"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:7"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Enuncia la dependencia de la definición en la bajada."
+          },
+          "unsupported_causal_language": {
+            "score": 12,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin cadenas causales del medio",
+                "direction": "none",
+                "weight": 12,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "No hay atribuciones causales propias."
+          },
+          "opinion_as_fact": {
+            "score": 18,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Valoración marcada como tal",
+                "direction": "positive",
+                "weight": -14,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "La atribución de origen del artículo 10 se recoge sin marcar que carece de registro",
+                "direction": "negative",
+                "weight": 32,
+                "evidence_refs": [
+                  "ev:9"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:9"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Distingue explícitamente la valoración del interviniente de sus afirmaciones fácticas."
+          },
+          "source_diversity": {
+            "score": 66,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Serie enlazada",
+                "direction": "positive",
+                "weight": 26,
+                "evidence_refs": [
+                  "ev:7"
+                ],
+                "note": null
+              },
+              {
+                "label": "Articulado citado",
+                "direction": "positive",
+                "weight": 22,
+                "evidence_refs": [
+                  "ev:1"
+                ],
+                "note": null
+              },
+              {
+                "label": "Acta nombrada",
+                "direction": "positive",
+                "weight": 18,
+                "evidence_refs": [
+                  "ev:9"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:1",
+              "ev:7",
+              "ev:9"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "La serie, el articulado y el acta de comisión."
+          },
+          "primary_source_grounding": {
+            "score": 78,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Serie enlazada",
+                "direction": "positive",
+                "weight": 32,
+                "evidence_refs": [
+                  "ev:7"
+                ],
+                "note": null
+              },
+              {
+                "label": "Cita textual del artículo 3°",
+                "direction": "positive",
+                "weight": 34,
+                "evidence_refs": [
+                  "ev:1"
+                ],
+                "note": null
+              },
+              {
+                "label": "Acta nombrada sin enlace",
+                "direction": "positive",
+                "weight": 12,
+                "evidence_refs": [
+                  "ev:9"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:1",
+              "ev:7",
+              "ev:9"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Enlaza la serie y cita textualmente el artículo 3°; el acta se nombra sin enlace."
+          }
+        },
+        "overall_note": "Léase el patrón, no un promedio: estas ocho cifras describen prácticas distintas y no deben colapsarse en un número de sesgo, que no existe en Aleph.",
+        "confidence": {
+          "evidence_confidence": 0.6,
+          "model_confidence": 0.68,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "neutral",
+              "note": "Se dispuso del cuerpo completo del artículo."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético; el perfil demuestra el método, no describe a ningún medio real."
+        },
+        "limitations": [
+          "El artículo pertenece a un conjunto sintético: el perfil no describe la práctica de ningún medio real.",
+          "Las dimensiones de grado (lenguaje cargado, inflación de certeza) dependen de juicios del analizador y no de una medición reproducible."
+        ]
+      },
+      "claim_count": 3,
+      "verdict_counts": {
+        "supported": 0,
+        "partially_supported": 0,
+        "unsupported": 1,
+        "contradicted": 1,
+        "unverifiable": 0,
+        "not_a_factual_claim": 1,
+        "forecast_conditional": 0
+      },
+      "cluster_id": "cluster:4",
+      "independent_source_count": 1,
+      "relative_time": "hace 16 h",
+      "cluster_label": "Comparación histórica de la magnitud del alza tributaria",
+      "topic": {
+        "id": "node:sobretasa-utilidades",
+        "label": "Sobretasa transitoria a las utilidades"
+      },
+      "claim_ids": [
+        "clm:3",
+        "clm:8",
+        "clm:9"
+      ],
+      "beneficiary_emphasis": {
+        "score": 40,
+        "polarity": "neutral",
+        "label": "Énfasis en incidencia",
+        "description": "Cuánta atención del artículo recae sobre quién gana y quién paga. Es una descripción de la atención editorial, no un reproche: un artículo sobre finanzas municipales tiene razones legítimas para concentrarse en un eje.",
+        "components": [
+          {
+            "label": "Atención al eje redistribution_vs_growth",
+            "direction": "mixed",
+            "weight": 40,
+            "evidence_refs": [],
+            "note": null
+          }
+        ]
+      },
+      "primary_grounding": {
+        "score": 78,
+        "polarity": "higher_is_better",
+        "label": "Anclaje en fuente primaria",
+        "description": "Cuánto de lo que el artículo afirma está anclado en material que el lector puede revisar por su cuenta. Nombrar una fuente sin apuntar a ella puntúa menos que citarla o enlazarla.",
+        "components": [
+          {
+            "label": "Serie enlazada",
+            "direction": "positive",
+            "weight": 32,
+            "evidence_refs": [
+              "ev:7"
+            ],
+            "note": null
+          },
+          {
+            "label": "Cita textual del artículo 3°",
+            "direction": "positive",
+            "weight": 34,
+            "evidence_refs": [
+              "ev:1"
+            ],
+            "note": null
+          },
+          {
+            "label": "Acta nombrada sin enlace",
+            "direction": "positive",
+            "weight": 12,
+            "evidence_refs": [
+              "ev:9"
+            ],
+            "note": null
+          }
+        ]
+      },
+      "framing_profile_id": "framing:boletin-2"
+    },
+    {
+      "article": {
+        "id": "art:canalsur:2",
+        "url": null,
+        "headline": "«El costo neto será a lo menos el doble del informado»",
+        "dek": "Entrevista a una economista de una federación empresarial sobre la sobretasa y su efecto en la inversión.",
+        "publisher": {
+          "id": "src:demo-canal-sur-noticias",
+          "name": "Canal Sur Noticias"
+        },
+        "author": "Entrevista",
+        "published_at": "2026-08-06T12:30:00Z",
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "language": "es-CL",
+        "article_type": "interview",
+        "word_count": 1320,
+        "neutral_summary": "Entrevista en la que una economista de una federación empresarial sostiene que el costo neto del paquete duplicará la cifra oficial, proyecta una caída de la inversión de 1,2 puntos en dos años y afirma que la mitad de las empresas pequeñas desconoce la rebaja del impuesto de timbres. El texto no contrasta ninguna de las tres cifras con otra fuente.",
+        "body_available": true,
+        "paywalled": false,
+        "claim_ids": [
+          "clm:5",
+          "clm:6",
+          "clm:11"
+        ],
+        "quotations": [
+          {
+            "text": "El costo neto será a lo menos el doble del informado una vez que se incorpore la caída de recaudación por menor inversión.",
+            "speaker_role": "economista de una federación empresarial",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 200,
+              "char_end": 322,
+              "text": "El costo neto será a lo menos el doble del informado una vez que se incorpore la caída de recaudación por menor inversión."
+            },
+            "claim_id": "clm:5"
+          },
+          {
+            "text": "La sobretasa reducirá la inversión privada en 1,2 puntos en dos años.",
+            "speaker_role": "economista de una federación empresarial",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 290,
+              "char_end": 359,
+              "text": "La sobretasa reducirá la inversión privada en 1,2 puntos en dos años."
+            },
+            "claim_id": "clm:6"
+          },
+          {
+            "text": "La mitad de las empresas pequeñas ni siquiera sabe que existe la rebaja del impuesto de timbres.",
+            "speaker_role": "economista de una federación empresarial",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 380,
+              "char_end": 476,
+              "text": "La mitad de las empresas pequeñas ni siquiera sabe que existe la rebaja del impuesto de timbres."
+            },
+            "claim_id": "clm:11"
+          }
+        ],
+        "predictions": [
+          {
+            "text": "La sobretasa reducirá la inversión privada en 1,2 puntos en dos años.",
+            "speaker_role": "economista de una federación empresarial",
+            "horizon": "medium_term",
+            "conditions": [
+              "que la elasticidad aplicable sea la del punto medio del rango publicado"
+            ],
+            "falsifiable": true,
+            "evaluable_after": "2029-01-01",
+            "claim_id": "clm:6"
+          }
+        ],
+        "framing_profile_id": "framing:canalsur-2",
+        "impact_emphasis": [
+          {
+            "axis": "redistribution_vs_growth",
+            "emphasis": 0.5,
+            "direction_emphasised": "positive",
+            "note": null
+          },
+          {
+            "axis": "households_vs_firms",
+            "emphasis": 0.3,
+            "direction_emphasised": "positive",
+            "note": null
+          }
+        ],
+        "omitted_context": [
+          {
+            "statement": "El estudio de elasticidad disponible reporta un intervalo de -0,2 a -1,8 puntos, con cuatro de siete especificaciones que incluyen el cero.",
+            "why_it_matters": "La cifra puntual de 1,2 puntos es un valor dentro de un intervalo amplio, no un resultado establecido.",
+            "evidence_refs": [
+              "ev:10"
+            ],
+            "materiality": "large"
+          },
+          {
+            "statement": "El mismo paquete crea un crédito del 15% a la inversión en activo fijo.",
+            "why_it_matters": "El efecto neto sobre la inversión depende del saldo de ambas medidas.",
+            "evidence_refs": [
+              "prov:18216-05:3"
+            ],
+            "materiality": "medium"
+          }
+        ],
+        "primary_source_grounding": [
+          {
+            "ref": "ev:5",
+            "kind": "named_without_link",
+            "note": null
+          }
+        ],
+        "independence": "original_reporting",
+        "derived_from_article_id": null,
+        "cluster_ids": [
+          "cluster:3"
+        ],
+        "confidence": {
+          "evidence_confidence": 0.66,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El artículo se apoya en material de segunda mano."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "neutral",
+              "note": "Observación original dentro del conjunto."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético: ningún medio real publicó este texto."
+        }
+      },
+      "document_slug": "18216-05",
+      "document_title": "Paquete fiscal de demostración",
+      "framing_profile": {
+        "id": "framing:canalsur-2",
+        "article_id": "art:canalsur:2",
+        "profile_version": "aleph-framing/0.1.0",
+        "generated_at": "2026-08-07T12:00:00Z",
+        "dimensions": {
+          "selection_asymmetry": {
+            "score": 76,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Voz única sin contraparte",
+                "direction": "negative",
+                "weight": 44,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "Ninguna cifra contrastada con evidencia",
+                "direction": "negative",
+                "weight": 32,
+                "evidence_refs": [
+                  "ev:10"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Formato de entrevista con una sola voz y sin contraste de ninguna de las tres cifras."
+          },
+          "loaded_language": {
+            "score": 34,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Titular con la cita más categórica",
+                "direction": "negative",
+                "weight": 34,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El titular entrecomillado adopta la formulación más fuerte de la entrevistada."
+          },
+          "context_omission": {
+            "score": 78,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Silencio sobre el intervalo de elasticidad",
+                "direction": "negative",
+                "weight": 46,
+                "evidence_refs": [
+                  "ev:10"
+                ],
+                "note": null
+              },
+              {
+                "label": "Silencio sobre el crédito a la inversión",
+                "direction": "negative",
+                "weight": 32,
+                "evidence_refs": [
+                  "prov:18216-05:3"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:10",
+              "prov:18216-05:3"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "No menciona el intervalo de la literatura ni el crédito a la inversión."
+          },
+          "certainty_inflation": {
+            "score": 70,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "'a lo menos el doble' sin rango",
+                "direction": "negative",
+                "weight": 26,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "'1,2 puntos' como resultado establecido",
+                "direction": "negative",
+                "weight": 26,
+                "evidence_refs": [
+                  "ev:10"
+                ],
+                "note": null
+              },
+              {
+                "label": "'la mitad' sin fuente",
+                "direction": "negative",
+                "weight": 18,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Tres cifras puntuales sin rango ni fuente."
+          },
+          "unsupported_causal_language": {
+            "score": 66,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Cadena causal de tres pasos sin cuantificación",
+                "direction": "negative",
+                "weight": 66,
+                "evidence_refs": [
+                  "ev:10"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "La cadena sobretasa → menor inversión → menor recaudación se presenta sin evidencia de ningún eslabón."
+          },
+          "opinion_as_fact": {
+            "score": 44,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Titular entrecomillado pero sin sujeto",
+                "direction": "negative",
+                "weight": 44,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El titular presenta la proyección de la entrevistada como enunciado del medio."
+          },
+          "source_diversity": {
+            "score": 16,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Fuente única",
+                "direction": "negative",
+                "weight": -14,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "Mención del informe financiero",
+                "direction": "positive",
+                "weight": 30,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Una sola fuente en 1.320 palabras."
+          },
+          "primary_source_grounding": {
+            "score": 22,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Informe nombrado sin enlace",
+                "direction": "positive",
+                "weight": 22,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Nombra el informe financiero sin enlazarlo; no cita el articulado."
+          }
+        },
+        "overall_note": "Léase el patrón, no un promedio: estas ocho cifras describen prácticas distintas y no deben colapsarse en un número de sesgo, que no existe en Aleph.",
+        "confidence": {
+          "evidence_confidence": 0.6,
+          "model_confidence": 0.68,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "neutral",
+              "note": "Se dispuso del cuerpo completo del artículo."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético; el perfil demuestra el método, no describe a ningún medio real."
+        },
+        "limitations": [
+          "El artículo pertenece a un conjunto sintético: el perfil no describe la práctica de ningún medio real.",
+          "Las dimensiones de grado (lenguaje cargado, inflación de certeza) dependen de juicios del analizador y no de una medición reproducible."
+        ]
+      },
+      "claim_count": 3,
+      "verdict_counts": {
+        "supported": 0,
+        "partially_supported": 0,
+        "unsupported": 0,
+        "contradicted": 0,
+        "unverifiable": 1,
+        "not_a_factual_claim": 0,
+        "forecast_conditional": 2
+      },
+      "cluster_id": "cluster:3",
+      "independent_source_count": 2,
+      "relative_time": "hace 23 h",
+      "cluster_label": "Efectos laborales y de inversión del paquete",
+      "topic": {
+        "id": "node:seguro-cesantia",
+        "label": "Extensión del seguro de cesantía"
+      },
+      "claim_ids": [
+        "clm:5",
+        "clm:6",
+        "clm:11"
+      ],
+      "beneficiary_emphasis": {
+        "score": 80,
+        "polarity": "neutral",
+        "label": "Énfasis en incidencia",
+        "description": "Cuánta atención del artículo recae sobre quién gana y quién paga. Es una descripción de la atención editorial, no un reproche: un artículo sobre finanzas municipales tiene razones legítimas para concentrarse en un eje.",
+        "components": [
+          {
+            "label": "Atención al eje redistribution_vs_growth",
+            "direction": "positive",
+            "weight": 50,
+            "evidence_refs": [],
+            "note": null
+          },
+          {
+            "label": "Atención al eje households_vs_firms",
+            "direction": "positive",
+            "weight": 30,
+            "evidence_refs": [],
+            "note": null
+          }
+        ]
+      },
+      "primary_grounding": {
+        "score": 22,
+        "polarity": "higher_is_better",
+        "label": "Anclaje en fuente primaria",
+        "description": "Cuánto de lo que el artículo afirma está anclado en material que el lector puede revisar por su cuenta. Nombrar una fuente sin apuntar a ella puntúa menos que citarla o enlazarla.",
+        "components": [
+          {
+            "label": "Informe nombrado sin enlace",
+            "direction": "positive",
+            "weight": 22,
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "note": null
+          }
+        ]
+      },
+      "framing_profile_id": "framing:canalsur-2"
+    },
+    {
+      "article": {
+        "id": "art:meridiano:2",
+        "url": null,
+        "headline": "Quiénes quedan dentro y fuera de la extensión del seguro de cesantía",
+        "dek": "La ampliación a ocho giros alcanza a los contratos a plazo fijo y por obra; los indefinidos quedan excluidos.",
+        "publisher": {
+          "id": "src:demo-diario-meridiano",
+          "name": "Diario Meridiano"
+        },
+        "author": "Análisis laboral",
+        "published_at": "2026-08-06T08:15:00Z",
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "language": "es-CL",
+        "article_type": "analysis",
+        "word_count": 940,
+        "neutral_summary": "Análisis del artículo 8° que describe el alcance de la extensión de cinco a ocho giros del fondo solidario y su requisito de doce cotizaciones. Cita textualmente la exclusión de los contratos indefinidos y recoge la lectura de una confederación sindical sobre la orientación general del paquete.",
+        "body_available": true,
+        "paywalled": false,
+        "claim_ids": [
+          "clm:7",
+          "clm:12"
+        ],
+        "quotations": [
+          {
+            "text": "La extensión a ocho meses del seguro de cesantía alcanza sólo a los contratos a plazo fijo y por obra o faena.",
+            "speaker_role": "analista de una confederación sindical",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 200,
+              "char_end": 310,
+              "text": "La extensión a ocho meses del seguro de cesantía alcanza sólo a los contratos a plazo fijo y por obra o faena."
+            },
+            "claim_id": "clm:12"
+          },
+          {
+            "text": "El diseño del paquete privilegia el alivio inmediato por sobre la inversión de largo plazo.",
+            "speaker_role": "analista de una confederación sindical",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 290,
+              "char_end": 381,
+              "text": "El diseño del paquete privilegia el alivio inmediato por sobre la inversión de largo plazo."
+            },
+            "claim_id": "clm:7"
+          }
+        ],
+        "predictions": [],
+        "framing_profile_id": "framing:meridiano-2",
+        "impact_emphasis": [
+          {
+            "axis": "worker_protection_vs_flexibility",
+            "emphasis": 0.55,
+            "direction_emphasised": "negative",
+            "note": null
+          },
+          {
+            "axis": "current_relief_vs_long_term_investment",
+            "emphasis": 0.25,
+            "direction_emphasised": "negative",
+            "note": null
+          }
+        ],
+        "omitted_context": [
+          {
+            "statement": "El aporte de estabilización expira a los 24 meses mientras la dotación del fondo territorial es permanente.",
+            "why_it_matters": "La comparación entre alivio e inversión que el artículo recoge se invierte si se mide en valor presente.",
+            "evidence_refs": [
+              "prov:18216-05:4",
+              "prov:18216-05:5"
+            ],
+            "materiality": "medium"
+          }
+        ],
+        "primary_source_grounding": [
+          {
+            "ref": "prov:18216-05:6",
+            "kind": "quoted_directly",
+            "note": null
+          },
+          {
+            "ref": "doc:18216-05",
+            "kind": "linked",
+            "note": null
+          }
+        ],
+        "independence": "original_reporting",
+        "derived_from_article_id": null,
+        "cluster_ids": [
+          "cluster:3"
+        ],
+        "confidence": {
+          "evidence_confidence": 0.76,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El cuerpo del artículo estaba disponible y cita material primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "neutral",
+              "note": "Observación original dentro del conjunto."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético: ningún medio real publicó este texto."
+        }
+      },
+      "document_slug": "18216-05",
+      "document_title": "Paquete fiscal de demostración",
+      "framing_profile": {
+        "id": "framing:meridiano-2",
+        "article_id": "art:meridiano:2",
+        "profile_version": "aleph-framing/0.1.0",
+        "generated_at": "2026-08-07T12:00:00Z",
+        "dimensions": {
+          "selection_asymmetry": {
+            "score": 36,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Una voz de actor citada",
+                "direction": "negative",
+                "weight": 30,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "El grueso del artículo es lectura del articulado",
+                "direction": "positive",
+                "weight": 6,
+                "evidence_refs": [
+                  "prov:18216-05:6"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "prov:18216-05:6"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Una sola voz de actor, aunque el análisis se apoya sobre todo en el texto."
+          },
+          "loaded_language": {
+            "score": 14,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin términos evaluativos relevantes",
+                "direction": "none",
+                "weight": 14,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Registro descriptivo."
+          },
+          "context_omission": {
+            "score": 44,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "No explicita la métrica de la comparación",
+                "direction": "negative",
+                "weight": 44,
+                "evidence_refs": [
+                  "prov:18216-05:4",
+                  "prov:18216-05:5"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "prov:18216-05:4",
+              "prov:18216-05:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Recoge la comparación alivio/inversión sin señalar que depende de la métrica."
+          },
+          "certainty_inflation": {
+            "score": 16,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Alcance descrito con la exclusión incluida",
+                "direction": "positive",
+                "weight": -14,
+                "evidence_refs": [
+                  "prov:18216-05:6"
+                ],
+                "note": null
+              },
+              {
+                "label": "La lectura del actor se presenta sin matizar su métrica",
+                "direction": "negative",
+                "weight": 30,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "prov:18216-05:6"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El alcance de la norma se describe con exactitud."
+          },
+          "unsupported_causal_language": {
+            "score": 14,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin cadenas causales",
+                "direction": "none",
+                "weight": 14,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "No hay atribuciones causales."
+          },
+          "opinion_as_fact": {
+            "score": 26,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Interpretación atribuida",
+                "direction": "none",
+                "weight": 26,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "La interpretación del actor aparece atribuida."
+          },
+          "source_diversity": {
+            "score": 54,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Articulado citado textualmente",
+                "direction": "positive",
+                "weight": 34,
+                "evidence_refs": [
+                  "prov:18216-05:6"
+                ],
+                "note": null
+              },
+              {
+                "label": "Voz de actor",
+                "direction": "positive",
+                "weight": 20,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "prov:18216-05:6"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El articulado y una voz de actor."
+          },
+          "primary_source_grounding": {
+            "score": 80,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Cita textual del artículo 8°",
+                "direction": "positive",
+                "weight": 46,
+                "evidence_refs": [
+                  "prov:18216-05:6"
+                ],
+                "note": null
+              },
+              {
+                "label": "Enlace al articulado",
+                "direction": "positive",
+                "weight": 34,
+                "evidence_refs": [
+                  "doc:18216-05"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "doc:18216-05",
+              "prov:18216-05:6"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Cita textualmente la exclusión de los contratos indefinidos y enlaza el articulado."
+          }
+        },
+        "overall_note": "Léase el patrón, no un promedio: estas ocho cifras describen prácticas distintas y no deben colapsarse en un número de sesgo, que no existe en Aleph.",
+        "confidence": {
+          "evidence_confidence": 0.6,
+          "model_confidence": 0.68,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "neutral",
+              "note": "Se dispuso del cuerpo completo del artículo."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético; el perfil demuestra el método, no describe a ningún medio real."
+        },
+        "limitations": [
+          "El artículo pertenece a un conjunto sintético: el perfil no describe la práctica de ningún medio real.",
+          "Las dimensiones de grado (lenguaje cargado, inflación de certeza) dependen de juicios del analizador y no de una medición reproducible."
+        ]
+      },
+      "claim_count": 2,
+      "verdict_counts": {
+        "supported": 1,
+        "partially_supported": 1,
+        "unsupported": 0,
+        "contradicted": 0,
+        "unverifiable": 0,
+        "not_a_factual_claim": 0,
+        "forecast_conditional": 0
+      },
+      "cluster_id": "cluster:3",
+      "independent_source_count": 2,
+      "relative_time": "hace 1 día",
+      "cluster_label": "Efectos laborales y de inversión del paquete",
+      "topic": {
+        "id": "node:seguro-cesantia",
+        "label": "Extensión del seguro de cesantía"
+      },
+      "claim_ids": [
+        "clm:7",
+        "clm:12"
+      ],
+      "beneficiary_emphasis": {
+        "score": 55,
+        "polarity": "neutral",
+        "label": "Énfasis en incidencia",
+        "description": "Cuánta atención del artículo recae sobre quién gana y quién paga. Es una descripción de la atención editorial, no un reproche: un artículo sobre finanzas municipales tiene razones legítimas para concentrarse en un eje.",
+        "components": [
+          {
+            "label": "Atención al eje worker_protection_vs_flexibility",
+            "direction": "negative",
+            "weight": 55,
+            "evidence_refs": [],
+            "note": null
+          }
+        ]
+      },
+      "primary_grounding": {
+        "score": 80,
+        "polarity": "higher_is_better",
+        "label": "Anclaje en fuente primaria",
+        "description": "Cuánto de lo que el artículo afirma está anclado en material que el lector puede revisar por su cuenta. Nombrar una fuente sin apuntar a ella puntúa menos que citarla o enlazarla.",
+        "components": [
+          {
+            "label": "Cita textual del artículo 8°",
+            "direction": "positive",
+            "weight": 46,
+            "evidence_refs": [
+              "prov:18216-05:6"
+            ],
+            "note": null
+          },
+          {
+            "label": "Enlace al articulado",
+            "direction": "positive",
+            "weight": 34,
+            "evidence_refs": [
+              "doc:18216-05"
+            ],
+            "note": null
+          }
+        ]
+      },
+      "framing_profile_id": "framing:meridiano-2"
+    },
+    {
+      "article": {
+        "id": "art:contrapunto:2",
+        "url": null,
+        "headline": "El fondo municipal no puede transferir recursos mientras no exista su reglamento",
+        "dek": "La asociación de municipios sostiene que las transferencias no partirán antes de 2028.",
+        "publisher": {
+          "id": "src:demo-el-contrapunto",
+          "name": "El Contrapunto"
+        },
+        "author": "Redacción de regiones",
+        "published_at": "2026-08-05T18:25:00Z",
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "language": "es-CL",
+        "article_type": "news_report",
+        "word_count": 860,
+        "neutral_summary": "Reportaje que revisa el artículo primero transitorio y constata que, a la fecha de publicación, no consta la dictación del reglamento que debe fijar la fórmula de distribución del fondo. Recoge la posición de la presidencia de la asociación de municipios, que sostiene que las transferencias no comenzarán antes de 2028, y cita el plazo legal de 180 días.",
+        "body_available": true,
+        "paywalled": false,
+        "claim_ids": [
+          "clm:2",
+          "clm:10",
+          "clm:14"
+        ],
+        "quotations": [
+          {
+            "text": "El fondo transfiere a los municipios 0,18% del producto cada año, sin excepciones.",
+            "speaker_role": "presidencia de la asociación de municipios",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 200,
+              "char_end": 282,
+              "text": "El fondo transfiere a los municipios 0,18% del producto cada año, sin excepciones."
+            },
+            "claim_id": "clm:2"
+          },
+          {
+            "text": "Sin reglamento no hay fórmula, y sin fórmula no hay transferencia: esto no parte antes de 2028.",
+            "speaker_role": "presidencia de la asociación de municipios",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 290,
+              "char_end": 385,
+              "text": "Sin reglamento no hay fórmula, y sin fórmula no hay transferencia: esto no parte antes de 2028."
+            },
+            "claim_id": "clm:14"
+          },
+          {
+            "text": "Los municipios deberían recibir una proporción fija e irreductible de la recaudación, no un fondo sujeto a reglamento.",
+            "speaker_role": "presidencia de la asociación de municipios",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 380,
+              "char_end": 498,
+              "text": "Los municipios deberían recibir una proporción fija e irreductible de la recaudación, no un fondo sujeto a reglamento."
+            },
+            "claim_id": "clm:10"
+          }
+        ],
+        "predictions": [
+          {
+            "text": "Las transferencias del fondo no comenzarán antes de 2028.",
+            "speaker_role": "presidencia de la asociación de municipios",
+            "horizon": "medium_term",
+            "conditions": [
+              "que el reglamento no se dicte dentro del plazo de 180 días"
+            ],
+            "falsifiable": true,
+            "evaluable_after": "2028-01-01",
+            "claim_id": "clm:14"
+          }
+        ],
+        "framing_profile_id": "framing:contrapunto-2",
+        "impact_emphasis": [
+          {
+            "axis": "central_vs_local",
+            "emphasis": 0.6,
+            "direction_emphasised": "mixed",
+            "note": null
+          },
+          {
+            "axis": "public_vs_private_provision",
+            "emphasis": 0.15,
+            "direction_emphasised": "negative",
+            "note": null
+          }
+        ],
+        "omitted_context": [
+          {
+            "statement": "El plazo legal de 180 días permite que el reglamento se dicte antes de que termine 2026.",
+            "why_it_matters": "El calendario que el reportaje recoge no es el único compatible con la norma citada.",
+            "evidence_refs": [
+              "ev:4"
+            ],
+            "materiality": "medium"
+          }
+        ],
+        "primary_source_grounding": [
+          {
+            "ref": "prov:18216-05:10",
+            "kind": "quoted_directly",
+            "note": null
+          },
+          {
+            "ref": "ev:4",
+            "kind": "linked",
+            "note": null
+          },
+          {
+            "ref": "ev:15",
+            "kind": "quoted_directly",
+            "note": null
+          }
+        ],
+        "independence": "original_reporting",
+        "derived_from_article_id": null,
+        "cluster_ids": [
+          "cluster:2"
+        ],
+        "confidence": {
+          "evidence_confidence": 0.74,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El cuerpo del artículo estaba disponible y cita material primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "neutral",
+              "note": "Observación original dentro del conjunto."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético: ningún medio real publicó este texto."
+        }
+      },
+      "document_slug": "18216-05",
+      "document_title": "Paquete fiscal de demostración",
+      "framing_profile": {
+        "id": "framing:contrapunto-2",
+        "article_id": "art:contrapunto:2",
+        "profile_version": "aleph-framing/0.1.0",
+        "generated_at": "2026-08-07T12:00:00Z",
+        "dimensions": {
+          "selection_asymmetry": {
+            "score": 54,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Tres citas de un único actor",
+                "direction": "negative",
+                "weight": 40,
+                "evidence_refs": [
+                  "ev:15"
+                ],
+                "note": null
+              },
+              {
+                "label": "Sin contraparte del órgano obligado a dictar el reglamento",
+                "direction": "negative",
+                "weight": 14,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:15"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Tres citas de un mismo actor y ninguna respuesta del órgano responsable del reglamento."
+          },
+          "loaded_language": {
+            "score": 24,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "'no puede transferir' verificado contra el texto",
+                "direction": "positive",
+                "weight": -10,
+                "evidence_refs": [
+                  "prov:18216-05:10"
+                ],
+                "note": null
+              },
+              {
+                "label": "'sujeto a reglamento' con connotación de precariedad en la bajada",
+                "direction": "negative",
+                "weight": 34,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "prov:18216-05:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El titular usa 'no puede', que es exacto respecto de la norma citada."
+          },
+          "context_omission": {
+            "score": 40,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Silencio sobre el plazo de 180 días como escenario alternativo",
+                "direction": "negative",
+                "weight": 40,
+                "evidence_refs": [
+                  "ev:4"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:4"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "No menciona que el plazo legal admite un calendario distinto del que sostiene la fuente."
+          },
+          "certainty_inflation": {
+            "score": 36,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Distinción explícita entre norma y proyección",
+                "direction": "positive",
+                "weight": -16,
+                "evidence_refs": [
+                  "prov:18216-05:10"
+                ],
+                "note": null
+              },
+              {
+                "label": "La bajada adopta 2028 como escenario",
+                "direction": "negative",
+                "weight": 52,
+                "evidence_refs": [
+                  "ev:4"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:4",
+              "prov:18216-05:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Distingue la constatación normativa de la proyección de la fuente, aunque la bajada adopta la fecha de esta última."
+          },
+          "unsupported_causal_language": {
+            "score": 18,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Cadena causal verificada contra la norma",
+                "direction": "none",
+                "weight": 18,
+                "evidence_refs": [
+                  "prov:18216-05:10"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "prov:18216-05:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "La cadena 'sin reglamento no hay transferencia' es normativa y está en el texto."
+          },
+          "opinion_as_fact": {
+            "score": 30,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Fecha de la fuente en la bajada sin atribución",
+                "direction": "negative",
+                "weight": 30,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "La afirmación normativa del actor aparece atribuida; la fecha se desliza al titular de sección."
+          },
+          "source_diversity": {
+            "score": 58,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Articulado citado textualmente",
+                "direction": "positive",
+                "weight": 34,
+                "evidence_refs": [
+                  "prov:18216-05:10"
+                ],
+                "note": null
+              },
+              {
+                "label": "Declaración gremial citada",
+                "direction": "positive",
+                "weight": 24,
+                "evidence_refs": [
+                  "ev:15"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:15",
+              "prov:18216-05:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Dos orígenes: el articulado y la declaración gremial."
+          },
+          "primary_source_grounding": {
+            "score": 76,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Cita textual del transitorio",
+                "direction": "positive",
+                "weight": 44,
+                "evidence_refs": [
+                  "prov:18216-05:10"
+                ],
+                "note": null
+              },
+              {
+                "label": "Enlace al articulado",
+                "direction": "positive",
+                "weight": 32,
+                "evidence_refs": [
+                  "ev:4"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:4",
+              "prov:18216-05:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Cita textualmente el artículo primero transitorio y enlaza el articulado."
+          }
+        },
+        "overall_note": "Léase el patrón, no un promedio: estas ocho cifras describen prácticas distintas y no deben colapsarse en un número de sesgo, que no existe en Aleph.",
+        "confidence": {
+          "evidence_confidence": 0.6,
+          "model_confidence": 0.68,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "neutral",
+              "note": "Se dispuso del cuerpo completo del artículo."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético; el perfil demuestra el método, no describe a ningún medio real."
+        },
+        "limitations": [
+          "El artículo pertenece a un conjunto sintético: el perfil no describe la práctica de ningún medio real.",
+          "Las dimensiones de grado (lenguaje cargado, inflación de certeza) dependen de juicios del analizador y no de una medición reproducible."
+        ]
+      },
+      "claim_count": 3,
+      "verdict_counts": {
+        "supported": 1,
+        "partially_supported": 0,
+        "unsupported": 0,
+        "contradicted": 0,
+        "unverifiable": 0,
+        "not_a_factual_claim": 1,
+        "forecast_conditional": 1
+      },
+      "cluster_id": "cluster:2",
+      "independent_source_count": 1,
+      "relative_time": "hace 1 día",
+      "cluster_label": "Fondo de Estabilización Territorial y su reglamento pendiente",
+      "topic": {
+        "id": "node:fondo-territorial",
+        "label": "Fondo de Estabilización Territorial"
+      },
+      "claim_ids": [
+        "clm:2",
+        "clm:10",
+        "clm:14"
+      ],
+      "beneficiary_emphasis": {
+        "score": 60,
+        "polarity": "neutral",
+        "label": "Énfasis en incidencia",
+        "description": "Cuánta atención del artículo recae sobre quién gana y quién paga. Es una descripción de la atención editorial, no un reproche: un artículo sobre finanzas municipales tiene razones legítimas para concentrarse en un eje.",
+        "components": [
+          {
+            "label": "Atención al eje central_vs_local",
+            "direction": "mixed",
+            "weight": 60,
+            "evidence_refs": [],
+            "note": null
+          }
+        ]
+      },
+      "primary_grounding": {
+        "score": 76,
+        "polarity": "higher_is_better",
+        "label": "Anclaje en fuente primaria",
+        "description": "Cuánto de lo que el artículo afirma está anclado en material que el lector puede revisar por su cuenta. Nombrar una fuente sin apuntar a ella puntúa menos que citarla o enlazarla.",
+        "components": [
+          {
+            "label": "Cita textual del transitorio",
+            "direction": "positive",
+            "weight": 44,
+            "evidence_refs": [
+              "prov:18216-05:10"
+            ],
+            "note": null
+          },
+          {
+            "label": "Enlace al articulado",
+            "direction": "positive",
+            "weight": 32,
+            "evidence_refs": [
+              "ev:4"
+            ],
+            "note": null
+          }
+        ]
+      },
+      "framing_profile_id": "framing:contrapunto-2"
+    },
+    {
+      "article": {
+        "id": "art:boletin:1",
+        "url": null,
+        "headline": "Qué queda fuera del costeo oficial del paquete fiscal",
+        "dek": "La sección de limitaciones del informe financiero declara que la respuesta de la inversión no está modelada.",
+        "publisher": {
+          "id": "src:demo-boletin-economico",
+          "name": "Boletín Económico"
+        },
+        "author": "Análisis económico",
+        "published_at": "2026-08-05T09:00:00Z",
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "language": "es-CL",
+        "article_type": "analysis",
+        "word_count": 1180,
+        "neutral_summary": "Análisis que compara la proyección del informe financiero con el rango de elasticidad de la literatura disponible y señala que el propio informe declara no modelar la respuesta de la inversión. Cita textualmente la sección de limitaciones y enlaza el articulado. Recoge la posición de la federación empresarial y la contrasta con el rango publicado.",
+        "body_available": true,
+        "paywalled": false,
+        "claim_ids": [
+          "clm:1",
+          "clm:5"
+        ],
+        "quotations": [
+          {
+            "text": "El costo neto será a lo menos el doble del informado una vez que se incorpore la caída de recaudación por menor inversión.",
+            "speaker_role": "economista de una federación empresarial",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 200,
+              "char_end": 322,
+              "text": "El costo neto será a lo menos el doble del informado una vez que se incorpore la caída de recaudación por menor inversión."
+            },
+            "claim_id": "clm:5"
+          }
+        ],
+        "predictions": [
+          {
+            "text": "El costo neto será a lo menos el doble del informado.",
+            "speaker_role": "economista de una federación empresarial",
+            "horizon": "medium_term",
+            "conditions": [
+              "que la elasticidad se sitúe en el extremo alto del rango publicado"
+            ],
+            "falsifiable": true,
+            "evaluable_after": "2028-03-31",
+            "claim_id": "clm:5"
+          }
+        ],
+        "framing_profile_id": "framing:boletin-1",
+        "impact_emphasis": [
+          {
+            "axis": "redistribution_vs_growth",
+            "emphasis": 0.45,
+            "direction_emphasised": "mixed",
+            "note": null
+          },
+          {
+            "axis": "households_vs_firms",
+            "emphasis": 0.25,
+            "direction_emphasised": "mixed",
+            "note": null
+          }
+        ],
+        "omitted_context": [],
+        "primary_source_grounding": [
+          {
+            "ref": "ev:6",
+            "kind": "quoted_directly",
+            "note": null
+          },
+          {
+            "ref": "ev:10",
+            "kind": "linked",
+            "note": null
+          },
+          {
+            "ref": "doc:18216-05",
+            "kind": "linked",
+            "note": null
+          }
+        ],
+        "independence": "original_reporting",
+        "derived_from_article_id": null,
+        "cluster_ids": [
+          "cluster:1"
+        ],
+        "confidence": {
+          "evidence_confidence": 0.78,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El cuerpo del artículo estaba disponible y cita material primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "neutral",
+              "note": "Observación original dentro del conjunto."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético: ningún medio real publicó este texto."
+        }
+      },
+      "document_slug": "18216-05",
+      "document_title": "Paquete fiscal de demostración",
+      "framing_profile": {
+        "id": "framing:boletin-1",
+        "article_id": "art:boletin:1",
+        "profile_version": "aleph-framing/0.1.0",
+        "generated_at": "2026-08-07T12:00:00Z",
+        "dimensions": {
+          "selection_asymmetry": {
+            "score": 28,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Una sola voz de actor citada",
+                "direction": "negative",
+                "weight": 34,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "La voz citada se contrasta con evidencia, no se reproduce",
+                "direction": "positive",
+                "weight": -6,
+                "evidence_refs": [
+                  "ev:10"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Recoge la posición empresarial y la contrasta con el rango publicado; no incorpora la posición sindical ni la municipal, que trataban otros aspectos."
+          },
+          "loaded_language": {
+            "score": 12,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin términos evaluativos",
+                "direction": "none",
+                "weight": 12,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Registro técnico y descriptivo."
+          },
+          "context_omission": {
+            "score": 20,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Incluye la sección de limitaciones",
+                "direction": "positive",
+                "weight": -18,
+                "evidence_refs": [
+                  "ev:6"
+                ],
+                "note": null
+              },
+              {
+                "label": "No menciona el crédito a la inversión como efecto compensatorio",
+                "direction": "negative",
+                "weight": 38,
+                "evidence_refs": [
+                  "prov:18216-05:3"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:6",
+              "prov:18216-05:3"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Aporta el contexto que la cobertura del día anterior omitió."
+          },
+          "certainty_inflation": {
+            "score": 18,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Reporta el intervalo completo del estudio",
+                "direction": "positive",
+                "weight": -16,
+                "evidence_refs": [
+                  "ev:10"
+                ],
+                "note": null
+              },
+              {
+                "label": "El titular sugiere una omisión deliberada",
+                "direction": "negative",
+                "weight": 34,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Mantiene el rango y las condiciones en todo el texto."
+          },
+          "unsupported_causal_language": {
+            "score": 26,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Uso sistemático del condicional",
+                "direction": "positive",
+                "weight": -14,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "Un pasaje enuncia la caída de inversión sin condicional",
+                "direction": "negative",
+                "weight": 40,
+                "evidence_refs": [
+                  "ev:10"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:10"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Describe la cadena causal como hipótesis, no como hecho."
+          },
+          "opinion_as_fact": {
+            "score": 20,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Atribución consistente",
+                "direction": "none",
+                "weight": 20,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "La posición del actor aparece siempre atribuida."
+          },
+          "source_diversity": {
+            "score": 72,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Informe financiero citado textualmente",
+                "direction": "positive",
+                "weight": 26,
+                "evidence_refs": [
+                  "ev:6"
+                ],
+                "note": null
+              },
+              {
+                "label": "Estudio de elasticidad enlazado",
+                "direction": "positive",
+                "weight": 26,
+                "evidence_refs": [
+                  "ev:10"
+                ],
+                "note": null
+              },
+              {
+                "label": "Articulado enlazado",
+                "direction": "positive",
+                "weight": 20,
+                "evidence_refs": [
+                  "doc:18216-05"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "doc:18216-05",
+              "ev:10",
+              "ev:6"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Tres orígenes distintos: el informe, el estudio de elasticidad y el articulado, más una voz de actor."
+          },
+          "primary_source_grounding": {
+            "score": 84,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Cita textual del informe",
+                "direction": "positive",
+                "weight": 38,
+                "evidence_refs": [
+                  "ev:6"
+                ],
+                "note": null
+              },
+              {
+                "label": "Enlace al estudio",
+                "direction": "positive",
+                "weight": 24,
+                "evidence_refs": [
+                  "ev:10"
+                ],
+                "note": null
+              },
+              {
+                "label": "Enlace al articulado",
+                "direction": "positive",
+                "weight": 22,
+                "evidence_refs": [
+                  "doc:18216-05"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "doc:18216-05",
+              "ev:10",
+              "ev:6"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Cita textualmente la sección de limitaciones y enlaza tanto el estudio como el articulado."
+          }
+        },
+        "overall_note": "Léase el patrón, no un promedio: estas ocho cifras describen prácticas distintas y no deben colapsarse en un número de sesgo, que no existe en Aleph.",
+        "confidence": {
+          "evidence_confidence": 0.6,
+          "model_confidence": 0.68,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "neutral",
+              "note": "Se dispuso del cuerpo completo del artículo."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético; el perfil demuestra el método, no describe a ningún medio real."
+        },
+        "limitations": [
+          "El artículo pertenece a un conjunto sintético: el perfil no describe la práctica de ningún medio real.",
+          "Las dimensiones de grado (lenguaje cargado, inflación de certeza) dependen de juicios del analizador y no de una medición reproducible."
+        ]
+      },
+      "claim_count": 2,
+      "verdict_counts": {
+        "supported": 1,
+        "partially_supported": 0,
+        "unsupported": 0,
+        "contradicted": 0,
+        "unverifiable": 0,
+        "not_a_factual_claim": 0,
+        "forecast_conditional": 1
+      },
+      "cluster_id": "cluster:1",
+      "independent_source_count": 2,
+      "relative_time": "hace 2 días",
+      "cluster_label": "Costo fiscal neto del paquete según el informe financiero",
+      "topic": {
+        "id": "node:costo-fiscal-neto",
+        "label": "Costo fiscal neto del paquete"
+      },
+      "claim_ids": [
+        "clm:1",
+        "clm:5"
+      ],
+      "beneficiary_emphasis": {
+        "score": 70,
+        "polarity": "neutral",
+        "label": "Énfasis en incidencia",
+        "description": "Cuánta atención del artículo recae sobre quién gana y quién paga. Es una descripción de la atención editorial, no un reproche: un artículo sobre finanzas municipales tiene razones legítimas para concentrarse en un eje.",
+        "components": [
+          {
+            "label": "Atención al eje redistribution_vs_growth",
+            "direction": "mixed",
+            "weight": 45,
+            "evidence_refs": [],
+            "note": null
+          },
+          {
+            "label": "Atención al eje households_vs_firms",
+            "direction": "mixed",
+            "weight": 25,
+            "evidence_refs": [],
+            "note": null
+          }
+        ]
+      },
+      "primary_grounding": {
+        "score": 84,
+        "polarity": "higher_is_better",
+        "label": "Anclaje en fuente primaria",
+        "description": "Cuánto de lo que el artículo afirma está anclado en material que el lector puede revisar por su cuenta. Nombrar una fuente sin apuntar a ella puntúa menos que citarla o enlazarla.",
+        "components": [
+          {
+            "label": "Cita textual del informe",
+            "direction": "positive",
+            "weight": 38,
+            "evidence_refs": [
+              "ev:6"
+            ],
+            "note": null
+          },
+          {
+            "label": "Enlace al estudio",
+            "direction": "positive",
+            "weight": 24,
+            "evidence_refs": [
+              "ev:10"
+            ],
+            "note": null
+          },
+          {
+            "label": "Enlace al articulado",
+            "direction": "positive",
+            "weight": 22,
+            "evidence_refs": [
+              "doc:18216-05"
+            ],
+            "note": null
+          }
+        ]
+      },
+      "framing_profile_id": "framing:boletin-1"
+    },
+    {
+      "article": {
+        "id": "art:contrapunto:1",
+        "url": null,
+        "headline": "Gobierno estima el costo del paquete en 0,4% del PIB",
+        "dek": "La cifra proviene del informe financiero adjunto al proyecto.",
+        "publisher": {
+          "id": "src:demo-el-contrapunto",
+          "name": "El Contrapunto"
+        },
+        "author": "Redacción",
+        "published_at": "2026-08-04T16:40:00Z",
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "language": "es-CL",
+        "article_type": "news_report",
+        "word_count": 420,
+        "neutral_summary": "Nota que reproduce la cifra y las citas del punto de prensa difundidas por otro medio y añade una descripción de las tres medidas de ingreso del proyecto tomada del articulado. No incorpora fuentes propias.",
+        "body_available": true,
+        "paywalled": false,
+        "claim_ids": [
+          "clm:1"
+        ],
+        "quotations": [
+          {
+            "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos.",
+            "speaker_role": "vocería de Hacienda",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 200,
+              "char_end": 315,
+              "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos."
+            },
+            "claim_id": "clm:1"
+          }
+        ],
+        "predictions": [],
+        "framing_profile_id": "framing:contrapunto-1",
+        "impact_emphasis": [
+          {
+            "axis": "households_vs_firms",
+            "emphasis": 0.3,
+            "direction_emphasised": "mixed",
+            "note": null
+          },
+          {
+            "axis": "redistribution_vs_growth",
+            "emphasis": 0.25,
+            "direction_emphasised": "mixed",
+            "note": null
+          }
+        ],
+        "omitted_context": [
+          {
+            "statement": "La nota no señala que la cifra y las citas provienen de una cobertura anterior de otro medio.",
+            "why_it_matters": "La repetición sin marca convierte una observación en tres a ojos de un lector.",
+            "evidence_refs": [
+              "ev:14"
+            ],
+            "materiality": "medium"
+          }
+        ],
+        "primary_source_grounding": [
+          {
+            "ref": "ev:5",
+            "kind": "named_without_link",
+            "note": null
+          },
+          {
+            "ref": "prov:18216-05:1",
+            "kind": "paraphrased",
+            "note": null
+          }
+        ],
+        "independence": "derivative",
+        "derived_from_article_id": "art:meridiano:1",
+        "cluster_ids": [
+          "cluster:1"
+        ],
+        "confidence": {
+          "evidence_confidence": 0.56,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El artículo se apoya en material de segunda mano."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El ítem reproduce otro y no aporta observación nueva."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético: ningún medio real publicó este texto."
+        }
+      },
+      "document_slug": "18216-05",
+      "document_title": "Paquete fiscal de demostración",
+      "framing_profile": {
+        "id": "framing:contrapunto-1",
+        "article_id": "art:contrapunto:1",
+        "profile_version": "aleph-framing/0.1.0",
+        "generated_at": "2026-08-07T12:00:00Z",
+        "dimensions": {
+          "selection_asymmetry": {
+            "score": 60,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Voces heredadas",
+                "direction": "negative",
+                "weight": 46,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "Añade descripción del articulado",
+                "direction": "positive",
+                "weight": 14,
+                "evidence_refs": [
+                  "prov:18216-05:1"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "prov:18216-05:1"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Selección de voces heredada, aunque añade material del articulado."
+          },
+          "loaded_language": {
+            "score": 16,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin términos evaluativos relevantes",
+                "direction": "none",
+                "weight": 16,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Registro descriptivo."
+          },
+          "context_omission": {
+            "score": 48,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sólo el lado de ingresos",
+                "direction": "negative",
+                "weight": 28,
+                "evidence_refs": [
+                  "prov:18216-05:4"
+                ],
+                "note": null
+              },
+              {
+                "label": "Sin mención a limitaciones del informe",
+                "direction": "negative",
+                "weight": 20,
+                "evidence_refs": [
+                  "ev:6"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:6",
+              "prov:18216-05:4"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Describe las medidas de ingreso pero no las de gasto ni las limitaciones del informe."
+          },
+          "certainty_inflation": {
+            "score": 34,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "'estima' en el titular",
+                "direction": "positive",
+                "weight": -12,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              },
+              {
+                "label": "El cuerpo enuncia el calendario sin condicional",
+                "direction": "negative",
+                "weight": 46,
+                "evidence_refs": [
+                  "ev:4"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:4",
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El titular usa 'estima', que es la forma correcta."
+          },
+          "unsupported_causal_language": {
+            "score": 10,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin cadenas causales",
+                "direction": "none",
+                "weight": 10,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "No hay atribuciones causales."
+          },
+          "opinion_as_fact": {
+            "score": 16,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Atribución consistente",
+                "direction": "none",
+                "weight": 16,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Contenido atribuido."
+          },
+          "source_diversity": {
+            "score": 26,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Fuente heredada",
+                "direction": "negative",
+                "weight": -8,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "Articulado como segunda referencia",
+                "direction": "positive",
+                "weight": 34,
+                "evidence_refs": [
+                  "prov:18216-05:1"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "prov:18216-05:1"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Una fuente heredada más el articulado."
+          },
+          "primary_source_grounding": {
+            "score": 44,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Articulado parafraseado",
+                "direction": "positive",
+                "weight": 26,
+                "evidence_refs": [
+                  "prov:18216-05:1"
+                ],
+                "note": null
+              },
+              {
+                "label": "Informe nombrado sin enlace",
+                "direction": "positive",
+                "weight": 18,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:5",
+              "prov:18216-05:1"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Parafrasea el articulado y nombra el informe sin enlazarlo."
+          }
+        },
+        "overall_note": "Léase el patrón, no un promedio: estas ocho cifras describen prácticas distintas y no deben colapsarse en un número de sesgo, que no existe en Aleph.",
+        "confidence": {
+          "evidence_confidence": 0.6,
+          "model_confidence": 0.68,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "neutral",
+              "note": "Se dispuso del cuerpo completo del artículo."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético; el perfil demuestra el método, no describe a ningún medio real."
+        },
+        "limitations": [
+          "El artículo pertenece a un conjunto sintético: el perfil no describe la práctica de ningún medio real.",
+          "Las dimensiones de grado (lenguaje cargado, inflación de certeza) dependen de juicios del analizador y no de una medición reproducible."
+        ]
+      },
+      "claim_count": 1,
+      "verdict_counts": {
+        "supported": 1,
+        "partially_supported": 0,
+        "unsupported": 0,
+        "contradicted": 0,
+        "unverifiable": 0,
+        "not_a_factual_claim": 0,
+        "forecast_conditional": 0
+      },
+      "cluster_id": "cluster:1",
+      "independent_source_count": 2,
+      "relative_time": "hace 2 días",
+      "cluster_label": "Costo fiscal neto del paquete según el informe financiero",
+      "topic": {
+        "id": "node:costo-fiscal-neto",
+        "label": "Costo fiscal neto del paquete"
+      },
+      "claim_ids": [
+        "clm:1"
+      ],
+      "beneficiary_emphasis": {
+        "score": 55,
+        "polarity": "neutral",
+        "label": "Énfasis en incidencia",
+        "description": "Cuánta atención del artículo recae sobre quién gana y quién paga. Es una descripción de la atención editorial, no un reproche: un artículo sobre finanzas municipales tiene razones legítimas para concentrarse en un eje.",
+        "components": [
+          {
+            "label": "Atención al eje households_vs_firms",
+            "direction": "mixed",
+            "weight": 30,
+            "evidence_refs": [],
+            "note": null
+          },
+          {
+            "label": "Atención al eje redistribution_vs_growth",
+            "direction": "mixed",
+            "weight": 25,
+            "evidence_refs": [],
+            "note": null
+          }
+        ]
+      },
+      "primary_grounding": {
+        "score": 44,
+        "polarity": "higher_is_better",
+        "label": "Anclaje en fuente primaria",
+        "description": "Cuánto de lo que el artículo afirma está anclado en material que el lector puede revisar por su cuenta. Nombrar una fuente sin apuntar a ella puntúa menos que citarla o enlazarla.",
+        "components": [
+          {
+            "label": "Articulado parafraseado",
+            "direction": "positive",
+            "weight": 26,
+            "evidence_refs": [
+              "prov:18216-05:1"
+            ],
+            "note": null
+          },
+          {
+            "label": "Informe nombrado sin enlace",
+            "direction": "positive",
+            "weight": 18,
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "note": null
+          }
+        ]
+      },
+      "framing_profile_id": "framing:contrapunto-1"
+    },
+    {
+      "article": {
+        "id": "art:andes:1",
+        "url": null,
+        "headline": "Informe financiero: costo neto de 0,4% del PIB para el paquete fiscal",
+        "dek": null,
+        "publisher": {
+          "id": "src:demo-radio-andes",
+          "name": "Radio Andes"
+        },
+        "author": null,
+        "published_at": "2026-08-04T14:20:00Z",
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "language": "es-CL",
+        "article_type": "wire",
+        "word_count": 180,
+        "neutral_summary": "Teletipo que reproduce el titular y el primer párrafo de la cobertura original, con la misma cita de la vocería de Hacienda y sin material adicional.",
+        "body_available": true,
+        "paywalled": false,
+        "claim_ids": [
+          "clm:1"
+        ],
+        "quotations": [
+          {
+            "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos.",
+            "speaker_role": "vocería de Hacienda",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 200,
+              "char_end": 315,
+              "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos."
+            },
+            "claim_id": "clm:1"
+          }
+        ],
+        "predictions": [],
+        "framing_profile_id": "framing:andes-1",
+        "impact_emphasis": [
+          {
+            "axis": "households_vs_firms",
+            "emphasis": 0.45,
+            "direction_emphasised": "positive",
+            "note": null
+          }
+        ],
+        "omitted_context": [
+          {
+            "statement": "El teletipo no señala su origen ni que reproduce una cobertura previa.",
+            "why_it_matters": "Sin esa marca, la repetición se contabiliza como corroboración independiente.",
+            "evidence_refs": [
+              "ev:14"
+            ],
+            "materiality": "large"
+          }
+        ],
+        "primary_source_grounding": [
+          {
+            "ref": "ev:5",
+            "kind": "named_without_link",
+            "note": null
+          }
+        ],
+        "independence": "syndicated",
+        "derived_from_article_id": "art:meridiano:1",
+        "cluster_ids": [
+          "cluster:1"
+        ],
+        "confidence": {
+          "evidence_confidence": 0.44,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El artículo se apoya en material de segunda mano."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El ítem reproduce otro y no aporta observación nueva."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético: ningún medio real publicó este texto."
+        }
+      },
+      "document_slug": "18216-05",
+      "document_title": "Paquete fiscal de demostración",
+      "framing_profile": {
+        "id": "framing:andes-1",
+        "article_id": "art:andes:1",
+        "profile_version": "aleph-framing/0.1.0",
+        "generated_at": "2026-08-07T12:00:00Z",
+        "dimensions": {
+          "selection_asymmetry": {
+            "score": 72,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Fuente única heredada",
+                "direction": "negative",
+                "weight": 72,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Selección íntegramente heredada."
+          },
+          "loaded_language": {
+            "score": 10,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin términos evaluativos",
+                "direction": "none",
+                "weight": 10,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Registro de teletipo."
+          },
+          "context_omission": {
+            "score": 72,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Contexto suprimido por longitud",
+                "direction": "negative",
+                "weight": 72,
+                "evidence_refs": [
+                  "ev:6"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:6"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Reduce el original a un párrafo, perdiendo todo el contexto."
+          },
+          "certainty_inflation": {
+            "score": 58,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Titular sin marca de estimación",
+                "direction": "negative",
+                "weight": 58,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El titular enuncia la estimación como un hecho del paquete."
+          },
+          "unsupported_causal_language": {
+            "score": 6,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin cadenas causales",
+                "direction": "none",
+                "weight": 6,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "No hay atribuciones causales."
+          },
+          "opinion_as_fact": {
+            "score": 14,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Titular en voz propia",
+                "direction": "negative",
+                "weight": 14,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Todo el contenido está atribuido salvo el titular."
+          },
+          "source_diversity": {
+            "score": 8,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Sin fuentes originales",
+                "direction": "negative",
+                "weight": -12,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "Cita heredada",
+                "direction": "positive",
+                "weight": 20,
+                "evidence_refs": [
+                  "ev:14"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:14"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Ninguna fuente propia."
+          },
+          "primary_source_grounding": {
+            "score": 16,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Informe nombrado sin enlace",
+                "direction": "positive",
+                "weight": 16,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Nombra el informe sin enlazarlo."
+          }
+        },
+        "overall_note": "Léase el patrón, no un promedio: estas ocho cifras describen prácticas distintas y no deben colapsarse en un número de sesgo, que no existe en Aleph.",
+        "confidence": {
+          "evidence_confidence": 0.6,
+          "model_confidence": 0.68,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "neutral",
+              "note": "Se dispuso del cuerpo completo del artículo."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético; el perfil demuestra el método, no describe a ningún medio real."
+        },
+        "limitations": [
+          "El artículo pertenece a un conjunto sintético: el perfil no describe la práctica de ningún medio real.",
+          "Las dimensiones de grado (lenguaje cargado, inflación de certeza) dependen de juicios del analizador y no de una medición reproducible."
+        ]
+      },
+      "claim_count": 1,
+      "verdict_counts": {
+        "supported": 1,
+        "partially_supported": 0,
+        "unsupported": 0,
+        "contradicted": 0,
+        "unverifiable": 0,
+        "not_a_factual_claim": 0,
+        "forecast_conditional": 0
+      },
+      "cluster_id": "cluster:1",
+      "independent_source_count": 2,
+      "relative_time": "hace 2 días",
+      "cluster_label": "Costo fiscal neto del paquete según el informe financiero",
+      "topic": {
+        "id": "node:costo-fiscal-neto",
+        "label": "Costo fiscal neto del paquete"
+      },
+      "claim_ids": [
+        "clm:1"
+      ],
+      "beneficiary_emphasis": {
+        "score": 45,
+        "polarity": "neutral",
+        "label": "Énfasis en incidencia",
+        "description": "Cuánta atención del artículo recae sobre quién gana y quién paga. Es una descripción de la atención editorial, no un reproche: un artículo sobre finanzas municipales tiene razones legítimas para concentrarse en un eje.",
+        "components": [
+          {
+            "label": "Atención al eje households_vs_firms",
+            "direction": "positive",
+            "weight": 45,
+            "evidence_refs": [],
+            "note": null
+          }
+        ]
+      },
+      "primary_grounding": {
+        "score": 16,
+        "polarity": "higher_is_better",
+        "label": "Anclaje en fuente primaria",
+        "description": "Cuánto de lo que el artículo afirma está anclado en material que el lector puede revisar por su cuenta. Nombrar una fuente sin apuntar a ella puntúa menos que citarla o enlazarla.",
+        "components": [
+          {
+            "label": "Informe nombrado sin enlace",
+            "direction": "positive",
+            "weight": 16,
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "note": null
+          }
+        ]
+      },
+      "framing_profile_id": "framing:andes-1"
+    },
+    {
+      "article": {
+        "id": "art:canalsur:1",
+        "url": null,
+        "headline": "Costo neto del paquete fiscal: 0,4% del PIB según el informe financiero",
+        "dek": "Hacienda detalló las partidas del proyecto.",
+        "publisher": {
+          "id": "src:demo-canal-sur-noticias",
+          "name": "Canal Sur Noticias"
+        },
+        "author": null,
+        "published_at": "2026-08-04T14:05:00Z",
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "language": "es-CL",
+        "article_type": "news_report",
+        "word_count": 310,
+        "neutral_summary": "Nota breve que reproduce la cifra de 0,4% del PIB y las dos citas de la vocería de Hacienda publicadas horas antes por otro medio, sin añadir fuentes ni verificación propia.",
+        "body_available": true,
+        "paywalled": false,
+        "claim_ids": [
+          "clm:1"
+        ],
+        "quotations": [
+          {
+            "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos.",
+            "speaker_role": "vocería de Hacienda",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 200,
+              "char_end": 315,
+              "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos."
+            },
+            "claim_id": "clm:1"
+          }
+        ],
+        "predictions": [],
+        "framing_profile_id": "framing:canalsur-1",
+        "impact_emphasis": [
+          {
+            "axis": "households_vs_firms",
+            "emphasis": 0.4,
+            "direction_emphasised": "positive",
+            "note": null
+          },
+          {
+            "axis": "central_vs_local",
+            "emphasis": 0.2,
+            "direction_emphasised": "positive",
+            "note": null
+          }
+        ],
+        "omitted_context": [
+          {
+            "statement": "La nota no indica que reproduce material publicado previamente por otro medio.",
+            "why_it_matters": "Un lector puede contar dos coberturas como dos observaciones independientes cuando son una sola.",
+            "evidence_refs": [
+              "ev:14"
+            ],
+            "materiality": "large"
+          }
+        ],
+        "primary_source_grounding": [
+          {
+            "ref": "ev:5",
+            "kind": "named_without_link",
+            "note": null
+          }
+        ],
+        "independence": "derivative",
+        "derived_from_article_id": "art:meridiano:1",
+        "cluster_ids": [
+          "cluster:1"
+        ],
+        "confidence": {
+          "evidence_confidence": 0.5,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "lowers",
+              "note": "El artículo se apoya en material de segunda mano."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "lowers",
+              "note": "El ítem reproduce otro y no aporta observación nueva."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético: ningún medio real publicó este texto."
+        }
+      },
+      "document_slug": "18216-05",
+      "document_title": "Paquete fiscal de demostración",
+      "framing_profile": {
+        "id": "framing:canalsur-1",
+        "article_id": "art:canalsur:1",
+        "profile_version": "aleph-framing/0.1.0",
+        "generated_at": "2026-08-07T12:00:00Z",
+        "dimensions": {
+          "selection_asymmetry": {
+            "score": 70,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Selección heredada del artículo de origen",
+                "direction": "negative",
+                "weight": 70,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Reproduce la selección de fuentes del original sin añadir ninguna."
+          },
+          "loaded_language": {
+            "score": 14,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin términos evaluativos identificados",
+                "direction": "none",
+                "weight": 14,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Registro neutro y breve."
+          },
+          "context_omission": {
+            "score": 66,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Omisión heredada sobre limitaciones del informe",
+                "direction": "negative",
+                "weight": 40,
+                "evidence_refs": [
+                  "ev:6"
+                ],
+                "note": null
+              },
+              {
+                "label": "Suprime el detalle de partidas del original",
+                "direction": "negative",
+                "weight": 26,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:6"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Hereda las omisiones del original y suprime además el detalle de las partidas."
+          },
+          "certainty_inflation": {
+            "score": 60,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "'Costo neto del paquete: 0,4%' como enunciado factual",
+                "direction": "negative",
+                "weight": 60,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El titular convierte la estimación en atributo del paquete."
+          },
+          "unsupported_causal_language": {
+            "score": 8,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Sin cadenas causales",
+                "direction": "none",
+                "weight": 8,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "No hay atribuciones causales."
+          },
+          "opinion_as_fact": {
+            "score": 18,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Cifra enunciada sin atribución en el titular",
+                "direction": "negative",
+                "weight": 18,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "La única afirmación en voz propia es la cifra."
+          },
+          "source_diversity": {
+            "score": 10,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Ninguna fuente original",
+                "direction": "negative",
+                "weight": -10,
+                "evidence_refs": [],
+                "note": null
+              },
+              {
+                "label": "Cita heredada de un punto de prensa",
+                "direction": "positive",
+                "weight": 20,
+                "evidence_refs": [
+                  "ev:14"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:14"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Cero fuentes propias."
+          },
+          "primary_source_grounding": {
+            "score": 20,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Informe nombrado sin enlace",
+                "direction": "positive",
+                "weight": 20,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.44,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Menciona el informe financiero sin enlazarlo ni citarlo."
+          }
+        },
+        "overall_note": "Léase el patrón, no un promedio: estas ocho cifras describen prácticas distintas y no deben colapsarse en un número de sesgo, que no existe en Aleph.",
+        "confidence": {
+          "evidence_confidence": 0.6,
+          "model_confidence": 0.68,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "neutral",
+              "note": "Se dispuso del cuerpo completo del artículo."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético; el perfil demuestra el método, no describe a ningún medio real."
+        },
+        "limitations": [
+          "El artículo pertenece a un conjunto sintético: el perfil no describe la práctica de ningún medio real.",
+          "Las dimensiones de grado (lenguaje cargado, inflación de certeza) dependen de juicios del analizador y no de una medición reproducible."
+        ]
+      },
+      "claim_count": 1,
+      "verdict_counts": {
+        "supported": 1,
+        "partially_supported": 0,
+        "unsupported": 0,
+        "contradicted": 0,
+        "unverifiable": 0,
+        "not_a_factual_claim": 0,
+        "forecast_conditional": 0
+      },
+      "cluster_id": "cluster:1",
+      "independent_source_count": 2,
+      "relative_time": "hace 2 días",
+      "cluster_label": "Costo fiscal neto del paquete según el informe financiero",
+      "topic": {
+        "id": "node:costo-fiscal-neto",
+        "label": "Costo fiscal neto del paquete"
+      },
+      "claim_ids": [
+        "clm:1"
+      ],
+      "beneficiary_emphasis": {
+        "score": 60,
+        "polarity": "neutral",
+        "label": "Énfasis en incidencia",
+        "description": "Cuánta atención del artículo recae sobre quién gana y quién paga. Es una descripción de la atención editorial, no un reproche: un artículo sobre finanzas municipales tiene razones legítimas para concentrarse en un eje.",
+        "components": [
+          {
+            "label": "Atención al eje households_vs_firms",
+            "direction": "positive",
+            "weight": 40,
+            "evidence_refs": [],
+            "note": null
+          },
+          {
+            "label": "Atención al eje central_vs_local",
+            "direction": "positive",
+            "weight": 20,
+            "evidence_refs": [],
+            "note": null
+          }
+        ]
+      },
+      "primary_grounding": {
+        "score": 20,
+        "polarity": "higher_is_better",
+        "label": "Anclaje en fuente primaria",
+        "description": "Cuánto de lo que el artículo afirma está anclado en material que el lector puede revisar por su cuenta. Nombrar una fuente sin apuntar a ella puntúa menos que citarla o enlazarla.",
+        "components": [
+          {
+            "label": "Informe nombrado sin enlace",
+            "direction": "positive",
+            "weight": 20,
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "note": null
+          }
+        ]
+      },
+      "framing_profile_id": "framing:canalsur-1"
+    },
+    {
+      "article": {
+        "id": "art:meridiano:1",
+        "url": null,
+        "headline": "El informe financiero cifra en 0,4% del PIB el costo neto del paquete",
+        "dek": "La vocería de Hacienda detalló las partidas en un punto de prensa y anunció el calendario del fondo municipal.",
+        "publisher": {
+          "id": "src:demo-diario-meridiano",
+          "name": "Diario Meridiano"
+        },
+        "author": "Redacción de economía",
+        "published_at": "2026-08-04T13:10:00Z",
+        "retrieved_at": "2026-08-07T09:00:00Z",
+        "language": "es-CL",
+        "article_type": "news_report",
+        "word_count": 640,
+        "neutral_summary": "El artículo informa que, según el informe financiero adjunto al proyecto, el costo fiscal neto del paquete asciende a 0,4% del PIB para 2027. Recoge además la afirmación de la vocería de Hacienda de que ningún hogar de los cuatro primeros deciles pagará más impuestos y de que las transferencias del fondo municipal comenzarán en el primer trimestre de 2027. No menciona la sección de limitaciones del informe.",
+        "body_available": true,
+        "paywalled": false,
+        "claim_ids": [
+          "clm:1",
+          "clm:4",
+          "clm:13"
+        ],
+        "quotations": [
+          {
+            "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos.",
+            "speaker_role": "vocería de Hacienda",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 200,
+              "char_end": 315,
+              "text": "El costo neto es de cuatro décimas del producto y ningún hogar de los primeros cuatro deciles pagará más impuestos."
+            },
+            "claim_id": "clm:1"
+          },
+          {
+            "text": "Las transferencias del fondo territorial comenzarán durante el primer trimestre de 2027.",
+            "speaker_role": "vocería de Hacienda",
+            "span": {
+              "page": null,
+              "section_id": null,
+              "char_start": 290,
+              "char_end": 378,
+              "text": "Las transferencias del fondo territorial comenzarán durante el primer trimestre de 2027."
+            },
+            "claim_id": "clm:13"
+          }
+        ],
+        "predictions": [
+          {
+            "text": "Las transferencias del fondo territorial comenzarán durante el primer trimestre de 2027.",
+            "speaker_role": "vocería de Hacienda",
+            "horizon": "short_term",
+            "conditions": [
+              "que el reglamento se dicte dentro del plazo de 180 días"
+            ],
+            "falsifiable": true,
+            "evaluable_after": "2027-04-01",
+            "claim_id": "clm:13"
+          }
+        ],
+        "framing_profile_id": "framing:meridiano-1",
+        "impact_emphasis": [
+          {
+            "axis": "households_vs_firms",
+            "emphasis": 0.35,
+            "direction_emphasised": "positive",
+            "note": null
+          },
+          {
+            "axis": "central_vs_local",
+            "emphasis": 0.3,
+            "direction_emphasised": "positive",
+            "note": null
+          },
+          {
+            "axis": "current_relief_vs_long_term_investment",
+            "emphasis": 0.2,
+            "direction_emphasised": "negative",
+            "note": null
+          }
+        ],
+        "omitted_context": [
+          {
+            "statement": "El informe financiero declara en su sección de limitaciones que no modela la respuesta de la inversión privada.",
+            "why_it_matters": "El costo neto informado podría ser mayor si esa respuesta es relevante, y el artículo presenta la cifra sin ese matiz.",
+            "evidence_refs": [
+              "ev:6"
+            ],
+            "materiality": "medium"
+          }
+        ],
+        "primary_source_grounding": [
+          {
+            "ref": "ev:5",
+            "kind": "named_without_link",
+            "note": null
+          },
+          {
+            "ref": "doc:18216-05",
+            "kind": "paraphrased",
+            "note": null
+          }
+        ],
+        "independence": "original_reporting",
+        "derived_from_article_id": null,
+        "cluster_ids": [
+          "cluster:1"
+        ],
+        "confidence": {
+          "evidence_confidence": 0.7,
+          "model_confidence": 0.72,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "raises",
+              "note": "El cuerpo del artículo estaba disponible y cita material primario."
+            },
+            {
+              "factor": "source_independence",
+              "effect": "neutral",
+              "note": "Observación original dentro del conjunto."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético: ningún medio real publicó este texto."
+        }
+      },
+      "document_slug": "18216-05",
+      "document_title": "Paquete fiscal de demostración",
+      "framing_profile": {
+        "id": "framing:meridiano-1",
+        "article_id": "art:meridiano:1",
+        "profile_version": "aleph-framing/0.1.0",
+        "generated_at": "2026-08-07T12:00:00Z",
+        "dimensions": {
+          "selection_asymmetry": {
+            "score": 62,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Tres citas de un único punto de prensa",
+                "direction": "negative",
+                "weight": 40,
+                "evidence_refs": [
+                  "ev:14"
+                ],
+                "note": null
+              },
+              {
+                "label": "Ninguna voz municipal ni gremial pese a que ambas habían intervenido",
+                "direction": "negative",
+                "weight": 22,
+                "evidence_refs": [
+                  "ev:15"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:14",
+              "ev:15"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El artículo recoge tres afirmaciones de una sola fuente y ninguna de las otras posiciones disponibles en el mismo período."
+          },
+          "loaded_language": {
+            "score": 18,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Uso de 'histórico' para calificar el fondo municipal",
+                "direction": "negative",
+                "weight": 18,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "El registro es descriptivo; el único término evaluativo es 'histórico' en la bajada."
+          },
+          "context_omission": {
+            "score": 58,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Silencio sobre la exclusión de la respuesta de inversión",
+                "direction": "negative",
+                "weight": 38,
+                "evidence_refs": [
+                  "ev:6"
+                ],
+                "note": null
+              },
+              {
+                "label": "No menciona que el fondo depende de un reglamento pendiente",
+                "direction": "negative",
+                "weight": 20,
+                "evidence_refs": [
+                  "ev:4"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:4",
+              "ev:6"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Omite la sección de limitaciones del informe, que es el contexto que más cambia la lectura de la cifra."
+          },
+          "certainty_inflation": {
+            "score": 64,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "'cifra en 0,4%' en lugar de 'estima en 0,4%'",
+                "direction": "negative",
+                "weight": 34,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              },
+              {
+                "label": "'comenzarán' sin condicional para el calendario del fondo",
+                "direction": "negative",
+                "weight": 30,
+                "evidence_refs": [
+                  "ev:4"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:4",
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Presenta una proyección con la gramática de un dato observado y un calendario condicional como un compromiso."
+          },
+          "unsupported_causal_language": {
+            "score": 12,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "Ausencia de cadenas causales no evidenciadas",
+                "direction": "none",
+                "weight": 12,
+                "evidence_refs": [],
+                "note": null
+              }
+            ],
+            "evidence_refs": [],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "No se atribuyen efectos a causas más allá de lo que el informe declara."
+          },
+          "opinion_as_fact": {
+            "score": 22,
+            "polarity": "lower_is_better",
+            "components": [
+              {
+                "label": "La bajada asume el calendario del fondo sin atribución",
+                "direction": "negative",
+                "weight": 22,
+                "evidence_refs": [
+                  "ev:4"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:4"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Las afirmaciones de la fuente aparecen atribuidas, salvo la bajada, que enuncia el calendario en voz propia."
+          },
+          "source_diversity": {
+            "score": 24,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Punto de prensa como fuente única",
+                "direction": "negative",
+                "weight": -20,
+                "evidence_refs": [
+                  "ev:14"
+                ],
+                "note": null
+              },
+              {
+                "label": "Referencia al informe financiero sin enlace",
+                "direction": "positive",
+                "weight": 24,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "ev:14",
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Una sola fuente original: el punto de prensa. El documento se parafrasea, no se cita."
+          },
+          "primary_source_grounding": {
+            "score": 48,
+            "polarity": "higher_is_better",
+            "components": [
+              {
+                "label": "Informe financiero nombrado sin enlace",
+                "direction": "positive",
+                "weight": 24,
+                "evidence_refs": [
+                  "ev:5"
+                ],
+                "note": null
+              },
+              {
+                "label": "Articulado parafraseado",
+                "direction": "positive",
+                "weight": 24,
+                "evidence_refs": [
+                  "doc:18216-05"
+                ],
+                "note": null
+              }
+            ],
+            "evidence_refs": [
+              "doc:18216-05",
+              "ev:5"
+            ],
+            "confidence": {
+              "evidence_confidence": 0.62,
+              "model_confidence": 0.68,
+              "basis": [
+                {
+                  "factor": "primary_source_coverage",
+                  "effect": "neutral",
+                  "note": "La medición se hace sobre el texto del artículo."
+                },
+                {
+                  "factor": "claim_ambiguity",
+                  "effect": "lowers",
+                  "note": "Varias dimensiones dependen de juicios de grado."
+                }
+              ],
+              "limiting_factor": "El texto analizado es sintético."
+            },
+            "rationale": "Nombra el informe financiero y parafrasea el articulado, pero no enlaza ni cita textualmente ninguno de los dos."
+          }
+        },
+        "overall_note": "Léase el patrón, no un promedio: estas ocho cifras describen prácticas distintas y no deben colapsarse en un número de sesgo, que no existe en Aleph.",
+        "confidence": {
+          "evidence_confidence": 0.6,
+          "model_confidence": 0.68,
+          "basis": [
+            {
+              "factor": "primary_source_coverage",
+              "effect": "neutral",
+              "note": "Se dispuso del cuerpo completo del artículo."
+            }
+          ],
+          "limiting_factor": "El artículo es sintético; el perfil demuestra el método, no describe a ningún medio real."
+        },
+        "limitations": [
+          "El artículo pertenece a un conjunto sintético: el perfil no describe la práctica de ningún medio real.",
+          "Las dimensiones de grado (lenguaje cargado, inflación de certeza) dependen de juicios del analizador y no de una medición reproducible."
+        ]
+      },
+      "claim_count": 3,
+      "verdict_counts": {
+        "supported": 1,
+        "partially_supported": 1,
+        "unsupported": 0,
+        "contradicted": 0,
+        "unverifiable": 0,
+        "not_a_factual_claim": 0,
+        "forecast_conditional": 1
+      },
+      "cluster_id": "cluster:1",
+      "independent_source_count": 2,
+      "relative_time": "hace 2 días",
+      "cluster_label": "Costo fiscal neto del paquete según el informe financiero",
+      "topic": {
+        "id": "node:costo-fiscal-neto",
+        "label": "Costo fiscal neto del paquete"
+      },
+      "claim_ids": [
+        "clm:1",
+        "clm:4",
+        "clm:13"
+      ],
+      "beneficiary_emphasis": {
+        "score": 65,
+        "polarity": "neutral",
+        "label": "Énfasis en incidencia",
+        "description": "Cuánta atención del artículo recae sobre quién gana y quién paga. Es una descripción de la atención editorial, no un reproche: un artículo sobre finanzas municipales tiene razones legítimas para concentrarse en un eje.",
+        "components": [
+          {
+            "label": "Atención al eje households_vs_firms",
+            "direction": "positive",
+            "weight": 35,
+            "evidence_refs": [],
+            "note": null
+          },
+          {
+            "label": "Atención al eje central_vs_local",
+            "direction": "positive",
+            "weight": 30,
+            "evidence_refs": [],
+            "note": null
+          }
+        ]
+      },
+      "primary_grounding": {
+        "score": 48,
+        "polarity": "higher_is_better",
+        "label": "Anclaje en fuente primaria",
+        "description": "Cuánto de lo que el artículo afirma está anclado en material que el lector puede revisar por su cuenta. Nombrar una fuente sin apuntar a ella puntúa menos que citarla o enlazarla.",
+        "components": [
+          {
+            "label": "Informe financiero nombrado sin enlace",
+            "direction": "positive",
+            "weight": 24,
+            "evidence_refs": [
+              "ev:5"
+            ],
+            "note": null
+          },
+          {
+            "label": "Articulado parafraseado",
+            "direction": "positive",
+            "weight": 24,
+            "evidence_refs": [
+              "doc:18216-05"
+            ],
+            "note": null
+          }
+        ]
+      },
+      "framing_profile_id": "framing:meridiano-1"
+    }
+  ]
+}

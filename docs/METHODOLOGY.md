@@ -69,6 +69,16 @@ pattern. It takes the blind result as frozen input and cannot alter the verdict 
 if it tries. This is what keeps prestige and political identity out of the factual layer while
 still allowing discourse analysis on top of it.
 
+Actor profiles also live only in this second stage. Roles and affiliations are recorded as sourced
+facts; declared interests require an official declaration; legal entries require a primary
+official record, explicit procedural status, and a presumption-of-innocence note while unresolved.
+The interface places this material behind a strong attributed-stage divider so it cannot be read
+as an explanation for a verdict.
+
+The profile's claim track record is not a reputation score. It is a count of Aleph's own blind
+verdicts, includes every underlying claim id and sample size, and always carries the warning that
+the sample is small, non-random, and non-predictive.
+
 There is one deliberate escape hatch: when the speaker's identity genuinely *is* the fact at issue
 ("did X say Y?"), identity must be requested explicitly. It is never restored by default.
 

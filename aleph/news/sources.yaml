@@ -1,0 +1,468 @@
+# Aleph source registry
+# ---------------------------------------------------------------------------
+# WHAT THIS FILE IS
+#
+# A description of sources Aleph may retrieve from: what kind of body publishes
+# each one, in what jurisdiction and language, at what address, and under what
+# crawl rules. It answers "what is this thing and how do we reach it".
+#
+# WHAT THIS FILE IS NOT
+#
+# It is NOT an assessment of how much any source should be believed. There is no
+# credibility score, no bias rating, no political-leaning field and no prestige
+# weight anywhere in this file, in `source_registry.json`, or in the loader — and
+# `aleph/news/registry.py` rejects the file outright if one appears, rather than
+# ignoring it. That absence is the design. A numeric trust weight attached to an
+# outlet would let institutional standing substitute for evidence and would
+# quietly turn every downstream verdict into a judgement about who was speaking.
+#
+# Two fields do describe evidential structure, and neither is a merit ranking:
+#   * `evidence_tier`        - what KIND of artefact this source produces, and
+#                              therefore what it can and cannot establish. A
+#                              legislature settles what was formally recorded,
+#                              not whether a projection will hold.
+#   * `typical_independence` - whether the source usually originates its own
+#                              material or republishes others'. It exists so that
+#                              ten outlets carrying one wire story are counted as
+#                              one observation rather than ten corroborations.
+#
+# HONESTY RULES OBSERVED HERE
+#
+#   * `verified: false` on every entry. Nothing in this file has been checked
+#     against the live web by this build. `verified` is an authoring key: the
+#     loader translates it to `last_verified_at` and never invents a timestamp.
+#   * `feeds: []` everywhere. No feed URL is invented. `scripts/verify_sources.py`
+#     is the separate, opt-in tool that discovers and writes them back; it is not
+#     run by CI and not called by the pipeline.
+#   * `base_url: null` where the address is not known with confidence. The loader
+#     records such an entry as UNRESOLVED and excludes it from retrieval instead
+#     of guessing a URL. Guessing would produce a plausible-looking source that
+#     silently returns nothing, which is worse than a declared gap.
+#   * `paywall: unknown` and `crawl_allowed: null` throughout. "Unknown" is not
+#     the same as "none" and not the same as "permitted"; only a live check may
+#     change either, and no live check has been run.
+#
+# STRUCTURE
+#
+# Entries are grouped under `jurisdictions:` purely for authoring convenience.
+# Each block supplies `jurisdiction` and `defaults` that are merged into every
+# entry beneath it (an entry always wins over the default). The loader flattens
+# this into the schema-native flat `sources:` list, so the grouping is ergonomics,
+# not a second data model. A flat `sources:` list is also accepted.
+#
+# Nothing in Aleph's library code branches on a jurisdiction key. Adding a country
+# means adding a block here; it never means editing Python. The `XX` block below
+# exists to demonstrate exactly that, using RFC 2606 `.example` domains that are
+# reserved for documentation and resolve nowhere.
+# ---------------------------------------------------------------------------
+
+schema_version: "1.0.0"
+registry_version: "2026-08-07.1"
+
+notes: >-
+  Starter registry. Every entry is unverified: no URL, feed, robots policy or
+  paywall status in this file has been confirmed against the live web by the
+  build that wrote it. Treat every field as a declaration of intent to retrieve,
+  not as a checked fact, until scripts/verify_sources.py has been run.
+
+# Conservative fallback politeness budget for entries that state none of their
+# own. A registry entry that gets Aleph blocked removes a source from every
+# future analysis, so the defaults are slow on purpose.
+default_rate_limit:
+  requests_per_minute: 10
+  min_interval_seconds: 6
+  max_concurrent: 1
+  backoff_seconds: 60
+  daily_request_cap: 500
+
+jurisdictions:
+
+  # -------------------------------------------------------------------------
+  # CL
+  #
+  # Institutional entries name only bodies whose existence and address this
+  # build is confident of. Where confidence was absent, `base_url` is null and
+  # the entry is flagged for verification rather than filled in with a guess.
+  # -------------------------------------------------------------------------
+  CL:
+    jurisdiction:
+      code: CL
+      name: Chile
+      level: national
+    defaults:
+      language: es-CL
+      enabled: true
+      verified: false
+      feeds: []
+      paywall: unknown
+      added_at: "2026-08-07"
+      robots_policy:
+        respect_robots: true
+        crawl_allowed: null
+        notes: >-
+          Not yet checked. Null means unchecked, which is not the same as
+          permitted; the fetcher must treat it as "do not crawl until checked".
+
+    sources:
+
+      # --- institutions: legislature ---------------------------------------
+      - id: src:cl-camara-diputados
+        name: Cámara de Diputadas y Diputados
+        kind: legislature
+        base_url: https://www.camara.cl/
+        evidence_tier: legislative_record
+        typical_independence: original_reporting
+        topics: [legislation, legislative_procedure, committee_reports]
+        notes: >-
+          Lower chamber of the national legislature. Establishes what was
+          formally introduced, debated, amended and voted; establishes nothing
+          about whether a projection in a bill will hold.
+
+      - id: src:cl-senado
+        name: Senado de la República
+        kind: legislature
+        base_url: https://www.senado.cl/
+        evidence_tier: legislative_record
+        typical_independence: original_reporting
+        topics: [legislation, legislative_procedure, committee_reports]
+
+      - id: src:cl-bcn
+        name: Biblioteca del Congreso Nacional
+        kind: legislature
+        base_url: https://www.bcn.cl/
+        evidence_tier: primary_document
+        typical_independence: original_reporting
+        topics: [legislation, consolidated_law, legislative_history]
+        notes: >-
+          Publishes consolidated statutory texts and legislative histories. Tier
+          is primary_document because the artefact retrieved is the text of an
+          instrument itself, not a report about it.
+
+      # --- institutions: official journal ----------------------------------
+      - id: src:cl-diario-oficial
+        name: Diario Oficial de la República de Chile
+        kind: government_body
+        base_url: https://www.diariooficial.interior.gob.cl/
+        evidence_tier: primary_document
+        typical_independence: original_reporting
+        topics: [official_gazette, promulgation, regulation]
+        notes: >-
+          Official journal of record. Establishes that a text was promulgated on
+          a given date in a given form; establishes nothing about its effects.
+
+      # --- institutions: actor-profile official records -------------------
+      - id: src:cl-infoprobidad
+        name: InfoProbidad
+        kind: government_body
+        base_url: https://www.infoprobidad.cl/
+        evidence_tier: primary_document
+        typical_independence: original_reporting
+        topics: [declarations_of_interest, asset_declarations, public_integrity]
+        notes: >-
+          Official public portal operated by the Consejo para la Transparencia
+          and Contraloría for declarations of interests and assets. Retrieved
+          declarations may populate actor profiles only in the attributed stage;
+          they are never evidence for or against a claim's factual verdict.
+
+      - id: src:cl-poder-judicial
+        name: Poder Judicial de Chile
+        kind: government_body
+        base_url: https://www.pjud.cl/
+        evidence_tier: primary_document
+        typical_independence: original_reporting
+        topics: [judicial_records, court_decisions, case_status]
+        notes: >-
+          Entry point for the official case consultation, document-verification
+          and unified judgments services. A legal-record item requires a direct
+          primary-record URL and explicit procedural status; this registry entry
+          alone is never sufficient to create one.
+
+      # --- institutions: budget office -------------------------------------
+      - id: src:cl-budget-office
+        name: Dirección de Presupuestos
+        kind: government_body
+        base_url: https://www.dipres.gob.cl/
+        evidence_tier: official_technical_report
+        typical_independence: original_reporting
+        topics: [public_finance, budget, fiscal_reports, financial_reports]
+        notes: >-
+          National budget office. Its financial reports establish what the
+          executive's own costing assumed and projected — which is a fact about
+          the projection, never a fact about the outcome.
+
+      # --- institutions: statistics ----------------------------------------
+      - id: src:cl-ine
+        name: Instituto Nacional de Estadísticas
+        kind: statistics_agency
+        base_url: https://www.ine.gob.cl/
+        evidence_tier: statistical_dataset
+        typical_independence: original_reporting
+        topics: [statistics, labour, prices, population, housing]
+        notes: >-
+          National statistics institute. Establishes measured quantities within
+          the stated methodology and reference period, and nothing outside them.
+
+      # --- institutions: central bank --------------------------------------
+      - id: src:cl-banco-central
+        name: Banco Central de Chile
+        kind: government_body
+        base_url: https://www.bcentral.cl/
+        evidence_tier: statistical_dataset
+        typical_independence: original_reporting
+        topics: [monetary_policy, national_accounts, statistics, exchange_rates]
+        notes: >-
+          Central bank. Tier reflects the artefact Aleph most often retrieves —
+          the published statistical series. Its policy reports are
+          official_technical_report material and should be recorded as separate
+          evidence items when used as such.
+
+      # --- institutions: address not confidently known ---------------------
+      - id: src:cl-audit-office
+        name: Contraloría General de la República
+        # NEEDS VERIFICATION. This build is not confident which host serves the
+        # national audit office's public site, so no URL is written. The entry is
+        # kept because the BODY is a known and relevant source of official
+        # technical reports; scripts/verify_sources.py must resolve and write the
+        # address before anything can be retrieved from it. Until then the loader
+        # reports this as unresolved and no retrieval is attempted.
+        base_url: null
+        kind: government_body
+        evidence_tier: official_technical_report
+        typical_independence: original_reporting
+        enabled: false
+        topics: [audit, public_administration, legality_review]
+
+      # --- news outlets -----------------------------------------------------
+      #
+      # Listed because they exist and publish in scope, which is a fact about
+      # coverage. Listing is not endorsement and carries no weight: nothing
+      # downstream may rank an item because of which of these carried it.
+      # `typical_independence: unknown` until measured — Aleph derives real
+      # independence per story in aleph/news/independence.py, from the text,
+      # rather than assuming it from the masthead.
+      - id: src:cl-adnradio
+        name: ADN Radio
+        kind: news_outlet
+        base_url: https://www.adnradio.cl/
+        evidence_tier: journalism
+        typical_independence: unknown
+        topics: [news, politics, economy]
+
+      - id: src:cl-biobiochile
+        name: BioBioChile
+        kind: news_outlet
+        base_url: https://www.biobiochile.cl/
+        evidence_tier: journalism
+        typical_independence: unknown
+        topics: [news, politics, economy, regional]
+
+      - id: src:cl-cooperativa
+        name: Cooperativa
+        kind: news_outlet
+        base_url: https://www.cooperativa.cl/
+        evidence_tier: journalism
+        typical_independence: unknown
+        topics: [news, politics, economy]
+
+      - id: src:cl-latercera
+        name: La Tercera
+        kind: news_outlet
+        base_url: https://www.latercera.com/
+        evidence_tier: journalism
+        typical_independence: unknown
+        topics: [news, politics, economy, business]
+
+      - id: src:cl-ciper
+        name: CIPER Chile
+        kind: news_outlet
+        base_url: https://www.ciperchile.cl/
+        evidence_tier: journalism
+        typical_independence: unknown
+        topics: [investigative, public_administration, long_form]
+        notes: >-
+          Investigative and long-form. Tier remains journalism: the amount of
+          work behind a piece is not a tier, and Aleph must not promote an
+          artefact class because a source is held in high regard. What the extra
+          work produces — quoted primary documents, named datasets — is picked up
+          per item by primary_source_grounding, where it belongs.
+
+      - id: src:cl-elpais-chile
+        name: El País (Chile)
+        kind: news_outlet
+        base_url: https://elpais.com/chile/actualidad/
+        evidence_tier: journalism
+        typical_independence: unknown
+        language: es-ES
+        additional_languages: [es-CL]
+        topics: [news, politics, economy]
+        notes: >-
+          Section of an international outlet. Language differs from the block
+          default, which matters for near-duplicate detection: a translated
+          syndication is still a syndication.
+
+      - id: src:cl-cnnchile
+        name: CNN Chile
+        kind: news_outlet
+        base_url: https://www.cnnchile.com/
+        evidence_tier: journalism
+        typical_independence: unknown
+        topics: [news, politics, economy, broadcast]
+
+      - id: src:cl-meganoticias
+        name: Meganoticias
+        kind: news_outlet
+        base_url: https://www.meganoticias.cl/
+        evidence_tier: journalism
+        typical_independence: unknown
+        topics: [news, politics, broadcast]
+
+      - id: src:cl-t13
+        name: T13
+        kind: news_outlet
+        base_url: https://www.t13.cl/
+        evidence_tier: journalism
+        typical_independence: unknown
+        topics: [news, politics, economy, broadcast]
+
+  # -------------------------------------------------------------------------
+  # XX — TEMPLATE, NOT A COUNTRY
+  #
+  # `XX` is an ISO 3166-1 user-assigned code, permanently reserved and never a
+  # real state; the hosts are `.example`, reserved by RFC 2606 and guaranteed not
+  # to resolve. This block exists to prove that Aleph is jurisdiction-parameterised
+  # rather than built around one country: adding a jurisdiction is adding a block
+  # here, and requires no change to any Python module, schema or frontend
+  # component. Copy it, replace the code, name and addresses, and the same
+  # filtering, clustering, independence and ranking code applies unchanged.
+  #
+  # The institutional roles below are the ones every analysis wants first,
+  # regardless of country: who makes the law, where the law is published, who
+  # costs it, who measures the economy, and who reports on all of it.
+  # -------------------------------------------------------------------------
+  XX:
+    jurisdiction:
+      code: XX
+      name: Example Jurisdiction (template, not a real country)
+      level: national
+    defaults:
+      language: en
+      enabled: false          # a template must never be retrieved from
+      verified: false
+      feeds: []
+      paywall: unknown
+      added_at: "2026-08-07"
+      robots_policy:
+        respect_robots: true
+        crawl_allowed: null
+
+    sources:
+      - id: src:xx-legislature
+        name: National Legislature (template)
+        kind: legislature
+        base_url: https://legislature.example/
+        evidence_tier: legislative_record
+        typical_independence: original_reporting
+        topics: [legislation, legislative_procedure]
+        notes: >-
+          Whoever formally records introduction, debate, amendment and votes.
+
+      - id: src:xx-official-journal
+        name: Official Journal (template)
+        kind: government_body
+        base_url: https://gazette.example/
+        evidence_tier: primary_document
+        typical_independence: original_reporting
+        topics: [official_gazette, promulgation]
+        notes: >-
+          Whoever publishes the authoritative text of an instrument as enacted.
+
+      - id: src:xx-budget-office
+        name: Budget Office (template)
+        kind: government_body
+        base_url: https://budget.example/
+        evidence_tier: official_technical_report
+        typical_independence: original_reporting
+        topics: [public_finance, budget, costing]
+
+      - id: src:xx-statistics-agency
+        name: National Statistics Agency (template)
+        kind: statistics_agency
+        base_url: https://statistics.example/
+        evidence_tier: statistical_dataset
+        typical_independence: original_reporting
+        topics: [statistics, labour, prices, population]
+
+      - id: src:xx-central-bank
+        name: Central Bank (template)
+        kind: government_body
+        base_url: https://centralbank.example/
+        evidence_tier: statistical_dataset
+        typical_independence: original_reporting
+        topics: [monetary_policy, national_accounts]
+
+      - id: src:xx-audit-office
+        name: Audit Office (template — address unknown)
+        # Demonstrates the honest-gap mechanism: a body known to exist and to be
+        # relevant, whose address this file does not claim to know. The loader
+        # reports it as unresolved and it is never retrieved from. Copying a
+        # plausible-looking URL here instead would produce a source that silently
+        # returns nothing while appearing to have been consulted.
+        base_url: null
+        kind: government_body
+        evidence_tier: official_technical_report
+        typical_independence: original_reporting
+        topics: [audit, public_administration]
+
+      - id: src:xx-news-national
+        name: National Daily (template)
+        kind: news_outlet
+        base_url: https://daily.example/
+        evidence_tier: journalism
+        typical_independence: unknown
+        topics: [news, politics, economy]
+
+      - id: src:xx-news-wire
+        name: News Agency (template)
+        kind: news_outlet
+        base_url: https://agency.example/
+        evidence_tier: journalism
+        typical_independence: original_reporting
+        topics: [news, wire]
+        notes: >-
+          A wire service originates copy that many outlets republish verbatim.
+          Recording it here is what lets the independence analysis collapse forty
+          republications back to the one observation they all are.
+
+      - id: src:xx-news-aggregator
+        name: News Aggregator (template)
+        kind: aggregator
+        base_url: https://aggregator.example/
+        evidence_tier: journalism
+        typical_independence: aggregated
+        topics: [news]
+        notes: >-
+          Contributes coverage volume and no independent observation whatsoever.
+
+      - id: src:xx-research-institute
+        name: Research Institute (template)
+        kind: academic
+        base_url: https://research.example/
+        evidence_tier: peer_reviewed
+        typical_independence: original_reporting
+        topics: [economics, public_policy]
+        notes: >-
+          Tier peer_reviewed describes the artefact class — work that passed
+          external review — not the institution's standing. Non-reviewed output
+          from the same body is expert_analysis and must be recorded as such.
+
+      - id: src:xx-civil-society
+        name: Civil Society Organisation (template)
+        kind: ngo
+        base_url: https://civilsociety.example/
+        evidence_tier: expert_analysis
+        typical_independence: original_reporting
+        topics: [public_policy, advocacy]
+        ownership_note: >-
+          Factual, public-record disclosure of funding or ownership goes here so
+          a reader can weigh a possible interest for themselves. Aleph never
+          converts this string into a score and never lets it move a verdict.

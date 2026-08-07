@@ -126,6 +126,9 @@ jobs:
       - name: Committed static data matches its schema
         run: python scripts/validate_data.py
 
+      - name: Design tokens retain semantic and contrast safeguards
+        run: python scripts/validate_design_tokens.py
+
   # ---------------------------------------------------------------------------
   frontend:
     name: Frontend lint, typecheck and build

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Aleph — redirigiendo</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' x='4' font-size='26' font-family='serif'%3E%D7%90%3C/text%3E%3C/svg%3E"
+    />
+    <style>
+      /* System colours only: this file is served outside the app's token layer,
+         and a hard-coded palette here would be the one place the light/dark
+         contract could drift. */
+      html {
+        background: Canvas;
+        color: CanvasText;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        font-size: 0.9375rem;
+        line-height: 1.6;
+      }
+      main {
+        max-width: 34rem;
+      }
+      .mark {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+      h1 {
+        font-size: 1.25rem;
+        margin: 0.75rem 0 0.5rem;
+      }
+      p {
+        margin: 0 0 0.75rem;
+        opacity: 0.85;
+      }
+      a {
+        color: inherit;
+      }
+    </style>
+    <script>
+      /*
+       * GitHub Pages has no SPA rewrite: any path below the site root returns
+       * this file. Aleph routes on the hash, so the fix is to preserve the
+       * requested path and re-enter the app at the equivalent hash route —
+       * /Aleph/documento/18216-05 becomes /Aleph/#/documento/18216-05.
+       *
+       * `location.replace` is used so the 404 never enters the back stack.
+       */
+      ;(function () {
+        try {
+          var REPO_BASE = '/Aleph/'
+          var loc = window.location
+          var path = loc.pathname || '/'
+          var base = path.indexOf(REPO_BASE) === 0 ? REPO_BASE : '/'
+          var route = path
+            .slice(base.length)
+            .replace(/^\/+/, '')
+            .replace(/(^|\/)index\.html$/, '')
+          var target = loc.origin + base + (loc.search || '')
+          if (route) {
+            target += '#/' + route
+          } else if (loc.hash && loc.hash !== '#') {
+            target += loc.hash
+          } else {
+            target += '#/'
+          }
+          loc.replace(target)
+        } catch (e) {
+          /* Scripting blocked — the link below still works. */
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <main>
+      <p class="mark" aria-hidden="true">א</p>
+      <h1>Redirigiendo…</h1>
+      <p>
+        Esta dirección no corresponde a un archivo del sitio. Te estamos llevando a la ruta
+        equivalente dentro de Aleph.
+      </p>
+      <p><a href="/Aleph/#/">Ir al inicio de Aleph</a></p>
+      <noscript>
+        <p>
+          Necesitas JavaScript para usar Aleph. Puedes ir directamente a
+          <a href="/Aleph/#/">la portada</a>.
+        </p>
+      </noscript>
+    </main>
+  </body>
+</html>

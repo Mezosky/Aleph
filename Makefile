@@ -84,8 +84,9 @@ fmt:
 # A schema that does not compile is an unenforced contract, so this checks the
 # schemas themselves before validating any instance against them.
 schemas:
-	@$(PY) -c 'import glob, json, sys; from jsonschema import Draft202012Validator as V; fs = sorted(glob.glob("schemas/*.json")); sys.exit("no schemas found under schemas/") if not fs else None; [V.check_schema(json.load(open(f, encoding="utf-8"))) for f in fs]; print("{} schema(s) compile as Draft 2020-12".format(len(fs)))'
+	$(PY) scripts/validate_schemas.py
 	$(PY) scripts/validate_data.py
+	$(PY) scripts/validate_design_tokens.py
 
 # ---------------------------------------------------------------------------
 data:

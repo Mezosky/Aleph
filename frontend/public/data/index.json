@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "data_status": "synthetic",
+  "generated_at": "2026-08-07T12:00:00Z",
+  "notice": "Conjunto de datos SINTETICO. Ningun texto, cifra, cita, medio ni declaracion de este conjunto corresponde a una persona, un organismo o una publicacion real. Fue generado para demostrar la interfaz de Aleph y no constituye un analisis de ninguna reforma real.",
+  "featured": "18216-05",
+  "analyses": [
+    {
+      "slug": "18216-05",
+      "title": "Paquete fiscal de demostración",
+      "short_title": "Paquete fiscal de demostración",
+      "subtitle": "Articulado e informe financiero: sobretasa transitoria, transferencia a hogares, fondo de inversión municipal y una regla de gasto.",
+      "summary": "El proyecto combina medidas de ingresos (una sobretasa transitoria sobre utilidades de grandes empresas, una rebaja del impuesto de timbres para empresas pequeñas y un crédito a la inversión en activo fijo) con medidas de gasto (una transferencia mensual a hogares de los cuatro primeros deciles, un fondo de inversión municipal y una extensión del seguro de cesantía), más una regla de crecimiento del gasto corriente y un procedimiento ambiental abreviado para infraestructura pública.",
+      "document_type": "bill",
+      "jurisdiction": "Chile",
+      "institution": "poder ejecutivo (rol genérico; ningún organismo real está representado)",
+      "language": "es-CL",
+      "status": "in_committee",
+      "data_status": "synthetic",
+      "generated_at": "2026-08-07T12:00:00Z",
+      "published_at": "2026-05-12",
+      "readiness_state": "partial",
+      "readiness_score": 60,
+      "publishable": false,
+      "counts": {
+        "provisions": 10,
+        "propositions": 14,
+        "claims": 14,
+        "evidence": 16,
+        "articles": 9,
+        "clusters": 4,
+        "contradictions": 2
+      },
+      "path": "reforms/18216-05.json",
+      "state": "published",
+      "last_analysed": "2026-08-07T12:00:00Z",
+      "claims_path": "claims/18216-05.json",
+      "evidence_path": "evidence/18216-05.json"
+    },
+    {
+      "slug": "presupuesto-demo-2027",
+      "title": "Ley de presupuestos de demostración 2027",
+      "short_title": null,
+      "subtitle": "Segundo caso de demostración. Todavía sin analizar: la recuperación bajo demanda mantiene apagada toda búsqueda hasta que se pida explícitamente.",
+      "summary": null,
+      "document_type": "budget",
+      "jurisdiction": "Chile",
+      "institution": null,
+      "language": "es-CL",
+      "status": "unknown",
+      "data_status": "synthetic",
+      "generated_at": "2026-08-07T12:00:00Z",
+      "published_at": null,
+      "readiness_state": "insufficient",
+      "readiness_score": 0,
+      "publishable": false,
+      "counts": {
+        "provisions": 0,
+        "propositions": 0,
+        "claims": 0,
+        "evidence": 0,
+        "articles": 0,
+        "clusters": 0,
+        "contradictions": 0
+      },
+      "path": null,
+      "state": "coming_soon",
+      "last_analysed": null,
+      "claims_path": null,
+      "evidence_path": null
+    }
+  ],
+  "news": {
+    "path": "news/latest.json",
+    "article_count": 9,
+    "latest_published_at": "2026-08-06T19:45:00Z"
+  }
+}

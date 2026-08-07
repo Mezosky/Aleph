@@ -127,6 +127,12 @@ Stage two restores provenance to analyse framing and rhetorical consistency, and
 `BlindEvaluation` as *frozen input*. A guard raises if the attributed stage tries to alter the
 verdict.
 
+Actor profiles are an additional attributed-stage compartment. `aleph/actors/guard.py` is a
+runtime tripwire at the entrance to `evaluate_blind()`: passing an `ActorProfile`, an
+`ActorProfileSet`, or any other value instead of `RedactedClaimContext` raises
+`NeutralityViolationError` before a check runs. Track records are derived only by grouping verdicts
+already stored under `blind_evaluation`; roles and official records never enter that aggregation.
+
 The escape hatch — when the speaker's identity genuinely *is* the fact at issue ("did X say Y?") —
 must be requested deliberately and is never the default.
 
@@ -240,6 +246,11 @@ for field. Changing the shape of the product means changing that schema first.
 Ids are stable and human-readable (`doc:`, `prov:`, `clm:`, `ev:`, `art:`, `cluster:`…), and
 export is deterministic — sorted keys, stable ordering, unchanged files left untouched — so a
 refresh run produces a clean, reviewable diff rather than noise.
+
+The live upload service initially returns a warm-stage `PipelineResult`, not a fabricated full
+analysis bundle. Without evidence retrieval its readiness is `insufficient`, `publishable` is
+false, evidence and news phases are marked skipped, and no claim verdict is produced. Complete
+`AnalysisBundle` objects are the curated/export boundary consumed by static mode.
 
 ---
 

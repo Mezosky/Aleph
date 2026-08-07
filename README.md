@@ -62,12 +62,19 @@ list. Click any number and you get the derivation, the counter-evidence, and the
 
 ## Quick start
 
+The build contract is Python 3.12 and Node 22 (pinned in `.python-version`,
+`.nvmrc`, Docker, and CI). Python 3.11–3.13 remain supported by the package;
+3.12 is the reproducible build and deployment target. Frontend dependencies are
+locked by `package-lock.json`.
+
 ```bash
 # Backend + tests, no credentials and no network required
 python -m venv .venv && . .venv/bin/activate
 pip install -e '.[api,dev]'
 pytest                                    # runs fully offline against MockProvider
 python scripts/validate_schemas.py        # JSON Schema contract check
+python scripts/validate_data.py           # committed bundle + referential checks
+python scripts/validate_design_tokens.py  # light/dark semantic colour contract
 
 # Frontend
 cd frontend && npm install && npm run dev
@@ -89,10 +96,9 @@ from aleph.llm import get_provider
 
 bundle = run_analysis("path/to/document.pdf", provider=get_provider("mock"))
 
-print(bundle.readiness.overall_state)      # insufficient | partial | ready
-print(len(bundle.propositions))
-for axis, a in bundle.impact_map.axes.items():
-    print(axis, a.score, [c.label for c in a.components])   # never a bare number
+print(bundle.readiness.overall_state)      # insufficient until retrieval runs
+print(len(bundle.propositions.propositions))
+print([phase.state for phase in bundle.phases])
 ```
 
 ---
@@ -109,11 +115,12 @@ aleph/          the library — document-agnostic; no jurisdiction logic anywher
   news/         warm 5-6 · source registry, clustering, independence analysis
   evidence/     evidence store, relevance-based ranking (no prestige weighting)
   claims/       extraction, fact/forecast classification, redaction, evaluation
+  actors/       attributed-only profiles, blind-path tripwire, track records
   framing/      the eight framing dimensions
   impact/       seven policy axes, beneficiary and cost-bearer maps
   neutrality/   six perturbations, runner, metrics
   llm/          LLMProvider · QwenProvider · MockProvider
-  export/       AnalysisBundle assembly, static site export
+  export/       deterministic JSON export and contract validation
 api/            FastAPI analysis service
 schemas/        JSON Schema — the contract between backend and frontend
 frontend/       React · TypeScript · Vite · Tailwind
