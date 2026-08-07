@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/proposition.json",
+  "title": "Aleph Propositions (warm phase: proposition_extraction)",
+  "description": "The set of atomic propositions extracted from one document by warm phase 2. A proposition is the smallest self-contained statement the document makes - one subject, one predicate, no conjunctions, no pronouns pointing outside itself. Decomposition to this level is the point: a compound sentence like 'the levy rises and small firms are exempt' can be half true, and a system that checks it as a unit will report a single misleading verdict. Two rules are structural rather than advisory. First, provenance with a verbatim span is REQUIRED: a proposition Aleph cannot quote back to the source is not a proposition Aleph may publish, so the schema makes an unquotable proposition invalid rather than merely low-confidence. Second, negation and scope are separate fields rather than left inside the sentence, because 'X does not apply before 2028' and 'X applies' differ by exactly the qualifier that free text loses first.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "document_id": {
+      "$ref": "common.json#/$defs/id",
+      "pattern": "^doc:[A-Za-z0-9._:-]+$",
+      "description": "The document these propositions were extracted from."
+    },
+    "generated_at": {
+      "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }]
+    },
+    "extractor": {
+      "type": ["string", "null"],
+      "description": "Identifier and version of the component that produced this set, so a change of extractor invalidates rather than silently alters the record."
+    },
+    "propositions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/proposition" }
+    },
+    "coverage": { "$ref": "#/$defs/coverage" },
+    "notes": { "type": ["string", "null"] }
+  },
+  "required": ["document_id", "propositions"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "grounded_provenance": {
+      "type": "object",
+      "description": "Provenance that MUST carry a span, and therefore a verbatim quotable passage. This is the enforcement point for Aleph's traceability rule: extraction that cannot point at text is discarded, not downgraded.",
+      "allOf": [
+        { "$ref": "common.json#/$defs/provenance" },
+        {
+          "required": ["span"],
+          "properties": {
+            "span": { "$ref": "common.json#/$defs/span" }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+
+    "negation": {
+      "type": "object",
+      "description": "Explicit record of whether the proposition asserts or denies. Held as structured data because negation is the single most fragile thing in paraphrase, and a dropped 'not' inverts a verdict.",
+      "properties": {
+        "is_negated": { "type": "boolean" },
+        "negated_element": {
+          "type": ["string", "null"],
+          "description": "What exactly is denied - the predicate, a quantity, an exception - since scope of negation changes meaning."
+        },
+        "cue_text": {
+          "type": ["string", "null"],
+          "description": "The verbatim negation cue as it appears in the source."
+        }
+      },
+      "required": ["is_negated"],
+      "additionalProperties": false
+    },
+
+    "scope": {
+      "type": "object",
+      "description": "The qualifiers that bound where, when, to whom and under what conditions the proposition holds. Kept apart from the text so that a later check can ask 'is this true within its stated scope?' instead of the unanswerable 'is this true?'. Empty fields mean the document stated no limit, NOT that the proposition is universal.",
+      "properties": {
+        "temporal": {
+          "type": ["string", "null"],
+          "description": "Time bound as stated, e.g. 'from the third fiscal year after entry into force'."
+        },
+        "geographic": { "type": ["string", "null"] },
+        "population": {
+          "type": ["string", "null"],
+          "description": "Who the proposition applies to, in the document's own terms."
+        },
+        "conditions": {
+          "type": "array",
+          "description": "Conditions that must hold, verbatim. A conditional proposition asserted unconditionally is a different proposition.",
+          "items": { "type": "string" }
+        },
+        "exceptions": {
+          "type": "array",
+          "description": "Stated carve-outs. Dropping one of these is the most common way a true summary becomes false.",
+          "items": { "type": "string" }
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+
+    "proposition": {
+      "type": "object",
+      "description": "One atomic, self-contained statement made by the document.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "pattern": "^prop:[A-Za-z0-9._:-]+$"
+        },
+        "text": {
+          "type": "string",
+          "description": "The proposition stated once, atomically and self-containedly: no 'and'/'or' joining two assertions, no pronoun whose referent lives in another sentence. It may be a light normalisation of the source wording, but the source wording itself is preserved in provenance.span.text so any drift is auditable.",
+          "minLength": 1
+        },
+        "proposition_type": {
+          "type": "string",
+          "description": "What kind of statement this is, which determines how it may be checked. 'assertion_of_content' says what the document contains or does and is checkable against the document itself. 'quantitative' carries a number and is checkable arithmetically or against data. 'temporal' fixes a date or sequence. 'procedural' describes a process. 'conditional' holds only if its antecedent holds and must never be reported as an unconditional claim. 'definitional' is true by stipulation within the document and is not an empirical claim at all. 'assumption' is an input the document takes as given - it is the yardstick a forecast is judged against, not a fact about the world.",
+          "enum": [
+            "assertion_of_content",
+            "quantitative",
+            "temporal",
+            "procedural",
+            "conditional",
+            "definitional",
+            "assumption"
+          ]
+        },
+        "statement_type": {
+          "oneOf": [{ "$ref": "common.json#/$defs/statement_type" }, { "type": "null" }],
+          "description": "Optional bridge to the shared fact/interpretation/forecast/opinion/normative vocabulary used downstream when the proposition becomes a checkable claim."
+        },
+        "subject": {
+          "type": ["string", "null"],
+          "description": "The entity the proposition is about, normalised enough to be matched against topic-graph nodes."
+        },
+        "predicate_summary": {
+          "type": ["string", "null"],
+          "description": "What is asserted about the subject, in a few words. Used for grouping near-duplicate propositions and for building edges; never shown in place of the full text."
+        },
+        "object": {
+          "type": ["string", "null"],
+          "description": "The affected entity or value, when the proposition is relational."
+        },
+        "quantities": {
+          "type": "array",
+          "description": "Numeric values carried by this proposition, with verbatim source text so a transcription error is visible rather than inherited.",
+          "items": { "$ref": "common.json#/$defs/quantity" }
+        },
+        "money": {
+          "type": "array",
+          "description": "Monetary values carried by this proposition. Always structured amounts with currency, scale and year - never bare numbers, because an unlabelled figure cannot be compared or checked.",
+          "items": { "$ref": "common.json#/$defs/money" }
+        },
+        "provenance": {
+          "$ref": "#/$defs/grounded_provenance",
+          "description": "REQUIRED. Where the proposition came from, including the verbatim passage. A proposition with no quotable passage is invalid."
+        },
+        "derived_from_provision_id": {
+          "oneOf": [
+            { "$ref": "common.json#/$defs/id", "pattern": "^prov:[A-Za-z0-9._:-]+$" },
+            { "type": "null" }
+          ],
+          "description": "The provision this proposition decomposes. Null when the proposition comes from narrative, a recital or a table rather than an operative provision."
+        },
+        "derived_from_section_id": { "type": ["string", "null"] },
+        "confidence": {
+          "oneOf": [{ "$ref": "common.json#/$defs/confidence" }, { "type": "null" }],
+          "description": "Confidence in the extraction itself - that the document says this, atomically and in this scope. Not confidence that the proposition is true of the world."
+        },
+        "negation": { "$ref": "#/$defs/negation" },
+        "scope": { "$ref": "#/$defs/scope" },
+        "modality": {
+          "type": ["string", "null"],
+          "description": "The force with which the document states this. Distinguishing 'shall' from 'may' from 'is expected to' is the difference between a duty, a discretion and a projection; collapsing them misreports the instrument.",
+          "enum": [
+            "asserted",
+            "obligatory",
+            "permissive",
+            "prohibitive",
+            "conditional",
+            "hypothetical",
+            "reported",
+            "proposed",
+            null
+          ]
+        },
+        "hedges": {
+          "type": "array",
+          "description": "Verbatim hedging expressions present in the source ('approximately', 'is expected to'). Preserved because removing a hedge inflates certainty, which Aleph measures as a framing failure elsewhere.",
+          "items": { "type": "string" }
+        },
+        "is_atomic": {
+          "type": "boolean",
+          "description": "Extractor's assertion that no further decomposition is possible. False flags a proposition that still bundles two claims and must not be sent to single-verdict evaluation."
+        },
+        "is_self_contained": {
+          "type": "boolean",
+          "description": "True when the text is interpretable without its surrounding sentences. False means unresolved references remain and the proposition must not be quoted standalone."
+        },
+        "related_proposition_ids": {
+          "type": "array",
+          "description": "Other propositions this one qualifies, contradicts or elaborates.",
+          "items": { "$ref": "common.json#/$defs/id", "pattern": "^prop:" }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Free descriptive labels for retrieval and grouping. Not a classification with any evaluative meaning.",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["id", "text", "proposition_type", "provenance"],
+      "additionalProperties": false
+    },
+
+    "coverage": {
+      "type": "object",
+      "description": "How much of the document the extraction actually reached. Published so that silence about a section is visible as a gap rather than read as an absence of content.",
+      "properties": {
+        "provisions_total": { "type": ["integer", "null"], "minimum": 0 },
+        "provisions_with_propositions": { "type": ["integer", "null"], "minimum": 0 },
+        "sections_not_processed": {
+          "type": "array",
+          "description": "Section ids skipped, e.g. unreadable annexes.",
+          "items": { "type": "string" }
+        },
+        "note": { "type": ["string", "null"] }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  }
+}

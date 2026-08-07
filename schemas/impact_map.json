@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/impact_map.json",
+  "title": "Aleph Impact Map",
+  "description": "Where a document's identified effects fall along seven fixed policy axes, and which groups those effects reach. THESE AXES DESCRIBE POLICY EFFECTS. THEY ARE NOT PARTY LABELS, NOT ideological placements, and they must never be summed, averaged or projected onto a single left-right dimension — Aleph does not emit such a number and any consumer that manufactures one is misusing this schema. A position on 'redistribution_vs_growth' says which mechanisms the text contains, not who supports it: the same score is compatible with any political sponsorship. A SCORE IS MEANINGLESS WITHOUT ITS COMPONENTS. The number is a summary of the components array, and the components — each naming a specific provision and its signed contribution — are the actual finding. An interface that shows the dial without letting a reader open it is showing an assertion, not an analysis. The second half of the map, beneficiaries and cost_bearers, records who gains and who pays, always with the evidence quality and the time horizon attached, because 'firms benefit' with insufficient evidence over an unknown horizon is a very different statement from the same phrase backed by a costing report.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "generated_at": { "$ref": "common.json#/$defs/timestamp" },
+    "document_id": {
+      "$ref": "common.json#/$defs/id",
+      "description": "The document whose effects are mapped, prefixed 'doc:'."
+    },
+    "map_version": {
+      "type": "string",
+      "description": "Version of the impact analyser. Axis placement is model-dependent and is only interpretable alongside the version that produced it.",
+      "minLength": 1
+    },
+    "axes": {
+      "$ref": "#/$defs/axes",
+      "description": "Exactly seven fixed axes, always all present."
+    },
+    "beneficiaries": {
+      "type": "array",
+      "description": "Groups the document's provisions are estimated to advantage. A group appears here on the strength of a mechanism in the text plus evidence, never on the strength of who is politically associated with it.",
+      "items": { "$ref": "#/$defs/group_impact" }
+    },
+    "cost_bearers": {
+      "type": "array",
+      "description": "Groups estimated to bear the cost. The same group may appear in both lists with different provisions, horizons or magnitudes, and that is a finding rather than a contradiction.",
+      "items": { "$ref": "#/$defs/group_impact" }
+    },
+    "method_note": {
+      "type": ["string", "null"],
+      "description": "How the axes were derived: which provisions were considered, how component weights were assigned, what was excluded. Required reading before any score is quoted."
+    },
+    "uncertainties": {
+      "type": "array",
+      "description": "What the map cannot settle — unmodelled behavioural responses, provisions whose effect depends on implementing regulation not yet written.",
+      "items": { "$ref": "common.json#/$defs/uncertainty" }
+    }
+  },
+  "required": ["schema_version", "data_status", "generated_at", "document_id", "axes", "beneficiaries", "cost_bearers"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "axis_key": {
+      "type": "string",
+      "title": "Impact Axis Key",
+      "description": "One of Aleph's seven fixed policy-effect axes. The set is fixed so two documents are always described along the same dimensions, and so no axis can be invented to flatter a conclusion. Negative always means the first-named pole.",
+      "enum": [
+        "households_vs_firms",
+        "redistribution_vs_growth",
+        "public_vs_private_provision",
+        "worker_protection_vs_flexibility",
+        "environment_vs_project_acceleration",
+        "central_vs_local",
+        "current_relief_vs_long_term_investment"
+      ]
+    },
+
+    "axis": {
+      "type": "object",
+      "title": "Impact Axis",
+      "description": "A single bipolar placement with everything needed to audit it. The score is -100..+100 where negative means the negative_label pole and positive means the positive_label pole; a score near zero may mean balanced effects OR offsetting effects OR no relevant provisions, which is why the rationale and components are required and the score alone is never sufficient. This is a description of effects found in a text, not a political classification of anyone.",
+      "properties": {
+        "score": {
+          "$ref": "common.json#/$defs/bipolar_score",
+          "description": "-100..+100 along this axis. Negative is the negative_label pole. Not a party position and not comparable across axes."
+        },
+        "negative_label": {
+          "type": "string",
+          "description": "Plain-language name of the negative pole, the first-named half of the axis key, e.g. 'households' for households_vs_firms. Required so an interface never has to guess which end is which.",
+          "minLength": 1
+        },
+        "positive_label": {
+          "type": "string",
+          "description": "Plain-language name of the positive pole, the second-named half of the axis key, e.g. 'firms' for households_vs_firms.",
+          "minLength": 1
+        },
+        "components": {
+          "type": "array",
+          "description": "The provisions that produced this score, each with a signed weight in the axis's own units and the evidence behind it. This array IS the finding; the score is only its summary. A score published without components is not an Aleph result.",
+          "items": { "$ref": "common.json#/$defs/component" },
+          "minItems": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "description": "Evidence items and provisions supporting the placement.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "confidence": {
+          "$ref": "common.json#/$defs/confidence",
+          "description": "Evidence-derived confidence in the placement, kept separate from model self-report. Low confidence must be shown next to the score, not hidden behind it."
+        },
+        "rationale": {
+          "type": "string",
+          "description": "Why the effects fall where they do, written so a reader can dispute a specific component rather than the number as a whole.",
+          "minLength": 1
+        }
+      },
+      "required": ["score", "negative_label", "positive_label", "components", "evidence_refs", "confidence", "rationale"],
+      "additionalProperties": false
+    },
+
+    "axes": {
+      "type": "object",
+      "title": "The Seven Impact Axes",
+      "description": "Exactly these seven keys, always all present, never aggregated. additionalProperties:false means no eighth axis and, critically, no summary 'political position' field can be added here.",
+      "properties": {
+        "households_vs_firms": {
+          "$ref": "#/$defs/axis",
+          "description": "Whether the identified effects accrue mainly to households (negative) or to firms (positive). Says nothing about whether either is desirable."
+        },
+        "redistribution_vs_growth": {
+          "$ref": "#/$defs/axis",
+          "description": "Whether provisions work mainly by changing the distribution of resources (negative) or by changing incentives to produce and invest (positive). Many texts do both; the score reflects the net of the identified components, and the components show the mix."
+        },
+        "public_vs_private_provision": {
+          "$ref": "#/$defs/axis",
+          "description": "Whether a service or function is moved toward public provision (negative) or private provision (positive)."
+        },
+        "worker_protection_vs_flexibility": {
+          "$ref": "#/$defs/axis",
+          "description": "Whether employment rules are tightened toward protection (negative) or loosened toward flexibility (positive)."
+        },
+        "environment_vs_project_acceleration": {
+          "$ref": "#/$defs/axis",
+          "description": "Whether environmental safeguards are strengthened (negative) or approval and execution of projects is accelerated (positive)."
+        },
+        "central_vs_local": {
+          "$ref": "#/$defs/axis",
+          "description": "Whether authority, revenue or discretion moves toward central government (negative) or toward regional and local bodies (positive)."
+        },
+        "current_relief_vs_long_term_investment": {
+          "$ref": "#/$defs/axis",
+          "description": "Whether resources are directed at immediate relief (negative) or at capacity built over a longer horizon (positive)."
+        }
+      },
+      "required": [
+        "households_vs_firms",
+        "redistribution_vs_growth",
+        "public_vs_private_provision",
+        "worker_protection_vs_flexibility",
+        "environment_vs_project_acceleration",
+        "central_vs_local",
+        "current_relief_vs_long_term_investment"
+      ],
+      "additionalProperties": false
+    },
+
+    "group_impact": {
+      "type": "object",
+      "title": "Group Impact",
+      "description": "One group and how a document's provisions are estimated to reach it. evidence_quality is required and is deliberately the same vocabulary as everywhere else in Aleph: an 'insufficient' entry is a legitimate and informative result, and must be displayed as such rather than dropped for looking weak. direct_or_indirect matters because an effect running through three behavioural steps is a much softer finding than a statutory transfer, even when both are real.",
+      "properties": {
+        "group": {
+          "type": "string",
+          "description": "The affected group. Open vocabulary: the listed values are the canonical set and should be preferred, but jurisdictions have groups Aleph cannot enumerate in advance, so other snake_case values are permitted. Use 'specific_industry' with group_detail rather than inventing an industry key.",
+          "minLength": 1,
+          "examples": [
+            "low_income_households",
+            "middle_income_households",
+            "high_income_households",
+            "workers",
+            "pensioners",
+            "students",
+            "municipalities",
+            "smes",
+            "large_companies",
+            "foreign_investors",
+            "domestic_investors",
+            "property_owners",
+            "renters",
+            "central_government",
+            "regional_governments",
+            "future_taxpayers",
+            "environment",
+            "specific_industry"
+          ]
+        },
+        "group_detail": {
+          "type": ["string", "null"],
+          "description": "Narrowing qualifier, required in practice when group is 'specific_industry' or another open value, e.g. 'small-scale fishing operators'."
+        },
+        "estimated_direction": {
+          "$ref": "common.json#/$defs/direction",
+          "description": "Sign of the effect on this group. 'mixed' and 'uncertain' are first-class answers and must not be rounded to positive or negative for presentational tidiness."
+        },
+        "magnitude": {
+          "$ref": "common.json#/$defs/magnitude",
+          "description": "Coarse size of the effect. Deliberately coarse: a precise figure would overstate what the evidence supports."
+        },
+        "evidence_quality": {
+          "$ref": "common.json#/$defs/evidence_strength",
+          "description": "How much the assembled evidence can bear for THIS group's effect. A property of the evidence-question pair, not of the prestige of whoever estimated it."
+        },
+        "time_horizon": {
+          "$ref": "common.json#/$defs/time_horizon",
+          "description": "When the effect is expected to be felt. A large long-term effect and a large immediate one are not interchangeable."
+        },
+        "direct_or_indirect": {
+          "$ref": "common.json#/$defs/causality",
+          "description": "Whether the effect follows straight from a provision or through intermediate behaviour. Indirect effects depend on assumptions that must be listed in uncertainties."
+        },
+        "supporting_evidence": {
+          "type": "array",
+          "description": "Evidence items and provisions behind this entry. An entry with an empty array must carry evidence_quality 'insufficient'.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "rationale": {
+          "type": "string",
+          "description": "The mechanism, stated concretely: which provision reaches this group and how.",
+          "minLength": 1
+        },
+        "uncertainties": {
+          "type": "array",
+          "description": "Assumptions the estimate depends on and what would overturn it.",
+          "items": { "$ref": "common.json#/$defs/uncertainty" }
+        },
+        "money": {
+          "type": ["array", "null"],
+          "description": "Quantified transfer or cost where a source states one, always structured with currency, scale and reference year. Null or empty when no source quantifies it — never an invented figure.",
+          "items": { "$ref": "common.json#/$defs/money" }
+        },
+        "confidence": { "$ref": "common.json#/$defs/confidence" }
+      },
+      "required": [
+        "group",
+        "estimated_direction",
+        "magnitude",
+        "evidence_quality",
+        "time_horizon",
+        "direct_or_indirect",
+        "supporting_evidence",
+        "rationale"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

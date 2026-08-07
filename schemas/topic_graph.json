@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/topic_graph.json",
+  "title": "Aleph Topic Graph (warm phase: topic_graph)",
+  "description": "The entities a document touches and the relations it asserts between them, produced by warm phase 3. The graph exists to make the middle of an argument inspectable. A sentence like 'this measure helps small firms' hides three separate steps - which provision, through what mechanism, on which group - and once hidden, none of them can be checked. Splitting it into typed nodes and typed edges forces each step to be stated and cited. Three constraints follow from Aleph's rules. (1) Every edge carries evidence_refs and a 'basis' saying whether the document asserted the relation or Aleph inferred it; an inferred edge may never be displayed as something the document said. (2) Effects are recorded as direction plus a coarse magnitude, never as a scalar political position - there is no left-right axis anywhere in this file. (3) The 'person_role' node kind holds ROLES ('finance ministry spokesperson'), not individuals, so that nothing downstream can key a factual judgement to a named person or party.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "document_id": {
+      "$ref": "common.json#/$defs/id",
+      "pattern": "^doc:[A-Za-z0-9._:-]+$"
+    },
+    "generated_at": {
+      "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }]
+    },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    },
+    "stats": { "$ref": "#/$defs/stats" },
+    "notes": { "type": ["string", "null"] }
+  },
+  "required": ["document_id", "nodes", "edges"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "attribute": {
+      "type": "object",
+      "description": "One typed key/value fact about a node. Modelled as a list of pairs rather than a free-form map so that every field in an Aleph payload remains declared and closed.",
+      "properties": {
+        "key": { "type": "string" },
+        "value": { "type": "string" },
+        "source_ref": {
+          "type": ["string", "null"],
+          "description": "Provision or evidence id this attribute was read from."
+        }
+      },
+      "required": ["key", "value"],
+      "additionalProperties": false
+    },
+
+    "node": {
+      "type": "object",
+      "description": "One entity the document touches.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "pattern": "^node:[A-Za-z0-9._:-]+$"
+        },
+        "kind": {
+          "type": "string",
+          "description": "What sort of thing this node is. Types are kept coarse and structural so that the graph works for any jurisdiction. 'person_role' is deliberately a ROLE, never a named individual: Aleph's factual path must be structurally unable to see personal identity, and a graph node holding a person's name would defeat that. 'fiscal_effect' is a node rather than an edge attribute because several provisions can converge on one budgetary consequence. 'provision' nodes anchor the graph back to the document text.",
+          "enum": [
+            "policy",
+            "person_role",
+            "institution",
+            "company",
+            "sector",
+            "social_group",
+            "tax",
+            "right",
+            "benefit",
+            "obligation",
+            "fiscal_effect",
+            "region",
+            "date",
+            "provision"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "description": "Display name, in the document's own terms where possible."
+        },
+        "aliases": {
+          "type": "array",
+          "description": "Other surface forms for this entity. Feeds retrieval: coverage of an entity is routinely published under a name the document never uses.",
+          "items": { "type": "string" }
+        },
+        "description": {
+          "type": ["string", "null"],
+          "description": "Neutral description of the entity. Descriptive only - no evaluation of the entity's conduct or standing."
+        },
+        "salience": {
+          "oneOf": [{ "$ref": "common.json#/$defs/unit_interval" }, { "type": "null" }],
+          "description": "How central this entity is to the document, by frequency and position. A ranking aid for the UI, not a judgement of importance in the world."
+        },
+        "provision_ids": {
+          "type": "array",
+          "description": "Provisions that mention or act on this entity.",
+          "items": { "$ref": "common.json#/$defs/id", "pattern": "^prov:" }
+        },
+        "proposition_ids": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id", "pattern": "^prop:" }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "description": "Ids of evidence items or provisions establishing that this entity is in scope.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "mentions": {
+          "type": "array",
+          "description": "Located passages where the entity appears, so a reader can jump from the graph to the text.",
+          "items": { "$ref": "common.json#/$defs/span" }
+        },
+        "attributes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/attribute" }
+        },
+        "external_ids": {
+          "type": "array",
+          "description": "Identifiers for this entity in outside registers (company register, statistical classification). Enables joining to external data without hard-coding any particular register.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "scheme": { "type": "string" },
+              "value": { "type": "string" }
+            },
+            "required": ["scheme", "value"],
+            "additionalProperties": false
+          }
+        },
+        "confidence": {
+          "oneOf": [{ "$ref": "common.json#/$defs/confidence" }, { "type": "null" }],
+          "description": "Confidence that this entity was correctly identified and resolved, not that it matters."
+        }
+      },
+      "required": ["id", "kind", "label"],
+      "additionalProperties": false
+    },
+
+    "edge": {
+      "type": "object",
+      "description": "One asserted relation between two nodes. An edge is a claim in miniature and is held to the same standard: it names its evidence, says whether the document made it or Aleph inferred it, and reports effect size only as coarsely as the evidence permits.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "pattern": "^edge:[A-Za-z0-9._:-]+$"
+        },
+        "kind": {
+          "type": "string",
+          "description": "The relation asserted. 'assumes' is included because a policy that depends on an assumed behaviour (take-up, compliance, a price path) has a load-bearing link that ordinary impact vocabularies omit, and that link is exactly what fails first. 'benefits'/'costs' record a directional effect on a party; they are statements about incidence, not endorsements.",
+          "enum": [
+            "benefits",
+            "costs",
+            "regulates",
+            "funds",
+            "taxes",
+            "replaces",
+            "modifies",
+            "restricts",
+            "expands",
+            "assumes",
+            "affects",
+            "depends_on"
+          ]
+        },
+        "source": {
+          "$ref": "common.json#/$defs/id",
+          "pattern": "^node:[A-Za-z0-9._:-]+$",
+          "description": "Id of the node the relation runs FROM. Edges are directed: 'A taxes B' and 'B taxes A' are different claims."
+        },
+        "target": {
+          "$ref": "common.json#/$defs/id",
+          "pattern": "^node:[A-Za-z0-9._:-]+$",
+          "description": "Id of the node the relation runs TO."
+        },
+        "label": {
+          "type": ["string", "null"],
+          "description": "Short plain-language rendering of the relation for display."
+        },
+        "basis": {
+          "type": "string",
+          "description": "Where the relation comes from. 'document_explicit' - the text states it. 'document_implicit' - it follows from the text's own terms. 'inferred' - Aleph derived it from external evidence or reasoning. The UI MUST distinguish these; presenting an inferred edge as something the document said would misattribute Aleph's reasoning to the source.",
+          "enum": ["document_explicit", "document_implicit", "inferred", "external_evidence"]
+        },
+        "direction": {
+          "oneOf": [{ "$ref": "common.json#/$defs/direction" }, { "type": "null" }],
+          "description": "Sign of the effect on the target, where a sign is meaningful. Null for relations with no natural sign (e.g. 'replaces')."
+        },
+        "magnitude": {
+          "oneOf": [{ "$ref": "common.json#/$defs/magnitude" }, { "type": "null" }],
+          "description": "Coarse size of the effect. Deliberately coarse: a numeric edge weight here would assert a precision the underlying text does not support."
+        },
+        "time_horizon": {
+          "oneOf": [{ "$ref": "common.json#/$defs/time_horizon" }, { "type": "null" }]
+        },
+        "causality": {
+          "oneOf": [{ "$ref": "common.json#/$defs/causality" }, { "type": "null" }],
+          "description": "Whether the effect is direct or runs through an intermediate step. An indirect effect stated as direct is a standard overclaim."
+        },
+        "mechanism": {
+          "type": ["string", "null"],
+          "description": "How the relation is supposed to work. Without a stated mechanism an effect edge is unfalsifiable, so this should be filled whenever direction is set."
+        },
+        "quantity": {
+          "oneOf": [{ "$ref": "common.json#/$defs/quantity" }, { "type": "null" }],
+          "description": "A measured size for the relation when the source actually gives one."
+        },
+        "money": {
+          "oneOf": [{ "$ref": "common.json#/$defs/money" }, { "type": "null" }]
+        },
+        "conditions": {
+          "type": "array",
+          "description": "Conditions under which the relation holds. An unconditional rendering of a conditional relation overstates the document.",
+          "items": { "type": "string" }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "description": "Ids of provisions, propositions or evidence items supporting this edge. An empty list is permitted only with basis 'inferred', and consumers should render such an edge as provisional.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "provenance": {
+          "oneOf": [{ "$ref": "common.json#/$defs/provenance" }, { "type": "null" }]
+        },
+        "confidence": {
+          "oneOf": [{ "$ref": "common.json#/$defs/confidence" }, { "type": "null" }],
+          "description": "Confidence in the relation. Evidence confidence leads; model confidence is diagnostic and must never be shown as though it filled an evidence gap."
+        },
+        "note": { "type": ["string", "null"] }
+      },
+      "required": ["id", "kind", "source", "target", "evidence_refs"],
+      "additionalProperties": false
+    },
+
+    "stats": {
+      "type": "object",
+      "description": "Summary counts for the graph, so the UI can describe coverage without walking every edge.",
+      "properties": {
+        "node_count": { "type": ["integer", "null"], "minimum": 0 },
+        "edge_count": { "type": ["integer", "null"], "minimum": 0 },
+        "inferred_edge_count": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "How many edges Aleph inferred rather than read. A graph that is mostly inferred is a hypothesis, and should be labelled as one."
+        },
+        "unsupported_edge_count": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Edges with no evidence_refs."
+        },
+        "isolated_node_count": { "type": ["integer", "null"], "minimum": 0 }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  }
+}

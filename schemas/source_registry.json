@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/source_registry.json",
+  "title": "Aleph Source Registry",
+  "description": "The registry of sources Aleph may retrieve from. It is a description of what each source IS - what kind of body publishes it, under whose ownership, in what jurisdiction, at what URLs, under what crawl rules - and deliberately not an assessment of how much any source should be believed. There is NO credibility score, NO bias rating and NO political-leaning field anywhere in this schema, and additionalProperties is false so one cannot be added by accident. That absence is the design: a numeric trust weight attached to an outlet would let institutional standing substitute for evidence, and would quietly turn every downstream verdict into a judgement about who was speaking rather than about what is the case. What the registry does carry is 'evidence_tier' (what kind of artefact this source produces, and therefore what it can establish) and 'typical_independence' (whether it usually originates reporting or republishes it), both of which describe evidential structure rather than merit. 'ownership_note' is factual and public-record only - who owns or funds the outlet - so a reader can see a possible interest for themselves; Aleph never converts it into a score. The file is fully jurisdiction-parameterised: no jurisdiction, language or institution is privileged by the schema, and adding a country means adding data, not code.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "generated_at": {
+      "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }]
+    },
+    "registry_version": {
+      "type": ["string", "null"],
+      "description": "Version label for this registry snapshot, so a retrieval run can be reproduced against the source list it actually used."
+    },
+    "default_rate_limit": {
+      "oneOf": [{ "$ref": "#/$defs/rate_limit" }, { "type": "null" }],
+      "description": "Fallback politeness settings for entries that do not state their own."
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source_entry" }
+    },
+    "notes": { "type": ["string", "null"] }
+  },
+  "required": ["sources"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "jurisdiction": {
+      "type": "object",
+      "description": "Where the source operates. Free parameters: library code must never branch on a particular jurisdiction.",
+      "properties": {
+        "code": { "type": ["string", "null"], "description": "Short machine code where one exists (e.g. an ISO 3166 code)." },
+        "name": { "type": ["string", "null"] },
+        "level": {
+          "type": "string",
+          "enum": ["supranational", "national", "subnational", "municipal", "sectoral", "unknown"]
+        }
+      },
+      "required": ["level"],
+      "additionalProperties": false
+    },
+
+    "feed": {
+      "type": "object",
+      "description": "One machine-readable entry point for a source. Feeds are listed separately from base_url because polling a declared feed is both more complete and less intrusive than crawling a site, and because a source with no feed must be handled - and reported - differently.",
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "format": {
+          "type": "string",
+          "enum": ["rss", "atom", "sitemap", "api", "json", "html_index"]
+        },
+        "label": {
+          "type": ["string", "null"],
+          "description": "What this feed covers, e.g. 'economy section', 'official gazette daily index'."
+        },
+        "language": { "type": ["string", "null"], "description": "BCP-47 tag, when the feed is language-specific." },
+        "topic_hint": {
+          "type": ["string", "null"],
+          "description": "Subject area the feed is scoped to. A hint for routing queries, not a filter on what may be collected."
+        },
+        "auth_required": {
+          "type": "boolean",
+          "description": "True when the feed needs credentials. Credentials themselves are NEVER stored in this file or in any shipped artefact; they come from the environment at run time."
+        },
+        "enabled": { "type": "boolean" }
+      },
+      "required": ["url", "format"],
+      "additionalProperties": false
+    },
+
+    "robots_policy": {
+      "type": "object",
+      "description": "How Aleph must behave towards this host. Recorded per source so that compliance is a property of the data, not of whoever wrote the fetcher.",
+      "properties": {
+        "respect_robots": {
+          "type": "boolean",
+          "description": "Must be true in normal operation. A false value is only meaningful for a source that has granted explicit written permission, and that permission belongs in 'notes'."
+        },
+        "robots_url": { "type": ["string", "null"], "format": "uri" },
+        "crawl_allowed": {
+          "type": ["boolean", "null"],
+          "description": "Last observed outcome of the robots check. Null means not yet checked - which is not the same as permitted."
+        },
+        "terms_url": { "type": ["string", "null"], "format": "uri" },
+        "user_agent": {
+          "type": ["string", "null"],
+          "description": "Identifying user agent Aleph presents to this host."
+        },
+        "notes": { "type": ["string", "null"] }
+      },
+      "required": ["respect_robots"],
+      "additionalProperties": false
+    },
+
+    "rate_limit": {
+      "type": "object",
+      "description": "Politeness budget for this source. Conservative defaults are preferred: a registry entry that gets Aleph blocked removes a source from every future analysis.",
+      "properties": {
+        "requests_per_minute": { "type": ["number", "null"], "minimum": 0 },
+        "min_interval_seconds": { "type": ["number", "null"], "minimum": 0 },
+        "max_concurrent": { "type": ["integer", "null"], "minimum": 1 },
+        "backoff_seconds": { "type": ["number", "null"], "minimum": 0 },
+        "daily_request_cap": { "type": ["integer", "null"], "minimum": 0 }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+
+    "source_entry": {
+      "type": "object",
+      "description": "One retrievable source. Every field here answers 'what is this thing and how do we reach it', never 'how much is it worth'.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "pattern": "^src:[A-Za-z0-9._:-]+$"
+        },
+        "name": { "type": "string", "description": "The source's own name." },
+        "kind": {
+          "type": "string",
+          "description": "What sort of organisation publishes this. Determines which generated queries are routed here and which evidence gaps the source can close - a statistics agency and a news outlet answer different questions, and neither is a substitute for the other.",
+          "enum": [
+            "news_outlet",
+            "government_body",
+            "statistics_agency",
+            "legislature",
+            "academic",
+            "ngo",
+            "aggregator"
+          ]
+        },
+        "jurisdiction": { "$ref": "#/$defs/jurisdiction" },
+        "base_url": { "type": "string", "format": "uri" },
+        "feeds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/feed" }
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary publication language, BCP-47."
+        },
+        "additional_languages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "evidence_tier": {
+          "$ref": "common.json#/$defs/evidence_tier",
+          "description": "The kind of artefact this source typically produces, which constrains what it can establish. NOT a ranking: a legislative record settles what was formally recorded but not whether a projection will hold, and a journalism item is strong evidence of what was said and weak evidence of what is true."
+        },
+        "ownership_note": {
+          "type": ["string", "null"],
+          "description": "Factual, public-record statement of ownership or funding, e.g. 'owned by a listed media group' or 'funded by member subscriptions'. Nullable, and null means unknown rather than independent. This is disclosure for the reader to weigh; Aleph MUST NOT convert it into a trust score or use it to weight a verdict."
+        },
+        "typical_independence": {
+          "$ref": "common.json#/$defs/independence",
+          "description": "Whether this source usually originates its own reporting or republishes others'. Structural, not evaluative: it exists so that ten outlets carrying one wire story are counted as one observation rather than ten corroborations."
+        },
+        "robots_policy": { "$ref": "#/$defs/robots_policy" },
+        "rate_limit": { "$ref": "#/$defs/rate_limit" },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether Aleph may retrieve from this source. Disabling is an operational decision (broken feed, blocked, out of scope) and must never be used to exclude a viewpoint."
+        },
+        "topics": {
+          "type": "array",
+          "description": "Subject areas the source covers, for query routing.",
+          "items": { "type": "string" }
+        },
+        "paywall": {
+          "type": ["string", "null"],
+          "enum": ["none", "metered", "hard", "registration", "unknown", null],
+          "description": "Access barrier. Operationally important: an unreachable source is a coverage gap that readiness must report rather than absorb."
+        },
+        "added_at": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }]
+        },
+        "last_verified_at": {
+          "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }],
+          "description": "When the entry's URLs and feeds were last confirmed to work."
+        },
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Operational notes only: feed quirks, encoding issues, granted permissions. Not commentary on the source's content or standing."
+        }
+      },
+      "required": ["id", "name", "kind", "jurisdiction", "base_url", "language", "evidence_tier", "typical_independence", "enabled"],
+      "additionalProperties": false,
+      "$comment": "The 'not' clause below is a redundant but deliberate guard: additionalProperties already rejects unknown fields, and this makes the prohibition on trust/bias scoring explicit and self-documenting to anyone extending the registry.",
+      "not": {
+        "anyOf": [
+          { "required": ["credibility"] },
+          { "required": ["credibility_score"] },
+          { "required": ["bias"] },
+          { "required": ["bias_score"] },
+          { "required": ["bias_rating"] },
+          { "required": ["leaning"] },
+          { "required": ["political_leaning"] },
+          { "required": ["political_alignment"] },
+          { "required": ["reliability_score"] },
+          { "required": ["trust_score"] },
+          { "required": ["prestige"] },
+          { "required": ["authority_score"] }
+        ]
+      }
+    }
+  }
+}

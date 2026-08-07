@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * ALEPH DESIGN TOKENS
+ *
+ * One rule governs colour in this product: colour encodes EPISTEMIC STATUS —
+ * how strong the evidence is, what kind of statement something is, which side
+ * of a policy axis an effect falls on. Colour never encodes a political side.
+ * There is deliberately no red-vs-blue anywhere, and the diverging ramp used
+ * for the impact axes is teal-vs-orange precisely so it cannot be read as a
+ * party colour.
+ *
+ * Consequently the UI chrome is monochrome: ink, hairlines and paper. Every
+ * saturated colour on the page belongs to a data mark or a status chip, so
+ * when a reader sees colour it always means something.
+ *
+ * All ramps below were validated (lightness band, chroma floor, colour-vision
+ * separation, adjacent step spacing, contrast vs surface) in both modes.
+ * Do not hand-edit a hex here without re-running that validation.
+ */
+
+@layer base {
+  :root {
+    color-scheme: light;
+
+    /* Surfaces */
+    --surface-page: #f9f9f7;
+    --surface-card: #fcfcfb;
+    --surface-raised: #ffffff;
+    --surface-sunken: #f0efec;
+
+    /* Ink */
+    --ink-primary: #0b0b0b;
+    --ink-secondary: #52514e;
+    --ink-muted: #898781;
+    --ink-inverse: #fcfcfb;
+
+    /* Lines */
+    --line-hairline: #e1e0d9;
+    --line-strong: #c3c2b7;
+    --line-ring: rgba(11, 11, 11, 0.1);
+
+    /* Diverging ramp — impact axes. NEGATIVE arm = teal, POSITIVE arm = orange.
+       These name poles of a policy-effect axis, never a political side. */
+    --div-neg-4: #007a6e;
+    --div-neg-3: #239184;
+    --div-neg-2: #47a79d;
+    --div-neg-1: #6dbcb3;
+    --div-mid: #f0efec;
+    --div-pos-1: #eda37a;
+    --div-pos-2: #e2814f;
+    --div-pos-3: #c96227;
+    --div-pos-4: #a8461a;
+
+    /* Sequential ramp — magnitude of a 0-100 framing score. */
+    --seq-1: #86b6ef;
+    --seq-2: #5598e7;
+    --seq-3: #2a78d6;
+    --seq-4: #1c5cab;
+
+    /* Status — evidence/verdict state. Always shipped with an icon AND a label:
+       warning and serious sit below 3:1 on paper by design, so colour alone
+       never carries the meaning. */
+    --status-good: #0ca30c;
+    --status-warning: #fab219;
+    --status-serious: #ec835a;
+    --status-critical: #d03b3b;
+    --status-neutral: #898781;
+
+    /* Categorical — outlet identity in cross-coverage comparisons.
+       Fixed order, assigned in sequence, never cycled. */
+    --cat-1: #2a78d6;
+    --cat-2: #eb6834;
+    --cat-3: #1baf7a;
+    --cat-4: #eda100;
+    --cat-5: #e87ba4;
+    --cat-6: #008300;
+    --cat-7: #4a3aa7;
+    --cat-8: #e34948;
+
+    /* Chart chrome */
+    --grid-line: #e1e0d9;
+    --axis-line: #c3c2b7;
+  }
+
+  .dark {
+    color-scheme: dark;
+
+    --surface-page: #0d0d0d;
+    --surface-card: #1a1a19;
+    --surface-raised: #232322;
+    --surface-sunken: #141413;
+
+    --ink-primary: #ffffff;
+    --ink-secondary: #c3c2b7;
+    --ink-muted: #898781;
+    --ink-inverse: #0b0b0b;
+
+    --line-hairline: #2c2c2a;
+    --line-strong: #383835;
+    --line-ring: rgba(255, 255, 255, 0.1);
+
+    /* Dark steps are re-selected for the dark surface, not an automatic flip. */
+    --div-neg-4: #0f8478;
+    --div-neg-3: #2ba79a;
+    --div-neg-2: #52c4b9;
+    --div-neg-1: #82d8cf;
+    --div-mid: #383835;
+    --div-pos-1: #f0a273;
+    --div-pos-2: #e07a3c;
+    --div-pos-3: #c85e21;
+    --div-pos-4: #a8461a;
+
+    --seq-1: #184f95;
+    --seq-2: #256abf;
+    --seq-3: #3987e5;
+    --seq-4: #86b6ef;
+
+    --status-good: #0ca30c;
+    --status-warning: #fab219;
+    --status-serious: #ec835a;
+    --status-critical: #d03b3b;
+    --status-neutral: #898781;
+
+    --cat-1: #3987e5;
+    --cat-2: #d95926;
+    --cat-3: #199e70;
+    --cat-4: #c98500;
+    --cat-5: #d55181;
+    --cat-6: #008300;
+    --cat-7: #9085e9;
+    --cat-8: #e66767;
+
+    --grid-line: #2c2c2a;
+    --axis-line: #383835;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--surface-page);
+    color: var(--ink-primary);
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-feature-settings: 'kern';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ink-based focus ring: the UI chrome stays monochrome so that saturated
+     colour continues to mean "this is data". */
+  :focus-visible {
+    outline: 2px solid var(--ink-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--ink-primary);
+    color: var(--ink-inverse);
+  }
+}
+
+@layer components {
+  /* Columns of figures that must align vertically. Standalone display numbers
+     keep proportional figures. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hairline {
+    border-color: var(--line-hairline);
+  }
+}

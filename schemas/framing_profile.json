@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/framing_profile.json",
+  "title": "Aleph Framing Profile",
+  "description": "An eight-dimension description of HOW an article presents its subject, computed independently of WHAT it concludes. THESE EIGHT NUMBERS MUST NEVER BE COLLAPSED INTO A SINGLE 'BIAS' OR 'POLITICAL LEANING' SCORE, and no consumer of this schema may compute one: a single number would hide the fact that heavy loaded language and excellent primary-source grounding are different properties pointing in different directions, and a scalar would inevitably be read as a left-right placement, which Aleph does not produce. Six dimensions are lower_is_better and two are higher_is_better; the polarity is pinned per dimension so a user interface can never mis-colour a score. Every dimension carries its components, its evidence and its confidence, because a framing score that cannot be opened and inspected is an accusation rather than a measurement. A framing profile says nothing about whether the article's factual claims are true — that is decided separately and speaker-blind in claim.json.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^framing:[A-Za-z0-9._:-]+$",
+      "description": "Stable identifier for this profile, prefixed 'framing:'. Referenced by news_article.json via framing_profile_id."
+    },
+    "article_id": {
+      "$ref": "common.json#/$defs/id",
+      "description": "The article this profile describes, prefixed 'art:'. A profile is always about one published item; there is no outlet-level profile, because scoring an outlet rather than a text would be exactly the prestige-and-reputation shortcut Aleph refuses."
+    },
+    "profile_version": {
+      "type": "string",
+      "description": "Version of the framing analyser that produced these scores. Framing measurement is model-dependent, so a score is only interpretable alongside the version that produced it.",
+      "minLength": 1
+    },
+    "generated_at": { "$ref": "common.json#/$defs/timestamp" },
+    "dimensions": {
+      "$ref": "#/$defs/dimensions",
+      "description": "Exactly the eight fixed dimensions. No more, no fewer, and no aggregate."
+    },
+    "overall_note": {
+      "type": ["string", "null"],
+      "description": "A short prose reading of the profile as a whole, which must describe the pattern across dimensions rather than average them. Writing 'this article is biased' here would defeat the purpose of the schema; writing 'strong primary-source grounding but consistently one-sided source selection' is the intended use."
+    },
+    "confidence": {
+      "$ref": "common.json#/$defs/confidence",
+      "description": "Confidence in the profile as a whole. Framing analysis on a headline-only article is weak, and that must be visible."
+    },
+    "limitations": {
+      "type": "array",
+      "description": "Known limits of this profile, e.g. that only the headline and standfirst were available, or that the article is in a language the analyser handles less well.",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["id", "article_id", "profile_version", "dimensions"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "dimension_lower_is_better": {
+      "type": "object",
+      "title": "Framing Dimension (lower is better)",
+      "description": "A 0-100 measurement where a HIGH value indicates a problem in how the article is written. Polarity is pinned to lower_is_better so no interface can render a high value as a good one. The score is meaningless without its components: each component names a specific passage or choice and how much it contributed.",
+      "properties": {
+        "score": {
+          "$ref": "common.json#/$defs/score_100",
+          "description": "0-100. High means more of the problem this dimension names."
+        },
+        "polarity": {
+          "$ref": "common.json#/$defs/polarity",
+          "const": "lower_is_better",
+          "description": "Pinned. A high score here is a finding against the article, never a merit."
+        },
+        "components": {
+          "type": "array",
+          "description": "Every contributing observation, with its signed weight and the passages it rests on. Required and non-empty for any non-zero score: an unexplained framing number is not publishable.",
+          "items": { "$ref": "common.json#/$defs/component" }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "description": "Evidence or provision ids relevant to the judgement, e.g. the primary text that shows what context was omitted.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "confidence": { "$ref": "common.json#/$defs/confidence" },
+        "rationale": {
+          "type": "string",
+          "description": "Plain-language justification a reader can argue with, referring to the article's text rather than to its outlet or presumed politics.",
+          "minLength": 1
+        }
+      },
+      "required": ["score", "polarity", "components", "confidence", "rationale"],
+      "additionalProperties": false
+    },
+
+    "dimension_higher_is_better": {
+      "type": "object",
+      "title": "Framing Dimension (higher is better)",
+      "description": "A 0-100 measurement where a HIGH value indicates better epistemic practice by the article. Polarity is pinned to higher_is_better so no interface can render a high value as a fault. As with every Aleph score, the number exists only alongside its components.",
+      "properties": {
+        "score": {
+          "$ref": "common.json#/$defs/score_100",
+          "description": "0-100. High means more of the good practice this dimension names."
+        },
+        "polarity": {
+          "$ref": "common.json#/$defs/polarity",
+          "const": "higher_is_better",
+          "description": "Pinned. A high score here is a merit, never a finding against the article."
+        },
+        "components": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/component" }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "confidence": { "$ref": "common.json#/$defs/confidence" },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": ["score", "polarity", "components", "confidence", "rationale"],
+      "additionalProperties": false
+    },
+
+    "dimensions": {
+      "type": "object",
+      "title": "The Eight Framing Dimensions",
+      "description": "Exactly these eight keys, always all present. Fixing the set means two articles are always described along the same axes, and additionalProperties:false means no ninth dimension — least of all a summary 'bias' figure — can be added to this object.",
+      "properties": {
+        "selection_asymmetry": {
+          "$ref": "#/$defs/dimension_lower_is_better",
+          "description": "How unevenly the article selects which facts, figures and voices to include. Measured against what the primary document and the available evidence contain, not against a notion of political balance: quoting one side more is only asymmetric if the other side's material was available and relevant."
+        },
+        "loaded_language": {
+          "$ref": "#/$defs/dimension_lower_is_better",
+          "description": "Use of evaluative or emotionally charged wording where a neutral description was available, e.g. calling a change a 'raid' or a 'gift'. Components must quote the specific words."
+        },
+        "context_omission": {
+          "$ref": "#/$defs/dimension_lower_is_better",
+          "description": "Material context a reader needs that the article leaves out — a base year, a comparison class, an offsetting provision. Each component must point at evidence that the omitted context is itself accurate."
+        },
+        "certainty_inflation": {
+          "$ref": "#/$defs/dimension_lower_is_better",
+          "description": "Presenting projections, estimates or contested figures with more certainty than their sources claim, e.g. reporting the midpoint of a wide range as the figure."
+        },
+        "unsupported_causal_language": {
+          "$ref": "#/$defs/dimension_lower_is_better",
+          "description": "Asserting that one thing caused another where the evidence supports only correlation, sequence or intention. This dimension is scored on the strength of the causal warrant, never on whether the asserted cause is politically congenial."
+        },
+        "opinion_as_fact": {
+          "$ref": "#/$defs/dimension_lower_is_better",
+          "description": "Presenting evaluative or contested judgements in the grammatical form of factual reporting, without attribution or hedging. An opinion column is not penalised for containing opinion; it is measured on whether opinion is dressed as established fact."
+        },
+        "source_diversity": {
+          "$ref": "#/$defs/dimension_higher_is_better",
+          "description": "How many genuinely distinct and relevant sources the article draws on. Counts distinct originals: five quotations from one briefing are one source, and diversity means diversity of evidence, not of political affiliation."
+        },
+        "primary_source_grounding": {
+          "$ref": "#/$defs/dimension_higher_is_better",
+          "description": "How far the article's assertions are anchored in primary material the reader could check — the text itself, the dataset, the report — rather than in restatements. Naming a source without pointing at it scores lower than linking or quoting it."
+        }
+      },
+      "required": [
+        "selection_asymmetry",
+        "loaded_language",
+        "context_omission",
+        "certainty_inflation",
+        "unsupported_causal_language",
+        "opinion_as_fact",
+        "source_diversity",
+        "primary_source_grounding"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

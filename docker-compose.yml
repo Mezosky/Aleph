@@ -1,0 +1,133 @@
+# Aleph — local development stack.
+#
+#   docker compose up                      API + Vite dev server
+#   docker compose --profile pipeline run --rm pipeline
+#                                          one-shot refresh of the static payload
+#
+# Secrets are never written here. Values come from a local .env (see .env.example),
+# which is git-ignored; the file is optional so a clone with no credentials still
+# boots against the deterministic mock LLM provider.
+
+name: aleph
+
+services:
+  # -------------------------------------------------------------------------
+  # api — FastAPI service, reloaded from the mounted source tree
+  # -------------------------------------------------------------------------
+  api:
+    build:
+      context: .
+      target: api
+    image: aleph-api:dev
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # "mock" is a real, deterministic provider — the stack is fully usable
+      # with no credentials at all.
+      ALEPH_LLM_PROVIDER: ${ALEPH_LLM_PROVIDER:-mock}
+      ALEPH_QWEN_BASE_URL: ${ALEPH_QWEN_BASE_URL:-}
+      ALEPH_QWEN_API_KEY: ${ALEPH_QWEN_API_KEY:-}
+      ALEPH_CORS_ORIGINS: ${ALEPH_CORS_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173}
+      ALEPH_DATA_DIR: ${ALEPH_DATA_DIR:-/app/data}
+      ALEPH_SCHEMA_DIR: /app/schemas
+      ALEPH_LOG_LEVEL: ${ALEPH_LOG_LEVEL:-info}
+    ports:
+      - "8000:8000"
+    volumes:
+      # Read-write: the pipeline writes here.
+      - ./data:/app/data
+      # Read-only source mounts so --reload picks up edits without rebuilding.
+      - ./aleph:/app/aleph:ro
+      - ./api:/app/api:ro
+      - ./schemas:/app/schemas:ro
+      - ./scripts:/app/scripts:ro
+      - api_cache:/app/.cache
+    command:
+      - uvicorn
+      - api.main:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --reload
+      - --reload-dir
+      - /app/aleph
+      - --reload-dir
+      - /app/api
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import sys,urllib.request; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/v1/health', timeout=4).status == 200 else 1)"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+
+  # -------------------------------------------------------------------------
+  # frontend — Vite dev server
+  # -------------------------------------------------------------------------
+  frontend:
+    image: node:22-alpine
+    working_dir: /app
+    environment:
+      # This URL is resolved by the BROWSER, not by the container, so it must be
+      # the host-published port and never the compose service name.
+      VITE_ALEPH_API_URL: ${VITE_ALEPH_API_URL:-http://localhost:8000}
+      # Dev server serves from the root; only the Pages build uses /Aleph/.
+      VITE_BASE: ${VITE_BASE:-/}
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      # Anonymous-named volume keeps container node_modules from colliding with
+      # host-installed ones built for a different platform.
+      - frontend_node_modules:/app/node_modules
+    command:
+      - sh
+      - -c
+      - >-
+        if [ -f package-lock.json ]; then npm ci; else npm install; fi &&
+        npm run dev -- --host 0.0.0.0 --port 5173
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # -------------------------------------------------------------------------
+  # pipeline — one-shot refresh job (profile-gated, does not start with `up`)
+  # -------------------------------------------------------------------------
+  pipeline:
+    build:
+      context: .
+      target: api
+    image: aleph-api:dev
+    profiles: ["pipeline"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      ALEPH_LLM_PROVIDER: ${ALEPH_LLM_PROVIDER:-mock}
+      ALEPH_QWEN_BASE_URL: ${ALEPH_QWEN_BASE_URL:-}
+      ALEPH_QWEN_API_KEY: ${ALEPH_QWEN_API_KEY:-}
+      ALEPH_DATA_DIR: ${ALEPH_DATA_DIR:-/app/data}
+      ALEPH_SCHEMA_DIR: /app/schemas
+      ALEPH_STATIC_OUT_DIR: /app/frontend/public/data
+    volumes:
+      - ./data:/app/data
+      - ./aleph:/app/aleph:ro
+      - ./schemas:/app/schemas:ro
+      - ./scripts:/app/scripts:ro
+      # Writable: this is the job's product — the static payload the site serves.
+      - ./frontend/public/data:/app/frontend/public/data
+      - api_cache:/app/.cache
+    entrypoint: ["python", "scripts/refresh.py"]
+    command: []
+    restart: "no"
+
+volumes:
+  frontend_node_modules:
+  api_cache:

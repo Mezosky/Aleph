@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/neutrality_report.json",
+  "title": "Aleph Neutrality Report",
+  "description": "Results of re-running evaluations with irrelevant details substituted, to measure whether Aleph's verdicts move when they should not. THIS MEASURES INVARIANCE UNDER IRRELEVANT SUBSTITUTION. IT DOES NOT PROVE POLITICAL NEUTRALITY. A system can be perfectly invariant to swapping a speaker and still be wrong in a consistent direction, still select which claims to examine in a skewed way, and still inherit whatever slant its evidence corpus carries — none of which this test can see. What a low flip rate does establish is narrower and still worth having: that changing who is said to have made a claim, which outlet carried it, whether the speaker is described as authoritative, how the claim is worded, or the order the evidence was presented in, did not change the verdict. A high flip rate is a defect and must be reported as one. The interpretation_caveat field is required precisely so that no consumer can display neutrality_health without also displaying the limits of what it means.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "generated_at": { "$ref": "common.json#/$defs/timestamp" },
+    "report_version": {
+      "type": "string",
+      "description": "Version of the perturbation harness. Results are only comparable across runs of the same harness version.",
+      "minLength": 1
+    },
+    "evaluator_version": {
+      "type": "string",
+      "description": "Version of the evaluator under test. A neutrality result belongs to a specific evaluator and is invalidated when that evaluator changes.",
+      "minLength": 1
+    },
+    "sample": {
+      "$ref": "#/$defs/sample",
+      "description": "What was tested. Rates over a handful of claims are noise, and the sample must be visible next to them."
+    },
+    "perturbations": {
+      "$ref": "#/$defs/perturbations",
+      "description": "Exactly the six fixed perturbation families, always all present."
+    },
+    "metrics": {
+      "$ref": "#/$defs/metrics",
+      "description": "Aggregate measures across all perturbations."
+    },
+    "neutrality_health": {
+      "$ref": "common.json#/$defs/score_100",
+      "description": "0-100 summary of invariance, higher meaning fewer unwarranted changes. A composite, and therefore never publishable without neutrality_health_components, confidence and interpretation_caveat alongside it. It is a measure of Aleph's own behaviour, not a measure of any document, outlet or actor."
+    },
+    "neutrality_health_polarity": {
+      "$ref": "common.json#/$defs/polarity",
+      "const": "higher_is_better",
+      "description": "Pinned. High neutrality_health is good; no interface may render it as a warning colour."
+    },
+    "neutrality_health_components": {
+      "type": "array",
+      "description": "The contributions that produced neutrality_health, each with its signed weight. Required: an unexplained self-assessment score would be the least trustworthy number in the product.",
+      "items": { "$ref": "common.json#/$defs/component" },
+      "minItems": 1
+    },
+    "confidence": {
+      "$ref": "common.json#/$defs/confidence",
+      "description": "Confidence in the neutrality result itself, driven mainly by sample size and coverage."
+    },
+    "interpretation_caveat": {
+      "type": "string",
+      "description": "REQUIRED. Plain-language statement of what this report does and does not show, to be displayed wherever neutrality_health is displayed. It must say that the report measures invariance under irrelevant substitutions and does not establish political neutrality, and it must name the sources of bias the test cannot detect, including corpus selection and the choice of which claims were examined at all.",
+      "minLength": 40
+    },
+    "limitations": {
+      "type": "array",
+      "description": "Specific known limits of this run: perturbation families with too few runs, claim types not represented, evidence domains untested.",
+      "items": { "type": "string" }
+    },
+    "failures_to_investigate": {
+      "type": "array",
+      "description": "Individual flips considered material enough to warrant human review. Surfacing these is more useful than the aggregate: one verdict that flips on an authority cue tells you more than a good average.",
+      "items": { "$ref": "#/$defs/perturbation_example" }
+    }
+  },
+  "required": [
+    "schema_version",
+    "data_status",
+    "generated_at",
+    "report_version",
+    "evaluator_version",
+    "sample",
+    "perturbations",
+    "metrics",
+    "neutrality_health",
+    "neutrality_health_components",
+    "confidence",
+    "interpretation_caveat"
+  ],
+  "additionalProperties": false,
+
+  "$defs": {
+    "sample": {
+      "type": "object",
+      "title": "Test Sample",
+      "description": "The scope of the run. Flip rates are only meaningful against the number of runs that produced them.",
+      "properties": {
+        "claims_tested": { "type": "integer", "minimum": 0 },
+        "runs_total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total perturbed evaluations executed across all six families."
+        },
+        "claim_ids": {
+          "type": "array",
+          "description": "Which claims were tested, so the sample can be checked for skew — for example, a sample containing only claims from one kind of speaker would undermine the whole exercise.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "selection_method": {
+          "type": ["string", "null"],
+          "description": "How claims were chosen: exhaustive, random with a stated seed, or stratified by statement_type. Convenience sampling must be declared."
+        }
+      },
+      "required": ["claims_tested", "runs_total"],
+      "additionalProperties": false
+    },
+
+    "example_delta": {
+      "type": "object",
+      "title": "Example Delta",
+      "description": "How much a single perturbed run differed from its original, beyond whether the verdict label changed. A verdict that survives but whose confidence swings sharply is a softer version of the same defect and must be visible.",
+      "properties": {
+        "confidence_delta": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Perturbed evidence_confidence minus original. Should be near zero: swapping a speaker is not new evidence."
+        },
+        "framing_delta": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100,
+          "description": "Change in any framing dimension score attached to the run, in 0-100 units."
+        },
+        "explanation_semantic_delta": {
+          "$ref": "common.json#/$defs/unit_interval",
+          "description": "How much the written reasoning changed in meaning, 0 being equivalent and 1 being unrelated. Reasoning that is rewritten around the new speaker while keeping the same verdict is still a leak."
+        },
+        "verdict_changed": {
+          "type": "boolean",
+          "description": "Whether the verdict label itself moved."
+        }
+      },
+      "required": ["confidence_delta", "explanation_semantic_delta", "verdict_changed"],
+      "additionalProperties": false
+    },
+
+    "perturbation_example": {
+      "type": "object",
+      "title": "Perturbation Example",
+      "description": "One concrete before-and-after, kept so a reader can inspect a failure rather than trust a rate. Examples of non-flips are as worth keeping as flips.",
+      "properties": {
+        "claim_id": { "$ref": "common.json#/$defs/id" },
+        "perturbation": {
+          "oneOf": [{ "$ref": "#/$defs/perturbation_name" }, { "type": "null" }],
+          "description": "Which family this example came from. Populated when the example is listed outside its own family block."
+        },
+        "substitution": {
+          "type": ["string", "null"],
+          "description": "What was actually swapped, described without naming any real person or organisation, e.g. 'attributed role replaced with an unrelated role of equal formality'."
+        },
+        "original_verdict": { "$ref": "common.json#/$defs/verdict" },
+        "perturbed_verdict": { "$ref": "common.json#/$defs/verdict" },
+        "delta": { "$ref": "#/$defs/example_delta" },
+        "note": { "type": ["string", "null"] }
+      },
+      "required": ["claim_id", "original_verdict", "perturbed_verdict", "delta"],
+      "additionalProperties": false
+    },
+
+    "perturbation_name": {
+      "type": "string",
+      "title": "Perturbation Name",
+      "description": "One of the six fixed perturbation families.",
+      "enum": [
+        "speaker_swap",
+        "source_swap",
+        "party_swap",
+        "authority_removal",
+        "claim_paraphrase",
+        "evidence_order_shuffle"
+      ]
+    },
+
+    "perturbation_result": {
+      "type": "object",
+      "title": "Perturbation Result",
+      "description": "Outcome for one perturbation family. flips over runs is the headline; zero runs means the family was not exercised and its zero flips prove nothing, which is why runs is required and must be read first.",
+      "properties": {
+        "runs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Perturbed evaluations executed in this family."
+        },
+        "flips": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Runs in which the verdict label changed. Every flip in this family is by construction unwarranted, because nothing evidentially relevant was altered."
+        },
+        "flip_rate": {
+          "$ref": "common.json#/$defs/unit_interval",
+          "description": "flips divided by runs. Undefined and to be omitted when runs is zero."
+        },
+        "examples": {
+          "type": "array",
+          "description": "Concrete before-and-after cases from this family, flips first.",
+          "items": { "$ref": "#/$defs/perturbation_example" }
+        },
+        "note": {
+          "type": ["string", "null"],
+          "description": "What the harness substituted and any interpretation a reader needs."
+        }
+      },
+      "required": ["runs", "flips", "examples"],
+      "additionalProperties": false
+    },
+
+    "perturbations": {
+      "type": "object",
+      "title": "The Six Perturbation Families",
+      "description": "Exactly these six keys, always all present. Fixing the set prevents a favourable subset from being reported as the whole test.",
+      "properties": {
+        "speaker_swap": {
+          "$ref": "#/$defs/perturbation_result",
+          "description": "The claim is re-attributed to a different actor role while the text and evidence are held constant. Any verdict change is a leak of speaker identity into the factual path, which the blind evaluation is designed to make impossible."
+        },
+        "source_swap": {
+          "$ref": "#/$defs/perturbation_result",
+          "description": "The outlet that carried the statement is replaced with another. Outlet prestige carries no evidential weight in Aleph, so the verdict must not move."
+        },
+        "party_swap": {
+          "$ref": "#/$defs/perturbation_result",
+          "description": "Government and opposition affiliations are exchanged between positions. This is the most direct test of partisan asymmetry, and it is the only place in the entire system where party appears at all — as a variable being deliberately scrambled, never as an input to a verdict."
+        },
+        "authority_removal": {
+          "$ref": "#/$defs/perturbation_result",
+          "description": "Cues of institutional standing are stripped from the evidence presentation while the evidence content is kept identical. Verdicts that weaken when a source stops looking official were relying on authority rather than on relevance."
+        },
+        "claim_paraphrase": {
+          "$ref": "#/$defs/perturbation_result",
+          "description": "The claim is restated with the same propositional content and different wording. A verdict that depends on phrasing was tracking surface form rather than meaning. Paraphrases that change the claim's content are harness bugs and must be excluded, not counted as flips."
+        },
+        "evidence_order_shuffle": {
+          "$ref": "#/$defs/perturbation_result",
+          "description": "The evidence set is presented in a different order. Order effects indicate primacy or recency bias in the evaluator, not a property of the evidence."
+        }
+      },
+      "required": [
+        "speaker_swap",
+        "source_swap",
+        "party_swap",
+        "authority_removal",
+        "claim_paraphrase",
+        "evidence_order_shuffle"
+      ],
+      "additionalProperties": false
+    },
+
+    "metrics": {
+      "type": "object",
+      "title": "Aggregate Neutrality Metrics",
+      "description": "Cross-family aggregates. All four are properties of Aleph's own behaviour under substitution and none of them describes any document, outlet or political actor.",
+      "properties": {
+        "verdict_flip_rate": {
+          "$ref": "common.json#/$defs/unit_interval",
+          "description": "Share of all perturbed runs whose verdict label changed. The headline defect measure; the target is zero and any non-zero value is a finding against Aleph."
+        },
+        "confidence_delta": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Mean absolute change in evidence_confidence across runs. Reported as a magnitude because offsetting swings must not cancel out to a flattering zero."
+        },
+        "framing_delta": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Mean absolute change across framing dimension scores, in 0-100 units."
+        },
+        "explanation_semantic_delta": {
+          "$ref": "common.json#/$defs/unit_interval",
+          "description": "Mean semantic distance between original and perturbed reasoning. Catches the case where the verdict holds but the justification is quietly rebuilt around the substituted speaker."
+        }
+      },
+      "required": ["verdict_flip_rate", "confidence_delta", "framing_delta", "explanation_semantic_delta"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/readiness.json",
+  "title": "Aleph Readiness Report (warm phase: readiness)",
+  "description": "The gate between collecting context and publishing conclusions, produced by warm phase 7. Readiness answers one question: has Aleph gathered enough of the right kinds of material to say anything at all about this document yet? The whole file exists to make a refusal possible and legible. A system that always produces an answer will, whenever the evidence is thin, produce a confident-sounding one - and the confidence will be the model's, not the evidence's. Aleph forbids that substitution structurally: MODEL CONFIDENCE MUST NEVER STAND IN FOR MISSING EVIDENCE. A high model_confidence over an insufficient evidence base does not raise readiness, does not unlock publication, and must never be displayed as reassurance; the only cure for a gap is retrieval. Every dimension therefore reports its own score alongside the specific gaps that hold it down, and every score carries components so a reader can open the number and see what produced it. 'publishable' is a hard flag, and when it is false the report must say plainly why, in a sentence a non-specialist can read. Scores here measure the state of Aleph's evidence, never the merits of the document or of any actor; all dimensions are higher_is_better.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "document_id": {
+      "$ref": "common.json#/$defs/id",
+      "pattern": "^doc:[A-Za-z0-9._:-]+$"
+    },
+    "generated_at": {
+      "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }]
+    },
+    "overall_state": {
+      "$ref": "common.json#/$defs/readiness_state",
+      "description": "'insufficient' means Aleph must publish nothing but the gaps themselves. 'partial' means findings may be shown with their limits stated on the same screen, not in a footnote. 'ready' means the evidence base supports the conclusions drawn."
+    },
+    "overall_score": {
+      "$ref": "common.json#/$defs/score_100",
+      "description": "Weighted aggregate of the dimension scores. A summary of the dimensions, never a substitute for reading them: a high average with one blocking gap is still blocked."
+    },
+    "polarity": {
+      "$ref": "common.json#/$defs/polarity",
+      "const": "higher_is_better",
+      "description": "Fixed for this report so the UI can never mis-colour readiness scores."
+    },
+    "dimensions": { "$ref": "#/$defs/dimensions" },
+    "blocking_gaps": {
+      "type": "array",
+      "description": "Gaps severe enough to prevent publication on their own. Listed at the top level, not buried in a dimension, because a single missing primary source can invalidate an otherwise well-covered analysis.",
+      "items": { "$ref": "#/$defs/gap" }
+    },
+    "publishable": {
+      "type": "boolean",
+      "description": "Whether Aleph may present verdicts and scores for this document. False whenever any blocking gap remains. This flag is decided by evidence coverage alone; no level of model confidence may flip it."
+    },
+    "why_not_publishable": {
+      "type": ["string", "null"],
+      "description": "Plain-language explanation, addressed to a reader rather than a developer, of what is missing and what would fix it. MUST be a non-empty string whenever publishable is false - a refusal without a stated reason is indistinguishable from a failure. Null only when publishable is true.",
+      "minLength": 0
+    },
+    "confidence": {
+      "$ref": "common.json#/$defs/confidence",
+      "description": "Evidence confidence in this readiness assessment itself, with model_confidence recorded separately and subordinate. If these two diverge, the evidence figure governs."
+    },
+    "evidence_inventory": { "$ref": "#/$defs/evidence_inventory" },
+    "phase_status": {
+      "type": "array",
+      "description": "Completion state of each of the seven warm phases. A phase that failed or was skipped is a documented reason for low readiness rather than an unexplained low score.",
+      "items": { "$ref": "#/$defs/phase_status_entry" }
+    },
+    "recommended_actions": {
+      "type": "array",
+      "description": "Concrete retrieval or extraction steps that would raise readiness, ordered by expected effect. The output of this file should be a work list, not a verdict on the document.",
+      "items": { "type": "string" }
+    },
+    "notes": { "type": ["string", "null"] }
+  },
+  "required": [
+    "document_id",
+    "overall_state",
+    "overall_score",
+    "dimensions",
+    "blocking_gaps",
+    "publishable",
+    "why_not_publishable",
+    "confidence"
+  ],
+  "additionalProperties": false,
+
+  "allOf": [
+    {
+      "$comment": "Enforces the product rule that a refusal must always be explained: publishable=false requires a non-empty why_not_publishable.",
+      "if": {
+        "type": "object",
+        "properties": { "publishable": { "const": false } },
+        "required": ["publishable"]
+      },
+      "then": {
+        "properties": { "why_not_publishable": { "type": "string", "minLength": 1 } },
+        "required": ["why_not_publishable"]
+      }
+    }
+  ],
+
+  "$defs": {
+    "gap": {
+      "type": "object",
+      "description": "One specific, named hole in the evidence base. Gaps are written to be actionable: 'no independent estimate of the cost figure' is a gap, 'more research needed' is not. Naming the resolving evidence is what turns a low score into a task.",
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "dimension": {
+          "type": ["string", "null"],
+          "description": "Which readiness dimension this gap sits under.",
+          "enum": [
+            "document_understanding",
+            "primary_source_coverage",
+            "news_coverage",
+            "temporal_coverage",
+            "evidence_diversity",
+            "claim_coverage",
+            "source_independence",
+            null
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "What is missing, stated specifically enough that someone could go and get it."
+        },
+        "severity": {
+          "type": "string",
+          "description": "'blocking' means nothing may be published while it stands. 'major' means findings may be shown only with the limitation displayed alongside them. 'minor' is recorded for completeness.",
+          "enum": ["blocking", "major", "minor"]
+        },
+        "missing_kind": {
+          "type": "string",
+          "description": "What sort of material is absent. Typed so the retrieval planner can act on it automatically.",
+          "enum": [
+            "primary_document",
+            "official_data",
+            "independent_reporting",
+            "expert_analysis",
+            "counter_evidence",
+            "time_period",
+            "quantitative_check",
+            "document_section",
+            "assumption_statement",
+            "translation",
+            "other"
+          ]
+        },
+        "what_would_resolve": {
+          "type": ["string", "null"],
+          "description": "The specific artefact or retrieval that would close the gap. Null only when nothing available could close it, which is itself a publishable finding."
+        },
+        "affected_claim_ids": {
+          "type": "array",
+          "description": "Claims or propositions that cannot be evaluated while this gap stands.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "blocking_since": {
+          "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }]
+        }
+      },
+      "required": ["description", "severity", "missing_kind"],
+      "additionalProperties": false
+    },
+
+    "dimension_score": {
+      "type": "object",
+      "description": "One readiness dimension. Carries its own components so the number is inspectable, its weight so the aggregate is reproducible, a rationale in plain language, and the gaps that are holding it down. A dimension may never be reported as a bare number.",
+      "properties": {
+        "score": {
+          "$ref": "common.json#/$defs/score_100",
+          "description": "0-100, higher is better. Measures Aleph's evidence coverage on this dimension - not the quality of the document and not the conduct of any actor."
+        },
+        "weight": {
+          "type": "number",
+          "description": "Contribution of this dimension to overall_score. Published so the aggregate can be recomputed and challenged.",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "rationale": {
+          "type": "string",
+          "description": "Why the score is what it is, in language a reader can check against the components."
+        },
+        "components": {
+          "type": "array",
+          "description": "The inspectable contributors to this score. Required by Aleph's rule that no metric exists without its components; an empty array is only valid for a dimension scored zero for total absence of material.",
+          "items": { "$ref": "common.json#/$defs/component" }
+        },
+        "gaps": {
+          "type": "array",
+          "description": "What is missing on this dimension.",
+          "items": { "$ref": "#/$defs/gap" }
+        },
+        "confidence": {
+          "oneOf": [{ "$ref": "common.json#/$defs/confidence" }, { "type": "null" }]
+        }
+      },
+      "required": ["score", "weight", "rationale", "components", "gaps"],
+      "additionalProperties": false
+    },
+
+    "dimensions": {
+      "type": "object",
+      "description": "The seven readiness dimensions, all required. Fixed keys rather than an open list: a dimension that could be omitted would be omitted precisely when it scored badly, and the absence would read as adequacy.",
+      "properties": {
+        "document_understanding": {
+          "$ref": "#/$defs/dimension_score",
+          "description": "How completely the source document itself was read: text quality, section coverage, provisions and assumptions extracted. Everything else rests on this, so a low score here caps the rest."
+        },
+        "primary_source_coverage": {
+          "$ref": "#/$defs/dimension_score",
+          "description": "Whether the underlying official documents, records and datasets were retrieved, rather than only commentary about them. Reporting about a document is not the document."
+        },
+        "news_coverage": {
+          "$ref": "#/$defs/dimension_score",
+          "description": "Volume and breadth of retrieved reporting. Deliberately not the leading dimension: abundant coverage of a subject is not evidence about it, and a well-covered story with no primary sources is still unready."
+        },
+        "temporal_coverage": {
+          "$ref": "#/$defs/dimension_score",
+          "description": "Whether evidence spans the periods that matter - before and after the document, and the dates its own provisions turn on. A snapshot from one week cannot support a claim about a trend."
+        },
+        "evidence_diversity": {
+          "$ref": "#/$defs/dimension_score",
+          "description": "Spread across evidence TIERS and viewpoints: official, statistical, academic, journalistic, and material that cuts against the document's own account. Measures the shape of the evidence set, never the balance of opinions in it."
+        },
+        "claim_coverage": {
+          "$ref": "#/$defs/dimension_score",
+          "description": "Proportion of extracted claims that have any evidence attached at all. Uncovered claims must be shown as unevaluated rather than quietly dropped."
+        },
+        "source_independence": {
+          "$ref": "#/$defs/dimension_score",
+          "description": "How much of the retrieved material is independent observation rather than restatement. Ten outlets running one wire story is one source; without this dimension, syndication reads as corroboration and inflates every other number."
+        }
+      },
+      "required": [
+        "document_understanding",
+        "primary_source_coverage",
+        "news_coverage",
+        "temporal_coverage",
+        "evidence_diversity",
+        "claim_coverage",
+        "source_independence"
+      ],
+      "additionalProperties": false
+    },
+
+    "evidence_inventory": {
+      "type": "object",
+      "description": "Raw counts behind the dimension scores, so a reader can sanity-check a percentage against the underlying totals instead of taking it on trust.",
+      "properties": {
+        "evidence_items": { "type": ["integer", "null"], "minimum": 0 },
+        "primary_documents": { "type": ["integer", "null"], "minimum": 0 },
+        "statistical_datasets": { "type": ["integer", "null"], "minimum": 0 },
+        "articles": { "type": ["integer", "null"], "minimum": 0 },
+        "clusters": { "type": ["integer", "null"], "minimum": 0 },
+        "independent_sources": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Distinct originating sources after syndicated and derivative items are collapsed."
+        },
+        "distinct_tiers": { "type": ["integer", "null"], "minimum": 0 },
+        "claims_total": { "type": ["integer", "null"], "minimum": 0 },
+        "claims_with_evidence": { "type": ["integer", "null"], "minimum": 0 },
+        "propositions_total": { "type": ["integer", "null"], "minimum": 0 },
+        "earliest_evidence_date": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }]
+        },
+        "latest_evidence_date": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+
+    "phase_status_entry": {
+      "type": "object",
+      "description": "Outcome of one warm phase.",
+      "properties": {
+        "phase": { "$ref": "common.json#/$defs/warm_phase" },
+        "state": {
+          "type": "string",
+          "enum": ["not_started", "running", "complete", "failed", "skipped"]
+        },
+        "completed_at": {
+          "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }]
+        },
+        "item_count": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "How many items the phase produced, e.g. propositions or evidence records."
+        },
+        "note": {
+          "type": ["string", "null"],
+          "description": "Why a phase failed or was skipped. A skipped phase with no note is an unexplained gap and should be treated as a failure."
+        }
+      },
+      "required": ["phase", "state"],
+      "additionalProperties": false
+    }
+  }
+}

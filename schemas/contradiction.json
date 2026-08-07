@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/contradiction.json",
+  "title": "Aleph Contradiction Clusters",
+  "description": "Places where two or more actors say incompatible things, resolved by applying THE SAME EVIDENCE SET TO EVERY POSITION. That symmetry is the entire point of this schema: the ordinary failure mode of contradiction reporting is to describe a dispute as a clash of personalities and stop, or to settle it by deferring to whichever speaker has more standing. Aleph instead states the single question at issue, records each position against it, lists the evidence that bears on that question, applies that identical evidence to every position, and then says what the primary source actually says, what projections say, and what remains genuinely unsettled. A contradiction that cannot be resolved on the available evidence is marked unresolvable and left open — manufacturing a winner would be worse than reporting a draw. Nothing in aleph_conclusion may depend on who holds a position; speaker roles appear only so a reader can orient themselves.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "generated_at": { "$ref": "common.json#/$defs/timestamp" },
+    "document_id": {
+      "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+      "description": "Document the disputes concern, when document-scoped."
+    },
+    "clusters": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/contradiction_cluster" }
+    }
+  },
+  "required": ["schema_version", "data_status", "generated_at", "clusters"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "stance": {
+      "type": "string",
+      "title": "Stance",
+      "description": "How a position relates to the single question at issue. 'not_responsive' is important and common: an actor who answers a different question has not contradicted anyone, and recording that prevents Aleph from inventing a disagreement out of two people talking past each other.",
+      "enum": [
+        "affirms",
+        "denies",
+        "qualified_affirm",
+        "qualified_deny",
+        "reframes",
+        "not_responsive"
+      ]
+    },
+
+    "position": {
+      "type": "object",
+      "title": "Position",
+      "description": "One actor's stance on the question at issue, linked to the claim that expresses it. The verdict on that claim lives in claim.json and was produced without knowing the speaker; the speaker_role appears here purely so a reader knows who is arguing, and it carries no evidential weight.",
+      "properties": {
+        "claim_id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "The claim expressing this position, prefixed 'clm:'. Its blind verdict is the authoritative judgement on it."
+        },
+        "speaker_role": {
+          "type": ["string", "null"],
+          "description": "Generic functional role of the actor, never a private individual's name in synthetic data. Reader orientation only."
+        },
+        "stance": { "$ref": "#/$defs/stance" },
+        "summary": {
+          "type": "string",
+          "description": "The position stated in one sentence, in the actor's own terms but stripped of rhetoric, so the two positions can be compared on the same question.",
+          "minLength": 1
+        },
+        "evidence_cited_by_actor": {
+          "type": "array",
+          "description": "Evidence the actor themselves invoked. Kept distinct from the cluster's shared_evidence: what someone cites is a fact about their argument, not a licence to judge them by a different standard.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        }
+      },
+      "required": ["claim_id", "stance", "summary"],
+      "additionalProperties": false
+    },
+
+    "shared_evidence_item": {
+      "type": "object",
+      "title": "Shared Evidence Item",
+      "description": "One piece of evidence applied identically to every position in the cluster. Recording what it establishes AND what it cannot establish in the same object is what stops an authoritative-looking source from being read as settling more than it does — the standard trap in disputes about costings and projections.",
+      "properties": {
+        "evidence_id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "The evidence item, prefixed 'ev:'."
+        },
+        "what_it_establishes": {
+          "type": "string",
+          "description": "The narrow proposition this item licenses, stated so it is the same proposition regardless of which position is being considered.",
+          "minLength": 1
+        },
+        "what_it_cannot_establish": {
+          "type": "string",
+          "description": "What a reader might wrongly take from it. Required: the asymmetry between these two fields is usually where a dispute actually lives.",
+          "minLength": 1
+        },
+        "bears_on_positions": {
+          "type": "array",
+          "description": "Claim ids this item was applied to. Normally every position in the cluster; a shorter list must be explained in the conclusion's reasoning, because selective application is precisely what this schema exists to prevent.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        }
+      },
+      "required": ["evidence_id", "what_it_establishes", "what_it_cannot_establish"],
+      "additionalProperties": false
+    },
+
+    "source_statement": {
+      "type": "object",
+      "title": "Source Statement",
+      "description": "What a body of source material actually says about the question at issue, quoted or closely paraphrased and pointed at its evidence. Held separately from the conclusion so a reader can check the raw material before reading Aleph's reading of it.",
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "What the source says, in its own terms, without importing either position's gloss.",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "assumptions": {
+          "type": "array",
+          "description": "Assumptions the source's figures depend on. For projections these are the whole story: two projections that differ only in their assumed growth rate are not in factual conflict.",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["statement"],
+      "additionalProperties": false
+    },
+
+    "aleph_conclusion": {
+      "type": "object",
+      "title": "Aleph Conclusion",
+      "description": "What the shared evidence supports, stated plainly. Derived only from the evidence above; the identity, standing, office or party of the actors is not an input, and a conclusion whose reasoning appeals to who said something is invalid. Where the evidence does not decide the question, the honest conclusion is 'unverifiable' or 'forecast_conditional' with the open questions named — a draw reported as a draw.",
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "The answer to the question at issue, in one or two sentences a non-specialist can act on.",
+          "minLength": 1
+        },
+        "verdict": {
+          "$ref": "common.json#/$defs/verdict",
+          "description": "Outcome on the question at issue, using the same vocabulary as individual claim verdicts."
+        },
+        "confidence": {
+          "$ref": "common.json#/$defs/confidence",
+          "description": "Evidence-derived confidence first. A confident-sounding conclusion over thin evidence is the failure this field exists to expose."
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "How the shared evidence yields the statement, step by step, referring only to evidence and never to the standing of a speaker.",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id" }
+        }
+      },
+      "required": ["statement", "verdict", "confidence", "reasoning"],
+      "additionalProperties": false
+    },
+
+    "contradiction_cluster": {
+      "type": "object",
+      "title": "Contradiction Cluster",
+      "description": "One dispute, framed around a single proposition. If the positions cannot be expressed as stances on one question, they are not contradicting each other and the cluster should not exist.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "Stable identifier, prefixed 'contra:'."
+        },
+        "question_at_issue": {
+          "type": "string",
+          "description": "The single proposition the actors are actually disputing, phrased so every position can be read as affirming, denying or qualifying it. Getting this right is most of the work: a vague question lets two compatible statements look like a contradiction.",
+          "minLength": 1
+        },
+        "positions": {
+          "type": "array",
+          "description": "The competing positions. At least two, or there is no contradiction.",
+          "items": { "$ref": "#/$defs/position" },
+          "minItems": 2
+        },
+        "shared_evidence": {
+          "type": "array",
+          "description": "The identical evidence set applied to every position. This symmetry is the mechanism by which the dispute is adjudicated on evidence rather than on standing.",
+          "items": { "$ref": "#/$defs/shared_evidence_item" }
+        },
+        "what_the_primary_source_says": {
+          "oneOf": [{ "$ref": "#/$defs/source_statement" }, { "type": "null" }],
+          "description": "What the document or statutory text itself says about the question. Null when the primary source does not address it — which is itself a common and important finding, since disputes are frequently about something the text never mentions."
+        },
+        "what_projections_say": {
+          "oneOf": [{ "$ref": "#/$defs/source_statement" }, { "type": "null" }],
+          "description": "What estimates and models say, with their assumptions. Kept separate from the primary source because a projection is evidence about an expectation, never about an outcome."
+        },
+        "what_is_uncertain": {
+          "type": "array",
+          "description": "What genuinely remains open after the shared evidence has been applied. Publishing this is what makes an unresolvable dispute reportable without inventing a winner.",
+          "items": { "$ref": "common.json#/$defs/uncertainty" }
+        },
+        "aleph_conclusion": { "$ref": "#/$defs/aleph_conclusion" },
+        "resolvable": {
+          "type": "boolean",
+          "description": "Whether the available evidence can settle the question at all. False means the dispute turns on assumptions, values or facts not yet in existence, and no amount of analysis of current sources will decide it."
+        },
+        "resolvable_by": {
+          "type": ["string", "null"],
+          "description": "The specific evidence that would settle it — a methodology annex, a dated outcome, a definition. Null when nothing would."
+        },
+        "topic_refs": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "cluster_id": {
+          "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+          "description": "News or claim cluster this dispute is associated with, when one exists."
+        }
+      },
+      "required": [
+        "id",
+        "question_at_issue",
+        "positions",
+        "shared_evidence",
+        "what_the_primary_source_says",
+        "what_projections_say",
+        "what_is_uncertain",
+        "aleph_conclusion",
+        "resolvable"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

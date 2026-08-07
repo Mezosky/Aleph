@@ -1,0 +1,937 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/document.json",
+  "title": "Aleph DocumentModel (warm phase: document_understanding)",
+  "description": "The structured reading of a single source document produced by warm phase 1. Everything Aleph later asserts is anchored here, so the model is shaped around three obligations. (1) Traceability: every extracted item carries a span with verbatim text, because an assertion Aleph cannot quote back to a page is not publishable. (2) Separation of the document from the world: this file records only what the document SAYS and how it is built - never whether its projections are correct, never who is right. (3) Document-agnosticism: identity, jurisdiction, institution and document_type are open parameters, not a fixed list, so an arbitrary PDF from any legal system can pass through without the library knowing anything about that system. Assumptions are given first-class status alongside provisions because a forecast contained in a document is only evaluable against the assumptions the document itself states.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "id": {
+      "$ref": "common.json#/$defs/id",
+      "pattern": "^doc:[A-Za-z0-9._:-]+$",
+      "description": "Stable document identifier, 'doc:' + slug."
+    },
+    "identity": { "$ref": "#/$defs/identity" },
+    "source": { "$ref": "#/$defs/source" },
+    "structure": { "$ref": "#/$defs/structure" },
+    "provisions": {
+      "type": "array",
+      "description": "The operative units of the document: the parts that do something (create an obligation, move money, change a rate, create a body). Narrative and recital text is deliberately not a provision.",
+      "items": { "$ref": "#/$defs/provision" }
+    },
+    "definitions": {
+      "type": "array",
+      "description": "Terms the document defines for itself. Recorded separately because a document's private definition of a common word ('household', 'small enterprise') frequently drives disputes about what it does.",
+      "items": { "$ref": "#/$defs/definition" }
+    },
+    "monetary_values": {
+      "type": "array",
+      "description": "Every monetary figure found in the document, located and typed. Kept as a flat index so figures can be cross-checked against each other and against external statistics without re-parsing the text.",
+      "items": { "$ref": "#/$defs/monetary_value" }
+    },
+    "quantities": {
+      "type": "array",
+      "description": "Non-monetary numeric figures (percentages, counts, rates, durations) with their verbatim source text.",
+      "items": { "$ref": "#/$defs/quantity_mention" }
+    },
+    "deadlines": {
+      "type": "array",
+      "description": "Dates and periods by which something must happen. These are the checkable spine of implementation: they are what makes a later 'was this done on time?' question answerable.",
+      "items": { "$ref": "#/$defs/deadline" }
+    },
+    "assumptions": {
+      "type": "array",
+      "description": "Modelling and background assumptions the document states about itself or its projections. Critical and non-optional in Aleph's design: a forecast is only evaluable against its assumptions, so a projection whose assumptions were never extracted must be reported as unverifiable rather than scored.",
+      "items": { "$ref": "#/$defs/assumption" }
+    },
+    "citations": {
+      "type": "array",
+      "description": "Outward references from this document to other instruments, datasets or reports.",
+      "items": { "$ref": "#/$defs/citation" }
+    },
+    "amendments": {
+      "type": "array",
+      "description": "Textual operations this document performs on other instruments. Separated from citations because an amendment changes the referenced text while a citation only points at it.",
+      "items": { "$ref": "#/$defs/amendment" }
+    },
+    "legal_dependencies": {
+      "type": "array",
+      "description": "Conditions outside this document that its effects depend on (secondary regulation, appropriation, another instrument entering force). A provision whose dependencies are unmet is not yet operative, and Aleph must not describe it as though it were.",
+      "items": { "$ref": "#/$defs/legal_dependency" }
+    },
+    "affected_institutions": {
+      "type": "array",
+      "description": "Bodies the document assigns a role to. Institutions, not individuals.",
+      "items": { "$ref": "#/$defs/affected_institution" }
+    },
+    "affected_populations": {
+      "type": "array",
+      "description": "Groups of people the document names or defines as affected, described by the document's own eligibility criteria rather than by any external demographic judgement.",
+      "items": { "$ref": "#/$defs/affected_population" }
+    },
+    "affected_industries": {
+      "type": "array",
+      "description": "Economic sectors or activities the document names as affected.",
+      "items": { "$ref": "#/$defs/affected_industry" }
+    },
+    "extraction_warnings": {
+      "type": "array",
+      "description": "Machine-generated notes about where extraction was unreliable. Published rather than suppressed: a reader is entitled to know that page 42 was an unreadable scan before trusting a figure said to be on page 42.",
+      "items": { "$ref": "#/$defs/extraction_warning" }
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Free-text analyst or pipeline note about this reading of the document."
+    }
+  },
+  "required": ["id", "identity", "source", "structure", "provisions"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "page_range": {
+      "type": "object",
+      "description": "Inclusive 1-based page interval in the source file.",
+      "properties": {
+        "start": { "type": "integer", "minimum": 1 },
+        "end": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["start", "end"],
+      "additionalProperties": false
+    },
+
+    "jurisdiction": {
+      "type": "object",
+      "description": "The legal or administrative space the document belongs to, expressed as free parameters. Aleph's library code must never branch on a particular jurisdiction; jurisdiction-specific behaviour belongs in registry/data files keyed by these values.",
+      "properties": {
+        "code": {
+          "type": ["string", "null"],
+          "description": "Short machine code where one exists (e.g. an ISO 3166-1/-2 code). Null when the document is supranational or unclassifiable."
+        },
+        "name": { "type": ["string", "null"], "description": "Human-readable jurisdiction name as the document states it." },
+        "level": {
+          "type": "string",
+          "description": "Administrative level the instrument operates at.",
+          "enum": ["supranational", "national", "subnational", "municipal", "sectoral", "unknown"]
+        }
+      },
+      "required": ["level"],
+      "additionalProperties": false
+    },
+
+    "identifier": {
+      "type": "object",
+      "description": "One external identifier for the document under a named scheme (bill number, gazette number, DOI, internal file number). A list is used because the same document is routinely known by several numbers, and retrieval fails when only one is known.",
+      "properties": {
+        "scheme": { "type": "string", "description": "Name of the numbering scheme, e.g. 'bill_number', 'gazette', 'doi', 'internal_file'." },
+        "value": { "type": "string" },
+        "issuer": { "type": ["string", "null"], "description": "Body that issued the identifier, when known." }
+      },
+      "required": ["scheme", "value"],
+      "additionalProperties": false
+    },
+
+    "authorship_entry": {
+      "type": "object",
+      "description": "Who is responsible for the document, recorded as a ROLE wherever the document permits it ('sponsoring ministry', 'committee rapporteur', 'budget office'). Aleph prefers roles to personal names because factual evaluation downstream must be blind to individual identity; a personal name is stored only when no institutional role is recoverable, and is then flagged so redaction can find it.",
+      "properties": {
+        "role": {
+          "type": "string",
+          "description": "The function performed, e.g. 'sponsor', 'drafting body', 'rapporteur', 'issuing authority', 'reviewer'."
+        },
+        "entity_kind": {
+          "type": "string",
+          "enum": ["institution", "committee", "office", "working_group", "individual_role", "unknown"]
+        },
+        "entity": {
+          "type": ["string", "null"],
+          "description": "Name of the institution or body. Should not be a personal name unless is_personal_name is true."
+        },
+        "is_personal_name": {
+          "type": "boolean",
+          "description": "True only when 'entity' holds a named individual because no institutional role could be recovered. Downstream redaction MUST treat these values as identity-bearing and strip them before any factual evaluation."
+        },
+        "span": { "oneOf": [{ "$ref": "common.json#/$defs/span" }, { "type": "null" }] }
+      },
+      "required": ["role", "entity_kind"],
+      "additionalProperties": false
+    },
+
+    "document_dates": {
+      "type": "object",
+      "description": "The lifecycle dates of the document. All are nullable because most documents state only some of them, and inventing a date would silently fabricate the timeline every later temporal check depends on.",
+      "properties": {
+        "introduced": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }],
+          "description": "When the instrument was first tabled, filed or submitted."
+        },
+        "published": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }],
+          "description": "Date of official publication or release of this version."
+        },
+        "retrieved": {
+          "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }],
+          "description": "When Aleph fetched this file. Distinguishes 'the document is silent' from 'the document changed after we read it'."
+        },
+        "last_amended": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }]
+        },
+        "effective_from": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }],
+          "description": "Date the instrument as a whole takes effect, when stated separately from publication."
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+
+    "identity": {
+      "type": "object",
+      "description": "What this document is and where it sits, kept separate from its contents so that retrieval, deduplication and versioning can work without loading the body text.",
+      "properties": {
+        "slug": {
+          "type": "string",
+          "description": "URL-safe stable key used in ids and static data paths.",
+          "pattern": "^[a-z0-9][a-z0-9._-]*$"
+        },
+        "title": { "type": "string", "description": "Official title as printed. Not paraphrased." },
+        "subtitle": { "type": ["string", "null"] },
+        "short_title": {
+          "type": ["string", "null"],
+          "description": "The name the document is actually referred to by, when it differs from the official title. Often the only name under which coverage of it can be found."
+        },
+        "jurisdiction": { "$ref": "#/$defs/jurisdiction" },
+        "institution": {
+          "type": ["string", "null"],
+          "description": "Body that issued or published the document."
+        },
+        "document_type": {
+          "description": "Kind of document. The listed values are the known set; any other lowercase snake_case string is accepted as a fallback so an arbitrary PDF passes through the pipeline instead of being rejected at the door. Consumers MUST render an unrecognised value as 'other' rather than failing.",
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "bill",
+                "law",
+                "decree",
+                "regulation",
+                "financial_report",
+                "technical_report",
+                "budget",
+                "ruling",
+                "consultation",
+                "other"
+              ]
+            },
+            { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }
+          ]
+        },
+        "document_type_raw": {
+          "type": ["string", "null"],
+          "description": "The document's own self-description of its type, verbatim and untranslated, preserved because the normalised enum necessarily loses information."
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary language, BCP-47 tag (e.g. 'es-CL', 'en-GB')."
+        },
+        "additional_languages": {
+          "type": "array",
+          "description": "Other languages present in the document, for multilingual instruments.",
+          "items": { "type": "string" }
+        },
+        "version": {
+          "type": ["string", "null"],
+          "description": "Version or revision label of this text, e.g. 'first reading', 'consolidated 2026-03'."
+        },
+        "legislative_identifier": {
+          "type": ["string", "null"],
+          "description": "Primary external identifier under whatever numbering scheme the issuing system uses. Kept as an opaque string: Aleph must not assume any particular numbering format."
+        },
+        "identifiers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/identifier" }
+        },
+        "status": {
+          "type": "string",
+          "description": "Lifecycle state of the instrument at retrieval time. 'unknown' is a legitimate and common answer; Aleph must not guess a status, because a claim's evaluation changes depending on whether a provision is in force or merely proposed.",
+          "enum": [
+            "draft",
+            "proposed",
+            "introduced",
+            "in_committee",
+            "passed",
+            "enacted",
+            "in_force",
+            "amended",
+            "suspended",
+            "repealed",
+            "superseded",
+            "withdrawn",
+            "rejected",
+            "published",
+            "unknown"
+          ]
+        },
+        "dates": { "$ref": "#/$defs/document_dates" },
+        "authorship": {
+          "type": "array",
+          "description": "Responsible parties, expressed as roles rather than personal names wherever the document allows.",
+          "items": { "$ref": "#/$defs/authorship_entry" }
+        },
+        "summary": {
+          "type": ["string", "null"],
+          "description": "Neutral descriptive summary of what the document does, written without evaluative language."
+        },
+        "keywords": {
+          "type": "array",
+          "description": "Subject terms taken from the document itself (its own keyword list, headings, or index), not inferred topical labels.",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["slug", "title", "jurisdiction", "document_type", "language", "status"],
+      "additionalProperties": false
+    },
+
+    "extraction_quality": {
+      "type": "object",
+      "description": "Measured quality of text extraction. Published because downstream confidence must be capped by it: high model confidence over a badly-OCRed page is not knowledge.",
+      "properties": {
+        "state": {
+          "type": "string",
+          "description": "Coarse verdict on whether the extracted text can support fine-grained claims.",
+          "enum": ["good", "degraded", "poor", "unknown"]
+        },
+        "text_coverage": {
+          "$ref": "common.json#/$defs/unit_interval",
+          "description": "Fraction of pages from which usable text was recovered."
+        },
+        "chars_extracted": { "type": ["integer", "null"], "minimum": 0 },
+        "pages_without_text": {
+          "type": "array",
+          "description": "1-based page numbers that yielded no usable text, typically scans or figures.",
+          "items": { "type": "integer", "minimum": 1 }
+        },
+        "ocr_used": { "type": "boolean" },
+        "ocr_confidence": {
+          "oneOf": [{ "$ref": "common.json#/$defs/unit_interval" }, { "type": "null" }]
+        },
+        "tables_detected": { "type": ["integer", "null"], "minimum": 0 },
+        "note": { "type": ["string", "null"] }
+      },
+      "required": ["state"],
+      "additionalProperties": false
+    },
+
+    "source": {
+      "type": "object",
+      "description": "Where the bytes came from and how they were turned into text. The hash exists so that a later re-run can tell 'the analysis changed' apart from 'the document changed'; without it, no result is reproducible.",
+      "properties": {
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "file_name": { "type": ["string", "null"] },
+        "media_type": { "type": ["string", "null"], "description": "IANA media type, e.g. 'application/pdf'." },
+        "file_hash": {
+          "type": ["string", "null"],
+          "description": "Lowercase hex digest of the retrieved bytes.",
+          "pattern": "^[0-9a-f]{32,128}$"
+        },
+        "hash_algorithm": {
+          "type": ["string", "null"],
+          "enum": ["sha256", "sha512", "sha1", "md5", null]
+        },
+        "file_size_bytes": { "type": ["integer", "null"], "minimum": 0 },
+        "page_count": { "type": ["integer", "null"], "minimum": 0 },
+        "retrieved_at": {
+          "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }]
+        },
+        "retrieval_method": {
+          "type": "string",
+          "enum": ["url_fetch", "file_upload", "local_path", "fixture", "unknown"]
+        },
+        "extraction_method": {
+          "type": "string",
+          "description": "How text was recovered from the file. Recorded because different extractors produce different character offsets, and spans are only meaningful relative to the extractor that produced them.",
+          "enum": ["pymupdf_text", "pypdf_text", "ocr", "html_dom", "plain_text", "manual", "fixture", "other"]
+        },
+        "extractor_version": {
+          "type": ["string", "null"],
+          "description": "Version string of the extraction component, so a span can be invalidated when the extractor changes."
+        },
+        "extraction_quality": { "$ref": "#/$defs/extraction_quality" },
+        "license_note": {
+          "type": ["string", "null"],
+          "description": "Factual note on the publication terms of the source, when stated. Not an assessment."
+        }
+      },
+      "required": ["extraction_method", "extraction_quality"],
+      "additionalProperties": false
+    },
+
+    "section": {
+      "type": "object",
+      "description": "One node of the document's outline. Recursive, because legal and technical documents nest (part > chapter > article > paragraph) and a flat page model loses the scope of a provision - which is exactly what determines what the provision applies to.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Section identifier, stable within the document (e.g. 'sec:2.1'). Referenced by span.section_id."
+        },
+        "number": {
+          "type": ["string", "null"],
+          "description": "The document's own numbering label for this section, verbatim (e.g. 'Article 7', 'II.3'). Kept as a string because numbering schemes are not numeric."
+        },
+        "heading": { "type": "string" },
+        "level": {
+          "type": "integer",
+          "description": "Nesting depth, 0 for top-level.",
+          "minimum": 0
+        },
+        "section_type": {
+          "type": ["string", "null"],
+          "enum": [
+            "preamble",
+            "recital",
+            "part",
+            "title",
+            "chapter",
+            "article",
+            "clause",
+            "paragraph",
+            "annex",
+            "schedule",
+            "table",
+            "footnote",
+            "signature_block",
+            "other",
+            null
+          ]
+        },
+        "page_range": {
+          "oneOf": [{ "$ref": "#/$defs/page_range" }, { "type": "null" }]
+        },
+        "char_start": { "type": ["integer", "null"], "minimum": 0 },
+        "char_end": { "type": ["integer", "null"], "minimum": 0 },
+        "provision_ids": {
+          "type": "array",
+          "description": "Provisions whose text falls inside this section.",
+          "items": { "$ref": "common.json#/$defs/id", "pattern": "^prov:" }
+        },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/section" }
+        },
+        "is_heuristic": {
+          "type": "boolean",
+          "description": "True when this section was inferred from typography rather than read from an explicit heading, so a reader knows the outline is a guess."
+        }
+      },
+      "required": ["id", "heading", "level"],
+      "additionalProperties": false
+    },
+
+    "structure": {
+      "type": "object",
+      "description": "The document's outline. Held separately from the provisions so that navigation and citation ('what does clause 3 of chapter II say') survive even when provision extraction is incomplete.",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/section" }
+        },
+        "numbering_scheme": {
+          "type": ["string", "null"],
+          "description": "Observed labelling convention, e.g. 'article_numeric', 'roman_chapter_arabic_clause'. Descriptive only; Aleph does not assume any scheme."
+        },
+        "max_depth": { "type": ["integer", "null"], "minimum": 0 },
+        "has_table_of_contents": { "type": "boolean" }
+      },
+      "required": ["sections"],
+      "additionalProperties": false
+    },
+
+    "provision": {
+      "type": "object",
+      "description": "A single operative unit of the document: one thing the instrument does. Provisions are the atoms that impact analysis, claim checking and the topic graph all point back to, which is why each one must carry a verbatim span, its own effective/sunset dates, and an explicit mechanism rather than an inferred intent.",
+      "properties": {
+        "id": { "$ref": "common.json#/$defs/id", "pattern": "^prov:[A-Za-z0-9._:-]+$" },
+        "title": { "type": ["string", "null"], "description": "Heading or short label for the provision, when the document supplies one." },
+        "text": {
+          "type": "string",
+          "description": "The provision's operative text, as extracted. Not paraphrased."
+        },
+        "provision_type": {
+          "type": "string",
+          "description": "What the provision does structurally. Chosen so that downstream code can reason about kind of effect without reading natural language: an 'obligation' and a 'funding_allocation' produce very different checkable consequences.",
+          "enum": [
+            "obligation",
+            "prohibition",
+            "permission",
+            "entitlement",
+            "benefit",
+            "tax",
+            "fee",
+            "subsidy",
+            "sanction",
+            "funding_allocation",
+            "institutional_mandate",
+            "procedure",
+            "eligibility_criterion",
+            "definition",
+            "transitional",
+            "repeal",
+            "amendment",
+            "delegation",
+            "reporting_requirement",
+            "sunset",
+            "other"
+          ]
+        },
+        "section_id": { "type": ["string", "null"], "description": "Section of the outline this provision sits in." },
+        "span": { "$ref": "common.json#/$defs/span" },
+        "effective_date": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }],
+          "description": "When this specific provision takes effect, which frequently differs from the document's own date."
+        },
+        "effective_condition": {
+          "type": ["string", "null"],
+          "description": "Verbatim condition governing entry into force when it is not a fixed date (e.g. 'on publication of the implementing regulation')."
+        },
+        "sunset_date": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }],
+          "description": "When the provision ceases to have effect, if it is time-limited."
+        },
+        "amends": {
+          "type": "array",
+          "description": "Identifiers of external instruments or internal provisions this provision changes.",
+          "items": { "type": "string" }
+        },
+        "depends_on": {
+          "type": "array",
+          "description": "Provision ids or external identifiers this provision cannot operate without.",
+          "items": { "type": "string" }
+        },
+        "implementing_body": {
+          "type": ["string", "null"],
+          "description": "Institution charged with carrying the provision out. Institution, never an individual."
+        },
+        "mechanism": {
+          "type": ["string", "null"],
+          "description": "Plain-language statement of HOW the provision produces its effect, drawn from the text rather than assumed. The mechanism is what makes an impact claim inspectable: without it, an effect attributed to a provision is unfalsifiable."
+        },
+        "mechanism_type": {
+          "type": ["string", "null"],
+          "enum": [
+            "transfer",
+            "tax_change",
+            "price_regulation",
+            "quantity_regulation",
+            "eligibility_change",
+            "procedural_requirement",
+            "institutional_creation",
+            "information_requirement",
+            "enforcement",
+            "funding",
+            "market_entry",
+            "other",
+            null
+          ]
+        },
+        "conditions": {
+          "type": "array",
+          "description": "Verbatim conditions that must hold for the provision to apply.",
+          "items": { "type": "string" }
+        },
+        "exceptions": {
+          "type": "array",
+          "description": "Verbatim carve-outs. Recorded explicitly because omitting an exception is one of the most common ways a summary becomes false.",
+          "items": { "type": "string" }
+        },
+        "monetary_value_ids": {
+          "type": "array",
+          "description": "Ids of entries in the document-level monetary_values[] that belong to this provision.",
+          "items": { "type": "string" }
+        },
+        "quantity_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "deadline_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "affected_institutions": {
+          "type": "array",
+          "description": "Labels or ids of bodies affected by this provision; should correspond to entries in the document-level affected_institutions[].",
+          "items": { "type": "string" }
+        },
+        "affected_populations": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "affected_industries": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "affected_regions": {
+          "type": "array",
+          "description": "Geographic areas named as in scope. Empty means the document did not restrict scope geographically, not that scope is universal.",
+          "items": { "type": "string" }
+        },
+        "confidence": {
+          "oneOf": [{ "$ref": "common.json#/$defs/confidence" }, { "type": "null" }],
+          "description": "Confidence that this provision was correctly identified and delimited."
+        }
+      },
+      "required": ["id", "text", "provision_type", "span"],
+      "additionalProperties": false
+    },
+
+    "definition": {
+      "type": "object",
+      "description": "A term the document defines for its own purposes. Stored with its scope because the same word may be defined differently in different parts of one instrument.",
+      "properties": {
+        "id": { "type": "string" },
+        "term": { "type": "string" },
+        "definition_text": { "type": "string", "description": "The defining text, verbatim." },
+        "scope": {
+          "type": ["string", "null"],
+          "description": "Where the definition applies, e.g. 'for the purposes of Chapter III'. Null means document-wide."
+        },
+        "span": { "$ref": "common.json#/$defs/span" },
+        "provision_id": { "type": ["string", "null"] }
+      },
+      "required": ["id", "term", "definition_text", "span"],
+      "additionalProperties": false
+    },
+
+    "monetary_value": {
+      "type": "object",
+      "description": "One monetary figure in context. 'role' matters more than the number: the same amount can be a cost, a cap or a penalty, and conflating them is a standard route to a false summary.",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string", "description": "What the figure is, in plain language." },
+        "money": { "$ref": "common.json#/$defs/money" },
+        "role": {
+          "type": "string",
+          "enum": [
+            "cost",
+            "revenue",
+            "allocation",
+            "transfer",
+            "threshold",
+            "cap",
+            "floor",
+            "penalty",
+            "benefit_amount",
+            "rate_base",
+            "baseline",
+            "projection",
+            "other"
+          ]
+        },
+        "recurrence": {
+          "type": ["string", "null"],
+          "enum": ["one_off", "annual", "monthly", "per_case", "cumulative", "unspecified", null]
+        },
+        "fiscal_years": {
+          "type": "array",
+          "description": "Years the figure is attributed to, when the document schedules it over time.",
+          "items": { "type": "integer", "minimum": 1800, "maximum": 2200 }
+        },
+        "is_estimate": {
+          "type": "boolean",
+          "description": "True when the document presents the figure as a projection rather than an enacted amount. A projected figure must never be reported as if it were a settled one."
+        },
+        "provision_id": { "type": ["string", "null"] },
+        "span": { "$ref": "common.json#/$defs/span" }
+      },
+      "required": ["id", "label", "money", "role", "span"],
+      "additionalProperties": false
+    },
+
+    "quantity_mention": {
+      "type": "object",
+      "description": "A non-monetary figure in context, with the verbatim text preserved so any unit or decimal-separator misreading is auditable.",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "quantity": { "$ref": "common.json#/$defs/quantity" },
+        "role": {
+          "type": "string",
+          "enum": ["threshold", "rate", "target", "baseline", "projection", "count_affected", "duration", "share", "other"]
+        },
+        "provision_id": { "type": ["string", "null"] },
+        "span": { "$ref": "common.json#/$defs/span" }
+      },
+      "required": ["id", "label", "quantity", "span"],
+      "additionalProperties": false
+    },
+
+    "deadline": {
+      "type": "object",
+      "description": "An obligation with a time bound. Either an absolute date or a relative period is present; both may be null only when the document states a deadline exists without fixing it, which is itself a finding worth publishing.",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string", "description": "What must happen." },
+        "date": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }]
+        },
+        "relative_period": {
+          "type": ["string", "null"],
+          "description": "Verbatim relative deadline, e.g. '90 days from publication', when no absolute date is given."
+        },
+        "trigger": {
+          "type": ["string", "null"],
+          "description": "Event the relative period runs from."
+        },
+        "obligated_party": {
+          "type": ["string", "null"],
+          "description": "Body required to act. Institution, not an individual."
+        },
+        "consequence_of_missing": {
+          "type": ["string", "null"],
+          "description": "What the document says happens if the deadline is missed. Frequently nothing - and recording that silence is informative."
+        },
+        "provision_id": { "type": ["string", "null"] },
+        "span": { "$ref": "common.json#/$defs/span" }
+      },
+      "required": ["id", "label", "span"],
+      "additionalProperties": false
+    },
+
+    "assumption": {
+      "type": "object",
+      "description": "A stated assumption underlying the document's own projections. Aleph treats these as first-class objects because a forecast can only be evaluated against its assumptions: if the document assumed a growth path and the growth path did not occur, the forecast was not thereby 'wrong', and Aleph must be able to say so precisely. An assumption with no span is not usable, because the whole point is that the document, not Aleph, made it.",
+      "properties": {
+        "id": { "type": "string" },
+        "statement": { "type": "string", "description": "The assumption in plain language." },
+        "assumption_type": {
+          "type": "string",
+          "enum": [
+            "macroeconomic",
+            "behavioural",
+            "demographic",
+            "take_up",
+            "compliance",
+            "price",
+            "implementation",
+            "baseline",
+            "administrative_capacity",
+            "external_condition",
+            "other"
+          ]
+        },
+        "is_explicit": {
+          "type": "boolean",
+          "description": "True when the document states the assumption in so many words. False when it was inferred from a calculation - in which case Aleph must label it as inferred wherever it is shown."
+        },
+        "stated_by": {
+          "type": ["string", "null"],
+          "description": "Role or body the document attributes the assumption to, e.g. 'budget office'. A role, not a person."
+        },
+        "quantified_money": {
+          "oneOf": [{ "$ref": "common.json#/$defs/money" }, { "type": "null" }]
+        },
+        "quantified_value": {
+          "oneOf": [{ "$ref": "common.json#/$defs/quantity" }, { "type": "null" }]
+        },
+        "sensitivity_note": {
+          "type": ["string", "null"],
+          "description": "What the document says about how results change if the assumption fails."
+        },
+        "applies_to_provision_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "span": { "$ref": "common.json#/$defs/span" }
+      },
+      "required": ["id", "statement", "assumption_type", "is_explicit", "span"],
+      "additionalProperties": false
+    },
+
+    "citation": {
+      "type": "object",
+      "description": "A reference from this document to something outside it. Captured so that primary-source coverage can later be measured against what the document itself relies on, rather than against an arbitrary reading list.",
+      "properties": {
+        "id": { "type": "string" },
+        "cited_text": { "type": "string", "description": "The citation as printed, verbatim." },
+        "target_kind": {
+          "type": "string",
+          "enum": ["statute", "regulation", "case", "dataset", "report", "article", "treaty", "standard", "internal", "other"]
+        },
+        "target_identifier": { "type": ["string", "null"] },
+        "target_title": { "type": ["string", "null"] },
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "provision_id": { "type": ["string", "null"] },
+        "span": { "$ref": "common.json#/$defs/span" }
+      },
+      "required": ["id", "cited_text", "target_kind", "span"],
+      "additionalProperties": false
+    },
+
+    "amendment": {
+      "type": "object",
+      "description": "A textual change this document makes to another instrument. before_text/after_text are kept verbatim so that the substantive effect of an amendment can be shown rather than characterised.",
+      "properties": {
+        "id": { "type": "string" },
+        "operation": {
+          "type": "string",
+          "enum": ["insert", "replace", "delete", "renumber", "repeal", "extend", "suspend", "substitute", "other"]
+        },
+        "target_identifier": { "type": ["string", "null"], "description": "Identifier of the instrument being amended." },
+        "target_title": { "type": ["string", "null"] },
+        "target_locator": {
+          "type": ["string", "null"],
+          "description": "Where in the target the change applies, verbatim (e.g. 'article 12, second paragraph')."
+        },
+        "before_text": { "type": ["string", "null"] },
+        "after_text": { "type": ["string", "null"] },
+        "provision_id": { "type": ["string", "null"] },
+        "span": { "$ref": "common.json#/$defs/span" }
+      },
+      "required": ["id", "operation", "span"],
+      "additionalProperties": false
+    },
+
+    "legal_dependency": {
+      "type": "object",
+      "description": "Something outside this document that its operation depends on. Tracked because unmet dependencies are the most common reason a provision that 'exists' has no effect, and any impact statement that ignores them overstates the document.",
+      "properties": {
+        "id": { "type": "string" },
+        "dependency_kind": {
+          "type": "string",
+          "enum": [
+            "requires_enactment",
+            "requires_regulation",
+            "requires_appropriation",
+            "requires_ratification",
+            "conditioned_on_event",
+            "conflicts_with",
+            "supersedes",
+            "references"
+          ]
+        },
+        "identifier": { "type": ["string", "null"] },
+        "title": { "type": ["string", "null"] },
+        "status": {
+          "type": ["string", "null"],
+          "enum": ["met", "unmet", "partially_met", "unknown", null],
+          "description": "Whether the dependency is satisfied, as far as the document itself states. 'unknown' when the document is silent - Aleph does not infer satisfaction."
+        },
+        "note": { "type": ["string", "null"] },
+        "provision_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "span": {
+          "oneOf": [{ "$ref": "common.json#/$defs/span" }, { "type": "null" }]
+        }
+      },
+      "required": ["id", "dependency_kind"],
+      "additionalProperties": false
+    },
+
+    "affected_institution": {
+      "type": "object",
+      "description": "A body the document gives a role to, with that role named. Kept distinct from populations and industries because institutions bear duties, while populations and industries bear effects.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role_in_document": {
+          "type": "string",
+          "enum": ["implementing", "funding", "supervising", "reporting", "consulted", "beneficiary", "regulated", "created", "abolished", "other"]
+        },
+        "provision_ids": { "type": "array", "items": { "type": "string" } },
+        "span": {
+          "oneOf": [{ "$ref": "common.json#/$defs/span" }, { "type": "null" }]
+        }
+      },
+      "required": ["id", "name", "role_in_document"],
+      "additionalProperties": false
+    },
+
+    "affected_population": {
+      "type": "object",
+      "description": "A group the document names or defines as affected. Described by the document's own eligibility criteria rather than by an external demographic label, so that Aleph never invents a constituency the text did not create.",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "definition_criteria": {
+          "type": ["string", "null"],
+          "description": "The eligibility or membership test the document states, verbatim where possible."
+        },
+        "estimated_size": {
+          "oneOf": [{ "$ref": "common.json#/$defs/quantity" }, { "type": "null" }],
+          "description": "Size only when the DOCUMENT states it. Aleph does not supply an outside estimate here."
+        },
+        "provision_ids": { "type": "array", "items": { "type": "string" } },
+        "span": {
+          "oneOf": [{ "$ref": "common.json#/$defs/span" }, { "type": "null" }]
+        }
+      },
+      "required": ["id", "label"],
+      "additionalProperties": false
+    },
+
+    "affected_industry": {
+      "type": "object",
+      "description": "An economic sector or activity the document names as affected, with a standard classification code where the document supplies one.",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "classification_code": { "type": ["string", "null"] },
+        "classification_system": {
+          "type": ["string", "null"],
+          "description": "Name of the classification the code belongs to (e.g. 'ISIC', 'NACE', a national scheme). Left open: Aleph assumes no particular system."
+        },
+        "provision_ids": { "type": "array", "items": { "type": "string" } },
+        "span": {
+          "oneOf": [{ "$ref": "common.json#/$defs/span" }, { "type": "null" }]
+        }
+      },
+      "required": ["id", "label"],
+      "additionalProperties": false
+    },
+
+    "extraction_warning": {
+      "type": "object",
+      "description": "A recorded limitation of this reading. These are surfaced to the reader, not hidden: knowing that numbering was guessed or that three pages were unreadable is part of knowing how much the analysis is worth.",
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "low_text_quality",
+            "ocr_used",
+            "missing_pages",
+            "table_extraction_failed",
+            "encrypted_file",
+            "truncated_text",
+            "ambiguous_numbering",
+            "unresolved_reference",
+            "mixed_languages",
+            "scanned_images_only",
+            "currency_ambiguous",
+            "date_ambiguous",
+            "number_format_ambiguous",
+            "section_heuristic_fallback",
+            "provision_boundary_uncertain",
+            "other"
+          ]
+        },
+        "severity": {
+          "type": "string",
+          "description": "'error' means downstream results derived from the affected material must not be published without review.",
+          "enum": ["info", "warning", "error"]
+        },
+        "message": { "type": "string" },
+        "page": { "type": ["integer", "null"], "minimum": 1 },
+        "affected_field": {
+          "type": ["string", "null"],
+          "description": "Dotted path of the field whose reliability is reduced, e.g. 'monetary_values[3].money.amount'."
+        },
+        "span": {
+          "oneOf": [{ "$ref": "common.json#/$defs/span" }, { "type": "null" }]
+        }
+      },
+      "required": ["code", "severity", "message"],
+      "additionalProperties": false
+    }
+  }
+}

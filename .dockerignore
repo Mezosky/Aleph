@@ -1,0 +1,57 @@
+# Keep the build context small and secret-free. Anything listed here is invisible
+# to every stage of the Dockerfile, so a stray .env can never be COPYied into a layer.
+
+# Version control / CI metadata
+.git/
+.github/
+.gitignore
+.gitattributes
+
+# Local toolchains and virtualenvs (host-specific, would break the image)
+.venv/
+venv/
+.toolchain/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Python build/test artefacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Node artefacts — the frontend stage installs its own, matched to the lockfile
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Working data: mounted at runtime, not baked in
+data/raw/
+data/processed/
+data/exports/
+
+# Docs, tests and compose files are not needed by the runtime image
+docs/
+tests/
+docker-compose.yml
+docker-compose.*.yml
+Makefile
+*.md
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

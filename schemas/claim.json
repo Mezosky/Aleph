@@ -1,0 +1,403 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/claim.json",
+  "title": "Aleph Claim Set",
+  "description": "Claims extracted from documents, articles and public statements, each carrying a strictly two-stage evaluation. STAGE ONE is a speaker-blind factual evaluation: the evaluator receives the claim text and the evidence, and does not receive the speaker's name, role, party, coalition, government-or-opposition status, or the outlet that carried the statement. The verdict is produced there and nowhere else. STAGE TWO is an attributed analysis that may describe how a claim was framed, who made it and whether it is consistent with that actor's earlier statements — but it is applied only after the verdict exists and it has no field through which it could alter the verdict. This separation is enforced structurally, not by convention: blind_evaluation has no property in which a party or coalition could be written, and additionalProperties is false, so such a field cannot be smuggled in. Aleph never emits a scalar left-right score for a claim or its speaker.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "generated_at": { "$ref": "common.json#/$defs/timestamp" },
+    "document_id": {
+      "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+      "description": "Document these claims relate to, when the set is document-scoped."
+    },
+    "claims": {
+      "type": "array",
+      "description": "The claims. Extraction is deliberately generous and evaluation is deliberately strict: a claim may be recorded and then found unverifiable or not-a-factual-claim, which is a real result and must be shown as such rather than dropped.",
+      "items": { "$ref": "#/$defs/claim" }
+    }
+  },
+  "required": ["schema_version", "data_status", "generated_at", "claims"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "check_name": {
+      "type": "string",
+      "title": "Epistemic Check",
+      "description": "One of the ten criteria Aleph applies to every factual claim. They are fixed so that two claims are always judged against the same list, and so a reader can see which tests a verdict actually survived. 'direct_textual_evidence': is there a quotable passage that says this? 'data_consistency': do the numbers agree across sources? 'quantitative_correctness': do the arithmetic, units, base years and percentages check out? 'logical_validity': does the conclusion follow from the premises? 'causal_support': is a causal link asserted, and is there evidence for it beyond correlation or sequence? 'uncertainty_handling': are projections presented with their assumptions and ranges? 'context_completeness': is material context present or omitted? 'temporal_correctness': do dates, tenses and the state of the world at the time line up? 'independent_corroboration': is there a second genuinely independent source, not a restatement? 'contradiction_with_stronger_evidence': does better evidence say otherwise?",
+      "enum": [
+        "direct_textual_evidence",
+        "data_consistency",
+        "quantitative_correctness",
+        "logical_validity",
+        "causal_support",
+        "uncertainty_handling",
+        "context_completeness",
+        "temporal_correctness",
+        "independent_corroboration",
+        "contradiction_with_stronger_evidence"
+      ]
+    },
+
+    "check_result": {
+      "type": "object",
+      "title": "Check Result",
+      "description": "The outcome of one epistemic check on one claim. 'na' is a first-class result: applying a causal-support test to a definitional statement would manufacture a failure. The note is required so that a fail is never a bare label.",
+      "properties": {
+        "check": { "$ref": "#/$defs/check_name" },
+        "result": {
+          "type": "string",
+          "description": "'pass' means the claim survived the check. 'fail' means it did not. 'na' means the check does not apply to this kind of statement.",
+          "enum": ["pass", "fail", "na"]
+        },
+        "note": {
+          "type": ["string", "null"],
+          "description": "Why the check passed, failed or does not apply. Required key: a result without a reason is not inspectable."
+        },
+        "evidence_refs": {
+          "type": "array",
+          "description": "Evidence items that drove this check's outcome.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        }
+      },
+      "required": ["check", "result", "note"],
+      "additionalProperties": false
+    },
+
+    "redacted_context": {
+      "type": "object",
+      "title": "Redacted Evaluation Context",
+      "description": "Exactly what the blind evaluator was shown, recorded so the blindness can be audited after the fact rather than merely asserted. If a reviewer suspects the verdict was influenced by who spoke, they can read this object and see that the speaker was not in the input. The 'withheld' list names what was removed; it is required and must be non-empty, because a blind evaluation that withheld nothing is not blind.",
+      "properties": {
+        "claim_text": {
+          "type": "string",
+          "description": "The claim exactly as presented to the evaluator, with speaker-identifying tokens already replaced by neutral placeholders such as 'the speaker'.",
+          "minLength": 1
+        },
+        "context_excerpts": {
+          "type": "array",
+          "description": "Surrounding passages shown to the evaluator, likewise redacted of attribution.",
+          "items": { "type": "string" }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "description": "Evidence items placed in front of the evaluator, in the order presented. Order must not change the verdict; neutrality_report.json tests that with the evidence_order_shuffle perturbation.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "withheld": {
+          "type": "array",
+          "description": "The categories of attribution removed before evaluation. These are the inputs Aleph considers irrelevant to whether a statement is true.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "speaker_name",
+              "speaker_role",
+              "party",
+              "coalition",
+              "government_or_opposition_status",
+              "outlet",
+              "outlet_prestige",
+              "author",
+              "publication_venue",
+              "institutional_affiliation"
+            ]
+          },
+          "minItems": 1
+        },
+        "redaction_version": {
+          "type": "string",
+          "description": "Version of the redaction component, so a change in what gets stripped is visible in the record."
+        }
+      },
+      "required": ["claim_text", "evidence_ids", "withheld", "redaction_version"],
+      "additionalProperties": false
+    },
+
+    "blind_evaluation": {
+      "type": "object",
+      "title": "Blind Factual Evaluation (stage one)",
+      "description": "The only place a verdict may be written. SPEAKER, PARTY, COALITION, GOVERNMENT-OR-OPPOSITION STATUS AND OUTLET WERE WITHHELD AT THIS STAGE — this object has no property in which any of them could be recorded, and additionalProperties is false, so the verdict path is structurally incapable of seeing them. Any downstream consumer that wants a verdict must read it from here; there is deliberately no verdict field at claim level that a later, attributed pass could overwrite.",
+      "properties": {
+        "evaluator_version": {
+          "type": "string",
+          "description": "Identifier of the evaluator (model or rule engine) and its version, so a verdict can be reproduced or invalidated when the evaluator changes.",
+          "minLength": 1
+        },
+        "redacted_context": {
+          "$ref": "#/$defs/redacted_context",
+          "description": "What the evaluator actually saw. Required, so blindness is an auditable fact rather than a claim about the pipeline."
+        },
+        "verdict": {
+          "$ref": "common.json#/$defs/verdict",
+          "description": "Outcome for this claim. 'not_a_factual_claim' and 'forecast_conditional' exist so opinions and predictions are never forced into a true/false frame."
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "The chain from evidence to verdict, written so a reader can disagree with a specific step. Must refer to evidence, never to who made the claim.",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "description": "Evidence items the verdict actually rests on, a subset of what was shown.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "assumptions_required": {
+          "type": "array",
+          "description": "Assumptions that must hold for the verdict to stand. A forecast judged 'forecast_conditional' should list the conditions here rather than be graded true or false.",
+          "items": { "type": "string" }
+        },
+        "confidence": {
+          "$ref": "common.json#/$defs/confidence",
+          "description": "Evidence-derived confidence first, model self-report second and clearly subordinate. High model confidence over thin evidence is never presented as reassurance."
+        },
+        "uncertainties": {
+          "type": "array",
+          "description": "What is still unresolved even given the verdict. Published rather than rounded away.",
+          "items": { "$ref": "common.json#/$defs/uncertainty" }
+        }
+      },
+      "required": ["evaluator_version", "redacted_context", "verdict", "reasoning", "evidence_refs", "confidence"],
+      "additionalProperties": false,
+      "not": {
+        "description": "Belt and braces. additionalProperties:false already forbids these, but stating them explicitly records the design intent: identity of the speaker is not an admissible input to a factual verdict, and no future relaxation of this object may quietly reintroduce one.",
+        "anyOf": [
+          { "required": ["party"] },
+          { "required": ["coalition"] },
+          { "required": ["speaker"] },
+          { "required": ["speaker_id"] },
+          { "required": ["speaker_name"] },
+          { "required": ["speaker_role"] },
+          { "required": ["outlet"] },
+          { "required": ["outlet_id"] },
+          { "required": ["government_or_opposition"] },
+          { "required": ["political_leaning"] },
+          { "required": ["bias_score"] }
+        ]
+      }
+    },
+
+    "historical_consistency": {
+      "type": "object",
+      "title": "Historical Consistency",
+      "description": "Whether this actor's current claim sits consistently with their earlier public statements. This is descriptive context for a reader, not a truth test: an actor who changed position may have changed it because the evidence changed. Inconsistency therefore never alters the verdict.",
+      "properties": {
+        "assessment": {
+          "type": "string",
+          "enum": ["consistent", "shifted", "contradicts_prior", "insufficient_history", "not_assessed"]
+        },
+        "prior_claim_refs": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "note": { "type": ["string", "null"] }
+      },
+      "required": ["assessment"],
+      "additionalProperties": false
+    },
+
+    "rhetorical_observation": {
+      "type": "object",
+      "title": "Rhetorical Observation",
+      "description": "A named pattern in how the claim was expressed. Naming a rhetorical pattern is not a refutation: a claim delivered with urgency framing may still be true, and a claim delivered plainly may still be false. These observations exist so a reader can separate the argument from its packaging, and they are recorded only after the verdict is fixed.",
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "enum": [
+            "appeal_to_authority",
+            "false_dilemma",
+            "cherry_picked_statistic",
+            "anecdote_as_evidence",
+            "unfalsifiable_prediction",
+            "straw_man",
+            "loaded_comparison",
+            "urgency_framing",
+            "moral_framing",
+            "technical_obfuscation",
+            "none_detected"
+          ]
+        },
+        "span": {
+          "oneOf": [{ "$ref": "common.json#/$defs/span" }, { "type": "null" }],
+          "description": "The passage exhibiting the pattern, so the observation is checkable."
+        },
+        "note": { "type": ["string", "null"] }
+      },
+      "required": ["pattern"],
+      "additionalProperties": false
+    },
+
+    "attributed_analysis": {
+      "type": "object",
+      "title": "Attributed Analysis (stage two)",
+      "description": "Who said it, how they said it, and how it sits with what they have said before. APPLIED ONLY AFTER THE BLIND VERDICT EXISTS. Nothing in this object can change that verdict: there is no verdict, confidence, override or adjustment field here, and the verdict lives in blind_evaluation which this stage never rewrites. The purpose is context for a reader — a plainly-true claim can still be selectively framed, and a false claim is not made false by who made it. speaker_role uses generic role strings (for example 'Finance Ministry spokesperson'), never a private individual's name in synthetic data.",
+      "properties": {
+        "applied_after_verdict": {
+          "type": "boolean",
+          "const": true,
+          "description": "Machine-checkable assertion that this analysis was produced after the blind verdict was recorded. Pinned to true: a document in which attribution preceded evaluation cannot validate against this schema."
+        },
+        "speaker_role": {
+          "type": ["string", "null"],
+          "description": "Generic functional role of the speaker, e.g. 'Opposition finance spokesperson', 'Municipal association president'. A role, not a person."
+        },
+        "speaker_id": {
+          "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+          "description": "Actor identifier, prefixed 'actor:'. Used for grouping and for historical consistency; never an input to a verdict."
+        },
+        "outlet_id": {
+          "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+          "description": "Publisher identifier, prefixed 'src:'. Recorded for provenance. Outlet prestige carries no evidential weight anywhere in Aleph."
+        },
+        "framing_notes": {
+          "type": "array",
+          "description": "How the claim was packaged: what was foregrounded, what comparison class was chosen, which figure was used when several were available.",
+          "items": { "type": "string" }
+        },
+        "historical_consistency": {
+          "oneOf": [{ "$ref": "#/$defs/historical_consistency" }, { "type": "null" }]
+        },
+        "rhetorical_pattern": {
+          "type": "array",
+          "description": "Named patterns observed in the delivery. Empty or 'none_detected' is a normal and expected result.",
+          "items": { "$ref": "#/$defs/rhetorical_observation" }
+        }
+      },
+      "required": ["applied_after_verdict"],
+      "additionalProperties": false
+    },
+
+    "omitted_context": {
+      "type": "object",
+      "title": "Omitted Context",
+      "description": "Material context a reader would need that the claim or article left out. Recorded separately from the verdict because a technically accurate statement can still mislead by omission, and because 'this is missing' is an assertion Aleph must evidence like any other.",
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "The missing context, stated positively: what is true and was not said.",
+          "minLength": 1
+        },
+        "why_it_matters": {
+          "type": "string",
+          "description": "How a reader's understanding changes once this context is supplied.",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "description": "Evidence establishing that the omitted context is itself accurate.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "materiality": {
+          "$ref": "common.json#/$defs/magnitude",
+          "description": "How much the omission changes the picture. Coarse on purpose."
+        }
+      },
+      "required": ["statement", "why_it_matters"],
+      "additionalProperties": false
+    },
+
+    "claim": {
+      "type": "object",
+      "title": "Claim",
+      "description": "A single assertion, as asserted, plus everything Aleph did with it. Note what is NOT here: there is no top-level verdict, no confidence and no score. The verdict exists only inside blind_evaluation, so there is no field an attributed pass could overwrite and no place for a speaker-influenced judgement to live.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "Stable claim identifier, prefixed 'clm:'."
+        },
+        "text": {
+          "type": "string",
+          "description": "The claim exactly as asserted, verbatim. Preserved unedited so a reader can check that Aleph did not evaluate a strawman.",
+          "minLength": 1
+        },
+        "normalised_text": {
+          "type": "string",
+          "description": "The same claim restated as a single checkable proposition: pronouns resolved, implicit comparison class made explicit, one assertion per claim. This is what the evaluator reasons about, and holding it beside 'text' is how paraphrase drift is caught.",
+          "minLength": 1
+        },
+        "statement_type": {
+          "$ref": "common.json#/$defs/statement_type",
+          "description": "Kind of utterance. Determines which epistemic checks apply and prevents an opinion being graded as if it were a fact."
+        },
+        "topic_refs": {
+          "type": "array",
+          "description": "Topic-graph node ids this claim attaches to, prefixed 'node:'.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "made_at": {
+          "oneOf": [
+            { "$ref": "common.json#/$defs/timestamp" },
+            { "$ref": "common.json#/$defs/date" },
+            { "type": "null" }
+          ],
+          "description": "When the claim was made. Load-bearing: a statement true when made and false later is not a lie, and the temporal_correctness check depends on this."
+        },
+        "provenance": {
+          "$ref": "common.json#/$defs/provenance",
+          "description": "Where the claim was found, with a locating span. Used for authenticity and attribution; withheld from the blind evaluator."
+        },
+        "quantities": {
+          "type": "array",
+          "description": "Numbers asserted by the claim, with verbatim source text, so the quantitative_correctness check can be recomputed.",
+          "items": { "$ref": "common.json#/$defs/quantity" }
+        },
+        "money": {
+          "type": "array",
+          "description": "Monetary figures asserted by the claim. Always structured with currency, scale and reference year.",
+          "items": { "$ref": "common.json#/$defs/money" }
+        },
+        "blind_evaluation": {
+          "$ref": "#/$defs/blind_evaluation",
+          "description": "Stage one. The verdict and the only evaluation that may set it."
+        },
+        "attributed_analysis": {
+          "oneOf": [{ "$ref": "#/$defs/attributed_analysis" }, { "type": "null" }],
+          "description": "Stage two, or null when the attribution layer has not been run. Required key so the two-stage design is explicit in every record rather than silently absent."
+        },
+        "checks_applied": {
+          "type": "array",
+          "description": "The epistemic checks run on this claim, drawn from the fixed set of ten. Checks that do not apply should appear with result 'na' rather than be omitted, so a reader can tell 'not applicable' from 'not tested'.",
+          "items": { "$ref": "#/$defs/check_result" },
+          "minItems": 1,
+          "maxItems": 10,
+          "uniqueItems": true
+        },
+        "contradicts": {
+          "type": "array",
+          "description": "Ids of other claims that assert the opposite of this one on the same question.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "cluster_id": {
+          "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+          "description": "Claim cluster this belongs to, prefixed 'cluster:'. Clustering groups restatements of one claim so repetition is not mistaken for corroboration."
+        },
+        "omitted_context": {
+          "type": "array",
+          "description": "Material context the claim leaves out, each evidenced.",
+          "items": { "$ref": "#/$defs/omitted_context" }
+        },
+        "article_id": {
+          "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+          "description": "Article the claim was extracted from, when it came from news coverage rather than the primary document."
+        },
+        "proposition_refs": {
+          "type": "array",
+          "description": "Ids of document propositions this claim is about, prefixed 'prop:' or 'prov:'. This is the link back to the primary text.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "normalised_text",
+        "statement_type",
+        "made_at",
+        "provenance",
+        "blind_evaluation",
+        "attributed_analysis",
+        "checks_applied"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

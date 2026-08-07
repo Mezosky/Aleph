@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/news_article.json",
+  "title": "Aleph News Article Set",
+  "description": "News and commentary items Aleph collected about a document, together with what was extracted from each one. An article is treated as an OBSERVATION ABOUT COVERAGE, not as evidence about the world: what an article establishes on its own is that a given outlet published a given statement on a given date. Whether the statement is true is settled elsewhere, by the speaker-blind evaluation in claim.json, using evidence ranked by relevance rather than by the standing of the outlet. Article_type is required because an opinion column and a wire report are different kinds of object and must never be aggregated as if they were interchangeable. In synthetic datasets, publishers are clearly fictional and authors are generic role strings — never a real person's name.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "generated_at": { "$ref": "common.json#/$defs/timestamp" },
+    "document_id": {
+      "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+      "description": "Document this coverage set is about, when the set is document-scoped."
+    },
+    "articles": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/article" }
+    }
+  },
+  "required": ["schema_version", "data_status", "generated_at", "articles"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "article_type": {
+      "type": "string",
+      "title": "Article Type",
+      "description": "What kind of published item this is. Aleph must present and weigh these differently: an editorial argues a position and is not evidence that the position is correct; a press release is a party's own account of itself; a wire item is one observation that many outlets may republish without adding independence.",
+      "enum": [
+        "news_report",
+        "analysis",
+        "opinion_column",
+        "editorial",
+        "interview",
+        "fact_check",
+        "press_release",
+        "wire"
+      ]
+    },
+
+    "publisher": {
+      "type": "object",
+      "title": "Publisher",
+      "description": "The outlet that published the item. Carries an identifier and a display name and deliberately no prestige, tier or credibility rating: outlet standing must never influence a factual verdict anywhere in Aleph.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "Source-registry identifier, prefixed 'src:'."
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name. In synthetic datasets this is a clearly fictional outlet.",
+          "minLength": 1
+        }
+      },
+      "required": ["id", "name"],
+      "additionalProperties": false
+    },
+
+    "quotation": {
+      "type": "object",
+      "title": "Quotation",
+      "description": "A quoted passage as it appeared in the article, attributed to a functional role rather than to a named individual. Quotations are the raw material for claim extraction; keeping the verbatim text and its span means a reader can check that Aleph evaluated what was actually said.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The quotation verbatim, as printed.",
+          "minLength": 1
+        },
+        "speaker_role": {
+          "type": ["string", "null"],
+          "description": "Generic functional role, e.g. 'Business federation economist'. Never a private individual's name in synthetic data. Withheld from the blind evaluator when a claim is derived from this quotation."
+        },
+        "span": {
+          "$ref": "common.json#/$defs/span",
+          "description": "Where the quotation sits in the article text."
+        },
+        "claim_id": {
+          "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+          "description": "Claim extracted from this quotation, if any."
+        }
+      },
+      "required": ["text", "speaker_role", "span"],
+      "additionalProperties": false
+    },
+
+    "prediction": {
+      "type": "object",
+      "title": "Prediction",
+      "description": "A forward-looking statement carried by the article. Predictions are tracked separately from claims because they cannot be true or false yet: they can only be conditional, falsifiable and eventually checkable. Recording the conditions and the date at which a prediction becomes evaluable is what stops Aleph from grading the future.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The prediction as stated.",
+          "minLength": 1
+        },
+        "speaker_role": {
+          "type": ["string", "null"],
+          "description": "Who made the prediction, as a functional role."
+        },
+        "horizon": {
+          "$ref": "common.json#/$defs/time_horizon",
+          "description": "When the predicted effect is said to occur."
+        },
+        "conditions": {
+          "type": "array",
+          "description": "Stated or clearly implied conditions under which the prediction is supposed to hold. A prediction with no conditions is usually an unfalsifiable one.",
+          "items": { "type": "string" }
+        },
+        "falsifiable": {
+          "type": "boolean",
+          "description": "Whether some observable outcome would count against this prediction. If false, the prediction is rhetoric and must not be presented as a checkable forecast."
+        },
+        "evaluable_after": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }],
+          "description": "Earliest date at which the prediction could be assessed. Null when the statement names no horizon."
+        },
+        "claim_id": {
+          "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }]
+        }
+      },
+      "required": ["text", "horizon", "falsifiable"],
+      "additionalProperties": false
+    },
+
+    "impact_emphasis_entry": {
+      "type": "object",
+      "title": "Impact Emphasis Entry",
+      "description": "Which policy-effect axis the article foregrounds, and how strongly. This is a description of editorial attention, not an accusation: an article about municipal finance will legitimately emphasise the central-versus-local axis. Emphasis becomes informative only when compared across coverage of the same document, where a systematic silence on one axis is visible.",
+      "properties": {
+        "axis": {
+          "$ref": "impact_map.json#/$defs/axis_key",
+          "description": "One of Aleph's seven fixed policy-effect axes."
+        },
+        "emphasis": {
+          "$ref": "common.json#/$defs/unit_interval",
+          "description": "Share of the article's attention given to this axis, 0 meaning not mentioned."
+        },
+        "direction_emphasised": {
+          "$ref": "common.json#/$defs/direction",
+          "description": "Whether the article foregrounds effects in one direction on this axis, both, or neither."
+        },
+        "note": { "type": ["string", "null"] }
+      },
+      "required": ["axis", "emphasis"],
+      "additionalProperties": false
+    },
+
+    "primary_source_grounding_entry": {
+      "type": "object",
+      "title": "Primary Source Grounding Entry",
+      "description": "One instance of the article anchoring a statement in a primary source, and how firmly. The distinction between 'linked' and 'named_without_link' matters: an article that names a report without pointing at it asks the reader to take the outlet's word for what the report says, which is exactly the substitution of authority for evidence that Aleph refuses to make.",
+      "properties": {
+        "ref": {
+          "$ref": "common.json#/$defs/id",
+          "description": "Evidence item, provision or document the article grounds itself in."
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["quoted_directly", "linked", "paraphrased", "named_without_link", "none"]
+        },
+        "note": { "type": ["string", "null"] }
+      },
+      "required": ["ref", "kind"],
+      "additionalProperties": false
+    },
+
+    "article": {
+      "type": "object",
+      "title": "News Article",
+      "description": "One published item plus Aleph's extraction from it. body_available and paywalled are required and load-bearing: an analysis built from headlines alone is a weaker analysis, and the reader is entitled to know when that is what happened.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "Stable article identifier, prefixed 'art:<outlet-slug>:<n>'."
+        },
+        "url": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "Canonical location. Null for synthetic items, which point at nothing because they describe nothing real."
+        },
+        "headline": {
+          "type": "string",
+          "description": "Headline as published. Kept verbatim because headline framing frequently diverges from the body, and that divergence is itself a finding.",
+          "minLength": 1
+        },
+        "dek": {
+          "type": ["string", "null"],
+          "description": "Standfirst or subheading, when present."
+        },
+        "publisher": { "$ref": "#/$defs/publisher" },
+        "author": {
+          "type": ["string", "null"],
+          "description": "Byline. In synthetic datasets this is a generic role string such as 'Staff economics correspondent' and never a real person's name; null when unbylined."
+        },
+        "published_at": {
+          "oneOf": [
+            { "$ref": "common.json#/$defs/timestamp" },
+            { "$ref": "common.json#/$defs/date" },
+            { "type": "null" }
+          ],
+          "description": "Publication instant or date. Needed to order coverage and to distinguish an original from its later restatements."
+        },
+        "retrieved_at": {
+          "$ref": "common.json#/$defs/timestamp",
+          "description": "When Aleph fetched the item, so an analysis can be reproduced against what was visible at the time."
+        },
+        "language": {
+          "type": ["string", "null"],
+          "description": "BCP-47 tag of the article text."
+        },
+        "article_type": { "$ref": "#/$defs/article_type" },
+        "word_count": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Length of the retrieved body. Null when the body was not available."
+        },
+        "neutral_summary": {
+          "type": "string",
+          "description": "What the article reports, written so that every sentence could be checked against the article itself. No evaluative adjectives, no characterisation of the outlet, no restatement of the article's own framing as fact.",
+          "minLength": 1
+        },
+        "body_available": {
+          "type": "boolean",
+          "description": "Whether the full text was retrieved. False means downstream extraction saw only headline and dek, and confidence must reflect that."
+        },
+        "paywalled": {
+          "type": "boolean",
+          "description": "Whether access was restricted. Recorded because paywalling systematically biases which coverage an automated pipeline can see."
+        },
+        "claim_ids": {
+          "type": "array",
+          "description": "Claims extracted from this article. Extraction here is attribution only; the verdicts on these claims are produced blind, without knowing this article or its publisher.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "quotations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/quotation" }
+        },
+        "predictions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/prediction" }
+        },
+        "framing_profile_id": {
+          "type": ["string", "null"],
+          "pattern": "^framing:[A-Za-z0-9._:-]+$",
+          "description": "Identifier of this article's eight-dimension framing profile in framing_profile.json. Null when no profile has been computed. Never collapse that profile into a single bias number for display."
+        },
+        "impact_emphasis": {
+          "type": "array",
+          "description": "Which of the seven policy-effect axes the article foregrounds.",
+          "items": { "$ref": "#/$defs/impact_emphasis_entry" }
+        },
+        "omitted_context": {
+          "type": "array",
+          "description": "Material context the article leaves out, each with why it matters and evidence that the omitted context is itself accurate.",
+          "items": { "$ref": "claim.json#/$defs/omitted_context" }
+        },
+        "primary_source_grounding": {
+          "type": "array",
+          "description": "Where the article anchors itself in primary sources, and how firmly.",
+          "items": { "$ref": "#/$defs/primary_source_grounding_entry" }
+        },
+        "independence": {
+          "$ref": "common.json#/$defs/independence",
+          "description": "Whether this is original reporting or a restatement. Ten outlets republishing one wire item are one observation, not ten; corroboration counts only distinct originals."
+        },
+        "derived_from_article_id": {
+          "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+          "description": "The upstream item this one restates, when known. Populating this is what makes the syndication collapse in news_cluster.json possible."
+        },
+        "cluster_ids": {
+          "type": "array",
+          "description": "Clusters this article belongs to.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "confidence": {
+          "$ref": "common.json#/$defs/confidence",
+          "description": "Confidence in the extraction from this article, not in the article's own assertions."
+        }
+      },
+      "required": [
+        "id",
+        "url",
+        "headline",
+        "publisher",
+        "author",
+        "published_at",
+        "retrieved_at",
+        "article_type",
+        "neutral_summary",
+        "body_available",
+        "paywalled",
+        "claim_ids",
+        "independence"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

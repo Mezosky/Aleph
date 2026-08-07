@@ -1,0 +1,198 @@
+name: CI
+
+# Every gate that protects the published analysis lives here. pages.yml calls this
+# workflow via workflow_call, so a failing check in this file blocks deployment —
+# there is no path that ships an unvalidated evidence bundle.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  # `github.workflow` resolves to the *caller* for reusable workflows, so the
+  # nested run from pages.yml never cancels the standalone run, or vice versa.
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.12"
+  NODE_VERSION: "22"
+  # Analysis must never depend on a live model in CI.
+  ALEPH_LLM_PROVIDER: mock
+  ALEPH_SEARCH_PROVIDER: mock
+
+jobs:
+  # ---------------------------------------------------------------------------
+  python:
+    name: Python lint, format and tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[api,dev]'
+
+      - name: Ruff lint
+        run: ruff check .
+
+      - name: Ruff format check
+        run: ruff format --check .
+
+      - name: Import check
+        run: python -c "import aleph; print('aleph', getattr(aleph, '__version__', 'unversioned'))"
+
+      - name: Tests
+        run: pytest --cov=aleph --cov-report=term-missing
+
+  # ---------------------------------------------------------------------------
+  schemas:
+    name: Schema and static-data validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[dev]'
+
+      # A schema that does not compile is a silently unenforced contract, so this
+      # runs before any instance validation.
+      - name: Every schema compiles as Draft 2020-12
+        run: |
+          python - <<'PY'
+          import json
+          import pathlib
+          import sys
+
+          from jsonschema import Draft202012Validator
+
+          root = pathlib.Path("schemas")
+          files = sorted(root.glob("*.json"))
+          if not files:
+              sys.exit("FAIL: no schema files found under schemas/")
+
+          failures = []
+          for path in files:
+              try:
+                  schema = json.loads(path.read_text(encoding="utf-8"))
+              except json.JSONDecodeError as exc:
+                  failures.append(f"{path}: invalid JSON: {exc}")
+                  continue
+
+              declared = schema.get("$schema")
+              expected = "https://json-schema.org/draft/2020-12/schema"
+              if declared != expected:
+                  failures.append(f"{path}: $schema is {declared!r}, expected {expected!r}")
+
+              if not schema.get("$id", "").startswith("https://mezosky.github.io/Aleph/schemas/"):
+                  failures.append(f"{path}: $id must be under https://mezosky.github.io/Aleph/schemas/")
+
+              try:
+                  Draft202012Validator.check_schema(schema)
+              except Exception as exc:  # noqa: BLE001 - report every failure, do not stop at the first
+                  failures.append(f"{path}: does not compile: {exc}")
+              else:
+                  print(f"ok  {path}")
+
+          if failures:
+              print("\n".join(f"FAIL {f}" for f in failures), file=sys.stderr)
+              sys.exit(1)
+
+          print(f"\n{len(files)} schema(s) compile as Draft 2020-12")
+          PY
+
+      # Validates every committed JSON payload under frontend/public/data/ against
+      # the schema that governs it. Owned by scripts/validate_data.py.
+      - name: Committed static data matches its schema
+        run: python scripts/validate_data.py
+
+  # ---------------------------------------------------------------------------
+  frontend:
+    name: Frontend lint, typecheck and build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # Cached explicitly rather than through setup-node so a missing lockfile
+      # degrades to a cache miss instead of failing the job.
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: TypeScript typecheck
+        run: npm run typecheck
+
+      - name: Build
+        env:
+          # Build with the production base path so a base-path regression is
+          # caught in CI rather than on the live site.
+          VITE_BASE: /Aleph/
+          VITE_ALEPH_API_URL: ""
+        run: npm run build
+
+  # ---------------------------------------------------------------------------
+  docker:
+    name: Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build API image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: api
+          push: false
+          cache-from: type=gha,scope=aleph-api
+          cache-to: type=gha,mode=max,scope=aleph-api
+
+      - name: Build frontend image stage
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: frontend-build
+          push: false
+          build-args: |
+            VITE_BASE=/Aleph/
+          cache-from: type=gha,scope=aleph-frontend
+          cache-to: type=gha,mode=max,scope=aleph-frontend

@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/news_cluster.json",
+  "title": "Aleph News Clusters",
+  "description": "Warm phase 6 output: coverage grouped into clusters, and for each cluster an explicit independence analysis. REPEATED PUBLICATION IS NOT INDEPENDENT EVIDENCE. Forty articles carrying the same wire copy, the same press release or the same three quotations are one observation reproduced forty times, and treating volume as confirmation is the single most common way an automated pipeline manufactures false confidence. Every cluster therefore reports distinct_original_sources alongside total_articles, and only the former may raise evidence confidence anywhere downstream. Clustering happens before evaluation and never uses the political alignment of an outlet as a grouping feature.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "generated_at": { "$ref": "common.json#/$defs/timestamp" },
+    "document_id": {
+      "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+      "description": "Document this clustering was performed for, when document-scoped."
+    },
+    "clusters": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/cluster" }
+    }
+  },
+  "required": ["schema_version", "data_status", "generated_at", "clusters"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "cluster_kind": {
+      "type": "string",
+      "title": "Cluster Kind",
+      "description": "What holds the members together. 'story_cluster' groups coverage of one news event. 'claim_cluster' groups restatements of one assertion, which is how Aleph avoids counting a claim ten times because ten outlets printed it. 'reform_component' groups material about one part of the document. 'event' groups items around a dated occurrence such as a committee vote.",
+      "enum": ["story_cluster", "claim_cluster", "reform_component", "event"]
+    },
+
+    "date_range": {
+      "type": "object",
+      "title": "Date Range",
+      "description": "Span of publication dates covered by the cluster. A very short range with many members is a signature of syndication rather than of sustained independent attention.",
+      "properties": {
+        "start": { "$ref": "common.json#/$defs/date" },
+        "end": { "$ref": "common.json#/$defs/date" }
+      },
+      "required": ["start", "end"],
+      "additionalProperties": false
+    },
+
+    "syndication_chain": {
+      "type": "object",
+      "title": "Syndication Chain",
+      "description": "One traced path from an original item to the pieces that reproduce it. Chains are the mechanism by which apparent corroboration collapses back to its single source, and the evidence for the chain must be stated so the collapse is auditable rather than asserted.",
+      "properties": {
+        "origin_article_id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "The earliest item in the chain that Aleph could identify. Where the true origin is outside the collected set, this is the earliest observed item and the note must say so."
+        },
+        "downstream_article_ids": {
+          "type": "array",
+          "description": "Items that reproduce the origin. These contribute nothing to independent corroboration.",
+          "items": { "$ref": "common.json#/$defs/id" },
+          "minItems": 1
+        },
+        "chain_kind": {
+          "type": "string",
+          "enum": [
+            "wire_redistribution",
+            "press_release_pickup",
+            "verbatim_reuse",
+            "translation",
+            "aggregation",
+            "unknown"
+          ]
+        },
+        "evidence": {
+          "type": "string",
+          "description": "Why Aleph believes these items share an origin: identical phrasing, an identical quotation set, a shared wire slug, publication within minutes of a press release.",
+          "minLength": 1
+        },
+        "confidence": {
+          "$ref": "common.json#/$defs/confidence",
+          "description": "Confidence that this chain is real. A wrongly asserted chain would suppress genuine corroboration, so this is not a free judgement."
+        }
+      },
+      "required": ["origin_article_id", "downstream_article_ids", "chain_kind", "evidence"],
+      "additionalProperties": false
+    },
+
+    "shared_origin_signal": {
+      "type": "object",
+      "title": "Shared-Origin Signal",
+      "description": "A concrete observation suggesting several items derive from one source. Kept separate from syndication_chains because a signal is a measurement while a chain is a conclusion, and a reader should be able to see the measurements that produced the conclusion.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "identical_phrasing",
+            "identical_quote_set",
+            "same_wire_slug",
+            "same_press_release",
+            "same_dataset_release",
+            "same_publication_minute",
+            "shared_error"
+          ]
+        },
+        "article_ids": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id" },
+          "minItems": 2
+        },
+        "similarity": {
+          "$ref": "common.json#/$defs/unit_interval",
+          "description": "Strength of the signal, where 1 is exact reproduction."
+        },
+        "detail": {
+          "type": "string",
+          "description": "The specific shared material, quoted where possible. A shared error is the strongest signal of all and should be quoted verbatim.",
+          "minLength": 1
+        }
+      },
+      "required": ["kind", "article_ids", "detail"],
+      "additionalProperties": false
+    },
+
+    "independence_analysis": {
+      "type": "object",
+      "title": "Independence Analysis",
+      "description": "The count that matters. total_articles measures how loud the coverage was; distinct_original_sources measures how much was actually observed. Only independent_corroboration_count may be used to raise evidence confidence downstream. A cluster with fifty articles and one original source is fifty times louder and no better evidenced than a cluster with one article.",
+      "properties": {
+        "distinct_original_sources": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of genuinely separate originating observations in the cluster, after collapsing every identified chain."
+        },
+        "total_articles": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Raw member count. A volume measure, never an evidence measure."
+        },
+        "syndication_chains": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/syndication_chain" }
+        },
+        "shared_origin_evidence": {
+          "type": "array",
+          "description": "The observations underlying the chains above.",
+          "items": { "$ref": "#/$defs/shared_origin_signal" }
+        },
+        "independent_corroboration_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "How many independent originals actually confirm the cluster's central factual content, which may be lower than distinct_original_sources when originals disagree or address different aspects. This is the number that may move confidence."
+        },
+        "note": {
+          "type": ["string", "null"],
+          "description": "Plain-language statement of what the counts mean for a reader, e.g. that apparent consensus rests on a single briefing."
+        }
+      },
+      "required": [
+        "distinct_original_sources",
+        "total_articles",
+        "syndication_chains",
+        "shared_origin_evidence",
+        "independent_corroboration_count"
+      ],
+      "additionalProperties": false
+    },
+
+    "cluster": {
+      "type": "object",
+      "title": "News Cluster",
+      "description": "A group of coverage or claims that belong together, with its independence analysis attached. The label is descriptive of the subject matter and never characterises the outlets or their politics.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "Stable cluster identifier, prefixed 'cluster:'."
+        },
+        "kind": { "$ref": "#/$defs/cluster_kind" },
+        "label": {
+          "type": "string",
+          "description": "Short neutral description of what the cluster is about, phrased as a subject rather than as a position.",
+          "minLength": 1
+        },
+        "summary": {
+          "type": ["string", "null"],
+          "description": "What the cluster collectively reports, and where its members diverge."
+        },
+        "article_ids": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "claim_ids": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "date_range": { "$ref": "#/$defs/date_range" },
+        "independence_analysis": {
+          "$ref": "#/$defs/independence_analysis",
+          "description": "Required. A cluster published without it would invite exactly the volume-as-truth reading Aleph exists to prevent."
+        },
+        "topic_refs": {
+          "type": "array",
+          "description": "Topic-graph nodes this cluster attaches to.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "confidence": {
+          "$ref": "common.json#/$defs/confidence",
+          "description": "Confidence in the clustering itself, including in the independence conclusions."
+        },
+        "uncertainties": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/uncertainty" }
+        }
+      },
+      "required": ["id", "kind", "label", "article_ids", "claim_ids", "date_range", "independence_analysis"],
+      "additionalProperties": false
+    }
+  }
+}

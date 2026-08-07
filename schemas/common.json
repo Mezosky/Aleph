@@ -1,0 +1,370 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/common.json",
+  "title": "Aleph Common Definitions",
+  "description": "Shared primitives and controlled vocabularies referenced by every other Aleph schema. This file defines no root object; it exists solely to be referenced via $ref into $defs. Aleph is document-agnostic: nothing here may encode a jurisdiction, an institution, or a political position.",
+  "$defs": {
+    "schema_version": {
+      "type": "string",
+      "description": "Semantic version of the Aleph data contract this object conforms to.",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+
+    "data_status": {
+      "type": "string",
+      "description": "Provenance status of the dataset. 'synthetic' means the content was generated for demonstration and describes no real statement by any real person or outlet; consumers MUST display this prominently. 'derived' means produced by the Aleph pipeline from real sources.",
+      "enum": ["synthetic", "derived", "partial", "stale"]
+    },
+
+    "timestamp": {
+      "type": "string",
+      "description": "Timezone-aware UTC instant, ISO-8601, e.g. 2026-08-07T14:03:00Z.",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$"
+    },
+
+    "date": {
+      "type": "string",
+      "description": "Calendar date, ISO-8601, e.g. 2026-08-07.",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+
+    "unit_interval": {
+      "type": "number",
+      "description": "A value in [0,1].",
+      "minimum": 0,
+      "maximum": 1
+    },
+
+    "score_100": {
+      "type": "integer",
+      "description": "A 0-100 score. Never interpret without the accompanying polarity field.",
+      "minimum": 0,
+      "maximum": 100
+    },
+
+    "bipolar_score": {
+      "type": "integer",
+      "description": "A -100..+100 position on a named two-poled axis. Negative means the axis's negative_label pole, positive means the positive_label pole. This is a description of where a document's identified effects fall, NOT a political-party label and NOT a left-right score.",
+      "minimum": -100,
+      "maximum": 100
+    },
+
+    "polarity": {
+      "type": "string",
+      "description": "How to read a 0-100 score. 'higher_is_better' means a high value indicates better epistemic practice (e.g. primary-source grounding). 'lower_is_better' means a high value indicates a problem (e.g. loaded language). 'neutral' means the score is descriptive with no implied quality ordering. Consumers MUST use this to choose colour and wording so a metric is never mis-coloured.",
+      "enum": ["higher_is_better", "lower_is_better", "neutral"]
+    },
+
+    "statement_type": {
+      "type": "string",
+      "description": "What kind of utterance this is. Aleph must present these differently and never treat a forecast or an opinion as if it were a checkable fact. 'fact' is a verifiable assertion about what is or was. 'interpretation' is a defensible reading of facts. 'forecast' is an assertion about the future, evaluable only against its assumptions. 'opinion' is a preference. 'normative' asserts what ought to be.",
+      "enum": ["fact", "interpretation", "forecast", "opinion", "normative"]
+    },
+
+    "verdict": {
+      "type": "string",
+      "description": "Outcome of a speaker-blind factual evaluation. 'not_a_factual_claim' and 'forecast_conditional' exist so that opinions and predictions are never forced into a true/false frame.",
+      "enum": [
+        "supported",
+        "partially_supported",
+        "unsupported",
+        "contradicted",
+        "unverifiable",
+        "not_a_factual_claim",
+        "forecast_conditional"
+      ]
+    },
+
+    "evidence_strength": {
+      "type": "string",
+      "description": "How much weight the assembled evidence can bear for a specific question. This is a property of the evidence-question pair, not of the source's prestige.",
+      "enum": ["high", "medium", "low", "insufficient"]
+    },
+
+    "evidence_tier": {
+      "type": "string",
+      "description": "The kind of artefact an evidence item is. Tier constrains what a source can establish; it is NOT a credibility ranking and MUST NOT be used as an authority shortcut. A primary document establishes what a text says, not whether its projections will hold. A political statement is high-relevance evidence for what an actor claimed and low-relevance for whether the claim is true.",
+      "enum": [
+        "primary_document",
+        "legislative_record",
+        "official_technical_report",
+        "statistical_dataset",
+        "peer_reviewed",
+        "expert_analysis",
+        "journalism",
+        "political_statement",
+        "social_media"
+      ]
+    },
+
+    "direction": {
+      "type": "string",
+      "description": "Sign of an estimated effect on a group or quantity.",
+      "enum": ["positive", "negative", "mixed", "uncertain", "none"]
+    },
+
+    "magnitude": {
+      "type": "string",
+      "description": "Coarse size of an estimated effect. Deliberately coarse: a false precision would overstate what the evidence supports.",
+      "enum": ["small", "medium", "large", "unknown"]
+    },
+
+    "time_horizon": {
+      "type": "string",
+      "enum": ["immediate", "short_term", "medium_term", "long_term", "unknown"]
+    },
+
+    "causality": {
+      "type": "string",
+      "description": "Whether an effect follows directly from a provision or through an intermediate mechanism.",
+      "enum": ["direct", "indirect", "unknown"]
+    },
+
+    "readiness_state": {
+      "type": "string",
+      "description": "Whether Aleph has collected enough context to publish verdicts. Aleph must refuse to compensate for missing evidence with model confidence.",
+      "enum": ["insufficient", "partial", "ready"]
+    },
+
+    "independence": {
+      "type": "string",
+      "description": "Whether a news item is an independent observation or a restatement of another item. Ten outlets republishing one wire story is one piece of evidence, not ten.",
+      "enum": ["original_reporting", "syndicated", "derivative", "aggregated", "unknown"]
+    },
+
+    "warm_phase": {
+      "type": "string",
+      "description": "One of the seven fixed warm-stage phases Aleph runs before any evaluation.",
+      "enum": [
+        "document_understanding",
+        "proposition_extraction",
+        "topic_graph",
+        "search_vocabulary",
+        "evidence_collection",
+        "news_clustering",
+        "readiness"
+      ]
+    },
+
+    "id": {
+      "type": "string",
+      "description": "Stable, human-readable, prefixed identifier. Prefixes: doc:, prov:, prop:, clm:, ev:, art:, cluster:, contra:, actor:, node:, edge:, src:, axis:, job:.",
+      "pattern": "^(doc|prov|prop|clm|ev|art|cluster|contra|actor|node|edge|src|axis|job):[A-Za-z0-9._:-]+$",
+      "minLength": 3,
+      "maxLength": 200
+    },
+
+    "money": {
+      "type": "object",
+      "description": "A monetary amount. Aleph never stores bare numbers for money: the currency, the scale multiplier and the reference year are all required to make a figure comparable or checkable.",
+      "properties": {
+        "amount": { "type": "number" },
+        "currency": {
+          "type": "string",
+          "description": "ISO-4217 code where one exists.",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Scale multiplier applied to amount.",
+          "enum": ["unit", "thousand", "million", "billion", "percent_of_gdp"]
+        },
+        "year": {
+          "type": ["integer", "null"],
+          "description": "Reference year for real/constant terms. Null when the source does not state one.",
+          "minimum": 1800,
+          "maximum": 2200
+        },
+        "basis": {
+          "type": ["string", "null"],
+          "description": "e.g. 'nominal', 'constant', 'annual', 'cumulative_10y'. Null when unstated in the source."
+        }
+      },
+      "required": ["amount", "currency", "unit"],
+      "additionalProperties": false
+    },
+
+    "quantity": {
+      "type": "object",
+      "description": "A non-monetary numeric value extracted from a document, with the literal source text preserved so any transcription can be audited.",
+      "properties": {
+        "value": { "type": "number" },
+        "kind": {
+          "type": "string",
+          "enum": ["percentage", "percentage_point", "count", "ratio", "index", "rate", "duration", "other"]
+        },
+        "unit": { "type": ["string", "null"] },
+        "raw_text": {
+          "type": "string",
+          "description": "Verbatim substring from the source document, before normalisation."
+        }
+      },
+      "required": ["value", "kind", "raw_text"],
+      "additionalProperties": false
+    },
+
+    "span": {
+      "type": "object",
+      "description": "A located region of a source document. Character offsets are into the normalised extracted text of the given page.",
+      "properties": {
+        "page": { "type": ["integer", "null"], "minimum": 1 },
+        "section_id": { "type": ["string", "null"] },
+        "char_start": { "type": ["integer", "null"], "minimum": 0 },
+        "char_end": { "type": ["integer", "null"], "minimum": 0 },
+        "text": {
+          "type": "string",
+          "description": "The exact supporting passage, quoted verbatim. Required: an Aleph assertion with no quotable passage is not traceable."
+        }
+      },
+      "required": ["text"],
+      "additionalProperties": false
+    },
+
+    "provenance": {
+      "type": "object",
+      "description": "Where an extracted item came from. Every proposition, provision and claim carries one. Provenance is used for authenticity and for attributing what a party officially said; it is deliberately withheld from the blind factual evaluator.",
+      "properties": {
+        "source_id": { "$ref": "#/$defs/id" },
+        "source_kind": {
+          "type": "string",
+          "enum": ["document", "article", "dataset", "webpage", "statement", "derived"]
+        },
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "retrieved_at": {
+          "oneOf": [{ "$ref": "#/$defs/timestamp" }, { "type": "null" }]
+        },
+        "span": {
+          "oneOf": [{ "$ref": "#/$defs/span" }, { "type": "null" }]
+        },
+        "extractor": {
+          "type": ["string", "null"],
+          "description": "Identifier of the component or model version that produced this item, so results can be reproduced or invalidated."
+        }
+      },
+      "required": ["source_id", "source_kind"],
+      "additionalProperties": false
+    },
+
+    "confidence": {
+      "type": "object",
+      "description": "Aleph separates confidence that comes from evidence from confidence reported by a language model. Consumers MUST surface evidence_confidence as the primary figure; a high model_confidence over thin evidence is meaningless and must never be presented as reassurance.",
+      "properties": {
+        "evidence_confidence": {
+          "$ref": "#/$defs/unit_interval",
+          "description": "Derived from primary-source coverage, corroboration by independent sources, quantitative checks, temporal consistency and retrieval completeness."
+        },
+        "model_confidence": {
+          "oneOf": [{ "$ref": "#/$defs/unit_interval" }, { "type": "null" }],
+          "description": "Self-reported model confidence. Diagnostic only. Never the headline number."
+        },
+        "basis": {
+          "type": "array",
+          "description": "Named factors that raised or lowered evidence_confidence.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "factor": {
+                "type": "string",
+                "enum": [
+                  "primary_source_coverage",
+                  "evidence_agreement",
+                  "temporal_consistency",
+                  "quantitative_validation",
+                  "source_independence",
+                  "retrieval_completeness",
+                  "claim_ambiguity"
+                ]
+              },
+              "effect": { "type": "string", "enum": ["raises", "lowers", "neutral"] },
+              "note": { "type": "string" }
+            },
+            "required": ["factor", "effect"],
+            "additionalProperties": false
+          }
+        },
+        "limiting_factor": {
+          "type": ["string", "null"],
+          "description": "The single biggest reason confidence is not higher, stated plainly for the reader."
+        }
+      },
+      "required": ["evidence_confidence"],
+      "additionalProperties": false
+    },
+
+    "component": {
+      "type": "object",
+      "description": "One inspectable contributor to a composite score. No Aleph score may be published without the full list of its components: a user must always be able to open a number and see what produced it.",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Plain-language description of the contributing factor, e.g. 'corporate tax rate reduction'."
+        },
+        "direction": { "$ref": "#/$defs/direction" },
+        "weight": {
+          "type": "number",
+          "description": "Signed contribution of this component in the score's own units.",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "evidence_refs": {
+          "type": "array",
+          "description": "Ids of evidence items or provisions supporting this component.",
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "note": { "type": ["string", "null"] }
+      },
+      "required": ["label", "direction", "weight"],
+      "additionalProperties": false
+    },
+
+    "source_ref": {
+      "type": "object",
+      "description": "A pointer to an external source. 'tier' describes what kind of artefact it is and therefore what it can establish. There is deliberately no credibility or prestige field: Aleph must not let institutional standing substitute for evidential relevance.",
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string" },
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "publisher": { "type": ["string", "null"] },
+        "published_at": {
+          "oneOf": [{ "$ref": "#/$defs/timestamp" }, { "$ref": "#/$defs/date" }, { "type": "null" }]
+        },
+        "tier": { "$ref": "#/$defs/evidence_tier" },
+        "independence": { "$ref": "#/$defs/independence" },
+        "language": {
+          "type": ["string", "null"],
+          "description": "BCP-47 tag, e.g. 'es-CL'."
+        }
+      },
+      "required": ["id", "title", "tier"],
+      "additionalProperties": false
+    },
+
+    "uncertainty": {
+      "type": "object",
+      "description": "An explicit statement of what remains unresolved. Aleph is required to publish these rather than round them away.",
+      "properties": {
+        "statement": { "type": "string" },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "missing_evidence",
+            "conflicting_evidence",
+            "model_dependency",
+            "definitional_ambiguity",
+            "temporal",
+            "measurement",
+            "out_of_scope"
+          ]
+        },
+        "resolvable_by": {
+          "type": ["string", "null"],
+          "description": "What specific evidence would settle this, if any."
+        }
+      },
+      "required": ["statement", "kind"],
+      "additionalProperties": false
+    }
+  }
+}

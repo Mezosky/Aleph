@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/search_vocabulary.json",
+  "title": "Aleph Search Vocabulary (warm phase: search_vocabulary)",
+  "description": "The retrieval vocabulary generated from a document in warm phase 4: the words and queries Aleph will use to find out what the world has said about this document. It exists because searching for a document's official title finds almost nothing. Instruments are debated under nicknames, referred to by number, described by the sector they hit, and covered in languages and registers the source text never uses - so a pipeline that searches only the PDF title systematically under-collects, and then reports the resulting silence as if it were an absence of coverage. That failure mode is invisible without this file, which is why the term sets are fixed keys rather than an open bag: an empty 'common_names' set is a visible gap, whereas a missing key is not. Terms are grouped by how they were derived and weighted by expected retrieval value, never by whether the resulting coverage is expected to be favourable. Nothing here may bias retrieval towards a viewpoint: query generation is directed at SOURCE TYPES, never at positions.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "document_id": {
+      "$ref": "common.json#/$defs/id",
+      "pattern": "^doc:[A-Za-z0-9._:-]+$"
+    },
+    "generated_at": {
+      "oneOf": [{ "$ref": "common.json#/$defs/timestamp" }, { "type": "null" }]
+    },
+    "primary_language": {
+      "type": "string",
+      "description": "BCP-47 tag of the document's own language. Terms in other languages are still permitted and marked per term, because coverage of a national instrument routinely appears in other languages."
+    },
+    "target_languages": {
+      "type": "array",
+      "description": "Languages retrieval should be attempted in.",
+      "items": { "type": "string" }
+    },
+    "term_sets": { "$ref": "#/$defs/term_sets" },
+    "expansion_notes": {
+      "type": ["string", "null"],
+      "description": "How the vocabulary was expanded (heuristics, model expansion, registry lookup), stated so a thin vocabulary can be diagnosed rather than guessed at."
+    },
+    "known_gaps": {
+      "type": "array",
+      "description": "Term categories the generator could not populate, e.g. 'no common name found in circulation'. Published because an unpopulated category is a retrieval risk, and downstream readiness scoring reads it.",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["document_id", "primary_language", "term_sets"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "generated_query": {
+      "type": "object",
+      "description": "One concrete query Aleph will issue, aimed at a specific kind of source. Queries are typed by target because the same subject needs different phrasing in a statute register, a statistics portal and a news archive; a single generic query silently over-collects journalism and under-collects primary documents, which then distorts every downstream diversity and independence measure.",
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "query_text": {
+          "type": "string",
+          "description": "The query exactly as it will be issued.",
+          "minLength": 1
+        },
+        "target_source_type": {
+          "type": "string",
+          "description": "The kind of source this query is aimed at. Values align with source_registry entry kinds so a query can be routed to registered sources of that kind; 'search_engine' and 'any' cover open-web fallbacks.",
+          "enum": [
+            "news_outlet",
+            "government_body",
+            "statistics_agency",
+            "legislature",
+            "academic",
+            "ngo",
+            "aggregator",
+            "search_engine",
+            "social_media",
+            "any"
+          ]
+        },
+        "target_source_ids": {
+          "type": "array",
+          "description": "Specific registry entries to run this query against, when it is source-specific.",
+          "items": { "$ref": "common.json#/$defs/id", "pattern": "^src:" }
+        },
+        "expected_evidence_tier": {
+          "oneOf": [{ "$ref": "common.json#/$defs/evidence_tier" }, { "type": "null" }],
+          "description": "What kind of artefact this query is expected to return. Used to check that retrieval covered primary and statistical sources and not only commentary."
+        },
+        "language": { "type": "string" },
+        "syntax": {
+          "type": "string",
+          "description": "How query_text should be interpreted by the retrieval provider.",
+          "enum": ["plain", "phrase", "boolean", "site_scoped", "api_params"]
+        },
+        "date_from": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }],
+          "description": "Lower time bound. Setting one narrows recall deliberately; leaving it null keeps the historical record in scope."
+        },
+        "date_to": {
+          "oneOf": [{ "$ref": "common.json#/$defs/date" }, { "type": "null" }]
+        },
+        "additional_terms": {
+          "type": "array",
+          "description": "Other vocabulary terms combined into this query, when it is not built from the parent term alone.",
+          "items": { "type": "string" }
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Execution order hint, 1 highest. Reflects expected retrieval value only.",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "rationale": {
+          "type": ["string", "null"],
+          "description": "Why this query is expected to surface something the others will not."
+        }
+      },
+      "required": ["query_text", "target_source_type", "language"],
+      "additionalProperties": false
+    },
+
+    "term": {
+      "type": "object",
+      "description": "One retrieval term, with its derivation recorded. Provenance of a term matters: a phrase lifted from a heading is evidence about the document, while a model-expanded synonym is a guess, and a retrieval set built mostly from guesses should be treated as weaker.",
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "text": { "type": "string", "minLength": 1 },
+        "language": {
+          "type": "string",
+          "description": "BCP-47 tag for this term specifically."
+        },
+        "weight": {
+          "$ref": "common.json#/$defs/unit_interval",
+          "description": "Expected retrieval value of the term: how likely it is to find relevant material without flooding the results. This is a search-utility weight and carries no evaluative meaning about the subject."
+        },
+        "source": {
+          "type": "string",
+          "description": "How this term was derived. 'title'/'heading' come from the document's own text. 'entity' comes from the topic graph. 'identifier' is a formal number. 'abbreviation_expansion', 'synonym_expansion', 'translation' and 'model_expansion' are generated and should be trusted less than terms lifted from the source.",
+          "enum": [
+            "title",
+            "heading",
+            "entity",
+            "identifier",
+            "provision_heading",
+            "definition",
+            "abbreviation_expansion",
+            "synonym_expansion",
+            "translation",
+            "model_expansion",
+            "registry",
+            "manual"
+          ]
+        },
+        "normalized_form": {
+          "type": ["string", "null"],
+          "description": "Casefolded, accent-stripped form used for deduplication and matching."
+        },
+        "must_quote": {
+          "type": "boolean",
+          "description": "True when the term only works as an exact phrase; unquoted multi-word terms return noise that later looks like broad coverage."
+        },
+        "ambiguity_note": {
+          "type": ["string", "null"],
+          "description": "Warning that the term collides with an unrelated common usage, so results will need filtering."
+        },
+        "derived_from": {
+          "type": ["string", "null"],
+          "description": "Id of the provision, section or node this term came from."
+        },
+        "span": {
+          "oneOf": [{ "$ref": "common.json#/$defs/span" }, { "type": "null" }],
+          "description": "Where in the document the term appears, when it was lifted from the text."
+        },
+        "generated_queries": {
+          "type": "array",
+          "description": "Concrete queries built from this term, each aimed at a named target source type.",
+          "items": { "$ref": "#/$defs/generated_query" }
+        }
+      },
+      "required": ["text", "language", "weight", "source"],
+      "additionalProperties": false
+    },
+
+    "term_sets": {
+      "type": "object",
+      "description": "The vocabulary grouped by kind of name. All ten keys are required and may be empty arrays: an empty set is a reportable gap in retrieval coverage, while an absent key would hide it.",
+      "properties": {
+        "official_names": {
+          "type": "array",
+          "description": "The document's formal titles as printed, including the full legal name almost nobody uses in practice.",
+          "items": { "$ref": "#/$defs/term" }
+        },
+        "common_names": {
+          "type": "array",
+          "description": "The names the document is actually referred to by in public discussion. Usually the highest-recall terms and rarely present in the document itself.",
+          "items": { "$ref": "#/$defs/term" }
+        },
+        "identifiers": {
+          "type": "array",
+          "description": "Formal numbers and codes (file, bulletin, gazette, docket). Low recall, very high precision - the terms that find the primary record rather than commentary about it.",
+          "items": { "$ref": "#/$defs/term" }
+        },
+        "abbreviations": {
+          "type": "array",
+          "description": "Acronyms and short forms, with their expansions as separate terms where useful.",
+          "items": { "$ref": "#/$defs/term" }
+        },
+        "political_terminology": {
+          "type": "array",
+          "description": "The contested vocabulary in circulation around the subject. Collected so Aleph can FIND all sides of a debate, including framings it does not adopt. Presence of a term here is descriptive of public usage and implies no endorsement, and these terms must never be used to weight or filter a factual verdict.",
+          "items": { "$ref": "#/$defs/term" }
+        },
+        "technical_terminology": {
+          "type": "array",
+          "description": "Domain and legal terms of art, which reach analytical and academic sources that popular phrasing misses.",
+          "items": { "$ref": "#/$defs/term" }
+        },
+        "sector_terminology": {
+          "type": "array",
+          "description": "Industry and sector vocabulary, used to find trade and specialist coverage that never names the instrument.",
+          "items": { "$ref": "#/$defs/term" }
+        },
+        "synonyms": {
+          "type": "array",
+          "description": "Alternative phrasings and near-equivalents, including translations of the above.",
+          "items": { "$ref": "#/$defs/term" }
+        },
+        "provision_names": {
+          "type": "array",
+          "description": "Names of individual provisions or articles. These find the debate about one clause, which is often where the substance is and which whole-document queries never surface.",
+          "items": { "$ref": "#/$defs/term" }
+        },
+        "actor_terms": {
+          "type": "array",
+          "description": "Institutions, bodies and ROLES involved. Roles rather than personal names, consistent with Aleph's rule that identity must not drive factual evaluation; personal names here would leak identity into retrieval and then into ranking.",
+          "items": { "$ref": "#/$defs/term" }
+        }
+      },
+      "required": [
+        "official_names",
+        "common_names",
+        "identifiers",
+        "abbreviations",
+        "political_terminology",
+        "technical_terminology",
+        "sector_terminology",
+        "synonyms",
+        "provision_names",
+        "actor_terms"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,107 @@
+name: Deploy to GitHub Pages
+
+# Publishes https://mezosky.github.io/Aleph/
+#
+# Deployment is gated on the entire CI workflow. The `ci` job below is a
+# workflow_call into ci.yml, and every later job `needs` it, so a failing test,
+# a schema that does not compile, or a static payload that violates its schema
+# stops the deploy. Aleph publishes evidence claims; shipping an unvalidated
+# bundle is the one failure mode that matters most.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  # Never cancel a deploy in flight: a half-applied Pages deployment would leave
+  # the site serving a mix of two builds.
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Full CI. Deployment cannot proceed without it.
+  ci:
+    name: CI
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+
+  # ---------------------------------------------------------------------------
+  build:
+    name: Build static site
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      # The methodology page renders the data contract itself. Shipping the
+      # schemas with the site means a reader can check what a field is allowed to
+      # contain without leaving the page or trusting a summary of it.
+      - name: Bundle JSON Schemas with the site
+        run: |
+          mkdir -p frontend/public/data/schemas
+          cp schemas/*.json frontend/public/data/schemas/
+
+      - name: Build
+        working-directory: frontend
+        env:
+          # GitHub Pages serves this repo from a subpath. Anything else produces
+          # a site whose assets 404.
+          VITE_BASE: /Aleph/
+          # No API is reachable from Pages: the site reads the committed static
+          # JSON payload instead.
+          VITE_ALEPH_API_URL: ""
+        run: npm run build
+
+      # Pages has no SPA rewrite. The app uses a hash router, but a 404 fallback
+      # keeps mistyped and legacy paths from dead-ending.
+      - name: Ensure 404 fallback
+        run: |
+          if [ ! -f frontend/dist/404.html ]; then
+            cp frontend/dist/index.html frontend/dist/404.html
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  # ---------------------------------------------------------------------------
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

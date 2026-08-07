@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/evidence.json",
+  "title": "Aleph Evidence Set",
+  "description": "Warm phase 5 output: the pool of evidence items Aleph collected before any claim was evaluated, plus optional question-scoped evidence sets built from that pool. The organising principle of this file is that SOURCE AUTHORITY AND EVIDENTIAL RELEVANCE ARE DIFFERENT PROPERTIES. An official technical report is decisive evidence for what that institution estimated, and is NOT decisive evidence for whether the estimate will turn out to be correct. A statement by a public official is strong evidence that the statement was made and weak evidence that its content is true. Aleph therefore never ranks evidence by the prestige of its publisher; it scores, per item and per question, what that item can and cannot establish. This file is document-agnostic and carries no jurisdiction, institution or political position of its own.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "$ref": "common.json#/$defs/schema_version" },
+    "data_status": { "$ref": "common.json#/$defs/data_status" },
+    "generated_at": { "$ref": "common.json#/$defs/timestamp" },
+    "document_id": {
+      "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+      "description": "The document this evidence pool was collected for, when the pool is document-scoped. Null for a standalone or shared pool."
+    },
+    "evidence": {
+      "type": "array",
+      "description": "All evidence items collected. Presence in this list is not endorsement: an item may be recorded precisely because it is weak, contradicted or off-point, and that judgement is carried in evidential_relevance.",
+      "items": { "$ref": "#/$defs/evidence_item" }
+    },
+    "evidence_sets": {
+      "type": "array",
+      "description": "Question-scoped bundles assembled from the items above. A set exists to answer one stated question, and records how strong the assembled evidence actually is for THAT question and what is still missing.",
+      "items": { "$ref": "#/$defs/evidence_set" }
+    },
+    "retrieval_gaps": {
+      "type": "array",
+      "description": "Things Aleph looked for and did not find. Recording an absence is part of the evidence record: a missing source is a reason to lower confidence, not a reason to stay silent.",
+      "items": { "$ref": "#/$defs/retrieval_gap" }
+    }
+  },
+  "required": ["schema_version", "data_status", "generated_at", "evidence"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "evidential_relevance": {
+      "type": "object",
+      "title": "Evidential Relevance",
+      "description": "How much this item bears on ONE specific question, stated explicitly. This object exists to stop the most common failure in automated fact-checking: treating an authoritative-looking source as if it settled whatever question happens to be nearby. Relevance is a property of the (item, question) pair. An official costing report has relevance near 1.0 for 'what does the responsible institution estimate this will cost?' and low relevance for 'will the cost actually be that?'. can_establish and cannot_establish must both be populated; an item whose cannot_establish list is empty has almost certainly not been thought about.",
+      "properties": {
+        "question": {
+          "type": "string",
+          "description": "The single question this relevance judgement is about, phrased so it could in principle be answered yes/no or with a value. Not a topic label.",
+          "minLength": 1
+        },
+        "relevance": {
+          "$ref": "common.json#/$defs/unit_interval",
+          "description": "How much this item moves the answer to the stated question. 0 means the item is about something else; 1 means the item settles the question on its own. Deliberately independent of the publisher's standing."
+        },
+        "can_establish": {
+          "type": "array",
+          "description": "Propositions this item genuinely licenses, stated narrowly. e.g. 'that the responsible ministry projected a revenue figure of X for year Y'.",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "cannot_establish": {
+          "type": "array",
+          "description": "Propositions a reader might wrongly infer from this item but which it does not license, e.g. 'that the projection is accurate', 'that no other institution projects a different figure'.",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "why": {
+          "type": ["string", "null"],
+          "description": "Plain-language justification of the relevance value, referring to the item's method and scope rather than to who published it."
+        }
+      },
+      "required": ["question", "relevance", "can_establish", "cannot_establish"],
+      "additionalProperties": false
+    },
+
+    "evidence_item": {
+      "type": "object",
+      "title": "Evidence Item",
+      "description": "One retrieved artefact, or one located passage within an artefact, together with the narrow statement it actually establishes. The statement field is the heart of the item: it says what this evidence shows, not what the retrieving query hoped it would show.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "Stable evidence identifier, prefixed 'ev:'."
+        },
+        "source_ref": {
+          "$ref": "common.json#/$defs/source_ref",
+          "description": "Pointer to the artefact this item came from. Carries tier and independence, and deliberately carries no credibility or prestige score."
+        },
+        "tier": {
+          "$ref": "common.json#/$defs/evidence_tier",
+          "description": "Kind of artefact, repeated at item level so an item can be filtered without dereferencing its source. Tier constrains what the item can establish; it is never a ranking of trustworthiness and must not be used as a shortcut for relevance."
+        },
+        "statement": {
+          "type": "string",
+          "description": "What this item actually establishes, in one sentence, scoped as narrowly as the source permits. Write 'the agency's May projection is X' rather than 'the cost is X'.",
+          "minLength": 1
+        },
+        "spans": {
+          "type": "array",
+          "description": "The verbatim passages that support the statement, with location. An evidence item with no quotable passage is not auditable and must not be used to move a verdict.",
+          "items": { "$ref": "common.json#/$defs/span" },
+          "minItems": 1
+        },
+        "retrieved_at": {
+          "$ref": "common.json#/$defs/timestamp",
+          "description": "When Aleph obtained this item. Needed because sources are revised and because a verdict must be reproducible against what was actually visible at evaluation time."
+        },
+        "supports": {
+          "type": "array",
+          "description": "Ids of claims this item supports. Support is recorded here as a retrieval-time relationship; it does not by itself decide a verdict, which is set only by the blind evaluation in claim.json.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "contradicts": {
+          "type": "array",
+          "description": "Ids of claims this item tells against.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "evidential_relevance": {
+          "$ref": "#/$defs/evidential_relevance",
+          "description": "The item's bearing on the specific question it was retrieved for. Required: Aleph does not store evidence without recording what it is evidence FOR."
+        },
+        "strength": {
+          "$ref": "common.json#/$defs/evidence_strength",
+          "description": "How much weight this item can bear for its stated question, given its method and scope. Not a rating of the publisher."
+        },
+        "independence": {
+          "$ref": "common.json#/$defs/independence",
+          "description": "Whether this item is an original observation or a restatement of another. Two syndicated copies of one report are one piece of evidence."
+        },
+        "derived_from_evidence_id": {
+          "oneOf": [{ "$ref": "common.json#/$defs/id" }, { "type": "null" }],
+          "description": "If this item restates or summarises another item, the id of the original. Used to prevent double-counting during corroboration."
+        },
+        "quantities": {
+          "type": "array",
+          "description": "Numeric values carried by this item, with their verbatim source text preserved so transcription can be audited.",
+          "items": { "$ref": "common.json#/$defs/quantity" }
+        },
+        "money": {
+          "type": "array",
+          "description": "Monetary figures carried by this item. Always structured, never a bare number.",
+          "items": { "$ref": "common.json#/$defs/money" }
+        },
+        "confidence": {
+          "$ref": "common.json#/$defs/confidence",
+          "description": "Confidence in the item's own statement, with evidence-derived confidence separated from model-reported confidence."
+        },
+        "uncertainties": {
+          "type": "array",
+          "description": "What remains unresolved about this item: an ambiguous definition, a missing methodology annex, an unstated base year.",
+          "items": { "$ref": "common.json#/$defs/uncertainty" }
+        },
+        "extraction_method": {
+          "type": ["string", "null"],
+          "description": "Component or model version that produced this item, so results can be reproduced or invalidated."
+        },
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Free-text caveats for a human reviewer."
+        }
+      },
+      "required": [
+        "id",
+        "source_ref",
+        "tier",
+        "statement",
+        "spans",
+        "retrieved_at",
+        "supports",
+        "contradicts",
+        "evidential_relevance"
+      ],
+      "additionalProperties": false
+    },
+
+    "evidence_set": {
+      "type": "object",
+      "title": "Question-Scoped Evidence Set",
+      "description": "The evidence assembled for one question, with an honest assessment of how far it goes. The independent_source_count is deliberately separate from member_count: ten copies of one wire report are ten members and one independent source, and only the latter may raise confidence.",
+      "properties": {
+        "id": { "$ref": "common.json#/$defs/id" },
+        "question": {
+          "type": "string",
+          "description": "The single question this set was assembled to answer.",
+          "minLength": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "description": "Members of the set, in the order Aleph considered them. Order must not affect a verdict; the neutrality report tests exactly that.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "strength": {
+          "$ref": "common.json#/$defs/evidence_strength",
+          "description": "How much this assembled set can bear for its question, after discounting restatements of the same original."
+        },
+        "independent_source_count": {
+          "type": "integer",
+          "description": "Number of distinct original sources in the set, after collapsing syndication and derivative chains. This, not the member count, is what corroboration means.",
+          "minimum": 0
+        },
+        "gaps": {
+          "type": "array",
+          "description": "What this set would need in order to answer its question more strongly.",
+          "items": { "type": "string" }
+        },
+        "summary": {
+          "type": "string",
+          "description": "What the set collectively establishes, and where it stops."
+        },
+        "confidence": { "$ref": "common.json#/$defs/confidence" }
+      },
+      "required": ["id", "question", "evidence_ids", "strength", "independent_source_count", "summary"],
+      "additionalProperties": false
+    },
+
+    "retrieval_gap": {
+      "type": "object",
+      "title": "Retrieval Gap",
+      "description": "A search Aleph ran that returned nothing usable. Publishing failures of retrieval is how a reader can tell a thin evidence base from a thorough one.",
+      "properties": {
+        "question": { "type": "string", "minLength": 1 },
+        "queries_tried": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "expected_source_kind": {
+          "oneOf": [{ "$ref": "common.json#/$defs/evidence_tier" }, { "type": "null" }],
+          "description": "The kind of artefact that would have answered the question, if one exists."
+        },
+        "note": { "type": "string" }
+      },
+      "required": ["question", "note"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/analysis_bundle.json",
+  "title": "Aleph Analysis Bundle",
+  "description": "The single export the frontend consumes: one document's complete analysis, composed from every other Aleph schema. Read it as a chain of custody rather than a report. The warm phases come first — the document as parsed, the propositions extracted from it, the topic graph, the search vocabulary those topics generated, and the evidence that vocabulary retrieved — and only then the evaluated material: claims with their speaker-blind verdicts, the coverage that carried them, the clusters that show how much of that coverage was actually independent, and the contradictions resolved against shared evidence. readiness states whether the evidence base was ever thick enough to publish verdicts at all, and it may say no; a bundle whose readiness is 'insufficient' is a valid and honest bundle, and consumers must render its verdicts with that caveat rather than suppress the caveat to look decisive. neutrality_report is Aleph's report on its own behaviour, not on the document. data_status is required at the top level and must be shown to the reader: a bundle marked 'synthetic' describes no real statement by any real person or outlet, and any interface that hides that banner is misrepresenting the product. Nothing in this bundle is a left-right score, and none exists to be computed from it.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "$ref": "common.json#/$defs/schema_version",
+      "description": "Version of the Aleph data contract this bundle conforms to. Current contract is 1.0.0."
+    },
+    "data_status": {
+      "$ref": "common.json#/$defs/data_status",
+      "description": "Provenance of the whole bundle. 'synthetic' means the content was generated for demonstration and must be labelled prominently in every view. 'partial' and 'stale' likewise constrain how the analysis may be presented."
+    },
+    "generated_at": {
+      "$ref": "common.json#/$defs/timestamp",
+      "description": "When this bundle was assembled. Evidence retrieved after this instant is not in it, which matters for any claim about an ongoing process."
+    },
+    "document": {
+      "$ref": "document.json",
+      "description": "Warm phase 1: the source document as parsed, with its structure and spans. Everything downstream traces back here, and a bundle whose document failed to parse cleanly cannot support strong verdicts."
+    },
+    "propositions": {
+      "$ref": "proposition.json",
+      "description": "Warm phase 2: the atomic propositions extracted from the document, each with provenance back to a located passage. These are what the document actually says, held separately from what anyone claims about it."
+    },
+    "topic_graph": {
+      "$ref": "topic_graph.json",
+      "description": "Warm phase 3: nodes and edges describing how the document's subjects relate. Used to attach claims, evidence and coverage to the same subject without relying on keyword overlap."
+    },
+    "search_vocabulary": {
+      "$ref": "search_vocabulary.json",
+      "description": "Warm phase 4: the query terms generated from the topic graph. Published because the vocabulary determines what evidence could possibly have been found — a reader auditing for selection effects should start here."
+    },
+    "provisions": {
+      "type": "array",
+      "description": "The document's operative provisions, denormalised from `document` so an interface can render and link them without walking the document tree. This is a projection, not a second source of truth: where a provision here disagrees with `document`, the document wins.",
+      "items": { "$ref": "#/$defs/provision_summary" }
+    },
+    "impact_map": {
+      "$ref": "impact_map.json",
+      "description": "Seven fixed policy-effect axes plus beneficiaries and cost-bearers. These describe effects found in the text and are NOT party labels; they must never be collapsed into a single political score."
+    },
+    "claims": {
+      "type": "array",
+      "description": "Every claim, each carrying a speaker-blind verdict inside blind_evaluation and, separately and afterwards, an attributed analysis that cannot alter that verdict.",
+      "items": { "$ref": "claim.json#/$defs/claim" }
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Warm phase 5: the evidence pool. Each item records what it can and cannot establish for a specific question, because source authority and evidential relevance are different things.",
+      "items": { "$ref": "evidence.json#/$defs/evidence_item" }
+    },
+    "articles": {
+      "type": "array",
+      "description": "Coverage collected about the document. An article establishes that an outlet published something; whether it is true is settled in `claims`, blind to the outlet.",
+      "items": { "$ref": "news_article.json#/$defs/article" }
+    },
+    "clusters": {
+      "type": "array",
+      "description": "Warm phase 6: coverage and claims grouped, each with an independence analysis. Repeated publication is not independent evidence, and these clusters are where that collapse is made visible.",
+      "items": { "$ref": "news_cluster.json#/$defs/cluster" }
+    },
+    "contradictions": {
+      "type": "array",
+      "description": "Disputes framed as a single question at issue and adjudicated by applying the same evidence to every position. Unresolvable disputes are reported as unresolvable.",
+      "items": { "$ref": "contradiction.json#/$defs/contradiction_cluster" }
+    },
+    "neutrality_report": {
+      "$ref": "neutrality_report.json",
+      "description": "Aleph's measurement of its own invariance under irrelevant substitutions. It does not prove political neutrality, and its required interpretation_caveat must be displayed wherever its score is."
+    },
+    "readiness": {
+      "$ref": "readiness.json",
+      "description": "Warm phase 7: whether the evidence base was thick enough to publish verdicts. This is the gate the rest of the bundle must be read through; model confidence may never be used to paper over an 'insufficient' readiness state."
+    },
+    "timeline": {
+      "type": "array",
+      "description": "Dated events in the document's life, ordered oldest first. Present so a reader can see when a claim was made relative to what was known then — the temporal_correctness check depends on this ordering.",
+      "items": { "$ref": "#/$defs/timeline_entry" }
+    },
+    "methodology": {
+      "$ref": "#/$defs/methodology",
+      "description": "How this bundle was produced and what it cannot do. Required, and required to be reachable from every view of the analysis."
+    },
+    "framing_profiles": {
+      "type": "array",
+      "description": "Optional. Eight-dimension framing profiles for the articles above, referenced by their framing_profile_id. Optional because framing analysis may not have run; never optional to display in full once present, since the eight dimensions must not be collapsed into one number.",
+      "items": { "$ref": "framing_profile.json" }
+    },
+    "source_registry": {
+      "$ref": "source_registry.json",
+      "description": "Optional. The registry of sources and outlets referenced by this bundle, carrying identifiers and descriptive metadata only — no prestige or credibility ranking exists anywhere in Aleph."
+    }
+  },
+  "required": [
+    "schema_version",
+    "data_status",
+    "generated_at",
+    "document",
+    "propositions",
+    "topic_graph",
+    "search_vocabulary",
+    "provisions",
+    "impact_map",
+    "claims",
+    "evidence",
+    "articles",
+    "clusters",
+    "contradictions",
+    "neutrality_report",
+    "readiness",
+    "timeline",
+    "methodology"
+  ],
+  "additionalProperties": false,
+
+  "$defs": {
+    "provision_summary": {
+      "type": "object",
+      "title": "Provision Summary",
+      "description": "One operative provision of the document in the shape the interface needs: what it says, where it is, what it changes and which axes and topics it feeds. Denormalised for rendering; `document` remains authoritative.",
+      "properties": {
+        "id": {
+          "$ref": "common.json#/$defs/id",
+          "description": "Provision identifier, prefixed 'prov:'."
+        },
+        "ref_label": {
+          "type": ["string", "null"],
+          "description": "The document's own label for this provision, e.g. an article or section number, exactly as printed. Null when the document does not number its provisions."
+        },
+        "title": {
+          "type": ["string", "null"],
+          "description": "Heading as printed in the document, when there is one."
+        },
+        "summary": {
+          "type": "string",
+          "description": "What the provision does, in one or two sentences, phrased so it could be checked against the quoted text below. No evaluation of whether it is a good idea.",
+          "minLength": 1
+        },
+        "text": {
+          "type": ["string", "null"],
+          "description": "The provision's operative text, verbatim. Null when only a summary was extractable, which weakens every downstream use of it."
+        },
+        "spans": {
+          "type": "array",
+          "description": "Where the provision sits in the document, so a reader can always get back to the original.",
+          "items": { "$ref": "common.json#/$defs/span" }
+        },
+        "quantities": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/quantity" }
+        },
+        "money": {
+          "type": "array",
+          "items": { "$ref": "common.json#/$defs/money" }
+        },
+        "topic_refs": {
+          "type": "array",
+          "description": "Topic-graph nodes this provision belongs to.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "impact_axis_refs": {
+          "type": "array",
+          "description": "Which of the seven policy-effect axes this provision contributes to. The provision should appear as a named component inside each of those axes, which is how a reader gets from a dial back to a clause.",
+          "items": { "$ref": "impact_map.json#/$defs/axis_key" }
+        },
+        "proposition_refs": {
+          "type": "array",
+          "description": "Atomic propositions extracted from this provision.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        },
+        "status": {
+          "type": ["string", "null"],
+          "description": "Legislative or drafting status of this provision as stated by the document itself, e.g. 'as introduced', 'amended in committee'. Copied from the source, never inferred."
+        }
+      },
+      "required": ["id", "summary"],
+      "additionalProperties": false
+    },
+
+    "timeline_entry": {
+      "type": "object",
+      "title": "Timeline Entry",
+      "description": "One dated event. Every entry carries evidence_refs because a timeline is a set of factual assertions like any other, and an undated or unevidenced entry would smuggle a narrative into what looks like a neutral chronology.",
+      "properties": {
+        "date": {
+          "$ref": "common.json#/$defs/date",
+          "description": "When the event occurred. Plain calendar date; events whose date is unknown are omitted rather than guessed."
+        },
+        "label": {
+          "type": "string",
+          "description": "Short neutral name for the event, describing what happened rather than characterising it.",
+          "minLength": 1
+        },
+        "description": {
+          "type": ["string", "null"],
+          "description": "One or two sentences of detail, checkable against the referenced evidence."
+        },
+        "kind": {
+          "type": "string",
+          "description": "Category of event, used for grouping and iconography. 'statement' covers a public claim entering the record, which is often the point at which a contradiction begins.",
+          "enum": [
+            "document_published",
+            "document_revised",
+            "committee_stage",
+            "vote",
+            "amendment",
+            "official_report",
+            "statement",
+            "media_event",
+            "implementation_milestone",
+            "legal_challenge",
+            "other"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "description": "Evidence establishing that this event happened on this date. An entry with none must be treated as unverified by any consumer.",
+          "items": { "$ref": "common.json#/$defs/id" }
+        }
+      },
+      "required": ["date", "label", "kind", "evidence_refs"],
+      "additionalProperties": false
+    },
+
+    "methodology": {
+      "type": "object",
+      "title": "Methodology",
+      "description": "What produced this bundle and what it cannot do. limitations is required and must be non-empty: every analysis has limits, and a methodology block claiming none would itself be the strongest evidence that the analysis was not examined carefully.",
+      "properties": {
+        "pipeline_version": {
+          "type": "string",
+          "description": "Version of the Aleph pipeline that assembled this bundle, so a result can be reproduced or invalidated.",
+          "minLength": 1
+        },
+        "model_provider": {
+          "type": "string",
+          "description": "Identifier of the language-model provider and model used for extraction and evaluation, including the deterministic mock provider when no live model was called. Named because every model carries its own dispositions and a reader is entitled to know which one judged these claims.",
+          "minLength": 1
+        },
+        "phases_completed": {
+          "type": "array",
+          "description": "Which of the seven warm phases actually ran to completion. A missing phase is not a formality: skipping search_vocabulary or evidence_collection means verdicts rest on whatever happened to be at hand.",
+          "items": { "$ref": "common.json#/$defs/warm_phase" },
+          "uniqueItems": true
+        },
+        "limitations": {
+          "type": "array",
+          "description": "What this analysis cannot establish — coverage gaps, paywalled sources, language limits, provisions whose effects depend on regulation not yet drafted, and the fact that neutrality testing measures invariance rather than absence of bias.",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "generated_by": {
+          "type": "string",
+          "description": "The component or service that emitted this bundle, e.g. an export module and its version.",
+          "minLength": 1
+        }
+      },
+      "required": ["pipeline_version", "model_provider", "phases_completed", "limitations", "generated_by"],
+      "additionalProperties": false
+    }
+  }
+}

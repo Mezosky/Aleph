@@ -1,0 +1,76 @@
+# ---------------------------------------------------------------------------
+# Aleph — ignore rules
+#
+# Rule of thumb: derived artefacts and local toolchains stay out; the published
+# evidence payload stays in. `frontend/public/data/**` is the static site's data
+# contract and IS committed — see the negation block at the bottom.
+# ---------------------------------------------------------------------------
+
+# Local toolchains (never committed, never referenced by CI)
+.venv/
+venv/
+.toolchain/
+
+# Python
+__pycache__/
+*.pyc
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+.python-version
+
+# Test / lint caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/node_modules/
+npm-debug.log*
+yarn-error.log*
+.eslintcache
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Working data. Raw inputs and intermediate artefacts are reproducible from the
+# pipeline; committing them would bloat the repo and blur provenance.
+data/raw/*
+data/processed/*
+data/exports/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/exports/.gitkeep
+!data/**/.gitkeep
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*~
+
+# ---------------------------------------------------------------------------
+# Explicitly tracked: the static site payload. GitHub Pages serves these files
+# directly and the refresh workflow commits changes to them.
+# ---------------------------------------------------------------------------
+!frontend/public/data/
+!frontend/public/data/**
