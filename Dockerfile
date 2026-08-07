@@ -18,7 +18,7 @@
 # ---------------------------------------------------------------------------
 # Stage: frontend-build — Vite production bundle
 # ---------------------------------------------------------------------------
-FROM node:22-alpine AS frontend-build
+FROM node:25-alpine AS frontend-build
 
 # VITE_BASE defaults to "/" for container-served deployments. GitHub Pages
 # serves the site from a subpath and overrides this with "/Aleph/".
