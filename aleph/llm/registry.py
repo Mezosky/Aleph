@@ -158,8 +158,9 @@ def provider_status(config: Config | None = None) -> dict[str, Any]:
         "qwen": {
             "configured": bool(cfg.qwen_base_url),
             "deterministic": False,
-            "requires_credentials": True,
+            "requires_credentials": False,
             "api_key_configured": bool(cfg.qwen_api_key),
             "model": cfg.qwen_model,
+            "revision": cfg.qwen_revision,
         },
     }

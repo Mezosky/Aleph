@@ -2214,11 +2214,23 @@ export interface NewsFeedItem {
   independent_source_count?: number
 }
 
+/** Acquisition counts stay separate so repeated coverage is never presented as independent evidence. */
+export interface NewsFeedCounts {
+  articles: number
+  distinct_outlets: number
+  original_reporting: number
+  clusters: number
+}
+
 /** `public/data/news/latest.json`. */
 export interface NewsFeed {
   schema_version: SchemaVersion
   data_status: DataStatus
   generated_at: Timestamp
+  notice?: string
+  retrieval_mode?: 'manual' | 'on_demand' | 'scheduled' | 'disabled'
+  retrieval_note?: string
+  counts?: NewsFeedCounts
   items: NewsFeedItem[]
 }
 

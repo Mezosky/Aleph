@@ -10,6 +10,7 @@
 .venv/
 venv/
 .toolchain/
+.venv-vllm/
 
 # Python
 __pycache__/
@@ -53,9 +54,15 @@ yarn-error.log*
 data/raw/*
 data/processed/*
 data/exports/*
+data/models/*
+data/cache/*
+data/*.db
+data/*.db-shm
+data/*.db-wal
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/exports/.gitkeep
+!data/models/.gitkeep
 !data/**/.gitkeep
 
 # Editors / OS

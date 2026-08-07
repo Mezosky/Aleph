@@ -215,10 +215,14 @@ class Config:
     """Credential for that endpoint. Never logged, never serialised, never
     returned by the API."""
 
-    qwen_model: str = "qwen2.5-72b-instruct"
+    qwen_model: str = "nvidia/Qwen3.5-122B-A10B-NVFP4"
     """Model identifier requested from the endpoint. Recorded in every bundle's
     ``methodology.model_provider``: a reader is entitled to know which model
     judged these claims."""
+
+    qwen_revision: str = "98915d837c4e7c87ac8296d02e89de19b3207e6d"
+    """Immutable Hugging Face revision of the local checkpoint. This is stored
+    with every run so a moving model tag cannot silently change an analysis."""
 
     llm_temperature: float = 0.0
     """Kept at zero so two analyses of the same text can be meaningfully diffed."""
@@ -268,7 +272,7 @@ class Config:
     static_out_dir: Path = Path("./frontend/public/data")
     """Where the static export writes the site payload."""
 
-    source_registry_path: Path = Path("./data/registry/sources.yaml")
+    source_registry_path: Path = Path("./aleph/news/sources.yaml")
     """Registry of sources and jurisdiction configuration. All jurisdiction
     detail lives in data files, never in library code."""
 
@@ -281,6 +285,14 @@ class Config:
     api_port: int = 8000
     max_upload_mb: int = 50
     max_concurrent_jobs: int = 2
+
+    database_url: Secret = field(default_factory=lambda: Secret("sqlite:///./data/aleph.db"))
+    """SQLAlchemy database URL. Wrapped because a PostgreSQL URL normally
+    contains a password and configuration objects are safe to log."""
+
+    database_auto_create: bool = True
+    """Create missing tables on boot for local use. Production containers also
+    run Alembic; this remains a safe idempotent guard for fresh installations."""
 
     # --- run behaviour -----------------------------------------------------
     env: str = "development"
@@ -370,7 +382,17 @@ def _load_from_process_env() -> Config:
         llm_provider=_env_enum(("LLM_PROVIDER",), LLMProviderName, LLMProviderName.MOCK),
         qwen_base_url=_env_first(("QWEN_BASE_URL",), "") or "",
         qwen_api_key=Secret(_env_first(("QWEN_API_KEY",), "")),
-        qwen_model=_env_first(("QWEN_MODEL",), "qwen2.5-72b-instruct") or "qwen2.5-72b-instruct",
+        qwen_model=(
+            _env_first(("QWEN_MODEL",), "nvidia/Qwen3.5-122B-A10B-NVFP4")
+            or "nvidia/Qwen3.5-122B-A10B-NVFP4"
+        ),
+        qwen_revision=(
+            _env_first(
+                ("QWEN_REVISION",),
+                "98915d837c4e7c87ac8296d02e89de19b3207e6d",
+            )
+            or "98915d837c4e7c87ac8296d02e89de19b3207e6d"
+        ),
         llm_temperature=_env_float(("LLM_TEMPERATURE",), 0.0),
         llm_max_retries=_env_int(("LLM_MAX_RETRIES",), 3),
         retrieval_mode=_env_enum(("RETRIEVAL_MODE",), RetrievalMode, RetrievalMode.MANUAL),
@@ -390,7 +412,7 @@ def _load_from_process_env() -> Config:
         cache_dir=_env_path(("CACHE_DIR",), str(data_dir / "cache")),
         schema_dir=_env_path(("SCHEMA_DIR",), "./schemas"),
         static_out_dir=_env_path(("STATIC_OUT_DIR",), "./frontend/public/data"),
-        source_registry_path=_env_path(("SOURCE_REGISTRY",), "./data/registry/sources.yaml"),
+        source_registry_path=_env_path(("SOURCE_REGISTRY",), "./aleph/news/sources.yaml"),
         cors_origins=_env_csv(
             ("CORS_ORIGINS",),
             ("http://localhost:5173", "http://127.0.0.1:5173"),
@@ -399,6 +421,8 @@ def _load_from_process_env() -> Config:
         api_port=_env_int(("API_PORT",), 8000),
         max_upload_mb=_env_int(("MAX_UPLOAD_MB", "MAX_PDF_MB"), 50),
         max_concurrent_jobs=_env_int(("MAX_CONCURRENT_JOBS",), 2),
+        database_url=Secret(_env_first(("DATABASE_URL",), "sqlite:///./data/aleph.db")),
+        database_auto_create=_env_bool(("DATABASE_AUTO_CREATE",), True),
         env=_env_first(("ENV",), "development") or "development",
         log_level=(_env_first(("LOG_LEVEL",), "info") or "info").lower(),
         seed=_env_int(("SEED",), 20260807),

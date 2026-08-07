@@ -63,6 +63,27 @@ export default function Home() {
 
       <section aria-labelledby="news-heading" className="mt-20 border-t border-line-hairline pt-10">
         <div className="max-w-prose"><p className="text-micro uppercase tracking-wide text-ink-muted">Discurso público</p><h2 id="news-heading" className="mt-2 text-title font-semibold">Últimas noticias</h2><p className="mt-3 text-body text-ink-secondary">No contamos publicaciones: mostramos afirmaciones, veredictos e independencia de fuentes.</p></div>
+        {news?.counts && (
+          <div className="mt-6">
+            <dl aria-label="Cobertura adquirida" className="grid grid-cols-2 gap-px bg-line-hairline sm:grid-cols-4">
+              {[
+                ['Artículos adquiridos', news.counts.articles],
+                ['Reportes originales', news.counts.original_reporting],
+                ['Medios distintos', news.counts.distinct_outlets],
+                ['Clusters', news.counts.clusters],
+              ].map(([label, value]) => (
+                <div key={label} className="bg-surface-card p-4">
+                  <dt className="text-micro uppercase text-ink-muted">{label}</dt>
+                  <dd className="mt-2 text-title tabular text-ink-primary">{value}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-3 text-micro text-ink-muted">
+              {news.data_status === 'synthetic' ? 'Datos de demostración · ' : ''}
+              {news.retrieval_note ?? 'Cada adquisición se cuenta una vez; las republicaciones no aumentan la independencia.'}
+            </p>
+          </div>
+        )}
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {news?.items.slice(0, 6).map((item) => (
             <article key={item.article.id} className="flex flex-col border border-line-hairline bg-surface-card p-5">

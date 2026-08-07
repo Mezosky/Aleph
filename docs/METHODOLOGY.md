@@ -217,7 +217,35 @@ model absorbed in training. The suite cannot see either.
 
 ---
 
-## 10. Known limitations
+## 10. Offline execution and reproducible accumulation
+
+The language model runs locally, but “offline” begins only after inputs have been acquired. A
+remote PDF, court record or news article must first be retrieved deliberately. Aleph then stores
+the exact response bytes, final URL, retrieval time, redirect chain, response metadata and SHA-256
+as an immutable source snapshot. The model analyses that frozen material; it does not browse or
+silently refresh evidence while reasoning.
+
+The pinned production-local model is Qwen3.5-122B-A10B-NVFP4. Its job is structured extraction,
+classification and evidence-linked explanation. Decoder-constrained JSON and schema validation
+control shape; grounding checks control whether extracted content actually appears in the input.
+The model's reasoning trace is not treated as evidence and is not published as a factual basis.
+
+Every execution is accumulated rather than replaced. A run records the source hash, model and
+checkpoint revision, pipeline, prompt and schema versions, configuration fingerprint, individually
+hashed phase artifacts, final output hash, timestamps and failure state. A later run points to the
+run it supersedes, allowing a reader to distinguish a changed document or evidence set from a
+changed model or implementation.
+
+Live news collection is a separate, explicit input-acquisition step. It polls only verified feeds
+declared in the source registry, obeys the recorded robots decision and rate limit, stores the
+exact response bytes, and records failures as coverage gaps. Canonical URLs and response hashes
+deduplicate repeat observations, while scrape-run rows and first/last-seen timestamps preserve the
+history of what was checked and when. Discovery alone does not create a factual verdict: an item
+must still enter a frozen evidence set and pass the same claim-level evaluation path.
+
+---
+
+## 11. Known limitations
 
 - **Retrieval bounds everything.** Aleph can only weigh evidence it found. Retrieval breadth is
   the dominant source of error and is not something the neutrality suite can detect.
@@ -235,7 +263,7 @@ model absorbed in training. The suite cannot see either.
 
 ---
 
-## 11. How to check Aleph's work
+## 12. How to check Aleph's work
 
 Every claim view exposes the evidence used, the passages involved, the checks applied and their
 outcomes, the assumptions required, the counter-evidence, and the uncertainty. Every score opens

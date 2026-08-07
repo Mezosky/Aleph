@@ -2131,6 +2131,12 @@ def _parse_candidates(raw: str | dict[str, Any] | list[Any]) -> list[Mapping[str
     not be able to fail a run.
     """
     payload: Any = raw
+    # Aleph's concrete LLMProvider returns an auditable LLMResponse rather than
+    # a bare dictionary. Protocol-only test providers commonly return the bare
+    # payload, so accept both without importing the provider package here.
+    if hasattr(payload, "parsed"):
+        parsed = getattr(payload, "parsed", None)
+        payload = parsed if parsed is not None else getattr(payload, "text", "")
     if isinstance(payload, str):
         text = payload.strip()
         fenced = re.match(r"^```(?:json)?\s*(.*?)\s*```$", text, re.DOTALL)

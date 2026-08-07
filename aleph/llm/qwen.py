@@ -99,6 +99,7 @@ class QwenProvider(LLMProvider):
         timeout: float = DEFAULT_TIMEOUT_SECONDS,
         retry: RetryPolicy | None = None,
         structured_output_mode: StructuredOutputMode = StructuredOutputMode.JSON_SCHEMA,
+        enable_thinking: bool = False,
         extra_headers: Mapping[str, str] | None = None,
         client: httpx.Client | None = None,
         async_client: httpx.AsyncClient | None = None,
@@ -121,6 +122,10 @@ class QwenProvider(LLMProvider):
         self.base_url = _normalise_base_url(base_url)
         self.api_key = api_key if isinstance(api_key, Secret) else Secret(api_key)
         self.structured_output_mode = structured_output_mode
+        # Aleph's warm-stage calls are decoder-constrained extraction tasks.
+        # Qwen's hidden thinking can consume the whole output budget before the
+        # JSON object begins, so it is opt-in for callers that genuinely need it.
+        self.enable_thinking = enable_thinking
         self._extra_headers = dict(extra_headers or {})
         self._client = client
         self._async_client = async_client
@@ -351,6 +356,7 @@ class QwenProvider(LLMProvider):
             "temperature": request.temperature,
             "max_tokens": request.max_tokens,
             "stream": False,
+            "chat_template_kwargs": {"enable_thinking": self.enable_thinking},
         }
         if request.stop:
             body["stop"] = list(request.stop)

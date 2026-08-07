@@ -666,6 +666,9 @@ def _expand_with_provider(
         return {}
 
     payload: Any = raw
+    if hasattr(payload, "parsed"):
+        parsed = getattr(payload, "parsed", None)
+        payload = parsed if parsed is not None else getattr(payload, "text", "")
     if isinstance(payload, str):
         text = payload.strip()
         fenced = re.match(r"^```(?:json)?\s*(.*?)\s*```$", text, re.DOTALL)

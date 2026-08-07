@@ -88,6 +88,74 @@ docker compose up
 # Frontend → http://localhost:5173
 ```
 
+PostgreSQL is part of that stack. Uploaded bytes, source snapshots, analysis
+runs and phase artifacts survive API restarts; rerunning a document creates a
+new version linked by `supersedes_run_id` and never updates the earlier result.
+
+### Local Blackwell inference
+
+The GPU profile is pinned to
+`nvidia/Qwen3.5-122B-A10B-NVFP4@98915d837c4e7c87ac8296d02e89de19b3207e6d`.
+It serves an OpenAI-compatible endpoint inside the Compose network and uses no
+hosted inference API.
+
+```bash
+# First launch: downloads the pinned checkpoint into the model_cache volume.
+ALEPH_LLM_PROVIDER=qwen docker compose --profile local-llm up --build
+
+# Later launches: prohibit Hugging Face access after the checkpoint is cached.
+HF_HUB_OFFLINE=1 ALEPH_LLM_PROVIDER=qwen \
+  docker compose --profile local-llm up
+```
+
+The vLLM process uses one GPU, NVFP4 weights, an FP8 KV cache and a conservative
+32K working context so the 96 GB card retains decoding headroom. Aleph sends a
+JSON Schema with every structured request and validates the returned payload
+again before accepting it.
+
+On a host without Docker, the equivalent native path is isolated from Aleph's
+application environment:
+
+```bash
+scripts/bootstrap_local_llm.sh
+scripts/serve_local_llm.sh
+
+# In a second terminal:
+ALEPH_LLM_PROVIDER=qwen \
+ALEPH_QWEN_BASE_URL=http://127.0.0.1:8001/v1 \
+ALEPH_DATABASE_URL=sqlite:///./data/aleph.db \
+  .venv/bin/uvicorn api.main:app --host 127.0.0.1 --port 8000
+
+# Submit a PDF; the response contains a durable analysis id.
+curl -F "file=@/absolute/path/to/document.pdf" http://127.0.0.1:8000/v1/analyses
+```
+
+The server launch is offline-only after bootstrap: it resolves the pinned local
+snapshot, disables runtime Hub access, and exposes its health endpoint at
+`http://127.0.0.1:8001/health`. Watch checkpoint, GPU, durable-analysis and
+retrieval counters in another terminal:
+
+```bash
+~/aleph-progress -w
+```
+
+### Live news acquisition
+
+Network retrieval is never implicit. Poll only registry entries whose feeds and
+robots policy have been verified, and preserve exact feed/article bytes in the
+append-only database, with:
+
+```bash
+.venv/bin/python scripts/refresh.py --fetch \
+  --query "18216-05 megarreforma reconstrucción desarrollo económico social" \
+  --max-articles 20
+```
+
+Repeated runs update first/last observation times and deduplicate articles by
+canonical URL and content hash; they do not overwrite prior scrape runs or
+retrieval snapshots. Omit `--fetch` to regenerate deterministic static demo
+data without network access.
+
 Analyse a document through the library:
 
 ```python
@@ -121,7 +189,8 @@ aleph/          the library — document-agnostic; no jurisdiction logic anywher
   neutrality/   six perturbations, runner, metrics
   llm/          LLMProvider · QwenProvider · MockProvider
   export/       deterministic JSON export and contract validation
-api/            FastAPI analysis service
+api/            FastAPI service + durable SQLAlchemy repository
+migrations/     Alembic database migrations
 schemas/        JSON Schema — the contract between backend and frontend
 frontend/       React · TypeScript · Vite · Tailwind
   public/data/  precomputed analyses served by GitHub Pages
@@ -157,14 +226,17 @@ parsing, section/provision segmentation and locale-aware quantity extraction; ru
 proposition and claim extraction; the redaction layer and its leak assertions; the epistemic
 check → verdict derivation; near-duplicate and syndication detection; the framing, impact and
 beneficiary computations; the six neutrality perturbations and their metrics; the provider
-abstraction with a deterministic mock; export, validation and the API. The test suite runs
-offline with no credentials.
+abstraction with a deterministic mock; local vLLM/Qwen structured inference; immutable source
+snapshots; append-only PostgreSQL analysis history; export, validation and the API. The test suite
+runs offline with no credentials.
 
-**Scaffolded behind interfaces:** live web retrieval and crawling (a `SearchProvider` interface
-with a deterministic mock; the source registry ships with `verified: false` on every entry and
-`null` URLs wherever a feed address was not confirmed — those need checking before any real
-crawl), and LLM-assisted extraction (works against `MockProvider`; `QwenProvider` needs a running
-endpoint).
+**Scaffolded behind interfaces:** general web search (a `SearchProvider` interface with a
+deterministic mock). Verified Chilean news feeds have a separate explicit acquisition path that
+checks the registry and robots policy, applies per-host delays, and stores immutable response
+bytes. Sources without a confirmed machine-readable endpoint remain excluded. Live uploads
+therefore persist a real document analysis, but readiness still withholds
+claim verdicts until a frozen evidence set has been collected. `QwenProvider` requires the local
+GPU profile (or another explicitly configured OpenAI-compatible endpoint).
 
 **The bundled analysis is synthetic.** Every dataset in `frontend/public/data/` carries
 `"data_status": "synthetic"` and the UI shows a banner saying so. The outlets are invented, the

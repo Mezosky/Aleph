@@ -12,6 +12,71 @@ name: aleph
 
 services:
   # -------------------------------------------------------------------------
+  # postgres — durable, append-only analysis history
+  # -------------------------------------------------------------------------
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${ALEPH_POSTGRES_DB:-aleph}
+      POSTGRES_USER: ${ALEPH_POSTGRES_USER:-aleph}
+      POSTGRES_PASSWORD: ${ALEPH_POSTGRES_PASSWORD:-aleph-local-only}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${ALEPH_POSTGRES_USER:-aleph} -d ${ALEPH_POSTGRES_DB:-aleph}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  # -------------------------------------------------------------------------
+  # vllm — optional fully local Qwen3.5 inference on the Blackwell GPU
+  #
+  # First launch downloads the pinned checkpoint. Set HF_HUB_OFFLINE=1 on all
+  # later launches to make accidental network access impossible.
+  # -------------------------------------------------------------------------
+  vllm:
+    image: nvcr.io/nvidia/vllm:26.07-py3
+    profiles: ["local-llm"]
+    gpus: all
+    ipc: host
+    shm_size: 16gb
+    environment:
+      HF_HOME: /models/huggingface
+      HF_HUB_OFFLINE: ${HF_HUB_OFFLINE:-0}
+      VLLM_USE_FLASHINFER_SAMPLER: ${VLLM_USE_FLASHINFER_SAMPLER:-0}
+    volumes:
+      - model_cache:/models/huggingface
+    ports:
+      - "8001:8000"
+    command:
+      - vllm
+      - serve
+      - nvidia/Qwen3.5-122B-A10B-NVFP4
+      - --revision
+      - 98915d837c4e7c87ac8296d02e89de19b3207e6d
+      - --served-model-name
+      - nvidia/Qwen3.5-122B-A10B-NVFP4
+      - --trust-remote-code
+      - --quantization
+      - modelopt_fp4
+      - --kv-cache-dtype
+      - fp8
+      - --tensor-parallel-size
+      - "1"
+      - --max-model-len
+      - "32768"
+      - --gpu-memory-utilization
+      - "0.90"
+      - --enforce-eager
+      - --attention-backend
+      - TRITON_ATTN
+      - --reasoning-parser
+      - qwen3
+      - --language-model-only
+    restart: unless-stopped
+
+  # -------------------------------------------------------------------------
   # api — FastAPI service, reloaded from the mounted source tree
   # -------------------------------------------------------------------------
   api:
@@ -26,8 +91,11 @@ services:
       # "mock" is a real, deterministic provider — the stack is fully usable
       # with no credentials at all.
       ALEPH_LLM_PROVIDER: ${ALEPH_LLM_PROVIDER:-mock}
-      ALEPH_QWEN_BASE_URL: ${ALEPH_QWEN_BASE_URL:-}
+      ALEPH_QWEN_BASE_URL: ${ALEPH_QWEN_BASE_URL:-http://vllm:8000/v1}
       ALEPH_QWEN_API_KEY: ${ALEPH_QWEN_API_KEY:-}
+      ALEPH_QWEN_MODEL: ${ALEPH_QWEN_MODEL:-nvidia/Qwen3.5-122B-A10B-NVFP4}
+      ALEPH_QWEN_REVISION: ${ALEPH_QWEN_REVISION:-98915d837c4e7c87ac8296d02e89de19b3207e6d}
+      ALEPH_DATABASE_URL: postgresql+psycopg://${ALEPH_POSTGRES_USER:-aleph}:${ALEPH_POSTGRES_PASSWORD:-aleph-local-only}@postgres:5432/${ALEPH_POSTGRES_DB:-aleph}
       ALEPH_CORS_ORIGINS: ${ALEPH_CORS_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173}
       ALEPH_DATA_DIR: ${ALEPH_DATA_DIR:-/app/data}
       ALEPH_SCHEMA_DIR: /app/schemas
@@ -44,17 +112,15 @@ services:
       - ./scripts:/app/scripts:ro
       - api_cache:/app/.cache
     command:
-      - uvicorn
-      - api.main:app
-      - --host
-      - 0.0.0.0
-      - --port
-      - "8000"
-      - --reload
-      - --reload-dir
-      - /app/aleph
-      - --reload-dir
-      - /app/api
+      - sh
+      - -c
+      - >-
+        alembic upgrade head &&
+        exec uvicorn api.main:app --host 0.0.0.0 --port 8000
+        --reload --reload-dir /app/aleph --reload-dir /app/api
+    depends_on:
+      postgres:
+        condition: service_healthy
     healthcheck:
       test:
         - CMD
@@ -111,8 +177,11 @@ services:
         required: false
     environment:
       ALEPH_LLM_PROVIDER: ${ALEPH_LLM_PROVIDER:-mock}
-      ALEPH_QWEN_BASE_URL: ${ALEPH_QWEN_BASE_URL:-}
+      ALEPH_QWEN_BASE_URL: ${ALEPH_QWEN_BASE_URL:-http://vllm:8000/v1}
       ALEPH_QWEN_API_KEY: ${ALEPH_QWEN_API_KEY:-}
+      ALEPH_QWEN_MODEL: ${ALEPH_QWEN_MODEL:-nvidia/Qwen3.5-122B-A10B-NVFP4}
+      ALEPH_QWEN_REVISION: ${ALEPH_QWEN_REVISION:-98915d837c4e7c87ac8296d02e89de19b3207e6d}
+      ALEPH_DATABASE_URL: postgresql+psycopg://${ALEPH_POSTGRES_USER:-aleph}:${ALEPH_POSTGRES_PASSWORD:-aleph-local-only}@postgres:5432/${ALEPH_POSTGRES_DB:-aleph}
       ALEPH_DATA_DIR: ${ALEPH_DATA_DIR:-/app/data}
       ALEPH_SCHEMA_DIR: /app/schemas
       ALEPH_STATIC_OUT_DIR: /app/frontend/public/data
@@ -131,3 +200,5 @@ services:
 volumes:
   frontend_node_modules:
   api_cache:
+  model_cache:
+  postgres_data:

@@ -174,8 +174,11 @@ flowchart LR
     subgraph api["Aleph API — optional, self-hosted"]
         S["FastAPI"]
         P["Warm stage → pipeline"]
-        L["LLMProvider<br/>Qwen · vLLM · local · mock"]
+        L["LLMProvider<br/>Qwen3.5 · vLLM · local · mock"]
+        DB[("PostgreSQL<br/>documents · snapshots · versioned runs")]
         S --> P --> L
+        S --> DB
+        P --> DB
     end
 
     U["Browser"] --> F
@@ -204,6 +207,33 @@ credentials.
 Swapping the provider must leave the factual evaluation pipeline unchanged. That is the design
 constraint the abstraction exists to protect.
 
+The production-local checkpoint is pinned by repository and immutable Hugging Face revision:
+`nvidia/Qwen3.5-122B-A10B-NVFP4@98915d837c4e7c87ac8296d02e89de19b3207e6d`. vLLM runs it in
+NVFP4 on the single Blackwell GPU and exposes only the OpenAI-compatible protocol to Aleph. The
+model container can be placed in Hugging Face offline mode after the first download. The model
+tag, revision, pipeline version, prompt version, schema version and configuration fingerprint are
+stored with every analysis.
+
+### 7.1 Durable execution
+
+The API is stateless with respect to completed work. SQL tables hold four analysis layers:
+
+1. `documents` stores the submitted input and its stable source fingerprint.
+2. `source_snapshots` stores the exact bytes actually analysed, retrieval metadata and SHA-256.
+3. `analysis_runs` stores state, all implementation/model versions and the validated result hash.
+4. `analysis_artifacts` stores individually hashed phase outputs.
+
+A rerun inserts a new `analysis_runs` row whose `supersedes_run_id` points to the previous run.
+Completed rows are never updated. SQLite is supported as a single-process development fallback;
+the Compose and production path uses PostgreSQL and Alembic migrations.
+
+Explicit news acquisition has a parallel append-only ledger. `scrape_runs` records each request
+and its live counters, `retrieval_snapshots` preserves exact feed and article bytes by URL and
+content hash, and `discovered_news` deduplicates canonical article URLs while accumulating their
+first and last observation times. Only enabled, verified `news_outlet` entries with a declared
+machine-readable feed are eligible. The fetcher still checks the recorded robots policy, applies
+the source's per-host delay, and requires `allow_network=True` at the call site.
+
 ---
 
 ## 8. Repository layout
@@ -225,7 +255,8 @@ Aleph/
 │   ├── llm/                 # LLMProvider, QwenProvider, MockProvider
 │   ├── export/              # AnalysisBundle assembly, static site export
 │   └── pipeline.py          # warm-stage orchestration + readiness gate
-├── api/                     # FastAPI analysis service
+├── api/                     # FastAPI service and durable repository
+├── migrations/              # append-only store migrations
 ├── schemas/                 # JSON Schema — the contract between backend and frontend
 ├── frontend/                # React/TS/Vite static site
 │   └── public/data/         # precomputed analyses served by GitHub Pages

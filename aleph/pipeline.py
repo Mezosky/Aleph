@@ -15,12 +15,13 @@ from typing import Any
 from aleph.core.enums import PhaseState, WarmPhase
 from aleph.core.models import DocumentModel, PropositionSet, SearchVocabulary, TopicGraph
 from aleph.documents import build_document_model
-from aleph.ingestion import extract_pdf, extract_plain_text, load_source
+from aleph.ingestion import FetchedDocument, extract_pdf, extract_plain_text, load_source
 from aleph.propositions.extract import extract_propositions
 from aleph.propositions.graph import build_topic_graph
 from aleph.retrieval.vocabulary import build_search_vocabulary
 
-PIPELINE_VERSION = "aleph-pipeline/0.1.0"
+PIPELINE_VERSION = "aleph-pipeline/0.2.0"
+PROMPT_VERSION = "aleph-prompts/0.2.0"
 
 
 def _now() -> str:
@@ -90,14 +91,18 @@ class PipelineResult:
 
 
 def run_analysis(
-    source: bytes | str | Path,
+    source: bytes | str | Path | FetchedDocument,
     *,
     title: str | None = None,
     allow_network: bool = False,
     provider: Any | None = None,
 ) -> PipelineResult:
     """Run the offline-capable warm path and stop honestly at retrieval."""
-    fetched = load_source(source, allow_network=allow_network, file_name=title)
+    fetched = (
+        source
+        if isinstance(source, FetchedDocument)
+        else load_source(source, allow_network=allow_network, file_name=title)
+    )
     extracted = (
         extract_pdf(fetched.content, source_name=fetched.file_name or fetched.url)
         if fetched.is_pdf
@@ -105,7 +110,11 @@ def run_analysis(
     )
     generated_at = _now()
     document = build_document_model(fetched, extracted, title=title)
-    propositions = extract_propositions(document, generated_at=generated_at)
+    propositions = extract_propositions(
+        document,
+        provider=provider,
+        generated_at=generated_at,
+    )
     graph = build_topic_graph(document, propositions, generated_at=generated_at)
     vocabulary = build_search_vocabulary(
         document,

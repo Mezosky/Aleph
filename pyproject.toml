@@ -32,7 +32,10 @@ dependencies = [
 # Serving layer. Kept optional so the pipeline and the schema tooling can be installed
 # (in CI, in a batch job) without pulling a web framework.
 api = [
+  "alembic>=1.14",
   "fastapi>=0.110",
+  "psycopg[binary]>=3.2",
+  "sqlalchemy>=2.0",
   "uvicorn[standard]>=0.29",
   "python-multipart>=0.0.9",
 ]

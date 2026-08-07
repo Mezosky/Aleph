@@ -28,12 +28,11 @@
 #
 # HONESTY RULES OBSERVED HERE
 #
-#   * `verified: false` on every entry. Nothing in this file has been checked
-#     against the live web by this build. `verified` is an authoring key: the
-#     loader translates it to `last_verified_at` and never invents a timestamp.
-#   * `feeds: []` everywhere. No feed URL is invented. `scripts/verify_sources.py`
-#     is the separate, opt-in tool that discovers and writes them back; it is not
-#     run by CI and not called by the pipeline.
+#   * `verified: true` appears only on entries checked against the live web, with
+#     an explicit `last_verified_at`. `verified` is an authoring key: the loader
+#     never invents a timestamp.
+#   * Feed URLs are recorded only when declared by the publisher or its
+#     robots.txt. Sources without a confirmed machine endpoint keep `feeds: []`.
 #   * `base_url: null` where the address is not known with confidence. The loader
 #     records such an entry as UNRESOLVED and excludes it from retrieval instead
 #     of guessing a URL. Guessing would produce a plausible-looking source that
@@ -60,10 +59,10 @@ schema_version: "1.0.0"
 registry_version: "2026-08-07.1"
 
 notes: >-
-  Starter registry. Every entry is unverified: no URL, feed, robots policy or
-  paywall status in this file has been confirmed against the live web by the
-  build that wrote it. Treat every field as a declaration of intent to retrieve,
-  not as a checked fact, until scripts/verify_sources.py has been run.
+  Source registry with explicitly timestamped verification state. Entries not
+  marked verified remain declarations of intent and are excluded from live
+  retrieval. A verified homepage without a confirmed machine-readable feed is
+  likewise not polled by the acquisition workflow.
 
 # Conservative fallback politeness budget for entries that state none of their
 # own. A registry entry that gets Aleph blocked removes a source from every
@@ -244,6 +243,14 @@ jurisdictions:
         name: ADN Radio
         kind: news_outlet
         base_url: https://www.adnradio.cl/
+        verified: true
+        last_verified_at: "2026-08-07T12:30:00Z"
+        robots_policy:
+          respect_robots: true
+          robots_url: https://www.adnradio.cl/robots.txt
+          crawl_allowed: true
+          user_agent: Aleph/0.1 (+https://github.com/Mezosky/Aleph)
+          notes: Homepage allowed; no general news feed was declared in its HTML or robots file.
         evidence_tier: journalism
         typical_independence: unknown
         topics: [news, politics, economy]
@@ -252,6 +259,17 @@ jurisdictions:
         name: BioBioChile
         kind: news_outlet
         base_url: https://www.biobiochile.cl/
+        verified: true
+        last_verified_at: "2026-08-07T12:30:00Z"
+        feeds:
+          - url: https://feeds.feedburner.com/radiobiobio/NNeJ
+            format: rss
+            label: General news feed declared by the publisher
+        robots_policy:
+          respect_robots: true
+          robots_url: https://www.biobiochile.cl/robots.txt
+          crawl_allowed: true
+          user_agent: Aleph/0.1 (+https://github.com/Mezosky/Aleph)
         evidence_tier: journalism
         typical_independence: unknown
         topics: [news, politics, economy, regional]
@@ -260,6 +278,17 @@ jurisdictions:
         name: Cooperativa
         kind: news_outlet
         base_url: https://www.cooperativa.cl/
+        verified: true
+        last_verified_at: "2026-08-07T12:30:00Z"
+        feeds:
+          - url: https://www.cooperativa.cl/noticias/google_news_rss.xml
+            format: rss
+            label: News feed declared in robots.txt
+        robots_policy:
+          respect_robots: true
+          robots_url: https://www.cooperativa.cl/robots.txt
+          crawl_allowed: true
+          user_agent: Aleph/0.1 (+https://github.com/Mezosky/Aleph)
         evidence_tier: journalism
         typical_independence: unknown
         topics: [news, politics, economy]
@@ -268,6 +297,17 @@ jurisdictions:
         name: La Tercera
         kind: news_outlet
         base_url: https://www.latercera.com/
+        verified: true
+        last_verified_at: "2026-08-07T12:30:00Z"
+        feeds:
+          - url: https://www.latercera.com/arc/outboundfeeds/sitemap/?outputType=xml
+            format: sitemap
+            label: Sitemap declared in robots.txt
+        robots_policy:
+          respect_robots: true
+          robots_url: https://www.latercera.com/robots.txt
+          crawl_allowed: true
+          user_agent: Aleph/0.1 (+https://github.com/Mezosky/Aleph)
         evidence_tier: journalism
         typical_independence: unknown
         topics: [news, politics, economy, business]
@@ -276,6 +316,17 @@ jurisdictions:
         name: CIPER Chile
         kind: news_outlet
         base_url: https://www.ciperchile.cl/
+        verified: true
+        last_verified_at: "2026-08-07T12:30:00Z"
+        feeds:
+          - url: https://www.ciperchile.cl/feed/
+            format: rss
+            label: General news feed declared by the publisher
+        robots_policy:
+          respect_robots: true
+          robots_url: https://www.ciperchile.cl/robots.txt
+          crawl_allowed: true
+          user_agent: Aleph/0.1 (+https://github.com/Mezosky/Aleph)
         evidence_tier: journalism
         typical_independence: unknown
         topics: [investigative, public_administration, long_form]
@@ -290,6 +341,17 @@ jurisdictions:
         name: El País (Chile)
         kind: news_outlet
         base_url: https://elpais.com/chile/actualidad/
+        verified: true
+        last_verified_at: "2026-08-07T12:30:00Z"
+        feeds:
+          - url: https://feeds.elpais.com/mrss-s/list/ep/site/elpais.com/section/chile/subsection/actualidad
+            format: rss
+            label: Chile actualidad feed declared by the publisher
+        robots_policy:
+          respect_robots: true
+          robots_url: https://elpais.com/robots.txt
+          crawl_allowed: true
+          user_agent: Aleph/0.1 (+https://github.com/Mezosky/Aleph)
         evidence_tier: journalism
         typical_independence: unknown
         language: es-ES
@@ -304,6 +366,17 @@ jurisdictions:
         name: CNN Chile
         kind: news_outlet
         base_url: https://www.cnnchile.com/
+        verified: true
+        last_verified_at: "2026-08-07T12:30:00Z"
+        feeds:
+          - url: https://www.cnnchile.com/_files/sitemaps/sitemap_news.xml
+            format: sitemap
+            label: News sitemap declared in robots.txt
+        robots_policy:
+          respect_robots: true
+          robots_url: https://www.cnnchile.com/robots.txt
+          crawl_allowed: true
+          user_agent: Aleph/0.1 (+https://github.com/Mezosky/Aleph)
         evidence_tier: journalism
         typical_independence: unknown
         topics: [news, politics, economy, broadcast]
@@ -312,6 +385,17 @@ jurisdictions:
         name: Meganoticias
         kind: news_outlet
         base_url: https://www.meganoticias.cl/
+        verified: true
+        last_verified_at: "2026-08-07T12:30:00Z"
+        feeds:
+          - url: https://www.meganoticias.cl/sitemaps/sitemap-news.xml
+            format: sitemap
+            label: News sitemap declared in robots.txt
+        robots_policy:
+          respect_robots: true
+          robots_url: https://www.meganoticias.cl/robots.txt
+          crawl_allowed: true
+          user_agent: Aleph/0.1 (+https://github.com/Mezosky/Aleph)
         evidence_tier: journalism
         typical_independence: unknown
         topics: [news, politics, broadcast]
@@ -320,6 +404,14 @@ jurisdictions:
         name: T13
         kind: news_outlet
         base_url: https://www.t13.cl/
+        verified: true
+        last_verified_at: "2026-08-07T12:30:00Z"
+        robots_policy:
+          respect_robots: true
+          robots_url: https://www.t13.cl/robots.txt
+          crawl_allowed: true
+          user_agent: Aleph/0.1 (+https://github.com/Mezosky/Aleph)
+          notes: Homepage allowed; no machine-readable general news feed was declared.
         evidence_tier: journalism
         typical_independence: unknown
         topics: [news, politics, economy, broadcast]
