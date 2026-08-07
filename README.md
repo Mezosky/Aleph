@@ -157,11 +157,12 @@ screenshot, hashes and retrieval gaps in the append-only database:
 .venv/bin/python scripts/capture_megareforma_sources.py --allow-network
 ```
 
-The committed sweep covers 50 curated targets: 36 captured sources, including 25 press pieces,
-six videos, one audio item and four comparative-research records. Fourteen inaccessible targets
-remain published as gaps rather than disappearing from the denominator. Cards link to the original
-publication and display the locally archived screenshot; audiovisual players are not embedded, so
-the deployed page sends no request to a publisher until the reader opens the original.
+The committed sweep covers 89 curated targets: 64 captured sources, including 51 press pieces,
+eight videos, five audio items, eight official records and five research records. Twenty-five
+inaccessible targets remain published as gaps rather than disappearing from the denominator.
+Cards link to the original publication and display the locally archived screenshot; audiovisual
+players are not embedded, so the deployed page sends no request to a publisher until the reader
+opens the original.
 
 Comparative questions run as a second, accumulated local-GPU analysis. The model may only cite the
 source ids in each topic packet, and code rejects an invented reference before export:
@@ -258,11 +259,32 @@ GPU profile (or another explicitly configured OpenAI-compatible endpoint).
 `frontend/public/data/megareforma/dossier.json` and its captured-source registry. It clearly
 distinguishes the initial 22 April financial report from the bill later amended by Congress. Old
 synthetic fixtures remain in the repository only to exercise the generic schema and regression
-tests; the Vite publication step removes them from `dist`. Actor portraits carry Wikimedia licensing and factual profiles
-remain structurally outside the blind verdict path. The municipal index covers every mayor with a
-substantive intervention in the curated corpus at the stated cutoff (17 actors across 22 municipal
-sources); it does not claim to be an exhaustive list of everything published on the internet.
-Capture gaps remain visible and a later offline sweep may expand that universe.
+tests; the Vite publication step removes them from `dist`. Actor portraits carry Wikimedia
+licensing and factual profiles remain structurally outside the blind verdict path. The benchmark
+now structures all 46 pages of the financial report: 554 paragraphs, 885 grounded propositions
+and 30 reader-facing policy topics. A regression test forbids the previous silent 250-paragraph
+cutoff. Each topic reports whether the captured press corpus actually covers it, so source volume
+cannot hide thematic gaps. Page 43 is explicitly recorded as blank in the original PDF rather than
+being counted as an unexplained omission.
+
+The actor census audits every captured source for people and institutions with a substantive
+position, action, vote, technical assessment or implementation role. A candidate is retained only
+with a literal excerpt from its source. Detailed national and municipal profiles are an attributed
+subset of that census; the site no longer presents the profiled subset as the complete actor
+universe. The frozen result contains 100 actors (89 people and 11 institutions), 218 grounded
+mentions and 26 expanded track-record profiles. Seven additional municipal portraits are frozen
+from Wikimedia with source, credit, licence and SHA-256; actors without an unambiguous reusable
+portrait keep initials instead of receiving a namesake's photograph. Neither layer claims to be
+exhaustive of the internet, and capture gaps remain visible.
+
+Both publication datasets are generated locally and accumulated in SQLite before static export:
+
+```bash
+.venv/bin/python scripts/analyze_megareforma_deep.py
+.venv/bin/python scripts/analyze_megareforma_actors.py --workers 4
+```
+
+The deployed browser only reads the resulting JSON and screenshots; it never invokes the model.
 
 The first benchmark document is Chilean (Boletín 18.216-05), but that fact lives only in data
 files. No section, layout, actor, or query is hard-coded anywhere in `aleph/` — an arbitrary PDF

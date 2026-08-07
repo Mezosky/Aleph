@@ -22,7 +22,14 @@ import type {
   Proposition,
   SiteIndex,
 } from '@/types/aleph'
-import type { MegareformaDossier, MegareformaSources, MegareformaTheory, MunicipalActorIndex } from '@/types/megareforma'
+import type {
+  ActorCensus,
+  MegareformaDeepAnalysis,
+  MegareformaDossier,
+  MegareformaSources,
+  MegareformaTheory,
+  MunicipalActorIndex,
+} from '@/types/megareforma'
 
 /* ------------------------------------------------------------------ *
  * URLs
@@ -49,6 +56,8 @@ export const DATA_PATHS = {
   megareformaSources: 'megareforma/sources.json',
   megareformaTheory: 'megareforma/theory.json',
   megareformaMunicipalActors: 'megareforma/municipal-actors.json',
+  megareformaDeepAnalysis: 'megareforma/deep-analysis.json',
+  megareformaActorCensus: 'megareforma/actor-census.json',
 } as const
 
 /* ------------------------------------------------------------------ *
@@ -283,6 +292,26 @@ export async function loadMegareformaMunicipalActors(signal?: AbortSignal): Prom
   const value = await loadJson<MunicipalActorIndex>(url, signal)
   if (!value || !Array.isArray(value.actors) || value.coverage?.actors_indexed !== value.actors.length) {
     throw new DataError('parse', 'El índice municipal no tiene la forma esperada.', url)
+  }
+  return value
+}
+
+/** Full 46-page, quote-grounded topic map produced by the local model. */
+export async function loadMegareformaDeepAnalysis(signal?: AbortSignal): Promise<MegareformaDeepAnalysis> {
+  const url = dataUrl(DATA_PATHS.megareformaDeepAnalysis)
+  const value = await loadJson<MegareformaDeepAnalysis>(url, signal)
+  if (!value || value.document?.last_structured_page !== 46 || value.topics?.length !== 30) {
+    throw new DataError('parse', 'La auditoría profunda del documento está incompleta.', url)
+  }
+  return value
+}
+
+/** Every substantive person and institution found in the frozen source corpus. */
+export async function loadMegareformaActorCensus(signal?: AbortSignal): Promise<ActorCensus> {
+  const url = dataUrl(DATA_PATHS.megareformaActorCensus)
+  const value = await loadJson<ActorCensus>(url, signal)
+  if (!value || value.coverage?.actors_indexed !== value.actors?.length) {
+    throw new DataError('parse', 'El censo de actores está incompleto.', url)
   }
   return value
 }

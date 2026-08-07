@@ -1,16 +1,23 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ActorPopover from '@/components/dossier/ActorPopover'
+import CensusActorPopover from '@/components/dossier/CensusActorPopover'
 import DossierMeter from '@/components/dossier/DossierMeter'
 import SourceCard from '@/components/dossier/SourceCard'
 import {
   describeDataError,
+  loadMegareformaActorCensus,
+  loadMegareformaDeepAnalysis,
   loadMegareformaDossier,
   loadMegareformaMunicipalActors,
   loadMegareformaSources,
   loadMegareformaTheory,
 } from '@/lib/data'
 import type {
+  ActorCensus,
+  CensusActor,
+  DeepTopic,
+  MegareformaDeepAnalysis,
   MegareformaDossier,
   MegareformaSources,
   MegareformaTheory,
@@ -33,6 +40,32 @@ const MUNICIPAL_GROUP: Record<MunicipalPositionGroup, { label: string; className
   dialogue_participant: { label: 'Participa en negociación', className: 'border-line-strong' },
 }
 
+const TOPIC_GROUP: Record<DeepTopic['group'], string> = {
+  gasto_y_reconstruccion: 'Reconstrucción y gasto',
+  educacion: 'Educación superior',
+  empleo_publico: 'Empleo público',
+  regulacion: 'Regulación y permisos',
+  tributos_permanentes: 'Tributos permanentes',
+  tributos_transitorios: 'Tributos transitorios',
+  efecto_fiscal: 'Efecto fiscal y supuestos',
+}
+
+const ACTOR_TYPE: Record<CensusActor['actor_type'], string> = {
+  government: 'Gobierno',
+  legislator: 'Congreso',
+  mayor: 'Municipios',
+  political_party: 'Partidos',
+  municipal_association: 'Asociaciones municipales',
+  technical_body: 'Órganos técnicos',
+  judiciary: 'Justicia',
+  business: 'Gremios y empresas',
+  union: 'Sindicatos',
+  civil_society: 'Sociedad civil',
+  academic: 'Academia',
+  international_organization: 'Organismos internacionales',
+  other: 'Otros actores',
+}
+
 function Loading() {
   return (
     <p role="status" className="py-20 text-body text-ink-secondary">
@@ -46,6 +79,8 @@ export default function Home() {
   const [sources, setSources] = useState<MegareformaSources | null>(null)
   const [theory, setTheory] = useState<MegareformaTheory | null>(null)
   const [municipal, setMunicipal] = useState<MunicipalActorIndex | null>(null)
+  const [deep, setDeep] = useState<MegareformaDeepAnalysis | null>(null)
+  const [census, setCensus] = useState<ActorCensus | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -55,12 +90,16 @@ export default function Home() {
       loadMegareformaSources(controller.signal),
       loadMegareformaTheory(controller.signal),
       loadMegareformaMunicipalActors(controller.signal),
+      loadMegareformaDeepAnalysis(controller.signal),
+      loadMegareformaActorCensus(controller.signal),
     ]).then(
-      ([nextDossier, nextSources, nextTheory, nextMunicipal]) => {
+      ([nextDossier, nextSources, nextTheory, nextMunicipal, nextDeep, nextCensus]) => {
         setDossier(nextDossier)
         setSources(nextSources)
         setTheory(nextTheory)
         setMunicipal(nextMunicipal)
+        setDeep(nextDeep)
+        setCensus(nextCensus)
       },
       (reason: unknown) => {
         if (!controller.signal.aborted) setError(describeDataError(reason))
@@ -79,7 +118,7 @@ export default function Home() {
         {error}
       </p>
     )
-  if (!dossier || !sources || !theory || !municipal) return <Loading />
+  if (!dossier || !sources || !theory || !municipal || !deep || !census) return <Loading />
 
   return (
     <>
@@ -120,13 +159,14 @@ export default function Home() {
         </aside>
       </section>
 
-      <dl className="grid grid-cols-2 gap-px bg-line-hairline lg:grid-cols-6">
+      <dl className="grid grid-cols-2 gap-px bg-line-hairline lg:grid-cols-7">
         {[
           ['Páginas del informe', dossier.document.page_count],
-          ['Proposiciones extraídas', dossier.counts.propositions],
+          ['Proposiciones extraídas', deep.document.propositions],
+          ['Materias explicadas', deep.coverage.topics_grounded],
           ['Fuentes revisadas', dossier.counts.sources_curated],
           ['Capturas verificadas', sources.capture_count],
-          ['Actores documentados', dossier.actors.length + municipal.actors.length],
+          ['Actores documentados', census.coverage.actors_indexed],
           ['Brechas declaradas', sources.gap_count],
         ].map(([label, value]) => (
           <div key={label} className="bg-surface-card p-4 sm:p-5">
@@ -169,6 +209,101 @@ export default function Home() {
               </details>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section id="lectura-completa" className="mt-24 border-t border-line-hairline pt-12">
+        <div className="grid gap-8 lg:grid-cols-[1fr_20rem] lg:items-start">
+          <div className="max-w-3xl">
+            <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
+              Auditoría de cobertura del PDF
+            </p>
+            <h2 className="mt-3 text-title font-semibold text-ink-primary">Las 46 páginas, sin el recorte de seis temas</h2>
+            <p className="mt-4 text-body text-ink-secondary">{deep.coverage.methodology}</p>
+          </div>
+          <aside className="border-l-2 border-line-strong pl-5 text-caption text-ink-secondary">
+            <p className="font-semibold text-ink-primary">
+              {deep.coverage.pages_structured}/46 páginas · {deep.document.paragraphs} párrafos ·{' '}
+              {deep.document.propositions} proposiciones
+            </p>
+            <p className="mt-3">
+              {deep.coverage.blank_pages.length === 1
+                ? `La página ${deep.coverage.blank_pages[0]} está vacía en el original; no contiene una materia omitida.`
+                : `${deep.coverage.blank_pages.length} páginas están vacías en el original.`}
+            </p>
+            <p className="mt-3">{deep.coverage.limitation}</p>
+            <p className="mt-3">
+              {deep.coverage.reviewed_model_fields} campos corregidos en revisión: {deep.coverage.review_method}
+            </p>
+          </aside>
+        </div>
+        <div className="mt-8 space-y-4">
+          {(Object.entries(TOPIC_GROUP) as [DeepTopic['group'], string][]).map(([group, label]) => {
+            const topics = deep.topics.filter((topic) => topic.group === group)
+            return (
+              <details key={group} className="border border-line-hairline bg-surface-card" open={group === 'gasto_y_reconstruccion'}>
+                <summary className="cursor-pointer px-5 py-4 text-body font-semibold text-ink-primary">
+                  {label} · {topics.length} {topics.length === 1 ? 'materia' : 'materias'}
+                </summary>
+                <div className="grid gap-px border-t border-line-hairline bg-line-hairline lg:grid-cols-2">
+                  {topics.map((topic) => (
+                    <article key={topic.id} className="bg-surface-raised p-5 sm:p-6">
+                      <p className="text-micro font-semibold uppercase tracking-wide text-ink-muted">
+                        Páginas {topic.pages.join(', ')}
+                      </p>
+                      <p className={`mt-2 text-micro font-semibold uppercase ${topic.coverage_status === 'captured_news' ? 'text-status-good' : 'text-status-warning'}`}>
+                        {topic.coverage_status === 'captured_news'
+                          ? `${topic.news_source_ids.length} publicaciones capturadas sobre esta materia`
+                          : 'Sin noticias capturadas sobre esta materia'}
+                      </p>
+                      <h3 className="mt-2 text-lede font-semibold text-ink-primary">{topic.title}</h3>
+                      <p className="mt-4 text-caption text-ink-primary">{topic.what_changes}</p>
+                      <p className="mt-3 text-caption text-ink-secondary">
+                        <span className="font-semibold text-ink-primary">Mecanismo:</span> {topic.mechanism}
+                      </p>
+                      <p className="mt-3 text-caption text-ink-secondary">
+                        <span className="font-semibold text-ink-primary">Objetivo declarado:</span>{' '}
+                        {topic.government_goal}
+                      </p>
+                      <p className="mt-3 text-caption text-ink-secondary">
+                        <span className="font-semibold text-ink-primary">Efecto fiscal:</span> {topic.fiscal_effect}
+                      </p>
+                      <details className="mt-4 border-t border-line-hairline pt-3">
+                        <summary className="cursor-pointer text-caption font-semibold">Supuestos, riesgos y cita</summary>
+                        <p className="mt-3 text-caption text-ink-secondary">
+                          <span className="font-semibold text-ink-primary">Afecta a:</span>{' '}
+                          {topic.affected_groups.join(', ')}.
+                        </p>
+                        {topic.assumptions.length > 0 && (
+                          <ul className="mt-3 space-y-1 pl-5 text-caption text-ink-secondary">
+                            {topic.assumptions.map((assumption) => <li key={assumption} className="list-disc">{assumption}</li>)}
+                          </ul>
+                        )}
+                        <ul className="mt-3 space-y-1 pl-5 text-caption text-ink-secondary">
+                          {topic.risks_and_open_questions.map((risk) => <li key={risk} className="list-disc">{risk}</li>)}
+                        </ul>
+                        <blockquote className="mt-4 border-l-2 border-line-strong pl-3 text-caption text-ink-secondary">
+                          “{topic.source_quote}” — p. {topic.source_page}
+                        </blockquote>
+                        {topic.news_source_ids.length > 0 && (
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            {topic.news_source_ids.map((id) => {
+                              const source = sourceById.get(id)
+                              return source ? (
+                                <a key={id} href={source.original_url} target="_blank" rel="noopener noreferrer" className="border border-line-hairline px-2 py-1 text-micro underline-offset-2 hover:underline">
+                                  {source.publisher} ↗
+                                </a>
+                              ) : null
+                            })}
+                          </div>
+                        )}
+                      </details>
+                    </article>
+                  ))}
+                </div>
+              </details>
+            )
+          })}
         </div>
       </section>
 
@@ -310,6 +445,92 @@ export default function Home() {
         </p>
       </section>
 
+      <section id="censo-actores" className="mt-24 border-t border-line-hairline pt-12">
+        <div className="grid gap-8 lg:grid-cols-[1fr_20rem] lg:items-start">
+          <div className="max-w-3xl">
+            <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
+              Censo del corpus completo
+            </p>
+            <h2 className="mt-3 text-title font-semibold text-ink-primary">Todos los actores sustantivos encontrados</h2>
+            <p className="mt-4 text-body text-ink-secondary">
+              {census.coverage.universe} Cada mención conserva una cita literal y la publicación donde aparece;
+              nombres en firmas, menús o notas relacionadas fueron excluidos.
+            </p>
+          </div>
+          <aside className="border-l-2 border-line-strong pl-5 text-caption text-ink-secondary">
+            <p className="font-semibold text-ink-primary">
+              {census.coverage.actors_indexed} actores · {census.coverage.people} personas ·{' '}
+              {census.coverage.institutions} instituciones
+            </p>
+            <p className="mt-3">
+              {census.coverage.captured_sources_audited}/{census.coverage.captured_sources_total} capturas auditadas ·{' '}
+              {census.coverage.accepted_mentions} menciones verificadas
+            </p>
+            <p className="mt-3">
+              {census.coverage.detailed_profiles} fichas con trayectoria verificada · {census.coverage.indexed_only}{' '}
+              actores conservados como índice documental
+            </p>
+          </aside>
+        </div>
+        <div className="mt-8 grid gap-4 lg:grid-cols-2">
+          {(Object.entries(ACTOR_TYPE) as [CensusActor['actor_type'], string][]).map(([type, label]) => {
+            const group = census.actors.filter((actor) => actor.actor_type === type)
+            if (group.length === 0) return null
+            return (
+              <details key={type} className="border border-line-hairline bg-surface-card">
+                <summary className="cursor-pointer px-5 py-4 text-body font-semibold text-ink-primary">
+                  {label} · {group.length}
+                </summary>
+                <div className="divide-y divide-line-hairline border-t border-line-hairline">
+                  {group.map((actor) => (
+                    <article key={`${actor.entity_kind}-${actor.id}`} className="p-5">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div>
+                          <h3 className="text-body font-semibold text-ink-primary">
+                            <CensusActorPopover actor={actor} />
+                          </h3>
+                          <p className="mt-1 text-caption text-ink-secondary">
+                            {actor.role}
+                            {actor.institution ? ` · ${actor.institution}` : ''}
+                            {actor.affiliation ? ` · ${actor.affiliation}` : ''}
+                          </p>
+                        </div>
+                        <span className="border border-line-hairline px-2 py-1 text-micro uppercase text-ink-muted">
+                          {actor.profile_depth === 'detailed' ? 'ficha ampliada' : 'índice verificado'}
+                        </span>
+                      </div>
+                      <p className="mt-3 text-caption text-ink-primary">{actor.participation_summary}</p>
+                      <details className="mt-3">
+                        <summary className="cursor-pointer text-caption font-semibold">
+                          {actor.source_ids.length} {actor.source_ids.length === 1 ? 'fuente' : 'fuentes'} · ver evidencia
+                        </summary>
+                        <div className="mt-3 space-y-3">
+                          {actor.mentions.map((mention, index) => {
+                            const source = sourceById.get(mention.source_id)
+                            return (
+                              <div key={`${mention.source_id}-${index}`} className="border-l-2 border-line-strong pl-3 text-caption text-ink-secondary">
+                                <p>{mention.action_or_position}</p>
+                                <blockquote className="mt-2">“{mention.evidence_quote}”</blockquote>
+                                {source && (
+                                  <a href={source.original_url} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-micro font-semibold underline underline-offset-2">
+                                    {source.publisher} ↗
+                                  </a>
+                                )}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </details>
+                    </article>
+                  ))}
+                </div>
+              </details>
+            )
+          })}
+        </div>
+        <p className="mt-5 text-micro text-ink-muted">{census.coverage.limitation}</p>
+      </section>
+
       <section id="actores" className="mt-24 border-t border-line-hairline pt-12">
         <div className="max-w-3xl">
           <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">Quién es quién</p>
@@ -380,12 +601,21 @@ export default function Home() {
             return (
               <article key={actor.id} className={`border-l-4 bg-surface-card p-5 ${group.className}`}>
                 <div className="flex items-start gap-4">
-                  <span
-                    aria-hidden="true"
-                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface-sunken text-caption font-semibold text-ink-primary"
-                  >
-                    {actor.name.split(' ').map((part) => part[0]).slice(0, 2).join('')}
-                  </span>
+                  {actor.image ? (
+                    <img
+                      src={loadActorImage(actor.image)}
+                      alt={actor.image_alt || `Retrato de ${actor.name}`}
+                      className="h-16 w-14 shrink-0 object-cover object-top grayscale"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span
+                      aria-hidden="true"
+                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface-sunken text-caption font-semibold text-ink-primary"
+                    >
+                      {actor.name.split(' ').map((part) => part[0]).slice(0, 2).join('')}
+                    </span>
+                  )}
                   <div>
                     <h3 className="text-body font-semibold text-ink-primary">{actor.name}</h3>
                     <p className="mt-1 text-caption text-ink-secondary">
@@ -421,6 +651,11 @@ export default function Home() {
                     })}
                   </div>
                   <p className="mt-4 text-micro text-ink-muted">{actor.record_caveat}</p>
+                  {actor.image && (
+                    <p className="mt-2 text-micro text-ink-muted">
+                      Foto: {actor.image_credit} · {actor.image_license}
+                    </p>
+                  )}
                 </details>
               </article>
             )

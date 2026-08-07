@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "document_id": "18216-05",
-  "retrieval_cutoff": "2026-08-07T13:00:00Z",
-  "scrape_run_id": "62e8448c1802488d88eba18b4321937b",
-  "capture_count": 56,
-  "gap_count": 16,
+  "retrieval_cutoff": "2026-08-07T16:46:00Z",
+  "scrape_run_id": "369a8cd442a44e28b8a0dd7ce1552733",
+  "capture_count": 64,
+  "gap_count": 25,
   "items": [
     {
       "id": "dipres-financial-report",
@@ -934,6 +934,142 @@
       "captured_at": "2026-08-07T16:03:28.721527Z",
       "original_url": "https://www.pauta.cl/actualidad/2026/04/30/alcaldes-se-reunen-por-exencion-de-contribuciones-y-alertan-impacto-en-financiamiento-municipal.html",
       "new_observation": true
+    },
+    {
+      "id": "biobio-presidential-decree-explainer",
+      "publisher": "BioBioChile",
+      "title": "¿Se podría aprobar la megarreforma por decreto?",
+      "summary": "Explicación de los límites constitucionales de la alternativa planteada por el Ejecutivo.",
+      "kind": "news",
+      "format": "article",
+      "perspective": "legal_analysis",
+      "published_at": "2026-05-08T00:00:00Z",
+      "url": "https://www.biobiochile.cl/noticias/bbcl-explica/bbcl-explica-notas/2026/05/08/se-podria-aprobar-la-megarreforma-por-decreto-asi-funciona-esta-facultad-exclusiva-del-presidente.shtml",
+      "snapshot_id": "18f6047be8304ede930b110e8a69c0df",
+      "screenshot": "megareforma/screenshots/biobio-presidential-decree-explainer.jpg",
+      "screenshot_sha256": "bb0c64c6d7ae539bf7f8ab6efed7b9050390cc7deed6c3c6b27279fd63a76fe3",
+      "captured_at": "2026-08-07T16:42:48.141730Z",
+      "original_url": "https://www.biobiochile.cl/noticias/bbcl-explica/bbcl-explica-notas/2026/05/08/se-podria-aprobar-la-megarreforma-por-decreto-asi-funciona-esta-facultad-exclusiva-del-presidente.shtml",
+      "new_observation": true
+    },
+    {
+      "id": "adn-castro-municipal-impact",
+      "publisher": "ADN Radio",
+      "title": "Claudio Castro advierte sobre impacto de la megarreforma en los municipios",
+      "summary": "El alcalde de Renca detalla la dependencia comunal del Fondo Común Municipal.",
+      "kind": "news",
+      "format": "audio",
+      "perspective": "municipal_critical",
+      "published_at": "2026-04-22T00:00:00Z",
+      "url": "https://www.adnradio.cl/2026/04/22/claudio-castro-advierte-sobre-impacto-de-megareforma-en-los-municipios-y-califica-la-seguridad-como-el-flanco-mas-debil-del-gobierno/",
+      "snapshot_id": "a6fbe6d3ff88401abad28254f266812e",
+      "screenshot": "megareforma/screenshots/adn-castro-municipal-impact.jpg",
+      "screenshot_sha256": "b959743798c53c53fdc607724ab2a7614256b655a5d23d5cbb39bab4eca951aa",
+      "captured_at": "2026-08-07T16:42:53.584002Z",
+      "original_url": "https://www.adnradio.cl/2026/04/22/claudio-castro-advierte-sobre-impacto-de-megareforma-en-los-municipios-y-califica-la-seguridad-como-el-flanco-mas-debil-del-gobierno/",
+      "new_observation": true
+    },
+    {
+      "id": "pauta-senate-general-approval",
+      "publisher": "Radio Pauta",
+      "title": "Senado aprueba en general la megarreforma y abre discusión artículo por artículo",
+      "summary": "Identifica las materias que concentrarían el debate particular, incluido cruce de datos y permisos ambientales.",
+      "kind": "news",
+      "format": "article",
+      "perspective": "legislative_update",
+      "published_at": "2026-06-25T00:00:00Z",
+      "url": "https://www.pauta.cl/actualidad/2026/06/25/por-solo-26-votos-senado-aprueba-en-general-la-megarreforma-y-abre-la-discusion-articulo-por-articulo.html",
+      "snapshot_id": "efc6183b984547beaa9b2095176e21fd",
+      "screenshot": "megareforma/screenshots/pauta-senate-general-approval.jpg",
+      "screenshot_sha256": "a31efbf395460894b85f3ff4dc79fd84f4167da3b0f45cbca0fc0c70a7f6d5f5",
+      "captured_at": "2026-08-07T16:43:11.739307Z",
+      "original_url": "https://www.pauta.cl/actualidad/2026/06/25/por-solo-26-votos-senado-aprueba-en-general-la-megarreforma-y-abre-la-discusion-articulo-por-articulo.html",
+      "new_observation": true
+    },
+    {
+      "id": "elmostrador-senate-general-approval",
+      "publisher": "El Mostrador",
+      "title": "Por un voto, Senado aprueba en general la megarreforma",
+      "summary": "Cobertura del estrecho resultado y las posiciones de Gobierno y oposición.",
+      "kind": "news",
+      "format": "article",
+      "perspective": "legislative_update",
+      "published_at": "2026-06-24T00:00:00Z",
+      "url": "https://www.elmostrador.cl/noticias/pais/2026/06/24/por-un-voto-senado-aprueba-en-general-la-idea-de-legislar-la-megarreforma-impulsada-por-el-gobierno/",
+      "snapshot_id": "975e09e7ab224ac18b61b9dad5442e3a",
+      "screenshot": "megareforma/screenshots/elmostrador-senate-general-approval.jpg",
+      "screenshot_sha256": "64198c1a3bd2203080ac0064d79a92aa29855b93d5a8c441805f81c2cd22ab08",
+      "captured_at": "2026-08-07T16:43:21.687861Z",
+      "original_url": "https://www.elmostrador.cl/noticias/pais/2026/06/24/por-un-voto-senado-aprueba-en-general-la-idea-de-legislar-la-megarreforma-impulsada-por-el-gobierno/",
+      "new_observation": true
+    },
+    {
+      "id": "timeline-final-chamber-stage",
+      "publisher": "Timeline.cl",
+      "title": "Cámara aprueba la mayoría de los cambios y una enmienda va a Comisión Mixta",
+      "summary": "Estado del proyecto al final de su paso por la Cámara y materias remitidas a Comisión Mixta.",
+      "kind": "news",
+      "format": "article",
+      "perspective": "legislative_update",
+      "published_at": "2026-07-21T00:00:00Z",
+      "url": "https://www.timeline.cl/proyecto-de-megareforma-del-gobierno-de-kast-queda-a-un-paso-de-ser-ley-camara-aprueba-mayoria-de-los-cambios-y-una-enmienda-ira-a-comision-mixta/",
+      "snapshot_id": "4cdb169fe7f24d428f5506fe68807e01",
+      "screenshot": "megareforma/screenshots/timeline-final-chamber-stage.jpg",
+      "screenshot_sha256": "6f445176593c7addd07147f2d42a69cad76a47638f5e5ab6f81ddd33935dc758",
+      "captured_at": "2026-08-07T16:43:25.978551Z",
+      "original_url": "https://www.timeline.cl/proyecto-de-megareforma-del-gobierno-de-kast-queda-a-un-paso-de-ser-ley-camara-aprueba-mayoria-de-los-cambios-y-una-enmienda-ira-a-comision-mixta/",
+      "new_observation": true
+    },
+    {
+      "id": "morales-besa-tax-legal-analysis",
+      "publisher": "Morales & Besa",
+      "title": "Proyecto de Ley de Reconstrucción Nacional y Reforma Tributaria",
+      "summary": "Alerta legal que enumera efectos sobre ganancias de capital, DFL2, herencias y otras medidas tributarias.",
+      "kind": "research",
+      "format": "article",
+      "perspective": "legal_analysis",
+      "published_at": "2026-04-23T00:00:00Z",
+      "url": "https://www.moralesybesa.cl/alertas-legales/proyecto-de-ley-de-reconstruccion-nacional-y-reforma-tributaria/",
+      "snapshot_id": "c2a38ab8c9f64f0f9c63957bebe674f5",
+      "screenshot": "megareforma/screenshots/morales-besa-tax-legal-analysis.jpg",
+      "screenshot_sha256": "d451db8de8ca44b370f0e4b235f9d5edd81c0cedc5cd703081b170fe519b6fb1",
+      "captured_at": "2026-08-07T16:43:41.796244Z",
+      "original_url": "https://www.moralesybesa.cl/alertas-legales/proyecto-de-ley-de-reconstruccion-nacional-y-reforma-tributaria/",
+      "new_observation": true
+    },
+    {
+      "id": "t13-finance-committee-votes",
+      "publisher": "T13",
+      "title": "Megarreforma: qué se aprobó y qué no en la Comisión de Hacienda",
+      "summary": "Revisión artículo por artículo, incluida propiedad intelectual, DFL2 y autorizaciones sectoriales.",
+      "kind": "news",
+      "format": "article",
+      "perspective": "legislative_update",
+      "published_at": "2026-05-14T00:00:00Z",
+      "url": "https://www.t13.cl/noticia/politica/que-se-aprobo-no-del-proyecto-reconstruccion-nacional-comision-hacienda-14-5-2026",
+      "snapshot_id": "6873c8eaeedc41cf8fec54478297496d",
+      "screenshot": "megareforma/screenshots/t13-finance-committee-votes.jpg",
+      "screenshot_sha256": "fd2c7747078b1365702dad3c48313fd9902ef59aaf2f9a9ffa60ded0e6df8df3",
+      "captured_at": "2026-08-07T16:45:37.178923Z",
+      "original_url": "https://www.t13.cl/noticia/politica/que-se-aprobo-no-del-proyecto-reconstruccion-nacional-comision-hacienda-14-5-2026",
+      "new_observation": true
+    },
+    {
+      "id": "df-copyright-editorial",
+      "publisher": "Diario Financiero",
+      "title": "Información y derechos de autor",
+      "summary": "Posición editorial crítica sobre la excepción de minería de textos y datos del proyecto.",
+      "kind": "news",
+      "format": "opinion",
+      "perspective": "critical_analysis",
+      "published_at": "2026-04-27T04:00:00Z",
+      "url": "https://www.df.cl/opinion/editorial/informacion-y-derechos-de-autor",
+      "snapshot_id": "89e408417b0e45cc97d62853191bea64",
+      "screenshot": "megareforma/screenshots/df-copyright-editorial.jpg",
+      "screenshot_sha256": "e1e8610b983772f5f3d94580cc0928e693c150e72af78db2e45c142ae1267632",
+      "captured_at": "2026-08-07T16:45:46.130399Z",
+      "original_url": "https://www.df.cl/opinion/editorial/informacion-y-derechos-de-autor",
+      "new_observation": true
     }
   ],
   "gaps": [
@@ -1016,6 +1152,51 @@
       "id": "achm-total-compensation",
       "url": "https://www.achm.cl/municipios-exigen-compensacion-total-por-impacto-de-exencion-de-contribuciones/",
       "error": "RuntimeError: origin returned a blocked/error page (HTTP 404, title='Página no encontrada')"
+    },
+    {
+      "id": "chamber-mixed-commission-report",
+      "url": "https://www.camara.cl/verDoc.aspx?prmID=28108&prmTIPO=INFORMEPLEY",
+      "error": "RuntimeError: official report endpoint did not download a PDF"
+    },
+    {
+      "id": "senate-second-finance-report",
+      "url": "https://www.camara.cl/verDoc.aspx?prmID=28086&prmTIPO=INFORMEPLEY",
+      "error": "TimeoutError: Timeout 60000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================"
+    },
+    {
+      "id": "senate-second-environment-report",
+      "url": "https://www.camara.cl/verDoc.aspx?prmID=28081&prmTIPO=INFORMEPLEY",
+      "error": "TimeoutError: Timeout 60000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================"
+    },
+    {
+      "id": "senate-first-finance-report",
+      "url": "https://www.camara.cl/verDoc.aspx?prmID=28055&prmTIPO=INFORMEPLEY",
+      "error": "TimeoutError: Timeout 60000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================"
+    },
+    {
+      "id": "senate-marcel-finance-presentation",
+      "url": "https://microservicio-documentos.senado.cl/v1/archivos/38216159-3646-4ea0-86f6-26e49e1ecfef?includeContent=true",
+      "error": "RuntimeError: robots policy did not permit capture (robots unavailable: HTTP 404)"
+    },
+    {
+      "id": "senate-dipres-updated-impact",
+      "url": "https://microservicio-documentos.senado.cl/v1/archivos/b3244aa0-035c-4d6e-908b-3a7a845ccdc2?includeContent=true",
+      "error": "RuntimeError: robots policy did not permit capture (robots unavailable: HTTP 404)"
+    },
+    {
+      "id": "pauta-chamber-general-approval",
+      "url": "https://www.pauta.cl/actualidad/2026/05/20/camara-aprueba-en-general-la-megarreforma-de-kast-con-90-votos-a-favor-y-59-en-contra.html",
+      "error": "RuntimeError: origin returned a blocked/error page (HTTP 404, title='Cámara aprueba en general la megarreforma con 90 votos')"
+    },
+    {
+      "id": "auditors-tax-measures",
+      "url": "https://www.colegioauditores.cl/wp-content/uploads/2026/05/MODIFICACIONES-TRIBUTARIAS-PROYECTO-PLAN-DE-RECONSTRUCCION-NACIONAL.pdf",
+      "error": "ConnectTimeout: timed out"
+    },
+    {
+      "id": "latercera-cchc-dfl2-sence",
+      "url": "https://www.latercera.com/pulso/noticia/presidente-de-la-cchc-llama-a-apresurar-tramitacion-de-la-megarreforma-pero-plantea-reparos-al-proyecto-sobre-el-sence/",
+      "error": "Error: Page.goto: net::ERR_ABORTED at https://www.latercera.com/pulso/noticia/presidente-de-la-cchc-llama-a-apresurar-tramitacion-de-la-megarreforma-pero-plantea-reparos-al-proyecto-sobre-el-sence/\nCall log:\n  - navigating to \"https://www.latercera.com/pulso/noticia/presidente-de-la-cchc-llama-a-apresurar-tramitacion-de-la-megarreforma-pero-plantea-reparos-al-proyecto-sobre-el-sence/\", waiting until \"domcontentloaded\"\n"
     }
   ]
 }

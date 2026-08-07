@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "generated_at": "2026-08-07T13:31:23.592656Z",
-  "retrieval_cutoff": "2026-08-07T13:00:00Z",
+  "retrieval_cutoff": "2026-08-07T16:46:00Z",
   "data_status": "real_frozen_snapshot",
   "document": {
     "id": "18216-05",
@@ -130,18 +130,18 @@
       "id": "coverage-position",
       "kind": "editorial_tone",
       "title": "Tendencia de la cobertura reunida",
-      "question": "¿Las 44 piezas de prensa capturadas priorizan críticas/oposición o argumentos favorables del Gobierno?",
+      "question": "¿Las 50 piezas de prensa capturadas priorizan críticas/oposición o argumentos favorables del Gobierno?",
       "left_label": "Crítica / oposición",
       "center_label": "Descriptiva",
       "right_label": "Favorable / Gobierno",
-      "value": 40,
+      "value": 39,
       "confidence": "medium",
       "explanation": "La muestra curada contiene más piezas centradas en objeciones fiscales, distributivas o ambientales que piezas centradas en la defensa gubernamental. Eso describe esta colección y su encuadre; no prueba que un medio o una posición sea falsa.",
-      "methodology": "Se clasificó cada pieza por el argumento que su título y foco principal presentan: 16 críticas/oposición o alertas fiscales, 21 descriptivas o de negociación y 7 favorables/gubernamentales. Posición = promedio ponderado 0/50/100. Las fuentes oficiales no entran en este medidor.",
+      "methodology": "Se clasificó cada pieza por el argumento que su título y foco principal presentan: 18 críticas/oposición o alertas fiscales, 25 descriptivas o de negociación y 7 favorables/gubernamentales. Posición = promedio ponderado 0/50/100. Las fuentes oficiales no entran en este medidor.",
       "evidence": [
         {
           "label": "Críticas, oposición o alerta fiscal",
-          "value": 16,
+          "value": 18,
           "source_ids": [
             "biobio-opposition-23-doubts",
             "latercera-yeomans-dialogue",
@@ -158,12 +158,14 @@
             "biobio-achm-split",
             "emol-quiroz-mayor-response",
             "cnn-opposition-mayors-letter",
-            "24horas-opposition-mayors-letter"
+            "24horas-opposition-mayors-letter",
+            "adn-castro-municipal-impact",
+            "df-copyright-editorial"
           ]
         },
         {
           "label": "Descriptivas, trámite o negociación",
-          "value": 21,
+          "value": 25,
           "source_ids": [
             "biobio-parisi-negotiation",
             "emol-chamber-vote",
@@ -185,7 +187,11 @@
             "emol-government-municipal-agreement",
             "cooperativa-mixed-commission",
             "cnn-mayor-counterletters",
-            "pauta-mayors-meeting"
+            "pauta-mayors-meeting",
+            "pauta-senate-general-approval",
+            "elmostrador-senate-general-approval",
+            "timeline-final-chamber-stage",
+            "t13-finance-committee-votes"
           ]
         },
         {
@@ -949,10 +955,10 @@
     }
   ],
   "counts": {
-    "propositions": 452,
-    "sources_curated": 72,
-    "sources_captured": 56,
-    "capture_gaps": 16,
-    "model_runs_completed": 1
+    "propositions": 885,
+    "sources_curated": 89,
+    "sources_captured": 64,
+    "capture_gaps": 25,
+    "model_runs_completed": 13
   }
 }

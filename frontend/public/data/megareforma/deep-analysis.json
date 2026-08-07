@@ -1,0 +1,1218 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-07T17:56:10.461641Z",
+  "execution": "local_gpu_offline",
+  "runtime_calls": 0,
+  "document": {
+    "id": "18216-05",
+    "sha256": "af5a1867f6b0c1924186a08084462792e70db719bf9137637ebc12056f2ab7d2",
+    "pages": 46,
+    "paragraphs": 554,
+    "propositions": 885,
+    "last_structured_page": 46
+  },
+  "coverage": {
+    "topics_declared": 30,
+    "topics_grounded": 30,
+    "topics_with_captured_news": 27,
+    "topics_without_captured_news": 3,
+    "pages_structured": 46,
+    "page_coverage_percent": 100,
+    "blank_pages": [
+      43
+    ],
+    "reviewed_model_fields": 9,
+    "review_method": "Una segunda pasada determinística contrasta cifras, calendario y fe de erratas; los campos en conflicto se sustituyen por el pasaje o la tabla oficial.",
+    "methodology": "Las 46 páginas se segmentaron sin límite de párrafos. Treinta materias se declararon antes de consultar al modelo y se analizaron en lotes acotados; cada ficha sólo se aceptó cuando su cita literal apareció en una página permitida del PDF congelado.",
+    "limitation": "El informe financiero describe el proyecto ingresado el 22 de abril y sus supuestos; no reemplaza el texto legal finalmente despachado ni demuestra que los efectos proyectados ocurrirán."
+  },
+  "topics": [
+    {
+      "id": "reconstruction-fund",
+      "title": "Fondo de reconstrucción por incendios",
+      "group": "gasto_y_reconstruccion",
+      "pages": [
+        1,
+        2,
+        18
+      ],
+      "what_changes": "Se amplía el FET en $400.000 millones, alcanzando $1.200.000 millones, extendiendo cobertura a Ñuble y Biobío hasta 2028.",
+      "mechanism": "Aumento de financiamiento directo y extensión territorial de la ley N°21.681 mediante decreto conjunto de ministerios para proyectos de reconstrucción.",
+      "government_goal": "Solventar gastos para enfrentar efectos y atender necesidades derivadas de incendios en Valparaíso, Ñuble y Biobío.",
+      "affected_groups": [
+        "Región de Valparaíso",
+        "Región de Ñuble",
+        "Región del Biobío",
+        "Ministerio de Obras Públicas",
+        "Ministerio de Educación"
+      ],
+      "fiscal_effect": "Incremento de $400.000 millones ejecutado en 2026-2028. No cuantifica impacto en exención de rentas municipales ni en procedimientos abreviados.",
+      "assumptions": [
+        "Vigencia hasta 31 de diciembre de 2028",
+        "Procedimiento abreviado aplicable a MOP y Mineduc",
+        "Exención de rentas extendida a Ñuble y Biobío"
+      ],
+      "risks_and_open_questions": [
+        "Capacidad de ejecución de proyectos en plazos cortos",
+        "Definición de criterios de admisibilidad en decreto conjunto",
+        "Impacto fiscal no cuantificado de exenciones tributarias"
+      ],
+      "source_quote": "medidas asociadas a gasto fiscal modificaciones al fondo de emergencia transitorio por incendios (fet) se amplía y se extiende la cobertura del fondo de emergencia transitorio por incendios (fet), creado en la ley n°21.681, aumentando su",
+      "source_page": 1,
+      "quote_verified": true,
+      "news_source_ids": [
+        "biobio-mayors-letter",
+        "t13-finance-committee-votes"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "higher-education-thresholds",
+      "title": "Umbrales para ampliar la gratuidad",
+      "group": "educacion",
+      "pages": [
+        2,
+        18,
+        19,
+        20
+      ],
+      "what_changes": "Se reemplaza PIB Tendencial por PIB No Minero Tendencial y se elevan umbrales de activación de deciles 7 a 10 en 6 puntos porcentuales.",
+      "mechanism": "Modificación de la métrica de referencia en la ley N°21.091 para activar cobertura de gratuidad en tramos de ingresos específicos.",
+      "government_goal": "Postergar el acceso de nuevos deciles a la gratuidad hasta que se cumplan condiciones económicas más estrictas.",
+      "affected_groups": [
+        "Estudiantes del séptimo decil",
+        "Estudiantes del octavo decil",
+        "Estudiantes del noveno decil",
+        "Estudiantes del décimo decil",
+        "Instituciones de educación superior"
+      ],
+      "fiscal_effect": "Ahorro estimado a largo plazo. No se cuantifica efecto en años 1-10. Proyecciones basadas en PIB No Minero y arancel promedio de $4,5 millones.",
+      "assumptions": [
+        "Proyecciones de PIB No Minero Tendencial 2025-2026",
+        "Arancel regulado promedio de $4,5 millones en 2025",
+        "Matrícula proyectada basada en datos 2024-2025"
+      ],
+      "risks_and_open_questions": [
+        "Sensibilidad de proyecciones a variaciones del PIB No Minero",
+        "Impacto real en cobertura efectiva de estudiantes",
+        "Posible retraso en cumplimiento de metas de inclusión"
+      ],
+      "source_quote": "y del biobío. educación: postergación de acceso de deciles a gratuidad se reemplaza la métrica de referencia del mecanismo que activa la cobertura de los deciles 7 a 10, en el sistema de financiamiento institucional para la",
+      "source_page": 2,
+      "quote_verified": true,
+      "news_source_ids": [
+        "adn-castro-municipal-impact",
+        "biobio-opposition-23-doubts",
+        "biobio-presidential-decree-explainer"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "higher-education-moratorium",
+      "title": "Moratoria de nuevas instituciones en gratuidad",
+      "group": "educacion",
+      "pages": [
+        2,
+        19,
+        20
+      ],
+      "what_changes": "Se suspende por dos años el ingreso de nuevas instituciones de educación superior al sistema de financiamiento de gratuidad.",
+      "mechanism": "Bloqueo temporal de nuevas adscripciones al sistema de gratuidad desde la publicación de la ley, afectando procesos de acreditación.",
+      "government_goal": "Evitar expansión inmediata de la gratuidad a nuevas instituciones, controlando el gasto fiscal en el corto plazo.",
+      "affected_groups": [
+        "Nuevas instituciones de educación superior",
+        "Estudiantes potenciales de nuevas IES",
+        "Centros de formación técnica",
+        "Institutos profesionales",
+        "Universidades emergentes"
+      ],
+      "fiscal_effect": "Ahorro de $105.499 millones en año 2 y $178.864 millones en año 3. Basado en proyección conservadora de 48.000 beneficiarios evitados.",
+      "assumptions": [
+        "Proyección de IES que podrían ingresar entre 2027-2028",
+        "Distribución de matrícula por deciles de 2024",
+        "Arancel promedio de $4,7 millones en universidades"
+      ],
+      "risks_and_open_questions": [
+        "Impacto en oferta educativa regional",
+        "Posible aumento de costos para estudiantes excluidos",
+        "Efectividad de la moratoria en reducir gasto a largo plazo"
+      ],
+      "source_quote": "desde la publicación de la ley, el ingreso de nuevas instituciones de educación superior (ies) al sistema de financiamiento institucional para la gratuidad. empleo público: norma de probidad por licencias médicas respecto de la",
+      "source_page": 2,
+      "quote_verified": true,
+      "news_source_ids": [
+        "adn-castro-municipal-impact",
+        "biobio-opposition-23-doubts",
+        "biobio-presidential-decree-explainer"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "public-medical-leave",
+      "title": "Destitución por uso malicioso de licencias",
+      "group": "empleo_publico",
+      "pages": [
+        2,
+        3,
+        20,
+        21
+      ],
+      "what_changes": "Se incorpora norma de conducta que califica falsificación o uso malicioso de licencias como vulneración grave de probidad, sancionable con destitución.",
+      "mechanism": "La conducta se tipifica como vulneración grave a la probidad y se somete al procedimiento disciplinario aplicable, cuya sanción es la destitución; el informe no dice que opere automáticamente.",
+      "government_goal": "Reducir el gasto en suplencias y reemplazos derivados del uso indebido de licencias médicas en el sector público.",
+      "affected_groups": [
+        "Funcionarios públicos",
+        "Órganos del Estado",
+        "Servicios públicos",
+        "Personal de reemplazo",
+        "Unidades de recursos humanos"
+      ],
+      "fiscal_effect": "Ahorro de $44.891 millones anuales a partir de 2027. Efecto parcial de $14.964 millones en 2026 si entra en vigencia en septiembre.",
+      "assumptions": [
+        "Reducción del 10% en gasto por suplencias y reemplazos",
+        "Ejecución presupuestaria 2025 como referencia base",
+        "Entrada en vigencia parcial en 2026"
+      ],
+      "risks_and_open_questions": [
+        "Dificultad de detección de uso malicioso",
+        "Impacto en clima laboral y litigiosidad",
+        "Capacidad de fiscalización de las unidades de control"
+      ],
+      "source_quote": "la gratuidad. empleo público: norma de probidad por licencias médicas respecto de la destitución ante el mal uso de licencias médicas, se incorpora una norma de conducta y sanción disciplinaria aplicable a todos quienes desempeñen",
+      "source_page": 2,
+      "quote_verified": true,
+      "news_source_ids": [
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "public-retirement",
+      "title": "Más cupos de incentivo al retiro",
+      "group": "empleo_publico",
+      "pages": [
+        3,
+        21
+      ],
+      "what_changes": "Se aumentan los cupos de incentivo al retiro de 2.200 a 6.000 para el año 2026, con asignación preferente a seleccionados del proceso.",
+      "mechanism": "Incremento de cupos en la ley N°20.948, con bonificación adicional por retiro y posible no reemplazo de dos tercios de los cupos.",
+      "government_goal": "Fomentar el retiro de funcionarios para reducir la masa salarial y mejorar la eficiencia en servicios públicos.",
+      "affected_groups": [
+        "Funcionarios públicos elegibles",
+        "Servicios públicos",
+        "Personal de reemplazo",
+        "Unidades de recursos humanos",
+        "Presupuestos institucionales"
+      ],
+      "fiscal_effect": "Mayor gasto de $119.221 millones en 2026. Ahorro neto de $109.752 millones anuales a partir de 2027 por no reemplazo de cupos.",
+      "assumptions": [
+        "Pago promedio de $31.374 miles por bonificación",
+        "Dos tercios de cupos no serán reemplazados",
+        "Remuneración mensual promedio de $3.611 miles"
+      ],
+      "risks_and_open_questions": [
+        "Pérdida de experiencia institucional",
+        "Impacto en capacidad operativa de servicios",
+        "Sostenibilidad del ahorro a largo plazo"
+      ],
+      "source_quote": "la destitución. empleo público: aumento de cupos de incentivo al retiro sobre la norma respecto de la carrera funcionaria de los servicios públicos (ley n°20.948), se aumenta el número de beneficiarios de cupos para el año 2026, desde 2.200",
+      "source_page": 3,
+      "quote_verified": true,
+      "news_source_ids": [
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "environmental-permits",
+      "title": "Cambios a evaluación y litigación ambiental",
+      "group": "regulacion",
+      "pages": [
+        3,
+        4,
+        5
+      ],
+      "what_changes": "Se elimina el mínimo de potencia para ingresar al SEIA, extendiéndolo a todas las centrales. Se restringen recursos contra RCA favorables y se limita la duración de medidas cautelares a seis meses.",
+      "mechanism": "Modificación de la Ley N°19.300 y N°20.600. Se crea un régimen voluntario de tramitación, se reducen plazos de resolución y se fortalece la rectoría técnica del Servicio de Evaluación Ambiental.",
+      "government_goal": "Simplificar la evaluación ambiental, reducir plazos de resolución de recursos y fortalecer la capacidad técnica del Estado para gestionar proyectos de inversión de manera eficiente.",
+      "affected_groups": [
+        "Titulares de proyectos energéticos",
+        "Servicio de Evaluación Ambiental",
+        "Tribunales Ambientales",
+        "Comunidad local afectada",
+        "Inversionistas en infraestructura"
+      ],
+      "fiscal_effect": "El informe no cuantifica efectos fiscales directos de estas medidas regulatorias. Se asume que la eficiencia en plazos no genera costos presupuestarios inmediatos ni ahorros explícitos en el horizonte proyectado.",
+      "assumptions": [
+        "La reducción de plazos no compromete la calidad de la evaluación ambiental",
+        "Los tribunales podrán gestionar el aumento de recursos sin retrasos adicionales",
+        "El régimen voluntario será utilizado por los titulares de proyectos"
+      ],
+      "risks_and_open_questions": [
+        "Posible aumento de litigios por la eliminación de mínimos de potencia",
+        "Capacidad operativa del Servicio para procesar más evaluaciones",
+        "Efectividad real de la limitación de medidas cautelares en la práctica judicial"
+      ],
+      "source_quote": "área previamente evaluada, solo requerirán una nueva evaluación ambiental cuando impliquen una modificación sustantiva en la magnitud o duración de sus impactos ambientales. o se dispone que las modificaciones que correspondan únicamente a",
+      "source_page": 3,
+      "quote_verified": true,
+      "news_source_ids": [
+        "biobio-initial-measures",
+        "cnn-tc-challenges",
+        "pauta-senate-general-approval",
+        "t13-finance-committee-votes"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "rca-restitution",
+      "title": "Restitución por anulación de permisos ambientales",
+      "group": "regulacion",
+      "pages": [
+        5,
+        6,
+        22,
+        23
+      ],
+      "what_changes": "Se incorpora un mecanismo de restitución de gastos directos e efectivos si una RCA es anulada judicialmente, salvo que la anulación se funde en antecedentes falsos o inexactos presentados por el titular.",
+      "mechanism": "El titular solicita restitución ante el Ministerio de Hacienda en 30 días hábiles. Se nombra una Comisión de tres miembros para determinar el monto en 15 días hábiles, con sanciones por retraso.",
+      "government_goal": "Proteger la inversión privada ante anulaciones judiciales de RCA, garantizando seguridad jurídica y compensando gastos incurridos en la ejecución de proyectos anulados.",
+      "affected_groups": [
+        "Titulares de RCA anuladas",
+        "Ministerio de Hacienda",
+        "Comisión de peritos",
+        "Tribunales competentes",
+        "Sector inversionista"
+      ],
+      "fiscal_effect": "No es cuantificable ex ante. Depende de la ocurrencia de anulaciones judiciales futuras. Se estima baja ocurrencia histórica (0,3% de proyectos), pero se registrará como pasivo contingente si aumenta.",
+      "assumptions": [
+        "La tasa histórica de anulación de RCA (0,3%) se mantendrá estable",
+        "Los peritos designados actuarán con celeridad y sin conflictos de interés",
+        "Los gastos reclamados serán directos, efectivos y debidamente documentados"
+      ],
+      "risks_and_open_questions": [
+        "Definición precisa de 'gastos directos y efectivos' en la práctica",
+        "Posible aumento de litigios para forzar anulaciones y obtener restitución",
+        "Capacidad del Fisco para financiar restituciones si ocurren múltiples casos simultáneos"
+      ],
+      "source_quote": "publicación de la ley. mecanismo de restitución por anulación de rca adicionalmente, se incorpora un mecanismo de restitución en caso de anulación de una rca por sentencia judicial ejecutoriada. en estos casos, el titular de la rca",
+      "source_page": 5,
+      "quote_verified": true,
+      "news_source_ids": [
+        "biobio-opposition-23-doubts",
+        "ciper-final-compensation",
+        "cnn-tc-challenges",
+        "emol-environment-amendments",
+        "emol-opposition-withdrawal",
+        "emol-quiroz-mayor-response",
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "aquaculture-relocalization",
+      "title": "Relocalización y monitoreo acuícola",
+      "group": "regulacion",
+      "pages": [
+        6,
+        7
+      ],
+      "what_changes": "Se elimina la exigencia de someter ciertos casos de relocalización de concesiones acuícolas al SEIA. Los ajustes cartográficos no requieren inspección ni evaluación ambiental si hay informe técnico previo.",
+      "mechanism": "Modificación del régimen de relocalización. Se refuerza el monitoreo ambiental obligatorio con tecnología de registro y transmisión de indicadores, promoviendo coordinación interinstitucional para evitar duplicidades.",
+      "government_goal": "Agilizar la relocalización de concesiones acuícolas, reducir trámites administrativos innecesarios y mejorar la calidad del monitoreo ambiental mediante tecnología y coordinación estatal.",
+      "affected_groups": [
+        "Titulares de concesiones acuícolas",
+        "SERNAPESCA",
+        "Servicio de Evaluación Ambiental",
+        "Comunidades costeras",
+        "Terceros contratados para inspecciones"
+      ],
+      "fiscal_effect": "No se cuantifica efecto fiscal directo. Los encargos a terceros se pagarán mediante cuenta extrapresupuestaria. Se espera eficiencia en el uso de recursos por la licitación electrónica expedita.",
+      "assumptions": [
+        "Los ajustes cartográficos no generarán impactos ambientales significativos",
+        "La tecnología de monitoreo será adoptada por todos los titulares",
+        "La coordinación interinstitucional reducirá costos operativos duplicados"
+      ],
+      "risks_and_open_questions": [
+        "Riesgo de que ajustes cartográficos oculten cambios sustantivos en impactos ambientales",
+        "Capacidad de SERNAPESCA para supervisar el nuevo sistema de monitoreo",
+        "Efectividad de la licitación electrónica en la selección de terceros calificados"
+      ],
+      "source_quote": "en primer lugar, se modifica el régimen de relocalización de concesiones de acuicultura, eliminando la exigencia de someter determinados casos al sistema de evaluación de impacto ambiental (seia). asimismo, se establece que,",
+      "source_page": 6,
+      "quote_verified": true,
+      "news_source_ids": [
+        "cnn-tc-challenges",
+        "emol-environment-amendments"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "procurement-sector-permits",
+      "title": "Compras públicas y autorizaciones sectoriales",
+      "group": "regulacion",
+      "pages": [
+        7
+      ],
+      "what_changes": "Se permite contratar con personal dependiente de la autoridad en obras públicas. Se elimina la prohibición de comunicación entre participantes en procesos de concesión. Se establece un plazo de seis meses para invalidar autorizaciones sectoriales.",
+      "mechanism": "Modificación de la Ley N°19.886. Se regula la comunicación en procesos de contratación y se introduce un plazo especial de invalidación de oficio o a petición de parte para actos administrativos sectoriales.",
+      "government_goal": "Flexibilizar la contratación pública, agilizar procesos de concesión y establecer un marco claro y temporal para la invalidación de autorizaciones sectoriales contrarias a derecho.",
+      "affected_groups": [
+        "Ministerio de Obras Públicas",
+        "Empresas contratistas",
+        "Autoridades administrativas",
+        "Participantes en licitaciones",
+        "Sociedad civil"
+      ],
+      "fiscal_effect": "El informe no cuantifica efectos fiscales directos de estas modificaciones. Se asume que la eficiencia en contratación y la invalidación oportuna no generan costos presupuestarios inmediatos ni ahorros explícitos.",
+      "assumptions": [
+        "La comunicación entre participantes no generará colusión ni distorsión de precios",
+        "El plazo de seis meses será suficiente para detectar y corregir irregularidades",
+        "La contratación con personal dependiente no comprometerá la imparcialidad"
+      ],
+      "risks_and_open_questions": [
+        "Posible aumento de conflictos de interés en la contratación con personal dependiente",
+        "Riesgo de colusión en procesos de concesión por la eliminación de prohibiciones",
+        "Efectividad del plazo de invalidación para corregir actos administrativos complejos"
+      ],
+      "source_quote": "el proyecto introduce modificaciones en materia de contratación pública, invalidación de autorizaciones sectoriales, patrimonio cultural y propiedad intelectual. respecto de la contratación pública, se modifica la normativa que regula los",
+      "source_page": 7,
+      "quote_verified": true,
+      "news_source_ids": [
+        "t13-finance-committee-votes"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "cultural-heritage",
+      "title": "Hallazgos y permisos de patrimonio cultural",
+      "group": "regulacion",
+      "pages": [
+        7,
+        8
+      ],
+      "what_changes": "Se elimina la denuncia obligatoria a Carabineros por hallazgos arqueológicos, reemplazándola por aviso al Consejo de Monumentos Nacionales. Se establece un plazo de 5 días para verificación y se exime de autorización intervenciones menores.",
+      "mechanism": "Modificación de la Ley N°17.288. Se requiere asesoría técnica para solicitudes de excavación. El Ministerio de las Culturas dictará un reglamento en 6 meses para definir criterios de intervención no autorizada.",
+      "government_goal": "Agilizar la protección y gestión del patrimonio cultural, reducir trámites burocráticos para hallazgos y establecer criterios claros para intervenciones menores sin autorización previa.",
+      "affected_groups": [
+        "Consejo de Monumentos Nacionales",
+        "Arqueólogos y profesionales ad-hoc",
+        "Personas naturales y jurídicas",
+        "Carabineros y PDI",
+        "Sector turístico y constructor"
+      ],
+      "fiscal_effect": "El informe no cuantifica efectos fiscales directos. Se asume que la simplificación de trámites y la verificación rápida no generan costos presupuestarios significativos ni ahorros explícitos en el horizonte proyectado.",
+      "assumptions": [
+        "El Consejo podrá verificar hallazgos en 5 días hábiles sin sobrecarga operativa",
+        "Las personas adoptarán medidas de resguardo adecuadas sin supervisión policial inmediata",
+        "El reglamento definirá claramente los límites de intervenciones menores"
+      ],
+      "risks_and_open_questions": [
+        "Riesgo de que el aviso al Consejo no sea suficiente para proteger hallazgos vulnerables",
+        "Capacidad del Consejo para cumplir el plazo de verificación en casos masivos",
+        "Claridad y aplicabilidad del reglamento para definir intervenciones menores"
+      ],
+      "source_quote": "en cuanto a la ley n°17.288, que legisla sobre monumentos nacionales, se establece que, para presentar la solicitud de autorización para realizar excavaciones en territorio nacional, se deberá contar con la asesoría técnica de, a lo",
+      "source_page": 7,
+      "quote_verified": true,
+      "news_source_ids": [
+        "emol-environment-amendments"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "copyright-data-mining",
+      "title": "Minería de textos y datos con obras protegidas",
+      "group": "regulacion",
+      "pages": [
+        8
+      ],
+      "what_changes": "Se incorpora una excepción a la Ley de Propiedad Intelectual que permite la reproducción y adaptación de obras lícitas sin autorización ni remuneración para fines de minería de datos.",
+      "mechanism": "La norma habilita actos de extracción, comparación y análisis estadístico de datos de lenguaje, sonido o imagen, eliminando la necesidad de licencia del titular de derechos.",
+      "government_goal": "Fomentar la innovación tecnológica y el análisis de datos permitiendo el uso automatizado de obras protegidas bajo condiciones específicas de exclusividad en el fin.",
+      "affected_groups": [
+        "Empresas de tecnología",
+        "Investigadores académicos",
+        "Titulares de derechos de autor"
+      ],
+      "fiscal_effect": "El informe no cuantifica un efecto fiscal directo. No se estiman ingresos perdidos ni costos operativos asociados a la implementación de esta excepción al derecho de autor.",
+      "assumptions": [
+        "Las obras utilizadas deben estar lícitamente publicadas",
+        "El uso debe ser exclusivamente para fines de análisis estadístico",
+        "No se requiere autorización del titular de los derechos"
+      ],
+      "risks_and_open_questions": [
+        "Riesgo de uso indebido de la excepción para fines comerciales no autorizados",
+        "Dificultad para verificar el cumplimiento del fin exclusivo de análisis",
+        "Posible impacto en la valoración de derechos de propiedad intelectual"
+      ],
+      "source_quote": "en vigencia de la ley. en relación con la ley de propiedad intelectual (ley n°17.336), se incorpora una excepción al derecho de autor aplicable al automatizado de datos. en particular, se permite, sin requerir autorización ni remuneración",
+      "source_page": 8,
+      "quote_verified": true,
+      "news_source_ids": [
+        "df-copyright-editorial",
+        "t13-finance-committee-votes"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "coin-transport",
+      "title": "Transporte y custodia de monedas",
+      "group": "regulacion",
+      "pages": [
+        8
+      ],
+      "what_changes": "Se modifica la normativa para dejar de considerar a las monedas metálicas chilenas como valores en materia de seguridad privada durante su custodia y transporte.",
+      "mechanism": "La medida elimina la clasificación de monedas como valores, permitiendo una operatoria más eficiente y una regulación proporcional al riesgo en su circulación.",
+      "government_goal": "Promover una mayor inclusión en la circulación del efectivo en todo el territorio nacional mediante una regulación más eficiente y proporcional al riesgo.",
+      "affected_groups": [
+        "Empresas de transporte de valores",
+        "Bancos y entidades financieras",
+        "Comerciantes y ciudadanos"
+      ],
+      "fiscal_effect": "El informe no cuantifica un efecto fiscal directo. No se estiman ahorros en costos de seguridad ni impactos en la recaudación tributaria derivados de esta modificación.",
+      "assumptions": [
+        "La nueva regulación reducirá los costos operativos de transporte",
+        "La medida no incrementará el riesgo de robo o pérdida de monedas",
+        "La circulación del efectivo aumentará en todo el territorio"
+      ],
+      "risks_and_open_questions": [
+        "Posible aumento del riesgo de robo al reducir las medidas de seguridad",
+        "Dificultad para definir los límites de la nueva regulación",
+        "Impacto en la confianza del público en el sistema de efectivo"
+      ],
+      "source_quote": "modificación normativa que deja de considerar a las monedas metálicas chilenas como valores en materia de seguridad privada en la custodia y transporte de valores. la medida busca promover una operatoria más eficiente, una regulación",
+      "source_page": 8,
+      "quote_verified": true,
+      "news_source_ids": [],
+      "coverage_status": "no_captured_news"
+    },
+    {
+      "id": "senior-property-tax",
+      "title": "Exención de contribuciones para personas mayores",
+      "group": "tributos_permanentes",
+      "pages": [
+        8,
+        9,
+        22
+      ],
+      "what_changes": "Se establece una exención total del impuesto territorial para la vivienda principal de personas naturales de 65 o más años, sujeto a condiciones de residencia y domicilio.",
+      "mechanism": "El beneficio requiere una declaración jurada ante el SII, que verifica requisitos, declara pérdida del beneficio y gira impuestos, con sanciones por falsedad.",
+      "government_goal": "Proteger el patrimonio de las personas mayores mediante la exención de contribuciones en su vivienda principal, promoviendo su bienestar económico.",
+      "affected_groups": [
+        "Personas mayores de 65 años",
+        "Propietarios de viviendas principales",
+        "Municipios afectados por menor recaudación"
+      ],
+      "fiscal_effect": "Se estima un costo de $197.601 millones al año 15 de vigencia. El informe cuantifica el efecto en el Fondo Común Municipal, no en la recaudación directa del SII.",
+      "assumptions": [
+        "El número estimado de predios afectos se basa en datos del SII",
+        "La exención se aplica a un solo inmueble por contribuyente",
+        "El domicilio electoral coincide con la residencia habitual"
+      ],
+      "risks_and_open_questions": [
+        "Riesgo de simulación de residencia para obtener el beneficio",
+        "Impacto en la recaudación municipal a largo plazo",
+        "Dificultad para verificar el cumplimiento de los requisitos"
+      ],
+      "source_quote": "medidas tributarias y asociadas a ingresos fiscales contribuciones se establece una exención total del impuesto territorial respecto de la vivienda principal de personas naturales de 65 o más años de edad. para estos efectos, el",
+      "source_page": 8,
+      "quote_verified": true,
+      "news_source_ids": [
+        "24horas-opposition-mayors-letter",
+        "adn-castro-municipal-impact",
+        "adn-senate-mayors-july",
+        "biobio-achm-split",
+        "biobio-mayors-letter",
+        "biobio-opposition-mayors",
+        "biobio-presidential-decree-explainer",
+        "ciper-final-compensation",
+        "cnn-mayor-counterletters",
+        "cnn-opposition-mayors-letter",
+        "cnn-quiroz-growth",
+        "cnn-tc-challenges",
+        "cooperativa-mixed-commission",
+        "eldinamo-municipal-front",
+        "eldinamo-twelve-municipalities",
+        "emol-government-municipal-agreement",
+        "emol-mayors-hacienda-july",
+        "emol-quiroz-mayor-response",
+        "emol-twelve-municipalities",
+        "ladiscusion-rural-mayors",
+        "latercera-cfa-nine-risks",
+        "latercera-grau-inequality",
+        "meganoticias-quiroz-explains",
+        "pauta-mayors-meeting",
+        "t13-finance-committee-votes",
+        "theclinic-mayor-split-june",
+        "theclinic-mayors-focalization",
+        "timeline-final-chamber-stage"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "tax-data-cross-check",
+      "title": "Cruce de datos para fiscalización tributaria",
+      "group": "tributos_permanentes",
+      "pages": [
+        9,
+        23
+      ],
+      "what_changes": "Se fortalece la capacidad del SII para requerir, recibir y cruzar información nominada con órganos de la administración del estado para fines de fiscalización.",
+      "mechanism": "El SII puede acceder a registros y bases de datos de otros órganos, incluyendo el registro de caracterización socioeconómica, bajo normas de secreto y reserva.",
+      "government_goal": "Mejorar la fiscalización tributaria y la aplicación de los tributos mediante el acceso a información más completa y precisa de los contribuyentes.",
+      "affected_groups": [
+        "Servicio de Impuestos Internos",
+        "Ministerio de Desarrollo Social y Familia",
+        "Contribuyentes sujetos a fiscalización"
+      ],
+      "fiscal_effect": "El efecto fiscal no es cuantificable. Depende de la implementación operativa y los procesos de fiscalización, aunque se espera un menor gasto fiscal y mejor asignación de recursos.",
+      "assumptions": [
+        "La información proporcionada será de calidad y oportuna",
+        "El SII adoptará medidas para resguardar la confidencialidad de los datos",
+        "La mejora en la información contribuirá a una mayor recaudación"
+      ],
+      "risks_and_open_questions": [
+        "Riesgo de violación de la privacidad de los datos personales",
+        "Dificultad para integrar sistemas de información de diferentes órganos",
+        "Posible resistencia de los contribuyentes a compartir información"
+      ],
+      "source_quote": "carácter permanente fiscalización tributaria mediante cruce de datos de sii se fortalece la capacidad fiscalizadora del servicio de impuestos internos (sii), facultándolo para requerir, recibir y efectuar cruces de información con datos",
+      "source_page": 9,
+      "quote_verified": true,
+      "news_source_ids": [
+        "pauta-senate-general-approval"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "corporate-tax-rate",
+      "title": "Rebaja gradual del impuesto corporativo",
+      "group": "tributos_permanentes",
+      "pages": [
+        9,
+        10,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "what_changes": "Para el régimen semiintegrado, la tasa baja de 27% a 25,5% en 2027, 24% en 2028 y 23% desde 2029; Propyme General baja de 25% a 23% desde 2030.",
+      "mechanism": "La ley fija el calendario de tasas y ajusta los pagos provisionales mensuales. El informe separa el costo directo de tasa del eventual aumento de base por crecimiento.",
+      "government_goal": "Promover el crecimiento económico mediante una menor carga tributaria para las empresas, incentivando la inversión y la expansión de la actividad económica.",
+      "affected_groups": [
+        "Empresas sujetas al régimen Semi Integrado",
+        "Empresas del régimen Propyme General",
+        "Contribuyentes del impuesto global complementario"
+      ],
+      "fiscal_effect": "Se estima un impacto negativo de 0,44% del PIB en régimen por efecto tasa, compensado parcialmente por un efecto base positivo derivado del mayor crecimiento económico.",
+      "assumptions": [
+        "Elasticidad ingresos-PIB unitaria para traducir crecimiento en recaudación",
+        "Escenario macroeconómico de referencia actualizado hasta 2030",
+        "Tasa de retiro de utilidades brutas de 32,7% para el régimen Semi Integrado"
+      ],
+      "risks_and_open_questions": [
+        "Riesgo de que el efecto base no compense la reducción de la tasa",
+        "Dificultad para estimar el impacto en el crecimiento económico",
+        "Posible aumento de la evasión tributaria por menor tasa"
+      ],
+      "source_quote": "de secreto y reserva. rebaja tasa estatutaria al impuesto de primera categoría desde 27% a 23% se establece una reducción gradual de la tasa del impuesto de primera categoría aplicable a las rentas devengadas o percibidas a partir del año",
+      "source_page": 9,
+      "quote_verified": true,
+      "news_source_ids": [
+        "biobio-opposition-23-doubts",
+        "biobio-opposition-mayors",
+        "biobio-presidential-decree-explainer",
+        "cnn-tc-challenges",
+        "latercera-cfa-nine-risks",
+        "latercera-video-details",
+        "meganoticias-quiroz-explains",
+        "pauta-senate-general-approval",
+        "t13-finance-committee-votes",
+        "theclinic-mayor-split-june",
+        "timeline-final-chamber-stage"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "tax-integration",
+      "title": "Reintegración del sistema semiintegrado",
+      "group": "tributos_permanentes",
+      "pages": [
+        10,
+        11,
+        27,
+        28,
+        29
+      ],
+      "what_changes": "Se reduce gradualmente la obligación de restitución de créditos de primera categoría, convergiendo hacia integración plena y unificando el tratamiento del crédito.",
+      "mechanism": "Ajuste progresivo de tasas de restitución y recálculo de pagos provisionales mensuales para adecuar la tributación a la nueva trayectoria de integración del sistema.",
+      "government_goal": "Converger a un esquema de integración plena del sistema tributario, simplificando la estructura y eliminando distinciones entre créditos con y sin restitución.",
+      "affected_groups": [
+        "Contribuyentes del régimen Semi Integrado",
+        "Empresas sujetas a impuestos finales",
+        "Pymes bajo régimen de transparencia"
+      ],
+      "fiscal_effect": "Costo estimado de 0,12% del PIB en régimen. Impacto progresivo: -0,01% en año 3, alcanzando -0,12% en año 15, basado en tasas de retiro y proporción de créditos.",
+      "assumptions": [
+        "Tasa de retiros brutos del 32,7%",
+        "Proporción de créditos sujetos a restitución del 22%",
+        "Disminución progresiva de la tasa promedio de restitución"
+      ],
+      "risks_and_open_questions": [
+        "Impacto abrupto sobre recaudación si la transición no es gradual",
+        "Comportamiento de contribuyentes al agotar acervos de créditos",
+        "Adecuación de normas de término de giro y retenciones"
+      ],
+      "source_quote": "aplicable en diciembre de 2028 se reducirá en 4,17%. reintegración del sistema tributario del régimen semi integrado la medida avanza hacia la reintegración del sistema tributario mediante una reducción gradual de la obligación de",
+      "source_page": 10,
+      "quote_verified": true,
+      "news_source_ids": [
+        "biobio-opposition-23-doubts",
+        "biobio-presidential-decree-explainer",
+        "pauta-senate-general-approval",
+        "t13-finance-committee-votes"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "employment-tax-credit",
+      "title": "Crédito tributario por contratación",
+      "group": "tributos_permanentes",
+      "pages": [
+        11,
+        29,
+        30
+      ],
+      "what_changes": "Se crea un crédito contra el Impuesto de Primera Categoría equivalente al 15% de remuneraciones hasta 7,8 UTM, con estructura decreciente hasta 12 UTM.",
+      "mechanism": "Aplicación directa del crédito en el impuesto de primera categoría, con reglas para jornadas parciales, exclusión de ciertos contribuyentes y fiscalización por el SII.",
+      "government_goal": "Incentivar la contratación formal mediante un crédito tributario específico, apoyando a empresas que cumplan criterios de ley y mejorando la empleabilidad.",
+      "affected_groups": [
+        "Empresas con trabajadores remunerados",
+        "Trabajadores con ingresos hasta 12 UTM",
+        "Empresas excluidas por incompatibilidad con otros beneficios"
+      ],
+      "fiscal_effect": "Costo de -668.573 millones en año 1, alcanzando -13.991 millones en año 25. Incluye ahorro por incompatibilidad con Subsidio Único al Empleo de -71.284 millones anuales.",
+      "assumptions": [
+        "Tasa de uso del beneficio del 100%",
+        "Crecimiento anual de cotizantes elegibles del 1,2%",
+        "Crecimiento real anual de remuneraciones del 1,9%"
+      ],
+      "risks_and_open_questions": [
+        "Posible uso indebido del crédito por empleadores",
+        "Incompatibilidad con otros beneficios de contratación",
+        "Fiscalización efectiva por parte del SII"
+      ],
+      "source_quote": "para su imputación contra los impuestos finales. crédito tributario al empleo se establece un crédito contra el impuesto de primera categoría para los contribuyentes que califiquen según los criterios establecidos en el proyecto de ley. dicho",
+      "source_page": 11,
+      "quote_verified": true,
+      "news_source_ids": [
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "capital-gains-tax",
+      "title": "Eliminación del 10% a ciertas ganancias de capital",
+      "group": "tributos_permanentes",
+      "pages": [
+        11,
+        12,
+        30
+      ],
+      "what_changes": "Se elimina el impuesto único del 10% sobre ganancias de capital por enajenación de valores con presencia bursátil, restableciendo su no constitución de renta.",
+      "mechanism": "Modificación del artículo 107 de la Ley sobre Impuesto a la Renta, reemplazando la tributación especial por la regla general de no gravamen en estas operaciones.",
+      "government_goal": "Simplificar el sistema tributario y eliminar la tributación especial sobre ganancias de capital bursátiles, alineándose con el tratamiento previo a la Ley N°21.420.",
+      "affected_groups": [
+        "Inversores en valores con presencia bursátil",
+        "Personas naturales y jurídicas con enajenaciones de valores",
+        "Mercado de capitales chileno"
+      ],
+      "fiscal_effect": "Disminución de ingresos de 0,005% del PIB permanente. Costo en 2026 de la mitad de ese valor, asumiendo entrada en vigor en agosto de 2026.",
+      "assumptions": [
+        "Entrada en vigor de la medida en agosto de 2026",
+        "Recaudación efectiva observada en 2025 como base de estimación",
+        "Impacto permanente a partir de 2027"
+      ],
+      "risks_and_open_questions": [
+        "Posible aumento de la evasión fiscal en otras áreas",
+        "Impacto en la recaudación total del impuesto a la renta",
+        "Ajustes necesarios en las referencias del artículo 107"
+      ],
+      "source_quote": "internos. eliminación del 10% de impuesto a las ganancias de capital se elimina la tributación especial de 10% aplicable a las ganancias de capital obtenidas en la enajenación de valores con presencia bursátil, restableciendo el",
+      "source_page": 11,
+      "quote_verified": true,
+      "news_source_ids": [],
+      "coverage_status": "no_captured_news"
+    },
+    {
+      "id": "dfl2-benefits",
+      "title": "Ampliación de beneficios para viviendas DFL2",
+      "group": "tributos_permanentes",
+      "pages": [
+        12,
+        30,
+        31
+      ],
+      "what_changes": "Se establece un impuesto único del 5% para rentas de arriendo de la tercera vivienda económica y siguientes, hasta 90 m², para personas naturales y jurídicas.",
+      "mechanism": "Opción de acogerse al régimen de impuesto único de 5% por un mínimo de cinco años tributarios consecutivos, ejercida ante el Servicio de Impuestos Internos.",
+      "government_goal": "Incentivar el uso en arriendo de viviendas económicas y apoyar la oferta habitacional, manteniendo el tratamiento vigente para las dos primeras viviendas.",
+      "affected_groups": [
+        "Personas naturales propietarias de viviendas DFL2",
+        "Personas jurídicas propietarias de viviendas económicas",
+        "Inquilinos de viviendas económicas"
+      ],
+      "fiscal_effect": "Menor ingreso fiscal neto de 0,005% del PIB permanente. Costo en 2026 de la mitad de ese valor, asumiendo entrada en vigor en agosto de 2026.",
+      "assumptions": [
+        "Entrada en vigor de la medida en agosto de 2026",
+        "Mantenimiento del régimen por cinco años consecutivos",
+        "Aplicación a viviendas de hasta 90 m²"
+      ],
+      "risks_and_open_questions": [
+        "Posible evasión del régimen de impuesto único",
+        "Impacto en la oferta de viviendas en arriendo",
+        "Cumplimiento de la obligación de mantener el régimen por cinco años"
+      ],
+      "source_quote": "establece un beneficio tributario para las viviendas dfl 2, con el objeto de incentivar su uso en arriendo y apoyar la oferta habitacional. en particular, se dispone un nuevo régimen aplicable a la tercera vivienda económica y",
+      "source_page": 12,
+      "quote_verified": true,
+      "news_source_ids": [
+        "t13-finance-committee-votes"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "tobacco-smuggling",
+      "title": "Sanciones contra el contrabando de tabaco",
+      "group": "tributos_permanentes",
+      "pages": [
+        12,
+        31
+      ],
+      "what_changes": "Se establece la incautación de vehículos usados en contrabando de tabaco, pena de presidio para responsables y remate acelerado de vehículos en 15 días hábiles.",
+      "mechanism": "Obligación del Ministerio Público de solicitar incautación, incorporación de pena de presidio y cláusula que acelera el remate de vehículos con apoyo de terceros.",
+      "government_goal": "Reducir la brecha de recaudación por contrabando de tabaco mediante sanciones más severas y procedimientos más rápidos para la incautación y remate de vehículos.",
+      "affected_groups": [
+        "Contrabandistas de productos del tabaco",
+        "Ministerio Público",
+        "Dirección de Crédito Prendario"
+      ],
+      "fiscal_effect": "La fe de erratas corrige el ingreso permanente desde 2028 a $103.730 millones de pesos de 2026; supone cerrar 20% de la brecha estimada en cuatro años.",
+      "assumptions": [
+        "Reducción de la brecha de contrabando en un 20% en cuatro años",
+        "Impacto progresivo entre 2026 y 2028",
+        "Ingresos por impuesto al tabaco sin tendencia al alza"
+      ],
+      "risks_and_open_questions": [
+        "Efectividad de las sanciones en la reducción del contrabando",
+        "Capacidad de la Dirección de Crédito Prendario para remates acelerados",
+        "Posible adaptación de los contrabandistas a las nuevas medidas"
+      ],
+      "source_quote": "años tributarios consecutivos. sanciones contra el contrabando de tabaco respecto del contrabando, se establece la obligación del ministerio público de solicitar, por el período que dure la investigación, la incautación de los vehículos",
+      "source_page": 12,
+      "quote_verified": true,
+      "news_source_ids": [
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "sence-credit",
+      "title": "Eliminación de la franquicia SENCE",
+      "group": "tributos_permanentes",
+      "pages": [
+        12,
+        13,
+        31,
+        32
+      ],
+      "what_changes": "Se elimina la franquicia tributaria para gastos en capacitación, derogando normas sobre OTEC y beneficios para gerentes con planillas bajas.",
+      "mechanism": "Se suprime el crédito fiscal del artículo 36 de la Ley N°19.518, transformando los montos deducidos en gastos ordinarios para la renta líquida imponible.",
+      "government_goal": "Aumentar la recaudación fiscal permanente eliminando un gasto tributario que no muestra evidencia de impacto en la productividad laboral.",
+      "affected_groups": [
+        "Empresas con gastos en capacitación",
+        "Organismos Técnicos de Capacitación (OTEC)",
+        "Gerentes con ingresos bajos"
+      ],
+      "fiscal_effect": "La referencia anual es 0,08% del PIB ($287.176 millones de 2026); por vigencia parcial, la fe de erratas corrige el efecto del año 1 en la tabla consolidada a 0,01%.",
+      "assumptions": [
+        "Se usa el código 82 del Formulario 22 como referencia",
+        "La eliminación no reduce la inversión en capacitación",
+        "El efecto es permanente desde 2027"
+      ],
+      "risks_and_open_questions": [
+        "Impacto real en la calidad de la capacitación empresarial",
+        "Posible reducción de oferta de servicios de OTEC",
+        "Efecto en la competitividad de PYMES"
+      ],
+      "source_quote": "la celeridad del procedimiento de remate. eliminación franquicia sence por otra parte, se elimina la franquicia tributaria para gastos en capacitación y p á g i n a 12 | 46",
+      "source_page": 12,
+      "quote_verified": true,
+      "news_source_ids": [
+        "biobio-quiroz-adjustments",
+        "t13-finance-committee-votes"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "aquaculture-unused-patents",
+      "title": "Patentes por no uso de concesiones acuícolas",
+      "group": "tributos_permanentes",
+      "pages": [
+        13,
+        32,
+        33
+      ],
+      "what_changes": "Se establecen recargos progresivos por hectárea para concesiones acuícolas sin uso, iniciando en el tercer año y aumentando a los 54 meses.",
+      "mechanism": "Se modifica el régimen de patente aplicando multas crecientes a centros de cultivo inactivos, eliminando la referencia a la paralización de actividades.",
+      "government_goal": "Fomentar el uso eficiente de las concesiones acuícolas y liberar espacios para nuevos proyectos productivos en el sector.",
+      "affected_groups": [
+        "Titulares de concesiones acuícolas inactivas",
+        "Gobiernos regionales",
+        "Sector acuícola activo"
+      ],
+      "fiscal_effect": "Se estima un mayor ingreso de $3.956 millones en 2026, asumiendo 1.121 concesiones afectas y una distribución 70%/30% de recargos.",
+      "assumptions": [
+        "35,7% de concesiones están sin operación",
+        "Mediana de superficie es 5,61 hectáreas",
+        "Valor UTM de $69.889 en marzo-abril 2026"
+      ],
+      "risks_and_open_questions": [
+        "Dificultad para determinar la causa del no uso",
+        "Posible litigio por recargos retroactivos",
+        "Impacto en la inversión futura en el sector"
+      ],
+      "source_quote": "(foncap), en lo que dice relación con la franquicia. patentes por no uso de concesiones acuícolas se faculta a la subsecretaría para encomendar a personas naturales o jurídicas, inscritas en el registro correspondiente, la elaboración de",
+      "source_page": 13,
+      "quote_verified": true,
+      "news_source_ids": [
+        "cnn-tc-challenges",
+        "emol-environment-amendments"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "housing-vat",
+      "title": "Exención transitoria de IVA a viviendas nuevas",
+      "group": "tributos_transitorios",
+      "pages": [
+        13,
+        14,
+        33,
+        34
+      ],
+      "what_changes": "Se exime transitoriamente el IVA en la primera venta de viviendas nuevas por un año, permitiendo el uso de crédito fiscal por IVA soportado.",
+      "mechanism": "Se suspende el cobro de IVA en ventas perfeccionadas dentro del plazo, manteniendo el derecho a crédito fiscal para constructores y vendedores.",
+      "government_goal": "Reactivar el sector inmobiliario y facilitar la colocación de stock de viviendas terminadas en el mercado.",
+      "affected_groups": [
+        "Constructores inmobiliarios",
+        "Compradores de vivienda nueva",
+        "Vendedores de propiedades terminadas"
+      ],
+      "fiscal_effect": "Se estima una pérdida de 0,12% del PIB en 2026 y 0,17% en 2027, basada en la recaudación de IVA de 2024 (0,282% del PIB).",
+      "assumptions": [
+        "La exención dura un año desde agosto 2026",
+        "El impacto se distribuye uniformemente",
+        "No se considera crecimiento adicional de ventas"
+      ],
+      "risks_and_open_questions": [
+        "Posible especulación con precios de viviendas",
+        "Dificultad para verificar la primera venta",
+        "Impacto en la recaudación futura de IVA"
+      ],
+      "source_quote": "carácter transitorio exención transitoria del pago de iva a la vivienda se establece una exención transitoria del iva aplicable a la venta de viviendas, por un plazo de un año contado desde el mes siguiente a la publicación de la ley. el",
+      "source_page": 13,
+      "quote_verified": true,
+      "news_source_ids": [
+        "ciper-final-compensation",
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "inheritance-advance",
+      "title": "Adelanto del impuesto a herencias y donaciones",
+      "group": "tributos_transitorios",
+      "pages": [
+        14,
+        15,
+        34,
+        35
+      ],
+      "what_changes": "Se reduce transitoriamente en 50% el impuesto a donaciones por un año, exigiendo condiciones de asignación a legitimarios y cuarta de mejoras.",
+      "mechanism": "Se aplica una tasa efectiva reducida de 10,3% sobre donaciones otorgadas mediante escritura pública, sin necesidad de insinuación judicial.",
+      "government_goal": "Generar ingresos fiscales inmediatos mediante el adelantamiento de donaciones y herencias, sin alterar la estructura tributaria permanente.",
+      "affected_groups": [
+        "Donantes de altos patrimonios",
+        "Legitimarios y asignatarios",
+        "Notarios y abogados"
+      ],
+      "fiscal_effect": "Se estima un mayor ingreso de $109.729 millones en 2026 y $153.620 millones en 2027, con reversión en 15 años.",
+      "assumptions": [
+        "Elasticidad de corto plazo igual a 14",
+        "Tasa efectiva inicial de 20,6%",
+        "Base estimada de $1,1 billones para 2026"
+      ],
+      "risks_and_open_questions": [
+        "Posible elusión mediante enajenación temprana",
+        "Impacto en la equidad intergeneracional",
+        "Dificultad para acreditar condiciones de asignación"
+      ],
+      "source_quote": "stock de viviendas terminadas. adelanto de impuesto a herencia y donaciones se establece un régimen transitorio que, por una sola vez, reduce en 50% el impuesto a las donaciones regulado en la ley n°16.271, aplicable a aquellas donaciones que",
+      "source_page": 14,
+      "quote_verified": true,
+      "news_source_ids": [],
+      "coverage_status": "no_captured_news"
+    },
+    {
+      "id": "foreign-assets",
+      "title": "Declaración y repatriación de capitales",
+      "group": "tributos_transitorios",
+      "pages": [
+        15,
+        16,
+        35,
+        36,
+        37
+      ],
+      "what_changes": "Se establece un mecanismo extraordinario de 12 meses para declarar y repatriar activos en el extranjero con un impuesto único de 10% o 7%.",
+      "mechanism": "Se aplica un impuesto único de 10% a activos declarados, reduciéndose a 7% si se repatrian e invierten en Chile por al menos 5 años.",
+      "government_goal": "Ampliar la base tributaria, normalizar activos en el extranjero y generar ingresos para financiar la reconstrucción nacional.",
+      "affected_groups": [
+        "Contribuyentes con activos en el extranjero",
+        "Inversionistas que repatrien capitales",
+        "Entidades financieras"
+      ],
+      "fiscal_effect": "Declaración: $40.522 millones en 2026 y $208.999 millones en 2027. Repatriación: $4.502 y $23.222 millones, respectivamente; la fe de erratas corrige el efecto conjunto del año 2 a 0,06% del PIB.",
+      "assumptions": [
+        "Se usa el extremo inferior de evidencia internacional",
+        "Se asume un castigo del 50% por activos ya regularizados",
+        "La medida rige desde el tercer mes siguiente a la publicación"
+      ],
+      "risks_and_open_questions": [
+        "Posible exclusión de jurisdicciones de alto riesgo",
+        "Dificultad para verificar la procedencia de activos",
+        "Impacto en la inversión extranjera directa"
+      ],
+      "source_quote": "lavado de activos y financiamiento del terrorismo. repatriación de capitales con entrada a chile respecto del punto anterior, en el caso que los activos ingresen a chile el pago será de 7%. para efectos de mantener dicha tasa, estos activos se",
+      "source_page": 15,
+      "quote_verified": true,
+      "news_source_ids": [
+        "biobio-presidential-decree-explainer",
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "tax-stability",
+      "title": "Invariabilidad tributaria para grandes inversiones",
+      "group": "tributos_transitorios",
+      "pages": [
+        16,
+        17
+      ],
+      "what_changes": "Se restablece un estatuto especial que permite contratos de invariabilidad tributaria por 25 años, fijando una carga impositiva efectiva total del 35% para inversionistas extranjeros.",
+      "mechanism": "El régimen pacta una carga impositiva invariable, excluyendo el royalty minero del cálculo, y permite renuncia única, repatriación de capital tras un año y remesa libre de utilidades.",
+      "government_goal": "Promover la inversión extranjera y local mediante certeza jurídica sobre la carga tributaria, facilitando el ingreso, registro y remesa de capitales y utilidades.",
+      "affected_groups": [
+        "Inversionistas extranjeros",
+        "Inversionistas locales",
+        "Proyectos mineros",
+        "Unidades económicas relacionadas"
+      ],
+      "fiscal_effect": "El informe no cuantifica el efecto fiscal directo de esta medida. Se asume que el impacto depende de la materialización de proyectos y no se estima ex ante en el documento.",
+      "assumptions": [
+        "Los inversionistas optarán por el régimen si la carga del 35% es competitiva.",
+        "La renuncia al régimen es irreversible y definitiva.",
+        "El royalty minero no se considera en la carga impositiva pactada."
+      ],
+      "risks_and_open_questions": [
+        "El informe no cuantifica cuánta inversión adicional se materializaría por el régimen.",
+        "La carga fija de 35% puede resultar distinta del régimen general durante los 25 años.",
+        "Queda por observar la fiscalización de proyectos relacionados y las exigencias de información."
+      ],
+      "source_quote": "reg. 84gg i.f. n°84/22.04.2026 régimen de invariabilidad tributaria para la inversión extranjera o local se restablece un estatuto especial para la inversión extranjera o local que permite celebrar contratos con invariabilidad",
+      "source_page": 16,
+      "quote_verified": true,
+      "news_source_ids": [
+        "24horas-senate-committee-video",
+        "biobio-quiroz-adjustments",
+        "biobio-senate-advance",
+        "ciper-final-compensation",
+        "cnn-tc-challenges",
+        "cooperativa-mixed-commission",
+        "emol-senate-battle",
+        "pauta-senate-general-approval",
+        "theclinic-mayor-split-june",
+        "theclinic-mayors-focalization"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "substitute-taxes",
+      "title": "Impuestos sustitutivos sobre utilidades acumuladas",
+      "group": "tributos_transitorios",
+      "pages": [
+        17,
+        36,
+        37
+      ],
+      "what_changes": "Se crea una ventana transitoria de 8 meses para regularizar utilidades acumuladas al 31 de diciembre de 2025 mediante un impuesto único sustitutivo del 10%.",
+      "mechanism": "El pago del 10% sustituye la tributación general, eliminando créditos de primera categoría asociados, permitiendo retiros y remesas sin nuevas cargas tributarias posteriores.",
+      "government_goal": "Facilitar la regularización de saldos acumulados, simplificar el tratamiento tributario y generar recaudación fiscal anticipada con certeza jurídica para los contribuyentes.",
+      "affected_groups": [
+        "Empresas con utilidades acumuladas en FUR",
+        "Empresas con saldo de utilidades tributables (STUT)",
+        "Contribuyentes con retiros en exceso pendientes"
+      ],
+      "fiscal_effect": "La tabla 11 estima +0,08% del PIB en el año 1 y +0,11% en el año 2; luego -0,02% anual entre los años 3 y 10 por menor tributación futura.",
+      "assumptions": [
+        "Se aplica el factor de acogida más conservador basado en experiencias pasadas (2015-2017, 2020-2022, 2024-2025).",
+        "La base imponible se determina con datos de la Operación Renta 2025.",
+        "Parte del efecto genera menor tributación de otras fuentes de ingresos."
+      ],
+      "risks_and_open_questions": [
+        "La reversión de la recaudación en 10 años podría impactar negativamente el balance fiscal futuro.",
+        "La efectividad depende de la participación de los contribuyentes en la ventana transitoria.",
+        "Posible distorsión en la decisión de retiro de utilidades frente a reinversión."
+      ],
+      "source_quote": "de presupuestos reg. 84gg i.f. n°84/22.04.2026 impuestos sustitutivos la medida establece una ventana transitoria con la posibilidad de que las empresas regularicen la tributación de utilidades acumuladas y de ciertos retiros pendientes,",
+      "source_page": 17,
+      "quote_verified": true,
+      "news_source_ids": [
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "treasury-debt-relief",
+      "title": "Rebaja de intereses y multas de deudas",
+      "group": "tributos_transitorios",
+      "pages": [
+        17,
+        18,
+        37
+      ],
+      "what_changes": "Se faculta a la Tesorería General para condonar hasta el 100% de intereses y multas en deudas tributarias con vencimiento hasta el 31 de diciembre de 2025.",
+      "mechanism": "La condonación total aplica al pago al contado, mientras que los convenios requieren un pie mínimo del 10% del total adeudado, aplicable a personas naturales y PYMES.",
+      "government_goal": "Permitir a contribuyentes estar al día, mejorar la liquidez fiscal mediante ingresos por una sola vez y facilitar el cumplimiento de obligaciones tributarias pendientes.",
+      "affected_groups": [
+        "Personas naturales",
+        "Microempresas",
+        "Pequeñas empresas",
+        "Medianas empresas",
+        "Contribuyentes sin clasificación"
+      ],
+      "fiscal_effect": "El efecto fiscal se registra como no estimable, ya que intereses y multas no se registran presupuestariamente hasta el pago del capital, por lo que su remisión no impacta ingresos efectivos.",
+      "assumptions": [
+        "La medida se extiende por 180 días desde la publicación de la ley.",
+        "Los ingresos provienen de deudas tributarias, multas e intereses penales.",
+        "El reconocimiento contable ocurre solo al materializarse el pago del capital."
+      ],
+      "risks_and_open_questions": [
+        "No se cuantifica el impacto directo en el balance fiscal consolidado.",
+        "La experiencia previa (Ley 21.713) implicó 139 mil convenios por $221 mil millones.",
+        "Posible efecto moral hazard si se espera futuras condonaciones de multas."
+      ],
+      "source_quote": "estas utilidades. facultad de tesorería para rebajar intereses y multas en deudas se faculta a la tesorería general de la república (tgr) para otorgar facilidades de pago sobre obligaciones tributarias con vencimientos hasta el 31 de",
+      "source_page": 17,
+      "quote_verified": true,
+      "news_source_ids": [
+        "cnn-opposition-mayors-letter",
+        "emol-government-municipal-agreement",
+        "emol-quiroz-mayor-response",
+        "t13-finance-committee-votes"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "growth-effect",
+      "title": "Recaudación atribuida a mayor crecimiento",
+      "group": "efecto_fiscal",
+      "pages": [
+        23,
+        24,
+        38,
+        44,
+        45
+      ],
+      "what_changes": "Se incorpora la estimación del impacto recaudatorio derivado del mayor crecimiento económico esperado, utilizando una elasticidad ingresos-PIB unitaria y un escenario macroeconómico actualizado.",
+      "mechanism": "Se traduce el incremento del PIB inducido por las medidas en mayor recaudación tributaria, considerando un tercio de los ingresos como compensado por mayor gasto público.",
+      "government_goal": "Promover el crecimiento económico y cuantificar las holguras fiscales generadas por el dinamismo de la actividad económica como consecuencia directa de la implementación.",
+      "affected_groups": [
+        "Gobierno Central",
+        "Sector empresarial",
+        "Trabajadores",
+        "Consumidores"
+      ],
+      "fiscal_effect": "La tabla 12 proyecta 0,12% del PIB en su 'año 1' y 1,21% en el año 25. La fe de erratas aclara que ese primer año es 2027 y ordena desplazar un año las cifras al consolidar.",
+      "assumptions": [
+        "Elasticidad ingresos-PIB unitaria (1,0) para traducir crecimiento en recaudación.",
+        "Escenario base actualizado del IFP 4T.25 con inflación de 3% anual.",
+        "Un tercio de los mayores ingresos se compensa por presiones de gasto asociadas."
+      ],
+      "risks_and_open_questions": [
+        "La estimación depende de la validez del Informe de Impacto Regulatorio.",
+        "El efecto es una proyección, no un hecho observado, sujeto a incertidumbre macroeconómica.",
+        "Posible subestimación si el crecimiento real supera las proyecciones tendenciales."
+      ],
+      "source_quote": "la estimación del impacto recaudatorio derivado del mayor crecimiento esperado. la estimación de este efecto fiscal descansa en los siguientes supuestos centrales: o primero, el informe de impacto regulatorio (subsecretaría de hacienda,",
+      "source_page": 23,
+      "quote_verified": true,
+      "news_source_ids": [
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    },
+    {
+      "id": "consolidated-balance",
+      "title": "Balance fiscal consolidado y correcciones",
+      "group": "efecto_fiscal",
+      "pages": [
+        39,
+        40,
+        41,
+        42,
+        46
+      ],
+      "what_changes": "El informe presenta el efecto fiscal consolidado del proyecto de ley, sumando impactos de gastos e ingresos, con signos positivos para mejoras y negativos para deterioros del balance.",
+      "mechanism": "Se agregan los efectos de medidas permanentes y transitorias, incluyendo correcciones de fe de erratas, para determinar el impacto neto en el balance fiscal en % del PIB y millones de pesos.",
+      "government_goal": "Proporcionar una visión integral del impacto fiscal del proyecto, permitiendo evaluar la sostenibilidad y el espacio fiscal resultante de las medidas propuestas.",
+      "affected_groups": [
+        "Gobierno Central",
+        "Sector público",
+        "Contribuyentes",
+        "Inversionistas"
+      ],
+      "fiscal_effect": "El efecto neto se resume en tablas que muestran contribuciones positivas o negativas al balance fiscal, considerando gastos adicionales como el FET y recaudación por crecimiento.",
+      "assumptions": [
+        "Los valores se expresan en millones de pesos de 2026 y % del PIB.",
+        "Se incorporan correcciones de fe de erratas en las tablas finales.",
+        "El escenario base incluye proyecciones hasta 2030 y tendencial posterior."
+      ],
+      "risks_and_open_questions": [
+        "La precisión de las cifras depende de la calidad de las proyecciones macroeconómicas.",
+        "Las correcciones de fe de erratas pueden alterar ligeramente los resultados finales.",
+        "El impacto real podría variar si las medidas no se implementan según lo planificado."
+      ],
+      "source_quote": "tal que: o un signo positivo refleja una mejora en el balance fiscal, ya sea por un aumento de ingresos o una reducción de gastos. o un signo negativo refleja un deterioro del balance fiscal, ya sea por una p á g i n a 39 | 46",
+      "source_page": 39,
+      "quote_verified": true,
+      "news_source_ids": [
+        "latercera-cfa-nine-risks"
+      ],
+      "coverage_status": "captured_news"
+    }
+  ],
+  "model": {
+    "name": "nvidia/Qwen3.5-122B-A10B-NVFP4",
+    "revision": "98915d837c4e7c87ac8296d02e89de19b3207e6d",
+    "batches": 6,
+    "usage": {
+      "prompt_tokens": 39458,
+      "completion_tokens": 11381,
+      "total_tokens": 50839
+    }
+  }
+}

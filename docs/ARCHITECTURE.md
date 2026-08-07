@@ -133,6 +133,17 @@ runtime tripwire at the entrance to `evaluate_blind()`: passing an `ActorProfile
 `NeutralityViolationError` before a check runs. Track records are derived only by grouping verdicts
 already stored under `blind_evaluation`; roles and official records never enter that aggregation.
 
+The public dossier also carries a corpus-wide actor census. It is produced from immutable source
+snapshots, accepts only mentions backed by a literal excerpt from the named source, and indexes
+institutions as well as people. Detailed biographical profiles remain a smaller attributed subset;
+the census makes that difference visible instead of presenting the subset as the whole universe.
+Article and official-record bodies are chunked with overlap and scanned to their end; research
+bibliographies are deliberately excluded from the political-actor universe. Quote spans are located
+by code after extraction rather than copied from model output. Oversized voting records use a
+smaller repair subdivision without invalidating completed checkpoints. Known detailed profiles are
+joined only after the census has been built, so their roles, historical records and portraits can be
+rendered in the attributed UI but cannot influence actor discovery or blind evaluation.
+
 The escape hatch — when the speaker's identity genuinely *is* the fact at issue ("did X say Y?") —
 must be requested deliberately and is never the default.
 
@@ -178,6 +189,11 @@ flowchart LR
         DB[("PostgreSQL<br/>documents · snapshots · versioned runs")]
         S --> P --> L
         S --> DB
+
+        X["46-page structural audit<br/>554 paragraphs · no silent item cap"]
+        C["actor census<br/>quote-grounded mentions"]
+        P --> X
+        DB --> C
         P --> DB
     end
 

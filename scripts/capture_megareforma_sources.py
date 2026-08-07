@@ -171,6 +171,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    from playwright.sync_api import Error as PlaywrightError
     from playwright.sync_api import sync_playwright
 
     manifest = yaml.safe_load(MANIFEST.read_text(encoding="utf-8"))
@@ -229,7 +230,39 @@ def main() -> int:
                 if not allowed:
                     raise RuntimeError(f"robots policy did not permit capture ({robots})")
                 screenshot = SCREENSHOTS / f"{seed['id']}.jpg"
-                if urlsplit(url).path.lower().endswith(".pdf"):
+                if urlsplit(url).path.lower().endswith("verdoc.aspx"):
+                    import pymupdf
+
+                    landing = (
+                        "https://www.camara.cl/legislacion/proyectosdeley/informes.aspx"
+                        "?prmBOLETIN=18216-05&prmID=18872"
+                    )
+                    page.goto(landing, wait_until="domcontentloaded", timeout=60_000)
+                    with page.expect_download(timeout=60_000) as download_info:
+                        try:
+                            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+                        except PlaywrightError as exc:
+                            if "Download is starting" not in str(exc):
+                                raise
+                    download = download_info.value
+                    download_path = download.path()
+                    if download_path is None:
+                        raise RuntimeError("official report download had no local payload")
+                    body = Path(download_path).read_bytes()
+                    if not body.startswith(b"%PDF"):
+                        raise RuntimeError("official report endpoint did not download a PDF")
+                    document = pymupdf.open(stream=body, filetype="pdf")
+                    pixmap = document[0].get_pixmap(matrix=pymupdf.Matrix(1.35, 1.35), alpha=False)
+                    pixmap.save(str(screenshot))
+                    document.close()
+                    status = 200
+                    content_type = "application/pdf"
+                    title = str(seed.get("title") or download.suggested_filename or seed["id"])
+                    summary = str(
+                        seed.get("summary")
+                        or "Informe legislativo oficial conservado desde el expediente del proyecto."
+                    )
+                elif urlsplit(url).path.lower().endswith(".pdf"):
                     import pymupdf
 
                     pdf_response = client.get(url, headers={"User-Agent": USER_AGENT}, timeout=60)

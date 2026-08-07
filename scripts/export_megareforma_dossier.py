@@ -18,6 +18,7 @@ from api.database import AnalysisRunRow, Database  # noqa: E402
 
 DOSSIER = ROOT / "frontend/public/data/megareforma/dossier.json"
 SOURCES = ROOT / "frontend/public/data/megareforma/sources.json"
+DEEP = ROOT / "frontend/public/data/megareforma/deep-analysis.json"
 
 
 def main() -> int:
@@ -40,9 +41,7 @@ def main() -> int:
             (row for row in rows if isinstance(row.result_json.get("dossier_brief"), dict)),
             None,
         )
-        completed_count = sum(
-            isinstance(row.result_json.get("dossier_brief"), dict) for row in rows
-        )
+        completed_count = len(rows)
     if run is None:
         database.dispose()
         raise SystemExit("no completed Qwen run with dossier_brief exists")
@@ -54,6 +53,9 @@ def main() -> int:
     payload["summary"] = brief["document_summary"]
     payload["objectives"] = brief["objectives"]
     payload["counts"]["model_runs_completed"] = completed_count
+    if DEEP.exists():
+        deep = json.loads(DEEP.read_text(encoding="utf-8"))
+        payload["counts"]["propositions"] = deep["document"]["propositions"]
     payload["counts"]["sources_curated"] = sources["capture_count"] + sources["gap_count"]
     payload["counts"]["sources_captured"] = sources["capture_count"]
     payload["counts"]["capture_gaps"] = sources["gap_count"]

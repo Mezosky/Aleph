@@ -30,3 +30,15 @@ def test_pipeline_is_document_agnostic() -> None:
     assert first.document.id != second.document.id
     assert first.document.identity.jurisdiction.code is None
     assert second.document.identity.jurisdiction.code is None
+
+
+def test_pipeline_never_silently_truncates_long_documents() -> None:
+    paragraphs = [
+        f"Provision {index} requires the agency to publish record number {index}."
+        for index in range(1, 301)
+    ]
+    result = run_analysis("\n\n".join(paragraphs).encode(), title="Long.txt")
+
+    assert len(result.document.provisions) == 300
+    assert result.propositions.coverage.provisions_total == 300
+    assert result.document.provisions[-1].text.startswith("Provision 300")

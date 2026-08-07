@@ -45,8 +45,6 @@ def build_document_model(
     document_id = f"doc:{slug}"
     provisions: list[Provision] = []
     for index, (start, text) in enumerate(_paragraphs(extracted.text), start=1):
-        if index > 250:
-            break
         page = extracted.page_at(start)
         provisions.append(
             Provision(

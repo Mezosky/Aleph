@@ -271,6 +271,27 @@ references. A protocol mention stays searchable in its source but is not inflate
 The interface publishes the corpus size, indexed-actor count and retrieval gaps, so expanding the
 offline sweep expands the declared universe rather than silently changing who appears.
 
+The corpus-wide census reads the complete article body and complete official records in overlapping
+12,000-character chunks; it does not reuse the former 10,000-character preview limit. Comparative
+research is treated differently: only its opening 16,000 characters are scanned for the publishing
+institution, because bibliography names are evidence authors, not actors in the Chilean bill. Each
+model candidate is discarded unless code can find the actor's exact surface name, reform context and
+action terms in the frozen chunk; code then extracts the displayed quotation directly from that text.
+Dense official voting lists are divided into 3,500-character subchunks and reconciled back to the
+same immutable source id. The published census currently records 100 actors and 218 accepted
+mentions; 265 model candidates were rejected by the structural tests. Quantified municipal
+signatory groups remain visible as institutional collectives rather than being misreported as
+individual people, and close name variants are merged only under conservative deterministic rules.
+
+Document coverage is measured just as explicitly. The first implementation silently stopped after
+250 paragraphs, which covered only pages 1–21 of the 46-page financial report. That cap was removed
+and a regression test now feeds more than 250 provisions through the pipeline. The dossier declares
+the last structured page, paragraph and proposition counts, and thirty predeclared policy topics.
+Each topic requires a deterministic excerpt from an allowed page and separately reports whether the
+captured press corpus discusses it. A complete PDF reading and complete news coverage are therefore
+two different, visible measurements. The ledger also declares page 43 as blank in the source PDF,
+making 46 processed pages compatible with 45 pages that contain substantive text.
+
 ---
 
 ## 11. Known limitations

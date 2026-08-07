@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/megareforma_actor_census.json",
+  "title": "Corpus-wide actor census",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "execution", "runtime_calls", "coverage", "actors", "model"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "execution": {"const": "local_gpu_offline"},
+    "runtime_calls": {"const": 0},
+    "coverage": {
+      "type": "object",
+      "required": ["captured_sources_total", "captured_sources_audited", "text_chunks_audited", "actors_indexed", "people", "institutions", "detailed_profiles", "indexed_only", "accepted_mentions", "rejected_ungrounded_candidates", "universe", "limitation"],
+      "properties": {
+        "captured_sources_total": {"type": "integer", "minimum": 1},
+        "captured_sources_audited": {"type": "integer", "minimum": 1},
+        "text_chunks_audited": {"type": "integer", "minimum": 1},
+        "actors_indexed": {"type": "integer", "minimum": 20},
+        "people": {"type": "integer", "minimum": 1},
+        "institutions": {"type": "integer", "minimum": 1},
+        "detailed_profiles": {"type": "integer", "minimum": 1},
+        "indexed_only": {"type": "integer", "minimum": 0},
+        "accepted_mentions": {"type": "integer", "minimum": 1},
+        "rejected_ungrounded_candidates": {"type": "integer", "minimum": 0},
+        "universe": {"type": "string", "minLength": 80},
+        "limitation": {"type": "string", "minLength": 80}
+      },
+      "additionalProperties": false
+    },
+    "actors": {
+      "type": "array",
+      "minItems": 20,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "entity_kind", "actor_type", "role", "institution", "affiliation", "participation_summary", "profile_depth", "source_ids", "mentions"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "name": {"type": "string"},
+          "entity_kind": {"enum": ["person", "institution"]},
+          "actor_type": {"enum": ["government", "legislator", "mayor", "political_party", "municipal_association", "technical_body", "judiciary", "business", "union", "civil_society", "academic", "international_organization", "other"]},
+          "role": {"type": "string"},
+          "institution": {"type": "string"},
+          "affiliation": {"type": "string"},
+          "participation_summary": {"type": "string", "minLength": 20},
+          "profile_depth": {"enum": ["detailed", "indexed"]},
+          "public_record": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["date", "action", "outcome", "assessment", "status", "source_ids"],
+              "properties": {
+                "date": {"type": "string", "format": "date"},
+                "action": {"type": "string", "minLength": 20},
+                "outcome": {"type": "string", "minLength": 20},
+                "assessment": {"type": "string", "minLength": 20},
+                "status": {"enum": ["observed", "pending", "not_testable"]},
+                "source_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+              },
+              "additionalProperties": false
+            }
+          },
+          "record_caveat": {"type": "string"},
+          "image": {"type": "string"},
+          "image_alt": {"type": "string"},
+          "image_credit": {"type": "string"},
+          "image_license": {"type": "string"},
+          "image_source_url": {"type": "string", "format": "uri"},
+          "source_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+          "mentions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["source_id", "action_or_position", "evidence_quote"],
+              "properties": {
+                "source_id": {"type": "string"},
+                "action_or_position": {"type": "string", "minLength": 20},
+                "evidence_quote": {"type": "string", "minLength": 8}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "model": {
+      "type": "object",
+      "required": ["name", "revision", "batches", "usage"],
+      "properties": {
+        "name": {"type": "string"},
+        "revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "batches": {"type": "integer", "minimum": 1},
+        "usage": {"type": "object"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

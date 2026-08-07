@@ -87,6 +87,12 @@ export interface MunicipalActor {
   public_record: ActorPublicRecord[]
   source_ids: string[]
   record_caveat: string
+  image?: string
+  image_alt?: string
+  image_credit?: string
+  image_license?: string
+  image_source_url?: string
+  image_sha256?: string
 }
 
 export interface MunicipalActorIndex {
@@ -102,6 +108,125 @@ export interface MunicipalActorIndex {
     limitation: string
   }
   actors: MunicipalActor[]
+}
+
+export interface DeepTopic {
+  id: string
+  title: string
+  group:
+    | 'gasto_y_reconstruccion'
+    | 'educacion'
+    | 'empleo_publico'
+    | 'regulacion'
+    | 'tributos_permanentes'
+    | 'tributos_transitorios'
+    | 'efecto_fiscal'
+  pages: number[]
+  what_changes: string
+  mechanism: string
+  government_goal: string
+  affected_groups: string[]
+  fiscal_effect: string
+  assumptions: string[]
+  risks_and_open_questions: string[]
+  source_quote: string
+  source_page: number
+  quote_verified: true
+  news_source_ids: string[]
+  coverage_status: 'captured_news' | 'no_captured_news'
+}
+
+export interface MegareformaDeepAnalysis {
+  schema_version: string
+  generated_at: string
+  execution: 'local_gpu_offline'
+  runtime_calls: 0
+  document: {
+    id: '18216-05'
+    sha256: string
+    pages: 46
+    paragraphs: number
+    propositions: number
+    last_structured_page: 46
+  }
+  coverage: {
+    topics_declared: 30
+    topics_grounded: 30
+    topics_with_captured_news: number
+    topics_without_captured_news: number
+    pages_structured: 46
+    page_coverage_percent: 100
+    blank_pages: number[]
+    reviewed_model_fields: number
+    review_method: string
+    methodology: string
+    limitation: string
+  }
+  topics: DeepTopic[]
+  model: { name: string; revision: string; batches: number; usage: Record<string, number> }
+}
+
+export interface CensusMention {
+  source_id: string
+  action_or_position: string
+  evidence_quote: string
+}
+
+export interface CensusActor {
+  id: string
+  name: string
+  entity_kind: 'person' | 'institution'
+  actor_type:
+    | 'government'
+    | 'legislator'
+    | 'mayor'
+    | 'political_party'
+    | 'municipal_association'
+    | 'technical_body'
+    | 'judiciary'
+    | 'business'
+    | 'union'
+    | 'civil_society'
+    | 'academic'
+    | 'international_organization'
+    | 'other'
+  role: string
+  institution: string
+  affiliation: string
+  participation_summary: string
+  profile_depth: 'detailed' | 'indexed'
+  source_ids: string[]
+  mentions: CensusMention[]
+  public_record?: ActorPublicRecord[]
+  record_caveat?: string
+  image?: string
+  image_alt?: string
+  image_credit?: string
+  image_license?: string
+  image_source_url?: string
+}
+
+export interface ActorCensus {
+  schema_version: string
+  generated_at: string
+  execution: 'local_gpu_offline'
+  runtime_calls: 0
+  coverage: {
+    captured_sources_total: number
+    captured_sources_audited: number
+    text_chunks_audited: number
+    actors_indexed: number
+    people: number
+    institutions: number
+    detailed_profiles: number
+    indexed_only: number
+    accepted_mentions: number
+    rejected_ungrounded_candidates: number
+    universe: string
+    limitation: string
+  }
+  actors: CensusActor[]
+  model: { name: string; revision: string; batches: number; usage: Record<string, number> }
 }
 
 export interface DebatePosition {
@@ -163,7 +288,7 @@ export interface CapturedSource {
   id: string
   publisher: string
   kind: 'official_record' | 'news' | 'research'
-  format?: 'article' | 'video' | 'audio' | 'transcript' | 'report' | 'paper'
+  format?: 'article' | 'opinion' | 'video' | 'audio' | 'transcript' | 'report' | 'paper'
   perspective: string
   published_at: string
   url: string

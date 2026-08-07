@@ -60,6 +60,7 @@ data/cache/*
 data/*.db
 data/*.db-shm
 data/*.db-wal
+data/actor-census-checkpoint.json
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/exports/.gitkeep

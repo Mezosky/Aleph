@@ -1,6 +1,6 @@
 schema_version: "1.0.0"
 document_id: "18216-05"
-retrieval_cutoff: "2026-08-07T13:00:00Z"
+retrieval_cutoff: "2026-08-07T16:46:00Z"
 notes: >-
   Deliberately broad, viewpoint-neutral seed set for the Megareforma dossier.
   Inclusion means relevance to the bill or its legislative path, not endorsement.
@@ -504,3 +504,156 @@ sources:
     perspective: municipal_negotiation
     published_at: "2026-04-30T00:00:00Z"
     url: https://www.pauta.cl/actualidad/2026/04/30/alcaldes-se-reunen-por-exencion-de-contribuciones-y-alertan-impacto-en-financiamiento-municipal.html
+  - id: chamber-mixed-commission-report
+    publisher: Cámara de Diputadas y Diputados
+    title: Informe de Comisión Mixta del Boletín 18.216-05
+    summary: Texto del acuerdo y antecedentes de la Comisión Mixta, posterior al informe financiero inicial.
+    kind: official_record
+    format: report
+    perspective: legislative_record
+    published_at: "2026-07-22T00:00:00Z"
+    url: https://www.camara.cl/verDoc.aspx?prmID=28108&prmTIPO=INFORMEPLEY
+  - id: senate-second-finance-report
+    publisher: Cámara de Diputadas y Diputados
+    title: Segundo informe de la Comisión de Hacienda del Senado
+    summary: Discusión y modificaciones de Hacienda durante el segundo trámite constitucional.
+    kind: official_record
+    format: report
+    perspective: legislative_record
+    published_at: "2026-07-14T00:00:00Z"
+    url: https://www.camara.cl/verDoc.aspx?prmID=28086&prmTIPO=INFORMEPLEY
+  - id: senate-second-environment-report
+    publisher: Cámara de Diputadas y Diputados
+    title: Segundo informe de Medio Ambiente del Senado
+    summary: Discusión y modificaciones ambientales durante el segundo trámite constitucional.
+    kind: official_record
+    format: report
+    perspective: legislative_record
+    published_at: "2026-07-13T00:00:00Z"
+    url: https://www.camara.cl/verDoc.aspx?prmID=28081&prmTIPO=INFORMEPLEY
+  - id: senate-first-finance-report
+    publisher: Cámara de Diputadas y Diputados
+    title: Primer informe de la Comisión de Hacienda del Senado
+    summary: Primer análisis de Hacienda del Senado sobre el proyecto y sus indicaciones.
+    kind: official_record
+    format: report
+    perspective: legislative_record
+    published_at: "2026-06-19T00:00:00Z"
+    url: https://www.camara.cl/verDoc.aspx?prmID=28055&prmTIPO=INFORMEPLEY
+  - id: senate-marcel-finance-presentation
+    publisher: Senado de la República
+    title: Presentación de Mario Marcel ante la Comisión de Hacienda
+    summary: Análisis de los supuestos de crecimiento, cobertura fiscal y riesgos del proyecto presentado ante el Senado.
+    kind: official_record
+    format: report
+    perspective: fiscal_analysis
+    published_at: "2026-06-08T00:00:00Z"
+    url: https://microservicio-documentos.senado.cl/v1/archivos/38216159-3646-4ea0-86f6-26e49e1ecfef?includeContent=true
+  - id: senate-dipres-updated-impact
+    publisher: Senado de la República
+    title: Informe financiero actualizado presentado por Dipres al Senado
+    summary: Cambios respecto del IF 84 y trayectoria fiscal por medida, incluyendo compensación municipal y efecto crecimiento.
+    kind: official_record
+    format: report
+    perspective: government
+    published_at: "2026-06-04T00:00:00Z"
+    url: https://microservicio-documentos.senado.cl/v1/archivos/b3244aa0-035c-4d6e-908b-3a7a845ccdc2?includeContent=true
+  - id: biobio-presidential-decree-explainer
+    publisher: BioBioChile
+    title: ¿Se podría aprobar la megarreforma por decreto?
+    summary: Explicación de los límites constitucionales de la alternativa planteada por el Ejecutivo.
+    kind: news
+    format: article
+    perspective: legal_analysis
+    published_at: "2026-05-08T00:00:00Z"
+    url: https://www.biobiochile.cl/noticias/bbcl-explica/bbcl-explica-notas/2026/05/08/se-podria-aprobar-la-megarreforma-por-decreto-asi-funciona-esta-facultad-exclusiva-del-presidente.shtml
+  - id: adn-castro-municipal-impact
+    publisher: ADN Radio
+    title: Claudio Castro advierte sobre impacto de la megarreforma en los municipios
+    summary: El alcalde de Renca detalla la dependencia comunal del Fondo Común Municipal.
+    kind: news
+    format: audio
+    perspective: municipal_critical
+    published_at: "2026-04-22T00:00:00Z"
+    url: https://www.adnradio.cl/2026/04/22/claudio-castro-advierte-sobre-impacto-de-megareforma-en-los-municipios-y-califica-la-seguridad-como-el-flanco-mas-debil-del-gobierno/
+  - id: pauta-chamber-general-approval
+    publisher: Radio Pauta
+    title: Cámara aprueba en general la megarreforma con 90 votos
+    summary: Resultado de la votación general y posiciones parlamentarias en el primer trámite.
+    kind: news
+    format: article
+    perspective: legislative_update
+    published_at: "2026-05-20T00:00:00Z"
+    url: https://www.pauta.cl/actualidad/2026/05/20/camara-aprueba-en-general-la-megarreforma-de-kast-con-90-votos-a-favor-y-59-en-contra.html
+  - id: pauta-senate-general-approval
+    publisher: Radio Pauta
+    title: Senado aprueba en general la megarreforma y abre discusión artículo por artículo
+    summary: Identifica las materias que concentrarían el debate particular, incluido cruce de datos y permisos ambientales.
+    kind: news
+    format: article
+    perspective: legislative_update
+    published_at: "2026-06-25T00:00:00Z"
+    url: https://www.pauta.cl/actualidad/2026/06/25/por-solo-26-votos-senado-aprueba-en-general-la-megarreforma-y-abre-la-discusion-articulo-por-articulo.html
+  - id: elmostrador-senate-general-approval
+    publisher: El Mostrador
+    title: Por un voto, Senado aprueba en general la megarreforma
+    summary: Cobertura del estrecho resultado y las posiciones de Gobierno y oposición.
+    kind: news
+    format: article
+    perspective: legislative_update
+    published_at: "2026-06-24T00:00:00Z"
+    url: https://www.elmostrador.cl/noticias/pais/2026/06/24/por-un-voto-senado-aprueba-en-general-la-idea-de-legislar-la-megarreforma-impulsada-por-el-gobierno/
+  - id: timeline-final-chamber-stage
+    publisher: Timeline.cl
+    title: Cámara aprueba la mayoría de los cambios y una enmienda va a Comisión Mixta
+    summary: Estado del proyecto al final de su paso por la Cámara y materias remitidas a Comisión Mixta.
+    kind: news
+    format: article
+    perspective: legislative_update
+    published_at: "2026-07-21T00:00:00Z"
+    url: https://www.timeline.cl/proyecto-de-megareforma-del-gobierno-de-kast-queda-a-un-paso-de-ser-ley-camara-aprueba-mayoria-de-los-cambios-y-una-enmienda-ira-a-comision-mixta/
+  - id: morales-besa-tax-legal-analysis
+    publisher: Morales & Besa
+    title: Proyecto de Ley de Reconstrucción Nacional y Reforma Tributaria
+    summary: Alerta legal que enumera efectos sobre ganancias de capital, DFL2, herencias y otras medidas tributarias.
+    kind: research
+    format: article
+    perspective: legal_analysis
+    published_at: "2026-04-23T00:00:00Z"
+    url: https://www.moralesybesa.cl/alertas-legales/proyecto-de-ley-de-reconstruccion-nacional-y-reforma-tributaria/
+  - id: auditors-tax-measures
+    publisher: Colegio de Contadores Auditores
+    title: Modificaciones tributarias del Plan de Reconstrucción Nacional
+    summary: Revisión profesional de las medidas tributarias contenidas en el proyecto.
+    kind: research
+    format: report
+    perspective: technical_analysis
+    published_at: "2026-05-01T00:00:00Z"
+    url: https://www.colegioauditores.cl/wp-content/uploads/2026/05/MODIFICACIONES-TRIBUTARIAS-PROYECTO-PLAN-DE-RECONSTRUCCION-NACIONAL.pdf
+  - id: t13-finance-committee-votes
+    publisher: T13
+    title: "Megarreforma: qué se aprobó y qué no en la Comisión de Hacienda"
+    summary: Revisión artículo por artículo, incluida propiedad intelectual, DFL2 y autorizaciones sectoriales.
+    kind: news
+    format: article
+    perspective: legislative_update
+    published_at: "2026-05-14T00:00:00Z"
+    url: https://www.t13.cl/noticia/politica/que-se-aprobo-no-del-proyecto-reconstruccion-nacional-comision-hacienda-14-5-2026
+  - id: df-copyright-editorial
+    publisher: Diario Financiero
+    title: Información y derechos de autor
+    summary: Posición editorial crítica sobre la excepción de minería de textos y datos del proyecto.
+    kind: news
+    format: opinion
+    perspective: critical_analysis
+    published_at: "2026-04-27T04:00:00Z"
+    url: https://www.df.cl/opinion/editorial/informacion-y-derechos-de-autor
+  - id: latercera-cchc-dfl2-sence
+    publisher: La Tercera
+    title: CChC pide acelerar la megarreforma y plantea reparos sobre SENCE
+    summary: El gremio valora IVA vivienda y DFL2, pero cuestiona eliminar la franquicia de capacitación.
+    kind: news
+    format: article
+    perspective: business
+    published_at: "2026-05-13T00:00:00Z"
+    url: https://www.latercera.com/pulso/noticia/presidente-de-la-cchc-llama-a-apresurar-tramitacion-de-la-megarreforma-pero-plantea-reparos-al-proyecto-sobre-el-sence/
