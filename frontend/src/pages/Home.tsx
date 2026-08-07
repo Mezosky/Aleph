@@ -3,8 +3,20 @@ import { Link } from 'react-router-dom'
 import ActorPopover from '@/components/dossier/ActorPopover'
 import DossierMeter from '@/components/dossier/DossierMeter'
 import SourceCard from '@/components/dossier/SourceCard'
-import { describeDataError, loadMegareformaDossier, loadMegareformaSources, loadMegareformaTheory } from '@/lib/data'
-import type { MegareformaDossier, MegareformaSources, MegareformaTheory } from '@/types/megareforma'
+import {
+  describeDataError,
+  loadMegareformaDossier,
+  loadMegareformaMunicipalActors,
+  loadMegareformaSources,
+  loadMegareformaTheory,
+} from '@/lib/data'
+import type {
+  MegareformaDossier,
+  MegareformaSources,
+  MegareformaTheory,
+  MunicipalActorIndex,
+  MunicipalPositionGroup,
+} from '@/types/megareforma'
 
 const VERDICT_STYLE = {
   supported: 'border-status-good',
@@ -13,6 +25,13 @@ const VERDICT_STYLE = {
   conditional: 'border-status-warning',
   unresolved: 'border-status-neutral',
 } as const
+
+const MUNICIPAL_GROUP: Record<MunicipalPositionGroup, { label: string; className: string }> = {
+  government_formula: { label: 'Respalda fórmula acordada', className: 'border-status-good' },
+  targeted_exemption: { label: 'Pide focalización y redistribución', className: 'border-status-warning' },
+  revenue_protection: { label: 'Prioriza resguardo de ingresos', className: 'border-status-neutral' },
+  dialogue_participant: { label: 'Participa en negociación', className: 'border-line-strong' },
+}
 
 function Loading() {
   return (
@@ -26,15 +45,22 @@ export default function Home() {
   const [dossier, setDossier] = useState<MegareformaDossier | null>(null)
   const [sources, setSources] = useState<MegareformaSources | null>(null)
   const [theory, setTheory] = useState<MegareformaTheory | null>(null)
+  const [municipal, setMunicipal] = useState<MunicipalActorIndex | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const controller = new AbortController()
-    Promise.all([loadMegareformaDossier(controller.signal), loadMegareformaSources(controller.signal), loadMegareformaTheory(controller.signal)]).then(
-      ([nextDossier, nextSources, nextTheory]) => {
+    Promise.all([
+      loadMegareformaDossier(controller.signal),
+      loadMegareformaSources(controller.signal),
+      loadMegareformaTheory(controller.signal),
+      loadMegareformaMunicipalActors(controller.signal),
+    ]).then(
+      ([nextDossier, nextSources, nextTheory, nextMunicipal]) => {
         setDossier(nextDossier)
         setSources(nextSources)
         setTheory(nextTheory)
+        setMunicipal(nextMunicipal)
       },
       (reason: unknown) => {
         if (!controller.signal.aborted) setError(describeDataError(reason))
@@ -53,7 +79,7 @@ export default function Home() {
         {error}
       </p>
     )
-  if (!dossier || !sources || !theory) return <Loading />
+  if (!dossier || !sources || !theory || !municipal) return <Loading />
 
   return (
     <>
@@ -94,12 +120,13 @@ export default function Home() {
         </aside>
       </section>
 
-      <dl className="grid grid-cols-2 gap-px bg-line-hairline lg:grid-cols-5">
+      <dl className="grid grid-cols-2 gap-px bg-line-hairline lg:grid-cols-6">
         {[
           ['Páginas del informe', dossier.document.page_count],
           ['Proposiciones extraídas', dossier.counts.propositions],
           ['Fuentes revisadas', dossier.counts.sources_curated],
           ['Capturas verificadas', sources.capture_count],
+          ['Actores documentados', dossier.actors.length + municipal.actors.length],
           ['Brechas declaradas', sources.gap_count],
         ].map(([label, value]) => (
           <div key={label} className="bg-surface-card p-4 sm:p-5">
@@ -326,6 +353,80 @@ export default function Home() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section id="municipios" className="mt-24 border-t border-line-hairline pt-12">
+        <div className="grid gap-8 lg:grid-cols-[1fr_20rem] lg:items-start">
+          <div className="max-w-3xl">
+            <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
+              Impacto territorial
+            </p>
+            <h2 className="mt-3 text-title font-semibold">Las voces municipales, sin recortes</h2>
+            <p className="mt-4 text-body text-ink-secondary">
+              {municipal.coverage.universe} {municipal.coverage.method}
+            </p>
+          </div>
+          <aside className="border-l-2 border-line-strong pl-5 text-caption text-ink-secondary">
+            <p className="font-semibold text-ink-primary">
+              {municipal.coverage.actors_indexed} alcaldes/as · {municipal.coverage.municipal_sources_curated} fuentes
+            </p>
+            <p className="mt-3">{municipal.coverage.blind_path_rule}</p>
+          </aside>
+        </div>
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {municipal.actors.map((actor) => {
+            const group = MUNICIPAL_GROUP[actor.position_group]
+            const record = actor.public_record[0]!
+            return (
+              <article key={actor.id} className={`border-l-4 bg-surface-card p-5 ${group.className}`}>
+                <div className="flex items-start gap-4">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface-sunken text-caption font-semibold text-ink-primary"
+                  >
+                    {actor.name.split(' ').map((part) => part[0]).slice(0, 2).join('')}
+                  </span>
+                  <div>
+                    <h3 className="text-body font-semibold text-ink-primary">{actor.name}</h3>
+                    <p className="mt-1 text-caption text-ink-secondary">
+                      {actor.role} · {actor.municipality} · {actor.affiliation}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 text-micro font-semibold uppercase tracking-wide text-ink-muted">{group.label}</p>
+                <p className="mt-2 text-caption text-ink-primary">{actor.position_summary}</p>
+                <details className="mt-4 border-t border-line-hairline pt-3">
+                  <summary className="cursor-pointer text-caption font-semibold">Acción, resultado y fuentes</summary>
+                  <p className="mt-3 text-caption text-ink-secondary">{record.action}</p>
+                  <p className="mt-3 text-caption text-ink-secondary">
+                    <span className="font-semibold text-ink-primary">Resultado:</span> {record.outcome}
+                  </p>
+                  <p className="mt-3 text-caption text-ink-secondary">{record.assessment}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {actor.source_ids.map((id) => {
+                      const source = sourceById.get(id)
+                      const gap = gapById.get(id)
+                      const href = source?.original_url ?? gap?.url
+                      return href ? (
+                        <a
+                          key={id}
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="border border-line-hairline px-2 py-1 text-micro underline-offset-2 hover:underline"
+                        >
+                          {source?.publisher ?? id} {gap ? '(brecha)' : ''} ↗
+                        </a>
+                      ) : null
+                    })}
+                  </div>
+                  <p className="mt-4 text-micro text-ink-muted">{actor.record_caveat}</p>
+                </details>
+              </article>
+            )
+          })}
+        </div>
+        <p className="mt-5 text-micro text-ink-muted">{municipal.coverage.limitation}</p>
       </section>
 
       <section id="fuentes" className="mt-24 border-t border-line-hairline pt-12">

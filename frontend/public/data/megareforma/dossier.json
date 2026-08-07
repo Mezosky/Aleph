@@ -130,18 +130,18 @@
       "id": "coverage-position",
       "kind": "editorial_tone",
       "title": "Tendencia de la cobertura reunida",
-      "question": "¿Las 25 piezas de prensa capturadas priorizan críticas/oposición o argumentos favorables del Gobierno?",
+      "question": "¿Las 44 piezas de prensa capturadas priorizan críticas/oposición o argumentos favorables del Gobierno?",
       "left_label": "Crítica / oposición",
       "center_label": "Descriptiva",
       "right_label": "Favorable / Gobierno",
-      "value": 48,
+      "value": 40,
       "confidence": "medium",
       "explanation": "La muestra curada contiene más piezas centradas en objeciones fiscales, distributivas o ambientales que piezas centradas en la defensa gubernamental. Eso describe esta colección y su encuadre; no prueba que un medio o una posición sea falsa.",
-      "methodology": "Se clasificó cada pieza por el argumento que su título y foco principal presentan: 8 críticas/oposición o alertas fiscales, 10 descriptivas o de negociación y 7 favorables/gubernamentales. Posición = promedio ponderado 0/50/100. Las fuentes oficiales no entran en este medidor.",
+      "methodology": "Se clasificó cada pieza por el argumento que su título y foco principal presentan: 16 críticas/oposición o alertas fiscales, 21 descriptivas o de negociación y 7 favorables/gubernamentales. Posición = promedio ponderado 0/50/100. Las fuentes oficiales no entran en este medidor.",
       "evidence": [
         {
           "label": "Críticas, oposición o alerta fiscal",
-          "value": 8,
+          "value": 16,
           "source_ids": [
             "biobio-opposition-23-doubts",
             "latercera-yeomans-dialogue",
@@ -150,12 +150,20 @@
             "emol-fa-reversal",
             "emol-opposition-withdrawal",
             "cnn-tc-challenges",
-            "cnn-acevedo-analysis"
+            "cnn-acevedo-analysis",
+            "biobio-mayors-letter",
+            "theclinic-mayor-split-june",
+            "theclinic-mayors-focalization",
+            "biobio-opposition-mayors",
+            "biobio-achm-split",
+            "emol-quiroz-mayor-response",
+            "cnn-opposition-mayors-letter",
+            "24horas-opposition-mayors-letter"
           ]
         },
         {
           "label": "Descriptivas, trámite o negociación",
-          "value": 10,
+          "value": 21,
           "source_ids": [
             "biobio-parisi-negotiation",
             "emol-chamber-vote",
@@ -166,7 +174,18 @@
             "latercera-video-details",
             "24horas-parisi-negotiation",
             "cooperativa-parisi-interview",
-            "24horas-senate-committee-video"
+            "24horas-senate-committee-video",
+            "eldinamo-municipal-front",
+            "publimetro-rural-mayors",
+            "emol-twelve-municipalities",
+            "eldinamo-twelve-municipalities",
+            "emol-mayors-hacienda-july",
+            "adn-senate-mayors-july",
+            "ladiscusion-rural-mayors",
+            "emol-government-municipal-agreement",
+            "cooperativa-mixed-commission",
+            "cnn-mayor-counterletters",
+            "pauta-mayors-meeting"
           ]
         },
         {
@@ -432,6 +451,53 @@
         "dipres-financial-report",
         "emol-environment-amendments",
         "cnn-tc-challenges"
+      ]
+    },
+    {
+      "id": "municipal-compensation",
+      "title": "¿Compensar el total evita que la exención perjudique a los municipios?",
+      "subtitle": "Monto agregado y distribución territorial no son lo mismo",
+      "positions": [
+        {
+          "side": "government",
+          "actor_ids": [
+            "jorge-quiroz"
+          ],
+          "claim": "Una transferencia fiscal por el total de la menor recaudación mantiene indemnes los ingresos municipales.",
+          "source_ids": [
+            "emol-government-municipal-agreement",
+            "cooperativa-mixed-commission"
+          ]
+        },
+        {
+          "side": "opposition",
+          "actor_ids": [],
+          "claim": "Tomás Vodanovic, Karina Delfino, Javiera Reyes y otros alcaldes sostienen que reponer el total según la distribución previa puede conservar o profundizar desigualdades entre comunas.",
+          "source_ids": [
+            "biobio-opposition-mayors",
+            "emol-quiroz-mayor-response",
+            "cnn-opposition-mayors-letter"
+          ]
+        },
+        {
+          "side": "technical",
+          "actor_ids": [],
+          "claim": "La suficiencia agregada de la compensación y su progresividad territorial son preguntas diferentes y pueden arrojar respuestas distintas.",
+          "source_ids": [
+            "achm-total-compensation",
+            "emol-quiroz-mayor-response"
+          ]
+        }
+      ],
+      "verdict": "mixed",
+      "verdict_label": "Compensación nominal; distribución abierta",
+      "assessment": "La fórmula aprobada responde al riesgo de pérdida agregada al prometer una compensación total. Eso no demuestra que cada comuna reciba los recursos a tiempo ni resuelve la objeción distributiva: reemplazar ingresos propios por transferencias y decidir su reparto puede cambiar autonomía e igualdad territorial. Ambas afirmaciones pueden ser simultáneamente ciertas.",
+      "what_would_resolve_it": "Transferencias efectivamente pagadas, calendario, diferencia contra la recaudación contrafactual y cambio en recursos disponibles por habitante para las 345 municipalidades.",
+      "source_ids": [
+        "achm-total-compensation",
+        "biobio-opposition-mayors",
+        "cooperativa-mixed-commission",
+        "emol-quiroz-mayor-response"
       ]
     }
   ],
@@ -884,9 +950,9 @@
   ],
   "counts": {
     "propositions": 452,
-    "sources_curated": 50,
-    "sources_captured": 36,
-    "capture_gaps": 14,
+    "sources_curated": 72,
+    "sources_captured": 56,
+    "capture_gaps": 16,
     "model_runs_completed": 1
   }
 }

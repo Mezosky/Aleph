@@ -259,7 +259,10 @@ GPU profile (or another explicitly configured OpenAI-compatible endpoint).
 distinguishes the initial 22 April financial report from the bill later amended by Congress. Old
 synthetic fixtures remain in the repository only to exercise the generic schema and regression
 tests; the Vite publication step removes them from `dist`. Actor portraits carry Wikimedia licensing and factual profiles
-remain structurally outside the blind verdict path.
+remain structurally outside the blind verdict path. The municipal index covers every mayor with a
+substantive intervention in the curated corpus at the stated cutoff (17 actors across 22 municipal
+sources); it does not claim to be an exhaustive list of everything published on the internet.
+Capture gaps remain visible and a later offline sweep may expand that universe.
 
 The first benchmark document is Chilean (Boletín 18.216-05), but that fact lives only in data
 files. No section, layout, actor, or query is hard-coded anywhere in `aleph/` — an arbitrary PDF

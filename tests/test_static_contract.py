@@ -25,3 +25,18 @@ def test_actor_profiles_are_valid_and_attributed_only() -> None:
     Draft202012Validator(schema, resolver=resolver).validate(bundle["actor_profiles"])
     assert bundle["actor_profiles"]["usable_in_blind_evaluation"] is False
     assert all(not actor["legal_record"] for actor in bundle["actor_profiles"]["actors"])
+
+
+def test_municipal_actor_index_is_complete_for_declared_corpus() -> None:
+    data_root = ROOT / "frontend" / "public" / "data" / "megareforma"
+    index = json.loads((data_root / "municipal-actors.json").read_text(encoding="utf-8"))
+    sources = json.loads((data_root / "sources.json").read_text(encoding="utf-8"))
+    known_sources = {item["id"] for item in [*sources["items"], *sources["gaps"]]}
+
+    assert index["coverage"]["actors_indexed"] == len(index["actors"])
+    assert len({actor["id"] for actor in index["actors"]}) == len(index["actors"])
+    assert all(actor["public_record"] for actor in index["actors"])
+    assert all(
+        source_id in known_sources for actor in index["actors"] for source_id in actor["source_ids"]
+    )
+    assert "no pueden ser entrada" in index["coverage"]["blind_path_rule"]

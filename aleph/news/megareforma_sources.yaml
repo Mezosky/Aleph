@@ -347,3 +347,160 @@ sources:
     title: Study on limitations and exceptions for text and data mining
     summary: Comparación internacional de excepciones de minería de textos y datos; acceso lícito, finalidad, opt-out y remuneración son decisiones de diseño separadas.
     url: https://www.wipo.int/edocs/mdocs/copyright/en/sccr_44/sccr_44_4.pdf
+
+  # Municipal sweep. The first edition under-collected local-government voices
+  # even though municipal revenue became the final legislative bottleneck.
+  - id: achm-directors-statement
+    publisher: Asociación Chilena de Municipalidades
+    kind: official_record
+    format: article
+    perspective: municipal_cross_party
+    published_at: "2026-05-25T20:13:00Z"
+    url: https://www.achm.cl/revisa-la-declaracion-publica-del-directorio-de-la-achm/
+  - id: achm-dialogue-july
+    publisher: Asociación Chilena de Municipalidades
+    kind: official_record
+    format: article
+    perspective: municipal_cross_party
+    published_at: "2026-07-03T10:58:00Z"
+    url: https://www.achm.cl/municipalismo-valora-espacio-de-dialogo-con-el-ejecutivo-por-propuesta-sobre-contribuciones/
+  - id: achm-total-compensation
+    publisher: Asociación Chilena de Municipalidades
+    kind: official_record
+    format: article
+    perspective: municipal_cross_party
+    published_at: "2026-07-14T11:33:00Z"
+    url: https://www.achm.cl/municipios-exigen-compensacion-total-por-impacto-de-exencion-de-contribuciones/
+  - id: biobio-mayors-letter
+    publisher: BioBioChile
+    kind: news
+    format: article
+    perspective: municipal_critical
+    published_at: "2026-05-13T00:00:00Z"
+    url: https://www.biobiochile.cl/noticias/nacional/chile/2026/05/13/el-detalle-de-la-carta-que-entregaron-alcaldes-opositores-a-kast-con-sus-seis-principales-demandas.shtml
+  - id: eldinamo-municipal-front
+    publisher: El Dínamo
+    kind: news
+    format: article
+    perspective: municipal_cross_party
+    published_at: "2026-05-26T00:00:00Z"
+    url: https://www.eldinamo.cl/politica/2026/05/26/alcaldes-oficialistas-cuestionan-al-gobierno-por-contribuciones/
+  - id: publimetro-rural-mayors
+    publisher: Publimetro
+    kind: news
+    format: article
+    perspective: municipal_negotiation
+    published_at: "2026-05-29T07:42:00Z"
+    url: https://www.publimetro.cl/noticias/2026/05/29/alcaldes-avanzan-en-conversaciones-con-quiroz-valoraron-reunion-donde-se-comprometio-a-resguardar-fondo-comun-municipal-con-megarreforma/
+  - id: emol-twelve-municipalities
+    publisher: Emol
+    kind: news
+    format: article
+    perspective: municipal_cross_party
+    published_at: "2026-06-05T11:45:00Z"
+    url: https://www.emol.com/noticias/Nacional/2026/06/05/1201990/alcaldesoficialismo-y-quiroz-contribuciones.html
+  - id: eldinamo-twelve-municipalities
+    publisher: El Dínamo
+    kind: news
+    format: article
+    perspective: municipal_cross_party
+    published_at: "2026-06-09T00:00:00Z"
+    url: https://www.eldinamo.cl/politica/2026/06/09/alcaldes-preven-recortes-su-prospera-norma-de-contribuciones/
+  - id: theclinic-mayor-split-june
+    publisher: The Clinic
+    kind: news
+    format: article
+    perspective: municipal_critical
+    published_at: "2026-06-15T00:00:00Z"
+    url: https://www.theclinic.cl/2026/06/15/deja-de-correr-con-colores-propios-la-nueva-tension-en-la-asociacion-de-alcaldes-tras-defensa-de-alessandri-a-la-megarreforma-del-gobierno/
+  - id: emol-mayors-hacienda-july
+    publisher: Emol
+    kind: news
+    format: article
+    perspective: municipal_negotiation
+    published_at: "2026-07-02T19:37:00Z"
+    url: https://www.emol.com/noticias/Nacional/2026/07/02/1204536/megarreforma-alcaldes-hacienda.html
+  - id: adn-senate-mayors-july
+    publisher: ADN Radio
+    kind: news
+    format: audio
+    perspective: municipal_negotiation
+    published_at: "2026-07-02T18:20:00Z"
+    url: https://www.adnradio.cl/2026/07/02/presidenta-del-senado-blinda-propuesta-de-alcaldes-por-contribuciones-si-logran-acuerdo-con-el-gobierno-nuestros-votos-van-a-estar/
+  - id: ladiscusion-rural-mayors
+    publisher: La Discusión
+    kind: news
+    format: article
+    perspective: municipal_cross_party
+    published_at: "2026-07-03T19:56:00Z"
+    url: https://ladiscusion.cl/alcaldes-endurecen-ofensiva-para-blindar-recursos-municipales/
+  - id: theclinic-mayors-focalization
+    publisher: The Clinic
+    kind: news
+    format: article
+    perspective: municipal_critical
+    published_at: "2026-07-14T00:00:00Z"
+    url: https://www.theclinic.cl/2026/07/14/con-tomas-vodanovic-activo-y-respaldados-por-provoste-la-ultima-jugada-de-los-alcaldes-por-focalizar-la-exencion-de-contribuciones-en-la-megarreforma/
+  - id: emol-government-municipal-agreement
+    publisher: Emol
+    kind: news
+    format: article
+    perspective: municipal_negotiation
+    published_at: "2026-07-15T20:51:00Z"
+    url: https://www.emol.com/noticias/Nacional/2026/07/15/1205799/indicacion-fondo-comun-municipal.html
+  - id: biobio-opposition-mayors
+    publisher: BioBioChile
+    kind: news
+    format: article
+    perspective: municipal_critical
+    published_at: "2026-07-16T00:00:00Z"
+    url: https://www.biobiochile.cl/noticias/nacional/chile/2026/07/16/alcaldes-opositores-rechazan-acuerdo-por-exencion-de-contribuciones-y-acusan-medida-regresiva.shtml
+  - id: biobio-achm-split
+    publisher: BioBioChile
+    kind: news
+    format: audio
+    perspective: municipal_critical
+    published_at: "2026-07-18T00:00:00Z"
+    url: https://www.biobiochile.cl/noticias/nacional/chile/2026/07/18/quiebre-en-achm-por-megarreforma-alcaldes-progresistas-critican-acuerdo-por-contribuciones.shtml
+  - id: cooperativa-mixed-commission
+    publisher: Cooperativa
+    kind: news
+    format: audio
+    perspective: legislative_update
+    published_at: "2026-07-22T17:35:00Z"
+    url: https://cooperativa.cl/noticias/pais/politica/agenda-legislativa/megarreforma-comision-mixta-aprobo-compensacion-a-municipios-por/2026-07-22/171256.html
+  - id: emol-quiroz-mayor-response
+    publisher: Emol
+    kind: news
+    format: article
+    perspective: municipal_critical
+    published_at: "2026-07-23T13:35:00Z"
+    url: https://www.emol.com/noticias/Nacional/2026/07/23/1206491/quiroz-rechazo-alcaldes-oposicion-compensacion.html
+  - id: cnn-opposition-mayors-letter
+    publisher: CNN Chile
+    kind: news
+    format: video
+    perspective: municipal_critical
+    published_at: "2026-07-29T00:00:00Z"
+    url: https://www.cnnchile.com/pais/alcaldes-de-oposicion-entregan-carta-a-kast-califican-de-grotesca-e-injusta-propuesta-compensatoria-de-la-megarreforma/
+  - id: 24horas-opposition-mayors-letter
+    publisher: 24 Horas
+    kind: news
+    format: video
+    perspective: municipal_critical
+    published_at: "2026-07-29T00:00:00Z"
+    url: https://www.24horas.cl/actualidad/nacional/injusta-y-desigual-alcaldes-presidente-kast-exencion-contribuciones
+  - id: cnn-mayor-counterletters
+    publisher: CNN Chile
+    kind: news
+    format: article
+    perspective: municipal_cross_party
+    published_at: "2026-08-04T00:00:00Z"
+    url: https://www.cnnchile.com/pais/162-versus-104-alcaldes-oficialistas-responden-a-la-oposicion-y-llaman-al-senado-a-respaldar-la-formula-de-compensacion-del-gobierno-para-los-municipios-en-la-megarreforma/
+  - id: pauta-mayors-meeting
+    publisher: Radio Pauta
+    kind: news
+    format: article
+    perspective: municipal_negotiation
+    published_at: "2026-04-30T00:00:00Z"
+    url: https://www.pauta.cl/actualidad/2026/04/30/alcaldes-se-reunen-por-exencion-de-contribuciones-y-alertan-impacto-en-financiamiento-municipal.html

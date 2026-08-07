@@ -59,8 +59,18 @@ def main() -> int:
     payload["counts"]["capture_gaps"] = sources["gap_count"]
 
     coverage_groups = {
-        "critical": {"opposition_claims", "critical_analysis", "fiscal_analysis"},
-        "descriptive": {"legislative_update", "negotiation"},
+        "critical": {
+            "opposition_claims",
+            "critical_analysis",
+            "fiscal_analysis",
+            "municipal_critical",
+        },
+        "descriptive": {
+            "legislative_update",
+            "negotiation",
+            "municipal_negotiation",
+            "municipal_cross_party",
+        },
         "favourable": {"government"},
     }
     coverage = {key: [] for key in coverage_groups}

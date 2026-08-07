@@ -1,0 +1,338 @@
+{
+  "schema_version": "1.0.0",
+  "document_id": "18216-05",
+  "retrieval_cutoff": "2026-08-07T13:00:00Z",
+  "coverage": {
+    "universe": "Intervenciones municipales sustantivas identificadas en las fuentes curadas y archivadas para este dossier.",
+    "method": "Se indexa a toda alcaldesa o alcalde que aparece con una posición, gestión o cifra atribuida sobre la reforma. Una mención protocolar sin intervención se conserva en la fuente, pero no se transforma artificialmente en perfil.",
+    "municipal_sources_curated": 22,
+    "actors_indexed": 17,
+    "blind_path_rule": "Estos antecedentes se cargan sólo después del veredicto ciego y no pueden ser entrada de evaluación.",
+    "limitation": "Es exhaustivo respecto del corpus curado hasta el corte, no respecto de internet: toda fuente inaccesible queda declarada como brecha y puede ampliar el universo en una nueva corrida offline."
+  },
+  "actors": [
+    {
+      "id": "gustavo-alessandri",
+      "name": "Gustavo Alessandri",
+      "municipality": "Zapallar",
+      "role": "Alcalde y presidente de la AChM",
+      "affiliation": "RN",
+      "position_group": "government_formula",
+      "position_summary": "Respaldó la fórmula negociada de compensación total, después de exigir que ningún municipio perdiera ingresos.",
+      "public_record": [{
+        "date": "2026-07-16",
+        "action": "Respaldó el acuerdo con Hacienda que ofrecía compensar íntegramente la menor recaudación municipal por contribuciones.",
+        "outcome": "La compensación total fue aprobada en comisión mixta; el efecto presupuestario efectivo aún no puede observarse.",
+        "assessment": "Su exigencia nominal de no reducir ingresos quedó recogida, pero sigue pendiente medir distribución, oportunidad y condiciones de la compensación.",
+        "status": "pending",
+        "source_ids": ["achm-directors-statement", "achm-total-compensation", "biobio-opposition-mayors", "cooperativa-mixed-commission"]
+      }],
+      "source_ids": ["achm-directors-statement", "achm-dialogue-july", "achm-total-compensation", "biobio-opposition-mayors"],
+      "record_caveat": "La posición y el resultado se presentan como hechos públicos; no son una nota de credibilidad ni prueban que una afirmación posterior sea verdadera."
+    },
+    {
+      "id": "tomas-vodanovic",
+      "name": "Tomás Vodanovic",
+      "municipality": "Maipú",
+      "role": "Alcalde",
+      "affiliation": "Frente Amplio",
+      "position_group": "targeted_exemption",
+      "position_summary": "Pidió focalizar la exención y llevar la compensación al Fondo Común Municipal para evitar una distribución regresiva.",
+      "public_record": [{
+        "date": "2026-07-02",
+        "action": "Presentó con otros alcaldes una alternativa de exención focalizada y compensación redistributiva a través del Fondo Común Municipal.",
+        "outcome": "La fórmula final mantuvo una exención amplia y compensación total, sin adoptar íntegramente su alternativa distributiva.",
+        "assessment": "Se puede contrastar el diseño aprobado con su propuesta; el efecto distributivo real permanece pendiente de ejecución presupuestaria.",
+        "status": "observed",
+        "source_ids": ["emol-mayors-hacienda-july", "theclinic-mayors-focalization", "cnn-opposition-mayors-letter"]
+      }],
+      "source_ids": ["emol-mayors-hacienda-july", "theclinic-mayors-focalization", "biobio-opposition-mayors", "cnn-opposition-mayors-letter"],
+      "record_caveat": "La comparación registra qué diseño defendió y cuál avanzó; no atribuye intención ni convierte su trayectoria en evidencia de una afirmación."
+    },
+    {
+      "id": "karina-delfino",
+      "name": "Karina Delfino",
+      "municipality": "Quinta Normal",
+      "role": "Alcaldesa y vicepresidenta de la AChM",
+      "affiliation": "PS",
+      "position_group": "targeted_exemption",
+      "position_summary": "Defendió una exención focalizada y una compensación que preservara el carácter solidario del Fondo Común Municipal.",
+      "public_record": [{
+        "date": "2026-07-23",
+        "action": "Cuestionó con ejemplos comunales que la compensación propuesta reprodujera la distribución previa de ingresos por contribuciones.",
+        "outcome": "El Congreso aprobó una compensación total; la incidencia distributiva entre comunas queda pendiente de datos de ejecución.",
+        "assessment": "La compensación nominal responde a la pérdida agregada, pero no resuelve por sí sola su objeción distinta sobre distribución territorial.",
+        "status": "pending",
+        "source_ids": ["emol-quiroz-mayor-response", "cooperativa-mixed-commission"]
+      }],
+      "source_ids": ["achm-directors-statement", "eldinamo-municipal-front", "emol-mayors-hacienda-july", "emol-quiroz-mayor-response", "cnn-opposition-mayors-letter"],
+      "record_caveat": "La ficha distingue compensación agregada de distribución entre comunas y no usa la afiliación política como señal de veracidad."
+    },
+    {
+      "id": "javiera-reyes",
+      "name": "Javiera Reyes",
+      "municipality": "Lo Espejo",
+      "role": "Alcaldesa",
+      "affiliation": "PC",
+      "position_group": "targeted_exemption",
+      "position_summary": "Rechazó el acuerdo municipal por considerarlo no representativo y sostuvo que la fórmula podía profundizar desigualdades comunales.",
+      "public_record": [{
+        "date": "2026-07-29",
+        "action": "Suscribió la carta de alcaldes que pidió revisar la fórmula compensatoria por sus efectos distributivos entre municipios.",
+        "outcome": "La fórmula avanzó pese a la objeción; sus consecuencias por comuna todavía no están observadas.",
+        "assessment": "La discrepancia legislativa está documentada; comprobar su pronóstico requiere ejecución y datos municipales comparables.",
+        "status": "pending",
+        "source_ids": ["biobio-opposition-mayors", "cnn-opposition-mayors-letter"]
+      }],
+      "source_ids": ["biobio-opposition-mayors", "cnn-opposition-mayors-letter", "24horas-opposition-mayors-letter"],
+      "record_caveat": "Una crítica distributiva es una hipótesis comprobable con datos posteriores, no una conclusión derivada del partido o de la comuna de quien habla."
+    },
+    {
+      "id": "jaime-bellolio",
+      "name": "Jaime Bellolio",
+      "municipality": "Providencia",
+      "role": "Alcalde",
+      "affiliation": "UDI",
+      "position_group": "revenue_protection",
+      "position_summary": "Advirtió una caída relevante de ingresos propios de Providencia y exigió certeza sobre el mecanismo compensatorio.",
+      "public_record": [{
+        "date": "2026-05-26",
+        "action": "Estimó en torno a $18 mil millones el ingreso municipal comprometido y alertó sobre servicios financiados con esos recursos.",
+        "outcome": "La fórmula legislativa prometió compensación total, pero el monto y calendario efectivos aún deben verificarse.",
+        "assessment": "La aprobación atendió el riesgo nominal; la exactitud de la cifra y la suficiencia operativa sólo se cierran con presupuestos ejecutados.",
+        "status": "pending",
+        "source_ids": ["eldinamo-municipal-front", "emol-twelve-municipalities"]
+      }],
+      "source_ids": ["eldinamo-municipal-front", "emol-twelve-municipalities", "eldinamo-twelve-municipalities"],
+      "record_caveat": "La estimación se conserva con su fuente y estado; no se presenta como resultado observado ni como medida de desempeño personal."
+    },
+    {
+      "id": "felipe-alessandri",
+      "name": "Felipe Alessandri",
+      "municipality": "Lo Barnechea",
+      "role": "Alcalde",
+      "affiliation": "RN",
+      "position_group": "revenue_protection",
+      "position_summary": "Advirtió que la exención podía restar cerca de $7 mil millones a su municipio y afectar programas locales.",
+      "public_record": [{
+        "date": "2026-05-26",
+        "action": "Cuantificó la pérdida proyectada para Lo Barnechea y pidió resguardar financiamiento de servicios municipales.",
+        "outcome": "Se aprobó una promesa de compensación total; el flujo efectivo hacia el municipio no está disponible al corte.",
+        "assessment": "Su riesgo fiscal fue reconocido por el diseño compensatorio, sin que exista aún evidencia para validar el monto proyectado.",
+        "status": "pending",
+        "source_ids": ["eldinamo-municipal-front", "emol-twelve-municipalities"]
+      }],
+      "source_ids": ["eldinamo-municipal-front", "emol-twelve-municipalities", "eldinamo-twelve-municipalities"],
+      "record_caveat": "Las cifras prospectivas se mantienen como proyecciones hasta contar con ejecución; el perfil no altera el análisis de sus dichos."
+    },
+    {
+      "id": "matias-toledo",
+      "name": "Matías Toledo",
+      "municipality": "Puente Alto",
+      "role": "Alcalde",
+      "affiliation": "Independiente",
+      "position_group": "targeted_exemption",
+      "position_summary": "Cuestionó que la presidencia de la AChM respaldara la reforma sin representar la diversidad de posiciones municipales.",
+      "public_record": [{
+        "date": "2026-06-15",
+        "action": "Participó en la declaración de alcaldes que pidió una postura institucional centrada en recursos y servicios locales.",
+        "outcome": "La AChM continuó dividida y surgieron cartas municipales contrapuestas antes de la aprobación final.",
+        "assessment": "El quiebre representativo que describió quedó observado; la consecuencia fiscal de fondo sigue pendiente.",
+        "status": "observed",
+        "source_ids": ["theclinic-mayor-split-june", "cnn-mayor-counterletters"]
+      }],
+      "source_ids": ["theclinic-mayor-split-june", "cnn-mayor-counterletters"],
+      "record_caveat": "Se registra una acción pública y su desenlace institucional, no una inferencia sobre confiabilidad o motivación."
+    },
+    {
+      "id": "paulina-bobadilla",
+      "name": "Paulina Bobadilla",
+      "municipality": "Quilicura",
+      "role": "Alcaldesa",
+      "affiliation": "Independiente",
+      "position_group": "revenue_protection",
+      "position_summary": "Pidió que la discusión municipal se concentrara en proteger recursos para servicios y necesidades territoriales.",
+      "public_record": [{
+        "date": "2026-06-15",
+        "action": "Suscribió la crítica pública a la defensa unilateral de la reforma hecha desde la presidencia de la AChM.",
+        "outcome": "El debate municipal permaneció dividido y la fórmula final incorporó compensación total.",
+        "assessment": "La demanda general de protección de recursos obtuvo respuesta nominal; sus efectos locales no son aún medibles.",
+        "status": "pending",
+        "source_ids": ["theclinic-mayor-split-june", "cooperativa-mixed-commission"]
+      }],
+      "source_ids": ["theclinic-mayor-split-june"],
+      "record_caveat": "La ficha no atribuye una posición más específica que la publicada ni completa silencios con supuestos partidarios."
+    },
+    {
+      "id": "joel-olmos",
+      "name": "Joel Olmos",
+      "municipality": "La Cisterna",
+      "role": "Alcalde",
+      "affiliation": "Independiente",
+      "position_group": "revenue_protection",
+      "position_summary": "Integró el grupo que reclamó una representación municipal plural y protección efectiva de recursos comunales.",
+      "public_record": [{
+        "date": "2026-06-15",
+        "action": "Suscribió la declaración crítica de alcaldes ante el respaldo de la presidencia de la AChM a la Megarreforma.",
+        "outcome": "La divergencia interna se mantuvo durante la tramitación y quedó reflejada en nuevas declaraciones cruzadas.",
+        "assessment": "El resultado institucional es observable; la suficiencia presupuestaria continúa pendiente de ejecución.",
+        "status": "pending",
+        "source_ids": ["theclinic-mayor-split-june", "biobio-achm-split"]
+      }],
+      "source_ids": ["theclinic-mayor-split-june", "biobio-achm-split"],
+      "record_caveat": "Se limita a intervenciones documentadas dentro de este debate y no pretende resumir toda su gestión municipal."
+    },
+    {
+      "id": "mauro-tamayo",
+      "name": "Mauro Tamayo",
+      "municipality": "Cerro Navia",
+      "role": "Alcalde",
+      "affiliation": "Independiente",
+      "position_group": "targeted_exemption",
+      "position_summary": "Planteó que el diseño debía considerar desigualdad territorial y no sólo la pérdida nominal de cada municipio.",
+      "public_record": [{
+        "date": "2026-06-15",
+        "action": "Formó parte de la respuesta de alcaldes que cuestionó el apoyo institucional a la fórmula original.",
+        "outcome": "La compensación total avanzó, mientras la controversia sobre su distribución continuó hasta la votación final.",
+        "assessment": "Su objeción distributiva no queda resuelta por una garantía agregada; requiere datos comparables por comuna.",
+        "status": "pending",
+        "source_ids": ["theclinic-mayor-split-june", "emol-quiroz-mayor-response"]
+      }],
+      "source_ids": ["theclinic-mayor-split-june", "emol-quiroz-mayor-response"],
+      "record_caveat": "La evaluación separa el diseño distributivo del juicio sobre el actor y espera evidencia fiscal posterior."
+    },
+    {
+      "id": "claudio-castro",
+      "name": "Claudio Castro",
+      "municipality": "Renca",
+      "role": "Alcalde",
+      "affiliation": "Independiente",
+      "position_group": "dialogue_participant",
+      "position_summary": "Participó en la coordinación municipal que pidió conocer el impacto y asegurar financiamiento antes de aprobar la exención.",
+      "public_record": [{
+        "date": "2026-04-30",
+        "action": "Participó en la reunión amplia de municipios convocada para evaluar el efecto de la exención sobre ingresos locales.",
+        "outcome": "El diálogo derivó en negociación con Hacienda y posteriormente en una fórmula de compensación total.",
+        "assessment": "Se observa continuidad del proceso de negociación, sin una afirmación individual cuantitativa que evaluar.",
+        "status": "observed",
+        "source_ids": ["pauta-mayors-meeting", "achm-dialogue-july"]
+      }],
+      "source_ids": ["pauta-mayors-meeting", "achm-dialogue-july"],
+      "record_caveat": "Participar en una reunión no implica adherir a cada posición del grupo; la ficha evita atribuirle citas no publicadas."
+    },
+    {
+      "id": "gustavo-toro",
+      "name": "Gustavo Toro",
+      "municipality": "San Ramón",
+      "role": "Alcalde",
+      "affiliation": "Independiente",
+      "position_group": "targeted_exemption",
+      "position_summary": "Representó a alcaldes progresistas que exigieron focalización y rechazaron que el acuerdo reflejara a toda la AChM.",
+      "public_record": [{
+        "date": "2026-07-18",
+        "action": "Expuso públicamente el quiebre de la AChM y defendió una compensación con criterio redistributivo.",
+        "outcome": "La división quedó confirmada por apoyos y cartas contrapuestas; la focalización no fue adoptada íntegramente.",
+        "assessment": "El desacuerdo institucional y el diseño final son observables; el impacto territorial continúa pendiente.",
+        "status": "observed",
+        "source_ids": ["biobio-achm-split", "cnn-mayor-counterletters"]
+      }],
+      "source_ids": ["biobio-achm-split", "cnn-mayor-counterletters"],
+      "record_caveat": "La ficha documenta el conflicto de representación y no usa ese conflicto para decidir la verdad de las proyecciones económicas."
+    },
+    {
+      "id": "rodrigo-contreras",
+      "name": "Rodrigo Contreras",
+      "municipality": "Paine",
+      "role": "Alcalde y presidente de AMUR",
+      "affiliation": "Independiente",
+      "position_group": "dialogue_participant",
+      "position_summary": "Valoró el diálogo con Hacienda desde la perspectiva de municipios rurales y pidió blindar el Fondo Común Municipal.",
+      "public_record": [{
+        "date": "2026-05-29",
+        "action": "Representó a municipios rurales en la reunión que obtuvo el compromiso de resguardar el Fondo Común Municipal.",
+        "outcome": "La propuesta final incluyó compensación, pero su implementación y cargas administrativas rurales no están observadas.",
+        "assessment": "El compromiso político es verificable; su cumplimiento operativo requiere transferencias y presupuestos posteriores.",
+        "status": "pending",
+        "source_ids": ["publimetro-rural-mayors", "cooperativa-mixed-commission"]
+      }],
+      "source_ids": ["publimetro-rural-mayors"],
+      "record_caveat": "La condición rural se registra porque altera la implementación, no como una etiqueta que aumente o reduzca credibilidad."
+    },
+    {
+      "id": "catalina-san-martin",
+      "name": "Catalina San Martín",
+      "municipality": "Las Condes",
+      "role": "Alcaldesa",
+      "affiliation": "Independiente",
+      "position_group": "revenue_protection",
+      "position_summary": "Defendió que el municipio necesitaba certeza fiscal ante una exención que afectaba una porción importante de sus ingresos.",
+      "public_record": [{
+        "date": "2026-06-05",
+        "action": "Participó en la respuesta municipal a Hacienda sobre el impacto presupuestario en comunas con alta recaudación propia.",
+        "outcome": "El Gobierno propuso compensación total; la diferencia entre ingresos proyectados y transferencias efectivas sigue pendiente.",
+        "assessment": "La respuesta legislativa aborda el riesgo nominal, sin datos posteriores que permitan juzgar suficiencia o puntualidad.",
+        "status": "pending",
+        "source_ids": ["emol-twelve-municipalities", "emol-government-municipal-agreement"]
+      }],
+      "source_ids": ["emol-twelve-municipalities", "eldinamo-twelve-municipalities"],
+      "record_caveat": "El perfil conserva la diferencia entre una preocupación presupuestaria y un resultado fiscal ya observado."
+    },
+    {
+      "id": "jose-manuel-palacios",
+      "name": "José Manuel Palacios",
+      "municipality": "La Reina",
+      "role": "Alcalde",
+      "affiliation": "UDI",
+      "position_group": "revenue_protection",
+      "position_summary": "Advirtió efectos relevantes para el presupuesto comunal y pidió una garantía concreta de compensación.",
+      "public_record": [{
+        "date": "2026-06-05",
+        "action": "Integró el grupo de municipios que respondió a Hacienda con estimaciones de impacto y demandas de resguardo fiscal.",
+        "outcome": "La negociación produjo una fórmula de compensación total cuya ejecución todavía no puede verificarse.",
+        "assessment": "La garantía legislativa responde al tipo de riesgo planteado, pero no prueba todavía que el municipio quede indemne.",
+        "status": "pending",
+        "source_ids": ["emol-twelve-municipalities", "emol-government-municipal-agreement"]
+      }],
+      "source_ids": ["emol-twelve-municipalities", "eldinamo-twelve-municipalities"],
+      "record_caveat": "La ficha no extrapola desempeño municipal ni usa antecedentes ajenos a la discusión específica de la reforma."
+    },
+    {
+      "id": "christopher-white",
+      "name": "Christopher White",
+      "municipality": "San Bernardo",
+      "role": "Alcalde",
+      "affiliation": "PS",
+      "position_group": "targeted_exemption",
+      "position_summary": "Suscribió la carta que calificó la fórmula compensatoria como desigual y pidió corregir su distribución territorial.",
+      "public_record": [{
+        "date": "2026-07-29",
+        "action": "Participó en la entrega al Presidente de una carta municipal contra la fórmula de compensación aprobada en la tramitación.",
+        "outcome": "La carta no impidió la aprobación final; la desigualdad proyectada aún debe medirse con transferencias efectivas.",
+        "assessment": "El desenlace legislativo es observable, mientras la afirmación distributiva permanece como pronóstico comprobable.",
+        "status": "pending",
+        "source_ids": ["cnn-opposition-mayors-letter", "24horas-opposition-mayors-letter"]
+      }],
+      "source_ids": ["cnn-opposition-mayors-letter", "24horas-opposition-mayors-letter"],
+      "record_caveat": "La oposición al diseño no equivale a evidencia sobre su resultado; la ficha mantiene separadas posición y comprobación."
+    },
+    {
+      "id": "cristofer-valdes",
+      "name": "Cristofer Valdés",
+      "municipality": "San Fabián",
+      "role": "Alcalde",
+      "affiliation": "Independiente",
+      "position_group": "revenue_protection",
+      "position_summary": "Desde una comuna rural apoyó aliviar a contribuyentes, condicionado a proteger completamente los recursos municipales.",
+      "public_record": [{
+        "date": "2026-07-03",
+        "action": "Defendió compatibilizar la exención con el resguardo íntegro del Fondo Común Municipal y servicios rurales.",
+        "outcome": "La tramitación incorporó compensación total; la llegada efectiva de recursos a comunas rurales sigue pendiente.",
+        "assessment": "El diseño final recogió formalmente su condición, pero su cumplimiento material requiere evidencia posterior.",
+        "status": "pending",
+        "source_ids": ["ladiscusion-rural-mayors", "cooperativa-mixed-commission"]
+      }],
+      "source_ids": ["ladiscusion-rural-mayors"],
+      "record_caveat": "Se distingue el apoyo condicionado de una adhesión general y no se atribuyen resultados antes de la ejecución."
+    }
+  ]
+}

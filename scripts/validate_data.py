@@ -18,6 +18,7 @@ def _validate_megareforma() -> list[str]:
         ("megareforma_dossier.json", "dossier.json"),
         ("megareforma_sources.json", "sources.json"),
         ("megareforma_theory.json", "theory.json"),
+        ("megareforma_municipal_actors.json", "municipal-actors.json"),
     ]
     payloads: dict[str, dict] = {}
     for schema_name, data_name in pairs:
@@ -40,6 +41,7 @@ def _validate_megareforma() -> list[str]:
     dossier = payloads.get("dossier.json", {})
     sources = payloads.get("sources.json", {})
     theory = payloads.get("theory.json", {})
+    municipal = payloads.get("municipal-actors.json", {})
     source_ids = {item.get("id") for item in sources.get("items", [])}
     known_source_ids = source_ids | {item.get("id") for item in sources.get("gaps", [])}
     actor_ids = {item.get("id") for item in dossier.get("actors", [])}
@@ -69,6 +71,21 @@ def _validate_megareforma() -> list[str]:
         for source_id in topic.get("source_ids", []):
             if source_id not in known_source_ids:
                 failures.append(f"theory.json:{topic.get('id')}: unknown source {source_id}")
+    municipal_actors = municipal.get("actors", [])
+    if municipal.get("coverage", {}).get("actors_indexed") != len(municipal_actors):
+        failures.append("municipal-actors.json: coverage actors_indexed does not match actors")
+    for actor in municipal_actors:
+        references = list(actor.get("source_ids", []))
+        references.extend(
+            source_id
+            for record in actor.get("public_record", [])
+            for source_id in record.get("source_ids", [])
+        )
+        for source_id in references:
+            if source_id not in known_source_ids:
+                failures.append(
+                    f"municipal-actors.json:{actor.get('id')}: unknown source {source_id}"
+                )
     return failures
 
 

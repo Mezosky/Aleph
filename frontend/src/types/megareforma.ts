@@ -70,6 +70,40 @@ export interface ActorPublicRecord {
   source_ids: string[]
 }
 
+export type MunicipalPositionGroup =
+  | 'government_formula'
+  | 'targeted_exemption'
+  | 'revenue_protection'
+  | 'dialogue_participant'
+
+export interface MunicipalActor {
+  id: string
+  name: string
+  municipality: string
+  role: string
+  affiliation: string
+  position_group: MunicipalPositionGroup
+  position_summary: string
+  public_record: ActorPublicRecord[]
+  source_ids: string[]
+  record_caveat: string
+}
+
+export interface MunicipalActorIndex {
+  schema_version: string
+  document_id: '18216-05'
+  retrieval_cutoff: string
+  coverage: {
+    universe: string
+    method: string
+    municipal_sources_curated: number
+    actors_indexed: number
+    blind_path_rule: string
+    limitation: string
+  }
+  actors: MunicipalActor[]
+}
+
 export interface DebatePosition {
   side: 'government' | 'opposition' | 'technical'
   actor_ids: string[]

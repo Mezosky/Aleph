@@ -264,6 +264,13 @@ blind-path guard prevents the evaluator from receiving them. Past conduct can an
 person do and what happened next?”; it cannot answer “is this new statement true?” without evidence
 about the statement itself.
 
+Actor coverage is defined against a reproducible corpus, never against the uncheckable promise of
+“the whole internet”. For the municipal layer, every mayor with a substantive attributed position,
+management action or quantitative claim in the curated snapshot gets an index entry and source
+references. A protocol mention stays searchable in its source but is not inflated into a profile.
+The interface publishes the corpus size, indexed-actor count and retrieval gaps, so expanding the
+offline sweep expands the declared universe rather than silently changing who appears.
+
 ---
 
 ## 11. Known limitations

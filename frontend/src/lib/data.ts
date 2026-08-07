@@ -22,7 +22,7 @@ import type {
   Proposition,
   SiteIndex,
 } from '@/types/aleph'
-import type { MegareformaDossier, MegareformaSources, MegareformaTheory } from '@/types/megareforma'
+import type { MegareformaDossier, MegareformaSources, MegareformaTheory, MunicipalActorIndex } from '@/types/megareforma'
 
 /* ------------------------------------------------------------------ *
  * URLs
@@ -48,6 +48,7 @@ export const DATA_PATHS = {
   megareformaDossier: 'megareforma/dossier.json',
   megareformaSources: 'megareforma/sources.json',
   megareformaTheory: 'megareforma/theory.json',
+  megareformaMunicipalActors: 'megareforma/municipal-actors.json',
 } as const
 
 /* ------------------------------------------------------------------ *
@@ -272,6 +273,16 @@ export async function loadMegareformaTheory(signal?: AbortSignal): Promise<Megar
   const value = await loadJson<MegareformaTheory>(url, signal)
   if (!value || value.execution !== 'local_gpu_offline' || !Array.isArray(value.topics)) {
     throw new DataError('parse', 'El análisis comparado no tiene la forma esperada.', url)
+  }
+  return value
+}
+
+/** Municipal voices audited against the frozen source corpus. */
+export async function loadMegareformaMunicipalActors(signal?: AbortSignal): Promise<MunicipalActorIndex> {
+  const url = dataUrl(DATA_PATHS.megareformaMunicipalActors)
+  const value = await loadJson<MunicipalActorIndex>(url, signal)
+  if (!value || !Array.isArray(value.actors) || value.coverage?.actors_indexed !== value.actors.length) {
+    throw new DataError('parse', 'El índice municipal no tiene la forma esperada.', url)
   }
   return value
 }
