@@ -44,7 +44,7 @@ export default function ActorPopover({
   const instanceId = useId().replaceAll(':', '')
   const tooltipId = `actor-${actor.id}-${instanceId}`
   const officialCaseContext = actor.official_case_context ?? []
-  const hasOfficialConcern = actor.legal_record.length > 0 || officialCaseContext.length > 0
+  const hasPersonalLegalRecord = actor.legal_record.length > 0
   const auditHasAttachedEvidence = actor.official_record_audit.status !== 'no_qualifying_record_documented'
   return (
     <span className="group/actor relative inline-block">
@@ -63,11 +63,11 @@ export default function ActorPopover({
               src={dataUrl(actor.image)}
               alt=""
               className={`h-11 w-11 rounded-full border-2 object-cover object-top grayscale transition group-hover/avatar:scale-105 group-hover/avatar:grayscale-0 group-focus/avatar:grayscale-0 ${
-                hasOfficialConcern ? 'border-status-critical' : 'border-surface-card'
+                hasPersonalLegalRecord ? 'border-status-critical' : 'border-surface-card'
               }`}
               loading="lazy"
             />
-            {hasOfficialConcern && (
+            {hasPersonalLegalRecord && (
               <span
                 className="absolute right-0 top-0 h-2.5 w-2.5 rounded-full border border-surface-card bg-status-critical"
                 aria-hidden="true"

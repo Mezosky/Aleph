@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ActorPopover from '@/components/dossier/ActorPopover'
-import CensusActorPopover from '@/components/dossier/CensusActorPopover'
+import ActorCensusGrid from '@/components/dossier/ActorCensusGrid'
 import DossierMeter from '@/components/dossier/DossierMeter'
 import DossierSectionNav from '@/components/dossier/DossierSectionNav'
 import SourceCard from '@/components/dossier/SourceCard'
@@ -200,6 +200,13 @@ export default function Home({ view = 'main' }: HomeProps) {
   )
   const otherDebateNews = allNews.filter((source) => !evaluatedNewsIds.has(source.id))
   const newestNews = allNews[0]
+  const censusPeople = census.actors.filter((actor) => actor.entity_kind === 'person')
+  const officialRecordReviews = censusPeople.filter(
+    (actor) => Boolean(actor.official_record_audit) || Boolean(actors.get(actor.id)?.official_record_audit),
+  ).length
+  const documentedPersonalRecords = censusPeople.filter(
+    (actor) => (actor.legal_record?.length ?? actors.get(actor.id)?.legal_record.length ?? 0) > 0,
+  ).length
   const metersSection = (
     <section id="medidores" className="mt-16 scroll-mt-36 border-t border-line-hairline pt-12 lg:scroll-mt-24">
       <div className="max-w-3xl">
@@ -864,6 +871,17 @@ export default function Home({ view = 'main' }: HomeProps) {
                   {census.coverage.indexed_only}{' '}
                   {tr('actores conservados como índice documental', 'actors retained as a document index')}
                 </p>
+                <p className="mt-3 font-semibold text-ink-primary">
+                  {officialRecordReviews}/{census.coverage.people}{' '}
+                  {tr('personas con barrido oficial completado', 'people with completed official-register sweep')} ·{' '}
+                  {documentedPersonalRecords} {tr('con registro personal adjunto', 'with a personal record attached')}
+                </p>
+                <p className="mt-2 text-micro text-ink-muted">
+                  {tr(
+                    'La revisión restante continúa marcada como pendiente; ausencia de punto rojo no equivale a historial limpio.',
+                    'Remaining reviews stay marked as pending; no red dot does not mean a clean record.',
+                  )}
+                </p>
               </aside>
             </div>
             <div className="mt-8 grid gap-4 lg:grid-cols-2">
@@ -875,61 +893,7 @@ export default function Home({ view = 'main' }: HomeProps) {
                     <summary className="cursor-pointer px-5 py-4 text-body font-semibold text-ink-primary">
                       {language === 'es' ? label : ACTOR_TYPE_EN[type]} · {group.length}
                     </summary>
-                    <div className="divide-y divide-line-hairline border-t border-line-hairline">
-                      {group.map((actor) => (
-                        <article key={`${actor.entity_kind}-${actor.id}`} className="p-5">
-                          <div className="flex flex-wrap items-start justify-between gap-3">
-                            <div>
-                              <h3 className="text-body font-semibold text-ink-primary">
-                                <CensusActorPopover actor={actor} />
-                              </h3>
-                              <p className="mt-1 text-caption text-ink-secondary">
-                                {actor.role}
-                                {actor.institution ? ` · ${actor.institution}` : ''}
-                                {actor.affiliation ? ` · ${actor.affiliation}` : ''}
-                              </p>
-                            </div>
-                            <span className="border border-line-hairline px-2 py-1 text-micro uppercase text-ink-muted">
-                              {actor.profile_depth === 'detailed'
-                                ? tr('ficha ampliada', 'expanded profile')
-                                : tr('índice verificado', 'verified index')}
-                            </span>
-                          </div>
-                          <p className="mt-3 text-caption text-ink-primary">{actor.participation_summary}</p>
-                          <details className="mt-3">
-                            <summary className="cursor-pointer text-caption font-semibold">
-                              {actor.source_ids.length}{' '}
-                              {actor.source_ids.length === 1 ? tr('fuente', 'source') : tr('fuentes', 'sources')} ·{' '}
-                              {tr('ver evidencia', 'view evidence')}
-                            </summary>
-                            <div className="mt-3 space-y-3">
-                              {actor.mentions.map((mention, index) => {
-                                const source = sourceById.get(mention.source_id)
-                                return (
-                                  <div
-                                    key={`${mention.source_id}-${index}`}
-                                    className="border-l-2 border-line-strong pl-3 text-caption text-ink-secondary"
-                                  >
-                                    <p>{mention.action_or_position}</p>
-                                    <blockquote className="mt-2">“{mention.evidence_quote}”</blockquote>
-                                    {source && (
-                                      <a
-                                        href={source.original_url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="mt-2 inline-block text-micro font-semibold underline underline-offset-2"
-                                      >
-                                        {source.publisher} ↗
-                                      </a>
-                                    )}
-                                  </div>
-                                )
-                              })}
-                            </div>
-                          </details>
-                        </article>
-                      ))}
-                    </div>
+                    <ActorCensusGrid actors={group} profiles={actors} sourceById={sourceById} />
                   </details>
                 )
               })}
@@ -959,25 +923,26 @@ export default function Home({ view = 'main' }: HomeProps) {
             </div>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {dossier.actors.map((actor) => {
-                const hasOfficialConcern =
-                  actor.legal_record.length > 0 || (actor.official_case_context?.length ?? 0) > 0
+                const hasPersonalLegalRecord = actor.legal_record.length > 0
+                const hasAttachedOfficialContext =
+                  hasPersonalLegalRecord || (actor.official_case_context?.length ?? 0) > 0
                 return (
                 <article key={actor.id} className="border border-line-hairline bg-surface-card p-4">
                   <img
                     src={loadActorImage(actor.image)}
                     alt={actor.image_alt}
                     className={`aspect-[4/5] w-full border object-cover object-top grayscale ${
-                      hasOfficialConcern ? 'border-status-critical' : 'border-transparent'
+                      hasPersonalLegalRecord ? 'border-status-critical' : 'border-transparent'
                     }`}
                     loading="lazy"
                   />
                   <h3 className="mt-4 flex items-center gap-2 text-body font-semibold">
                     {actor.name}
-                    {hasOfficialConcern && (
+                    {hasPersonalLegalRecord && (
                       <span
                         className="h-2.5 w-2.5 rounded-full bg-status-critical"
-                        title={tr('Hay evidencia oficial contextualizada', 'Contextualized official evidence is attached')}
-                        aria-label={tr('Hay evidencia oficial contextualizada', 'Contextualized official evidence is attached')}
+                        title={tr('Antecedente personal oficial adjunto', 'Official personal record attached')}
+                        aria-label={tr('Antecedente personal oficial adjunto', 'Official personal record attached')}
                       />
                     )}
                   </h3>
@@ -1056,7 +1021,7 @@ export default function Home({ view = 'main' }: HomeProps) {
                       <span className="font-semibold text-ink-primary">
                         {tr('Auditoría de registros oficiales', 'Official-record audit')} · {actor.official_record_audit.checked_at}:
                       </span>{' '}
-                      {hasOfficialConcern
+                      {hasAttachedOfficialContext
                         ? tr('evidencia incorporada y distinguida arriba.', 'evidence attached and distinguished above.')
                         : tr(
                             'sin antecedente personal calificable documentado al corte.',

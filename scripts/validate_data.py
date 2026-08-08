@@ -344,6 +344,30 @@ def _validate_megareforma() -> list[str]:
                     f"actor-census.json:{actor.get('id')}: unknown mention source "
                     f"{mention.get('source_id')}"
                 )
+        legal_records = actor.get("legal_record", [])
+        audit = actor.get("official_record_audit")
+        if legal_records and actor.get("entity_kind") != "person":
+            failures.append(
+                f"actor-census.json:{actor.get('id')}: institutions cannot have personal legal records"
+            )
+        if legal_records and (not audit or audit.get("status") != "personal_record_attached"):
+            failures.append(
+                f"actor-census.json:{actor.get('id')}: personal records require a matching audit"
+            )
+        for record in legal_records:
+            if not record.get("resolved") and not record.get("presumption_note"):
+                failures.append(
+                    f"actor-census.json:{actor.get('id')}: unresolved records require a presumption note"
+                )
+            source_host = urlparse(record.get("source", {}).get("url", "")).hostname or ""
+            if source_host not in {
+                "www.cde.cl",
+                "www.fiscaliadechile.cl",
+                "www.pjud.cl",
+            }:
+                failures.append(
+                    f"actor-census.json:{actor.get('id')}: legal record must cite an allowed primary official host"
+                )
     return failures
 
 

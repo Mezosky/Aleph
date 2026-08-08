@@ -1660,7 +1660,31 @@
       ],
       "affiliation_status": "independent_public_record",
       "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
-      "affiliation_verified_at": "2026-08-08"
+      "affiliation_verified_at": "2026-08-08",
+      "legal_record": [
+        {
+          "summary": "La Fiscalía presentó acusación en junio de 2026 contra Miguel Ángel Calisto y otras personas por una investigación de fraude al fisco; el procedimiento seguía abierto al corte de esta instantánea y no existe una condena documentada en la fuente citada.",
+          "status": "charged",
+          "resolved": false,
+          "body": "Fiscalía Regional de Aysén y Juzgado de Garantía de Coyhaique",
+          "date": "2026-06-26",
+          "presumption_note": "Una acusación no equivale a una condena. Miguel Ángel Calisto conserva la presunción de inocencia y este antecedente no demuestra que sus opiniones sobre la reforma sean verdaderas, falsas o sesgadas.",
+          "source": {
+            "id": "fiscalia-calisto-acusacion-2026",
+            "title": "Fiscalía presentó acusación por fraude al Fisco en contra de ocho imputados",
+            "url": "https://www.fiscaliadechile.cl/actualidad/noticias/fiscalia-presento-acusacion-por-fraude-al-fisco-en-contra-de-ocho-imputados",
+            "publisher": "Ministerio Público de Chile",
+            "published_at": "2026-06-26",
+            "tier": "primary_document"
+          }
+        }
+      ],
+      "official_record_audit": {
+        "status": "personal_record_attached",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "Contraloría General", "Tricel y Servel"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; se conserva el estado procesal informado por Fiscalía y la presunción de inocencia, sin usarlo como prueba de sesgo ni de falsedad."
+      }
     },
     {
       "id": "partido-por-la-democracia",
@@ -2849,7 +2873,31 @@
       ],
       "affiliation_status": "verified_public_record",
       "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
-      "affiliation_verified_at": "2026-08-08"
+      "affiliation_verified_at": "2026-08-08",
+      "legal_record": [
+        {
+          "summary": "La Fiscalía Nacional designó en marzo de 2025 a un fiscal regional para una investigación derivada del caso Sierra Bella que incluía a Karol Cariola por un eventual delito de tráfico de influencias. La fuente citada no informa formalización ni resolución final.",
+          "status": "investigation_reported",
+          "resolved": false,
+          "body": "Ministerio Público de Chile, Fiscalía Regional de Valparaíso",
+          "date": "2025-03-18",
+          "presumption_note": "La existencia de una investigación no acredita responsabilidad penal. Karol Cariola conserva la presunción de inocencia y este antecedente no permite inferir la veracidad ni el sesgo de sus opiniones sobre la reforma.",
+          "source": {
+            "id": "fiscalia-cariola-investigacion-2025",
+            "title": "Fiscalía Nacional designa Fiscal Regional de Valparaíso para investigación",
+            "url": "https://www.fiscaliadechile.cl/actualidad/noticias/nacionales/fiscalia-nacional-designa-fiscal-regional-de-valparaiso-para",
+            "publisher": "Ministerio Público de Chile",
+            "published_at": "2025-03-18",
+            "tier": "primary_document"
+          }
+        }
+      ],
+      "official_record_audit": {
+        "status": "personal_record_attached",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "Contraloría General", "Tricel y Servel"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; se conserva el estado limitado informado por Fiscalía y la presunción de inocencia, sin usarlo como prueba de sesgo ni de falsedad."
+      }
     },
     {
       "id": "luis-astudillo",
@@ -3036,7 +3084,31 @@
           "evidence_quote": "de procedimiento ya que la parte querellante no realizó movimientos por la causa. miguel ángel aguilera saliendo del centro de justicia el año pasado (créditos: diego martín / agencia uno) gobierno ingresa proyecto que aumenta subsidio a la tasa hipotecaria para viviendas hasta 6 mil uf el gobierno ingresó este martes un proyecto de ley"
         }
       ],
-      "affiliation_status": "not_documented"
+      "affiliation_status": "not_documented",
+      "legal_record": [
+        {
+          "summary": "El Consejo de Defensa del Estado informó que el Sexto Tribunal Oral en lo Penal de Santiago dictó en junio de 2025 un veredicto condenatorio contra Miguel Ángel Aguilera por enriquecimiento ilícito y lavado de activos, y una absolución por cohecho pasivo. La fuente citada antecede a la sentencia y no acredita por sí sola su firmeza posterior.",
+          "status": "unknown",
+          "resolved": false,
+          "body": "Sexto Tribunal de Juicio Oral en lo Penal de Santiago",
+          "date": "2025-06-11",
+          "presumption_note": "El veredicto de primera instancia debe leerse con su historial recursivo; esta instantánea no documenta aquí la resolución final del recurso de nulidad ni usa el caso para evaluar sus opiniones sobre la reforma.",
+          "source": {
+            "id": "cde-aguilera-veredicto-2025",
+            "title": "Justicia declara culpable al exalcalde de San Ramón por los delitos de enriquecimiento ilícito y lavado de activos",
+            "url": "https://www.cde.cl/justicia-declara-culpable-al-exalcalde-de-san-ramon-por-los-delitos-de-enriquecimiento-ilicito-y-lavado-de-activos/",
+            "publisher": "Consejo de Defensa del Estado",
+            "published_at": "2025-06-12",
+            "tier": "primary_document"
+          }
+        }
+      ],
+      "official_record_audit": {
+        "status": "personal_record_attached",
+        "checked_at": "2026-08-08",
+        "repositories": ["Consejo de Defensa del Estado", "Poder Judicial", "Ministerio Público", "Contraloría General"],
+        "caveat": "Se documenta el veredicto mediante una fuente estatal y se advierte expresamente que esta instantánea aún no incorpora una resolución final del recurso de nulidad; no se infiere sesgo ni falsedad."
+      }
     },
     {
       "id": "nicolas-grau",

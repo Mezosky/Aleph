@@ -5,9 +5,6 @@
   "period_start": null,
   "generated_at": null,
   "visits": null,
-  "page_views": null,
-  "countries": [],
-  "referrers": [],
-  "privacy_note_es": "Sólo se publicarán países y sitios referentes con al menos cinco visitas; nunca direcciones IP ni recorridos individuales.",
-  "privacy_note_en": "Countries and referring sites will be published only after at least five visits; never IP addresses or individual browsing histories."
+  "privacy_note_es": "Sólo se publica el total agregado de visitas; nunca ubicaciones, referentes, direcciones IP ni recorridos individuales.",
+  "privacy_note_en": "Only the aggregate visit total is published; never locations, referrers, IP addresses, or individual browsing histories."
 }

@@ -23,12 +23,15 @@ def test_public_analytics_snapshot_is_aggregate_and_schema_valid() -> None:
     assert "city" not in serialized
     assert snapshot["status"] == "awaiting_configuration"
     assert snapshot["visits"] is None
+    assert "countries" not in snapshot
+    assert "referrers" not in snapshot
+    assert "page_views" not in snapshot
 
 
-def test_cloudflare_query_requests_only_aggregate_dimensions() -> None:
+def test_cloudflare_query_requests_only_visit_total() -> None:
     query = _query("account123", "site456", "2026-08-08T00:00:00Z", "2026-08-09T00:00:00Z")
-    assert "countryName" in query
-    assert "refererHost" in query
+    assert "countryName" not in query
+    assert "refererHost" not in query
     assert "clientIP" not in query
     assert "city" not in query
     assert "refererPath" not in query

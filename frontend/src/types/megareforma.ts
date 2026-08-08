@@ -276,6 +276,8 @@ export interface CensusActor {
   source_ids: string[]
   mentions: CensusMention[]
   public_record?: ActorPublicRecord[]
+  legal_record?: ActorLegalRecord[]
+  official_record_audit?: ActorOfficialRecordAudit
   record_caveat?: string
   image?: string
   image_alt?: string
