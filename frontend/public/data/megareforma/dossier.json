@@ -1122,7 +1122,24 @@
         "Senador desde 2014",
         "Diputado, 1994–2014"
       ],
-      "legal_record": [],
+      "legal_record": [
+        {
+          "summary": "Fue formalizado en 2015 por delitos tributarios en el caso Penta. En 2018 el tribunal aprobó una suspensión condicional del procedimiento, con pago de $35 millones al fisco y fijación de domicilio por un año; la fuente oficial citada no documenta la resolución final posterior.",
+          "status": "unknown",
+          "resolved": false,
+          "body": "4° Juzgado de Garantía de Santiago",
+          "date": "2018-01-30",
+          "presumption_note": "La suspensión condicional no equivale a una condena. Iván Moreira conserva la presunción de inocencia y este antecedente no permite inferir que sus afirmaciones sean verdaderas, falsas o sesgadas.",
+          "source": {
+            "id": "fiscalia-moreira-suspension-2018",
+            "title": "Fiscalía Oriente: tribunal acoge suspensión condicional respecto de senador Moreira",
+            "url": "https://www.fiscaliadechile.cl/index.php/actualidad/noticias/regionales/fiscalia-oriente-tribunal-acoge-suspension-condicional-respecto-de",
+            "publisher": "Ministerio Público de Chile",
+            "published_at": "2018-01-30",
+            "tier": "primary_document"
+          }
+        }
+      ],
       "public_record": [
         {
           "date": "2026-07-01",
@@ -1141,6 +1158,11 @@
         {
           "label": "Senado de Chile",
           "url": "https://www.senado.cl/comunicaciones/noticias/nuevo-senado-inicio-funciones-y-eligio-paulina-nunez-como-presidenta-e-ivan",
+          "kind": "official"
+        },
+        {
+          "label": "Ministerio Público de Chile — causa Penta",
+          "url": "https://www.fiscaliadechile.cl/index.php/actualidad/noticias/regionales/fiscalia-oriente-tribunal-acoge-suspension-condicional-respecto-de",
           "kind": "official"
         },
         {

@@ -54,6 +54,34 @@ export interface ActorSource {
   kind: 'official' | 'wikipedia' | 'wikimedia'
 }
 
+export interface ActorLegalRecord {
+  summary: string
+  status:
+    | 'investigation_reported'
+    | 'formally_investigated'
+    | 'charged'
+    | 'trial_ongoing'
+    | 'convicted'
+    | 'acquitted'
+    | 'dismissed'
+    | 'case_closed'
+    | 'administrative_sanction'
+    | 'sanction_overturned'
+    | 'unknown'
+  resolved: boolean
+  body: string
+  date: string | null
+  presumption_note: string | null
+  source: {
+    id: string
+    title: string
+    url: string
+    publisher: string
+    published_at: string | null
+    tier: 'primary_document' | 'legislative_record' | 'official_technical_report'
+  }
+}
+
 export interface ActorProfile {
   id: string
   name: string
@@ -67,7 +95,7 @@ export interface ActorProfile {
   image_license: string
   image_source_url: string
   roles: string[]
-  legal_record: []
+  legal_record: ActorLegalRecord[]
   public_record: ActorPublicRecord[]
   record_caveat: string
   sources: ActorSource[]

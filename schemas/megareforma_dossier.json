@@ -121,7 +121,7 @@
         "type": "object",
         "required": ["id", "name", "role", "institution", "affiliation", "position_summary", "image", "image_alt", "image_credit", "image_license", "image_source_url", "roles", "legal_record", "public_record", "record_caveat", "sources"],
         "properties": {
-          "id": {"type": "string"}, "name": {"type": "string"}, "role": {"type": "string"}, "institution": {"type": "string"}, "affiliation": {"type": "string"}, "position_summary": {"type": "string"}, "image": {"type": "string"}, "image_alt": {"type": "string"}, "image_credit": {"type": "string"}, "image_license": {"type": "string"}, "image_source_url": {"type": "string", "format": "uri"}, "roles": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "legal_record": {"type": "array", "maxItems": 0}, "public_record": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["date", "action", "outcome", "assessment", "status", "source_ids"], "properties": {"date": {"type": "string"}, "action": {"type": "string"}, "outcome": {"type": "string"}, "assessment": {"type": "string"}, "status": {"enum": ["observed", "pending", "not_testable"]}, "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}}}, "additionalProperties": false}}, "record_caveat": {"type": "string", "minLength": 60}, "sources": {"type": "array", "minItems": 2}
+          "id": {"type": "string"}, "name": {"type": "string"}, "role": {"type": "string"}, "institution": {"type": "string"}, "affiliation": {"type": "string"}, "position_summary": {"type": "string"}, "image": {"type": "string"}, "image_alt": {"type": "string"}, "image_credit": {"type": "string"}, "image_license": {"type": "string"}, "image_source_url": {"type": "string", "format": "uri"}, "roles": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "legal_record": {"type": "array", "items": {"$ref": "#/$defs/legal_record_entry"}}, "public_record": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["date", "action", "outcome", "assessment", "status", "source_ids"], "properties": {"date": {"type": "string"}, "action": {"type": "string"}, "outcome": {"type": "string"}, "assessment": {"type": "string"}, "status": {"enum": ["observed", "pending", "not_testable"]}, "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}}}, "additionalProperties": false}}, "record_caveat": {"type": "string", "minLength": 60}, "sources": {"type": "array", "minItems": 2}
         },
         "additionalProperties": false
       }
@@ -133,6 +133,55 @@
         "propositions": {"type": "integer", "minimum": 1}, "sources_curated": {"type": "integer", "minimum": 1}, "sources_captured": {"type": "integer", "minimum": 0}, "capture_gaps": {"type": "integer", "minimum": 0}, "model_runs_completed": {"type": "integer", "minimum": 0}
       },
       "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "legal_record_entry": {
+      "type": "object",
+      "description": "Primary official legal record. It supplies context only and must never influence a claim verdict.",
+      "required": ["summary", "status", "resolved", "body", "date", "presumption_note", "source"],
+      "properties": {
+        "summary": {"type": "string", "minLength": 40},
+        "status": {"enum": ["investigation_reported", "formally_investigated", "charged", "trial_ongoing", "convicted", "acquitted", "dismissed", "case_closed", "administrative_sanction", "sanction_overturned", "unknown"]},
+        "resolved": {"type": "boolean"},
+        "body": {"type": "string", "minLength": 5},
+        "date": {"type": ["string", "null"], "format": "date"},
+        "presumption_note": {"type": ["string", "null"]},
+        "source": {
+          "type": "object",
+          "required": ["id", "title", "url", "publisher", "published_at", "tier"],
+          "properties": {
+            "id": {"type": "string"},
+            "title": {"type": "string"},
+            "url": {"type": "string", "format": "uri"},
+            "publisher": {"type": "string"},
+            "published_at": {"type": ["string", "null"], "format": "date"},
+            "tier": {"enum": ["primary_document", "legislative_record", "official_technical_report"]}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {"properties": {"resolved": {"const": false}}, "required": ["resolved"]},
+          "then": {
+            "properties": {
+              "status": {"enum": ["investigation_reported", "formally_investigated", "charged", "trial_ongoing", "administrative_sanction", "unknown"]},
+              "presumption_note": {"type": "string", "minLength": 30}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"resolved": {"const": true}}, "required": ["resolved"]},
+          "then": {
+            "properties": {
+              "status": {"enum": ["convicted", "acquitted", "dismissed", "case_closed", "sanction_overturned"]},
+              "presumption_note": {"type": "null"}
+            }
+          }
+        }
+      ]
     }
   },
   "additionalProperties": false

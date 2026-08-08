@@ -30,6 +30,22 @@ function PolePreview({ actors, side }: { actors: ActorProfile[]; side: 'left' | 
   )
 }
 
+function ActorBubbleGroup({
+  actors,
+  align,
+}: {
+  actors: ActorProfile[]
+  align: 'left' | 'right'
+}) {
+  return (
+    <span className={`flex flex-wrap gap-1.5 ${align === 'right' ? 'justify-end' : ''}`}>
+      {actors.map((actor) => (
+        <ActorPopover key={actor.id} actor={actor} trigger="avatar" align={align} />
+      ))}
+    </span>
+  )
+}
+
 export default function DossierMeter({ meter, actors = [] }: { meter: Meter; actors?: ActorProfile[] }) {
   const { language, tr } = useLanguage()
   const [actorsExpanded, setActorsExpanded] = useState(false)
@@ -66,19 +82,41 @@ export default function DossierMeter({ meter, actors = [] }: { meter: Meter; act
       <p className="mt-3 text-caption text-ink-secondary">{meter.question}</p>
 
       <div className="mt-6">
-        <button
-          type="button"
-          className="group/actors mb-2 grid w-full grid-cols-[1fr_auto_1fr] items-end gap-3 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-          aria-expanded={actorsExpanded}
-          aria-controls={actorsPanelId}
-          onClick={() => setActorsExpanded((open) => !open)}
-        >
-          <PolePreview actors={leftActors} side="left" />
-          <span className="mb-2 text-micro font-semibold uppercase tracking-wide text-ink-muted group-hover/actors:text-ink-primary">
-            {actorsExpanded ? tr('Cerrar', 'Close') : tr('Ver actores', 'View actors')} · {meterActors.length}
-          </span>
-          <PolePreview actors={rightActors} side="right" />
-        </button>
+        {actorsExpanded ? (
+          <div
+            id={actorsPanelId}
+            className="mb-3 grid grid-cols-[1fr_auto_1fr] items-center gap-3 border-y border-line-hairline py-3"
+          >
+            <ActorBubbleGroup actors={leftActors} align="left" />
+            <div className="flex max-w-24 flex-col items-center gap-2">
+              {contextualActors.length > 0 && <ActorBubbleGroup actors={contextualActors} align="left" />}
+              <button
+                type="button"
+                className="text-micro font-semibold uppercase tracking-wide text-ink-muted underline decoration-line-strong underline-offset-4 hover:text-ink-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                aria-expanded="true"
+                aria-controls={actorsPanelId}
+                onClick={() => setActorsExpanded(false)}
+              >
+                {tr('Cerrar', 'Close')}
+              </button>
+            </div>
+            <ActorBubbleGroup actors={rightActors} align="right" />
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="group/actors mb-2 grid w-full grid-cols-[1fr_auto_1fr] items-end gap-3 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            aria-expanded="false"
+            aria-controls={actorsPanelId}
+            onClick={() => setActorsExpanded(true)}
+          >
+            <PolePreview actors={leftActors} side="left" />
+            <span className="mb-2 text-micro font-semibold uppercase tracking-wide text-ink-muted group-hover/actors:text-ink-primary">
+              {tr('Ver actores', 'View actors')} · {meterActors.length}
+            </span>
+            <PolePreview actors={rightActors} side="right" />
+          </button>
+        )}
         <div
           role="img"
           aria-label={`${meter.title}: ${bounded} ${tr('de', 'out of')} 100, ${tr('desde', 'from')} ${meter.left_label} ${tr('hacia', 'toward')} ${meter.right_label}`}
@@ -98,69 +136,6 @@ export default function DossierMeter({ meter, actors = [] }: { meter: Meter; act
           </div>
         </div>
       </div>
-
-      {actorsExpanded && (
-        <div id={actorsPanelId} className="mt-5 border border-line-hairline bg-surface-sunken p-4">
-          <p className="text-micro font-semibold uppercase tracking-[0.14em] text-ink-muted">
-            {tr('Posiciones y actuaciones verificadas', 'Verified positions and actions')}
-          </p>
-          <p className="mt-2 text-micro text-ink-muted">
-            {tr(
-              'La ubicación indica el polo de la discusión al que se vincula su posición pública; no mide veracidad ni confiabilidad.',
-              'Placement indicates the discussion pole linked to each public position; it does not measure truth or reliability.',
-            )}
-          </p>
-          <div className="mt-4 space-y-4">
-            {[
-              { label: meter.left_label, items: leftActors },
-              { label: meter.right_label, items: rightActors },
-              {
-                label: tr('Actores contextuales', 'Contextual actors'),
-                items: contextualActors,
-              },
-            ].map(
-              (group) =>
-                group.items.length > 0 && (
-                  <section key={group.label}>
-                    <h4 className="border-b border-line-hairline pb-2 text-caption font-semibold text-ink-primary">
-                      {group.label} · {group.items.length}
-                    </h4>
-                    <div className="divide-y divide-line-hairline">
-                      {group.items.map((actor) => (
-                        <div key={actor.id} className="grid gap-3 py-4 sm:grid-cols-[3rem_1fr]">
-                          <img
-                            src={dataUrl(actor.image)}
-                            alt=""
-                            className="h-12 w-12 rounded-full object-cover object-top grayscale"
-                            loading="lazy"
-                          />
-                          <div>
-                            <p className="text-caption text-ink-primary">
-                              <ActorPopover actor={actor} />{' '}
-                              <span className="text-ink-muted">· {actor.affiliation}</span>
-                            </p>
-                            <p className="mt-1 text-caption text-ink-secondary">{actor.position_summary}</p>
-                            {actor.public_record.map((record) => (
-                              <div key={`${actor.id}-${record.date}-${record.action}`} className="mt-3 text-micro">
-                                <p className="text-ink-primary">
-                                  <span className="font-semibold">{tr('Actuación', 'Action')}:</span> {record.action}
-                                </p>
-                                <p className="mt-1 text-ink-secondary">
-                                  <span className="font-semibold">{tr('Resultado', 'Outcome')}:</span> {record.outcome}
-                                </p>
-                                <p className="mt-1 text-ink-muted">{record.assessment}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                ),
-            )}
-          </div>
-        </div>
-      )}
 
       <p className="mt-5 text-body text-ink-primary">{meter.explanation}</p>
       <details className="mt-4 border-t border-line-hairline pt-3">

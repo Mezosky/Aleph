@@ -7,6 +7,7 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 from jsonschema import Draft202012Validator, FormatChecker
 
@@ -114,6 +115,14 @@ def _validate_megareforma() -> list[str]:
     }
     known_source_ids = source_ids | {item.get("id") for item in sources.get("gaps", [])}
     actor_ids = {item.get("id") for item in dossier.get("actors", [])}
+    official_legal_hosts = {
+        "fiscaliadechile.cl",
+        "pjud.cl",
+        "contraloria.cl",
+        "diariooficial.interior.gob.cl",
+        "tribunalconstitucional.cl",
+        "tribunalcalificador.cl",
+    }
     screenshots = ROOT / "frontend" / "public" / "data"
     for item in sources.get("items", []):
         screenshot = screenshots / str(item.get("screenshot", ""))
@@ -130,6 +139,25 @@ def _validate_megareforma() -> list[str]:
                     failures.append(
                         f"dossier.json:{actor.get('id')}: unknown record source {source_id}"
                     )
+        for record in actor.get("legal_record", []):
+            source = record.get("source", {})
+            hostname = (urlparse(str(source.get("url", ""))).hostname or "").removeprefix("www.")
+            if hostname not in official_legal_hosts:
+                failures.append(
+                    f"dossier.json:{actor.get('id')}: legal record lacks an approved official source"
+                )
+            if source.get("tier") not in {
+                "primary_document",
+                "legislative_record",
+                "official_technical_report",
+            }:
+                failures.append(
+                    f"dossier.json:{actor.get('id')}: legal record source is not primary"
+                )
+            if not record.get("resolved") and len(str(record.get("presumption_note") or "")) < 30:
+                failures.append(
+                    f"dossier.json:{actor.get('id')}: unresolved legal record lacks presumption note"
+                )
     for meter in dossier.get("meters", []):
         for actor_id in meter.get("actor_ids", []):
             if actor_id not in actor_ids:

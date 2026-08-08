@@ -3,6 +3,34 @@ import { dataUrl } from '@/lib/data'
 import type { ActorProfile } from '@/types/megareforma'
 import { useLanguage } from '@/i18n/LanguageContext'
 
+const LEGAL_STATUS_ES = {
+  investigation_reported: 'investigación informada',
+  formally_investigated: 'investigación formalizada',
+  charged: 'acusación presentada',
+  trial_ongoing: 'juicio en curso',
+  convicted: 'condena',
+  acquitted: 'absolución',
+  dismissed: 'sobreseimiento',
+  case_closed: 'causa cerrada',
+  administrative_sanction: 'sanción administrativa',
+  sanction_overturned: 'sanción revocada',
+  unknown: 'resultado final no documentado',
+} as const
+
+const LEGAL_STATUS_EN = {
+  investigation_reported: 'reported investigation',
+  formally_investigated: 'formal investigation',
+  charged: 'charged',
+  trial_ongoing: 'trial ongoing',
+  convicted: 'conviction',
+  acquitted: 'acquittal',
+  dismissed: 'dismissed',
+  case_closed: 'case closed',
+  administrative_sanction: 'administrative sanction',
+  sanction_overturned: 'sanction overturned',
+  unknown: 'final outcome not documented',
+} as const
+
 export default function ActorPopover({
   actor,
   trigger = 'name',
@@ -12,9 +40,10 @@ export default function ActorPopover({
   trigger?: 'name' | 'avatar'
   align?: 'left' | 'right'
 }) {
-  const { tr } = useLanguage()
+  const { language, tr } = useLanguage()
   const instanceId = useId().replaceAll(':', '')
   const tooltipId = `actor-${actor.id}-${instanceId}`
+  const hasLegalRecord = actor.legal_record.length > 0
   return (
     <span className="group/actor relative inline-block">
       <button
@@ -31,9 +60,17 @@ export default function ActorPopover({
             <img
               src={dataUrl(actor.image)}
               alt=""
-              className="h-11 w-11 rounded-full border-2 border-surface-card object-cover object-top grayscale transition group-hover/avatar:scale-105 group-hover/avatar:grayscale-0 group-focus/avatar:grayscale-0"
+              className={`h-11 w-11 rounded-full border-2 object-cover object-top grayscale transition group-hover/avatar:scale-105 group-hover/avatar:grayscale-0 group-focus/avatar:grayscale-0 ${
+                hasLegalRecord ? 'border-status-critical' : 'border-surface-card'
+              }`}
               loading="lazy"
             />
+            {hasLegalRecord && (
+              <span
+                className="absolute right-0 top-0 h-2.5 w-2.5 rounded-full border border-surface-card bg-status-critical"
+                aria-hidden="true"
+              />
+            )}
             <span className="sr-only">{actor.name}</span>
           </>
         ) : (
@@ -43,7 +80,7 @@ export default function ActorPopover({
       <span
         id={tooltipId}
         role="tooltip"
-        className={`invisible absolute top-[calc(100%+0.5rem)] z-40 w-[min(22rem,calc(100vw-2.5rem))] translate-y-1 border border-line-strong bg-surface-raised p-4 text-left opacity-0 shadow-xl transition duration-150 group-focus-within/actor:visible group-focus-within/actor:translate-y-0 group-focus-within/actor:opacity-100 group-hover/actor:visible group-hover/actor:translate-y-0 group-hover/actor:opacity-100 ${
+        className={`invisible absolute top-[calc(100%+0.5rem)] z-40 max-h-[min(34rem,calc(100vh-6rem))] w-[min(22rem,calc(100vw-2.5rem))] translate-y-1 overflow-y-auto border border-line-strong bg-surface-raised p-4 text-left opacity-0 shadow-xl transition duration-150 group-focus-within/actor:visible group-focus-within/actor:translate-y-0 group-focus-within/actor:opacity-100 group-hover/actor:visible group-hover/actor:translate-y-0 group-hover/actor:opacity-100 ${
           align === 'right' ? 'right-0' : 'left-0'
         }`}
       >
@@ -62,9 +99,52 @@ export default function ActorPopover({
             <span className="mt-3 block text-caption font-normal text-ink-secondary">{actor.position_summary}</span>
           </span>
         </span>
-        <span className="mt-3 block border-t border-line-hairline pt-3 text-micro font-normal text-ink-muted">
-          {actor.public_record[0]?.assessment}
-        </span>
+        {actor.public_record.map((record) => (
+          <span
+            key={`${record.date}-${record.action}`}
+            className="mt-3 block border-t border-line-hairline pt-3 text-micro font-normal"
+          >
+            <span className="block font-semibold uppercase tracking-wide text-ink-muted">
+              {tr('Actuación pública', 'Public action')} · {record.date}
+            </span>
+            <span className="mt-1 block text-ink-primary">{record.action}</span>
+            <span className="mt-1 block text-ink-secondary">{record.outcome}</span>
+            <span className="mt-1 block text-ink-muted">{record.assessment}</span>
+          </span>
+        ))}
+        {actor.legal_record.map((record) => (
+          <span
+            key={record.source.id}
+            className="mt-3 block border-l-2 border-status-critical bg-[color-mix(in_srgb,var(--status-critical)_8%,transparent)] p-3 text-micro font-normal"
+          >
+            <span className="block font-semibold uppercase tracking-wide text-status-critical">
+              {tr('Registro judicial oficial', 'Official legal record')} ·{' '}
+              {language === 'es' ? LEGAL_STATUS_ES[record.status] : LEGAL_STATUS_EN[record.status]}
+            </span>
+            <span className="mt-2 block text-ink-primary">{record.summary}</span>
+            <span className="mt-2 block text-ink-muted">
+              {record.body}
+              {record.date ? ` · ${record.date}` : ''}
+            </span>
+            {record.presumption_note && (
+              <span className="mt-2 block font-semibold text-ink-primary">{record.presumption_note}</span>
+            )}
+            <a
+              href={record.source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block font-semibold text-ink-primary underline underline-offset-2"
+            >
+              {tr('Abrir fuente oficial', 'Open official source')} ↗
+            </a>
+            <span className="mt-2 block text-ink-muted">
+              {tr(
+                'Este antecedente no demuestra sesgo ni modifica la evaluación factual de sus afirmaciones.',
+                'This record does not prove bias and does not alter the factual evaluation of this person’s claims.',
+              )}
+            </span>
+          </span>
+        ))}
         <span className="mt-2 block text-micro font-normal text-ink-muted">
           {tr('Foto', 'Photo')}: {actor.image_credit} · {actor.image_license}.{' '}
           {tr('Historial factual; no interviene en el veredicto.', 'Factual history; it does not affect the verdict.')}

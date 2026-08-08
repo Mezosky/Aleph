@@ -51,6 +51,9 @@ axis because readers asked that question, but it classifies mechanisms (state pr
 market/investment incentives); it never ranks people, truth or moral worth. Click any meter to
 see its derivation, counter-evidence and uncertainty. The meters are the first reading layer after
 the overview, and every meter exposes the linked actor profiles through interactive portraits.
+The compact preview expands in place to all linked portraits; hover, keyboard focus or a mobile
+tap opens the attributed profile. A red marker means that a qualifying primary official legal
+record is attached — never that Aleph inferred bias, dishonesty or a different factual verdict.
 
 ---
 

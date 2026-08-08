@@ -78,6 +78,13 @@ institutional “not applicable” case. Empty fields are never silently rendere
 The interface places this material behind a strong attributed-stage divider so it cannot be read
 as an explanation for a verdict.
 
+The static Megarreforma snapshot applies the same threshold to its compact actor popovers. A red
+legal-record marker is permitted only when the named person, procedural state and primary official
+source all match. It is a disclosure flag, not a bias score. Missing entries mean “no qualifying
+record was documented in this audit”, not “certified clean record”; proceedings involving a
+relative or namesake are never attached to the actor. If the primary source does not establish the
+final disposition, the UI says so and retains the presumption-of-innocence note.
+
 The profile's claim track record is not a reputation score. It is a count of Aleph's own blind
 verdicts, includes every underlying claim id and sample size, and always carries the warning that
 the sample is small, non-random, and non-predictive.

@@ -27,6 +27,29 @@ def test_actor_profiles_are_valid_and_attributed_only() -> None:
     assert all(not actor["legal_record"] for actor in bundle["actor_profiles"]["actors"])
 
 
+def test_megareforma_legal_records_keep_procedural_safeguards() -> None:
+    schema = json.loads((ROOT / "schemas" / "megareforma_dossier.json").read_text(encoding="utf-8"))
+    dossier = json.loads(
+        (ROOT / "frontend" / "public" / "data" / "megareforma" / "dossier.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    Draft202012Validator(schema).validate(dossier)
+
+    records = [
+        (actor["id"], record) for actor in dossier["actors"] for record in actor["legal_record"]
+    ]
+    assert [actor_id for actor_id, _ in records] == ["ivan-moreira"]
+    _, record = records[0]
+    assert record["resolved"] is False
+    assert len(record["presumption_note"]) >= 30
+    assert record["source"]["url"].startswith("https://www.fiscaliadechile.cl/")
+    assert "bias" not in record and "score" not in record
+
+    record["presumption_note"] = None
+    assert list(Draft202012Validator(schema).iter_errors(dossier))
+
+
 def test_municipal_actor_index_is_complete_for_declared_corpus() -> None:
     data_root = ROOT / "frontend" / "public" / "data" / "megareforma"
     index = json.loads((data_root / "municipal-actors.json").read_text(encoding="utf-8"))
