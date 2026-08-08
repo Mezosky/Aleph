@@ -949,17 +949,38 @@ export default function Home({ view = 'main' }: HomeProps) {
                   'Hover over or focus a name in the debate to see its profile. Background records are shown separately and never change a factual verdict.',
                 )}
               </p>
+              <p className="mt-4 text-caption font-semibold text-ink-primary">
+                {dossier.actors.length}/{dossier.actors.length}{' '}
+                {tr(
+                  'fichas ampliadas sometidas al mismo barrido nominal de registros oficiales',
+                  'expanded profiles subjected to the same name-based official-register sweep',
+                )}
+              </p>
             </div>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {dossier.actors.map((actor) => (
+              {dossier.actors.map((actor) => {
+                const hasOfficialConcern =
+                  actor.legal_record.length > 0 || (actor.official_case_context?.length ?? 0) > 0
+                return (
                 <article key={actor.id} className="border border-line-hairline bg-surface-card p-4">
                   <img
                     src={loadActorImage(actor.image)}
                     alt={actor.image_alt}
-                    className="aspect-[4/5] w-full object-cover object-top grayscale"
+                    className={`aspect-[4/5] w-full border object-cover object-top grayscale ${
+                      hasOfficialConcern ? 'border-status-critical' : 'border-transparent'
+                    }`}
                     loading="lazy"
                   />
-                  <h3 className="mt-4 text-body font-semibold">{actor.name}</h3>
+                  <h3 className="mt-4 flex items-center gap-2 text-body font-semibold">
+                    {actor.name}
+                    {hasOfficialConcern && (
+                      <span
+                        className="h-2.5 w-2.5 rounded-full bg-status-critical"
+                        title={tr('Hay evidencia oficial contextualizada', 'Contextualized official evidence is attached')}
+                        aria-label={tr('Hay evidencia oficial contextualizada', 'Contextualized official evidence is attached')}
+                      />
+                    )}
+                  </h3>
                   <p className="mt-1 text-caption text-ink-secondary">
                     {actor.role} · {actor.affiliation}
                   </p>
@@ -996,10 +1017,61 @@ export default function Home({ view = 'main' }: HomeProps) {
                         <p className="mt-2">{record.assessment}</p>
                       </div>
                     ))}
+                    {actor.legal_record.map((record) => (
+                      <div
+                        key={record.source.id}
+                        className="mt-4 border-l-2 border-status-critical bg-[color-mix(in_srgb,var(--status-critical)_8%,transparent)] p-3 text-caption text-ink-secondary"
+                      >
+                        <p className="font-semibold uppercase tracking-wide text-status-critical">
+                          {tr('Antecedente judicial oficial', 'Official court record')}
+                        </p>
+                        <p className="mt-2">{record.summary}</p>
+                        {record.presumption_note && <p className="mt-2 font-semibold text-ink-primary">{record.presumption_note}</p>}
+                        <a href={record.source.url} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block font-semibold underline underline-offset-2">
+                          {tr('Abrir fuente oficial', 'Open official source')} ↗
+                        </a>
+                      </div>
+                    ))}
+                    {actor.official_case_context?.map((record) => (
+                      <div
+                        key={record.source.id}
+                        className="mt-4 border-l-2 border-status-critical bg-[color-mix(in_srgb,var(--status-critical)_8%,transparent)] p-3 text-caption text-ink-secondary"
+                      >
+                        <p className="font-semibold uppercase tracking-wide text-status-critical">
+                          {tr('Contexto profesional en expediente de colusión', 'Professional context in a collusion case')}
+                        </p>
+                        <p className="mt-1 font-semibold text-ink-primary">
+                          {tr('No fue parte requerida ni sancionada personalmente', 'Not a defendant and not personally sanctioned')}
+                        </p>
+                        <p className="mt-2">{record.summary}</p>
+                        <p className="mt-2"><span className="font-semibold text-ink-primary">{tr('Rol', 'Role')}:</span> {record.role}</p>
+                        <p className="mt-2"><span className="font-semibold text-ink-primary">{tr('Resultado', 'Outcome')}:</span> {record.outcome}</p>
+                        <p className="mt-2 font-semibold text-ink-primary">{record.caveat}</p>
+                        <a href={record.source.url} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block font-semibold underline underline-offset-2">
+                          {tr('Abrir sentencia oficial', 'Open official judgment')} ↗
+                        </a>
+                      </div>
+                    ))}
+                    <p className="mt-4 border-t border-line-hairline pt-3 text-micro text-ink-muted">
+                      <span className="font-semibold text-ink-primary">
+                        {tr('Auditoría de registros oficiales', 'Official-record audit')} · {actor.official_record_audit.checked_at}:
+                      </span>{' '}
+                      {hasOfficialConcern
+                        ? tr('evidencia incorporada y distinguida arriba.', 'evidence attached and distinguished above.')
+                        : tr(
+                            'sin antecedente personal calificable documentado al corte.',
+                            'no qualifying personal record documented by the cutoff.',
+                          )}{' '}
+                      {actor.official_record_audit.caveat}
+                      <span className="mt-1 block">
+                        {tr('Repositorios revisados', 'Registers reviewed')}: {actor.official_record_audit.repositories.join(' · ')}.
+                      </span>
+                    </p>
                     <p className="mt-4 text-micro text-ink-muted">{actor.record_caveat}</p>
                   </details>
                 </article>
-              ))}
+                )
+              })}
             </div>
           </section>
 

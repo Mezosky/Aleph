@@ -43,7 +43,9 @@ export default function ActorPopover({
   const { language, tr } = useLanguage()
   const instanceId = useId().replaceAll(':', '')
   const tooltipId = `actor-${actor.id}-${instanceId}`
-  const hasLegalRecord = actor.legal_record.length > 0
+  const officialCaseContext = actor.official_case_context ?? []
+  const hasOfficialConcern = actor.legal_record.length > 0 || officialCaseContext.length > 0
+  const auditHasAttachedEvidence = actor.official_record_audit.status !== 'no_qualifying_record_documented'
   return (
     <span className="group/actor relative inline-block">
       <button
@@ -61,11 +63,11 @@ export default function ActorPopover({
               src={dataUrl(actor.image)}
               alt=""
               className={`h-11 w-11 rounded-full border-2 object-cover object-top grayscale transition group-hover/avatar:scale-105 group-hover/avatar:grayscale-0 group-focus/avatar:grayscale-0 ${
-                hasLegalRecord ? 'border-status-critical' : 'border-surface-card'
+                hasOfficialConcern ? 'border-status-critical' : 'border-surface-card'
               }`}
               loading="lazy"
             />
-            {hasLegalRecord && (
+            {hasOfficialConcern && (
               <span
                 className="absolute right-0 top-0 h-2.5 w-2.5 rounded-full border border-surface-card bg-status-critical"
                 aria-hidden="true"
@@ -145,6 +147,48 @@ export default function ActorPopover({
             </span>
           </span>
         ))}
+        {officialCaseContext.map((record) => (
+          <span
+            key={record.source.id}
+            className="mt-3 block border-l-2 border-status-critical bg-[color-mix(in_srgb,var(--status-critical)_8%,transparent)] p-3 text-micro font-normal"
+          >
+            <span className="block font-semibold uppercase tracking-wide text-status-critical">
+              {tr('Contexto profesional en expediente de colusión', 'Professional context in a collusion case')}
+            </span>
+            <span className="mt-1 block font-semibold text-ink-primary">
+              {tr('No fue parte requerida ni sancionada personalmente', 'Not a defendant and not personally sanctioned')}
+            </span>
+            <span className="mt-2 block text-ink-primary">{record.summary}</span>
+            <span className="mt-2 block text-ink-secondary">
+              <span className="font-semibold">{tr('Rol documentado', 'Documented role')}:</span> {record.role}
+            </span>
+            <span className="mt-1 block text-ink-secondary">
+              <span className="font-semibold">{tr('Resultado de la causa', 'Case outcome')}:</span> {record.outcome}
+            </span>
+            <span className="mt-2 block text-ink-muted">{record.relevance_to_document}</span>
+            <span className="mt-2 block font-semibold text-ink-primary">{record.caveat}</span>
+            <a
+              href={record.source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block font-semibold text-ink-primary underline underline-offset-2"
+            >
+              {tr('Abrir sentencia oficial', 'Open official judgment')} ↗
+            </a>
+          </span>
+        ))}
+        <span className="mt-3 block border-t border-line-hairline pt-3 text-micro font-normal text-ink-muted">
+          <span className="font-semibold text-ink-primary">
+            {tr('Revisión oficial aplicada a esta ficha', 'Official-record review applied to this profile')}:
+          </span>{' '}
+          {auditHasAttachedEvidence
+            ? tr('evidencia incorporada arriba', 'evidence attached above')
+            : tr(
+                'sin antecedente personal calificable documentado al corte',
+                'no qualifying personal record documented by the cutoff',
+              )}
+          . {actor.official_record_audit.caveat}
+        </span>
         <span className="mt-2 block text-micro font-normal text-ink-muted">
           {tr('Foto', 'Photo')}: {actor.image_credit} · {actor.image_license}.{' '}
           {tr('Historial factual; no interviene en el veredicto.', 'Factual history; it does not affect the verdict.')}

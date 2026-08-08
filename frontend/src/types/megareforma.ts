@@ -82,6 +82,37 @@ export interface ActorLegalRecord {
   }
 }
 
+export interface ActorOfficialCaseContext {
+  case_title: string
+  case_number: string
+  date: string
+  role: string
+  summary: string
+  outcome: string
+  personal_status: 'named_professional_not_sanctioned'
+  relevance_to_document: string
+  caveat: string
+  source: {
+    id: string
+    title: string
+    url: string
+    publisher: string
+    published_at: string | null
+    tier: 'primary_document' | 'legislative_record' | 'official_technical_report'
+  }
+}
+
+export interface ActorOfficialRecordAudit {
+  status:
+    | 'no_qualifying_record_documented'
+    | 'personal_record_attached'
+    | 'professional_context_attached'
+    | 'personal_record_and_professional_context_attached'
+  checked_at: string
+  repositories: string[]
+  caveat: string
+}
+
 export interface ActorProfile {
   id: string
   name: string
@@ -96,6 +127,8 @@ export interface ActorProfile {
   image_source_url: string
   roles: string[]
   legal_record: ActorLegalRecord[]
+  official_case_context?: ActorOfficialCaseContext[]
+  official_record_audit: ActorOfficialRecordAudit
   public_record: ActorPublicRecord[]
   record_caveat: string
   sources: ActorSource[]

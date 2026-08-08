@@ -50,6 +50,36 @@ def test_megareforma_legal_records_keep_procedural_safeguards() -> None:
     assert list(Draft202012Validator(schema).iter_errors(dossier))
 
 
+def test_megareforma_audits_every_expanded_actor_without_misrepresenting_context() -> None:
+    schema = json.loads((ROOT / "schemas" / "megareforma_dossier.json").read_text(encoding="utf-8"))
+    dossier = json.loads(
+        (ROOT / "frontend" / "public" / "data" / "megareforma" / "dossier.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    Draft202012Validator(schema).validate(dossier)
+
+    assert len(dossier["actors"]) == 9
+    assert all(actor["official_record_audit"]["checked_at"] for actor in dossier["actors"])
+    assert all(
+        len(actor["official_record_audit"]["repositories"]) >= 4 for actor in dossier["actors"]
+    )
+
+    quiroz = next(actor for actor in dossier["actors"] if actor["id"] == "jorge-quiroz")
+    assert quiroz["legal_record"] == []
+    assert len(quiroz["official_case_context"]) == 2
+    assert quiroz["official_record_audit"]["status"] == "professional_context_attached"
+    assert all(
+        record["personal_status"] == "named_professional_not_sanctioned"
+        and record["source"]["tier"] == "primary_document"
+        and "no " in record["caveat"].lower()
+        for record in quiroz["official_case_context"]
+    )
+
+    quiroz["official_case_context"][0]["personal_status"] = "sanctioned"
+    assert list(Draft202012Validator(schema).iter_errors(dossier))
+
+
 def test_municipal_actor_index_is_complete_for_declared_corpus() -> None:
     data_root = ROOT / "frontend" / "public" / "data" / "megareforma"
     index = json.loads((data_root / "municipal-actors.json").read_text(encoding="utf-8"))

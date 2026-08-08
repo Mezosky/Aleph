@@ -727,6 +727,12 @@
         "Diputado, 2002–2018"
       ],
       "legal_record": [],
+      "official_record_audit": {
+        "status": "no_qualifying_record_documented",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "TDLC y FNE", "Contraloría General", "Tricel y Servel", "CMF"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; la ausencia de un hallazgo incorporado no certifica que nunca haya existido otro procedimiento o antecedente."
+      },
       "public_record": [
         {
           "date": "2026-04-15",
@@ -776,6 +782,52 @@
         "Consultor económico hasta enero de 2026"
       ],
       "legal_record": [],
+      "official_case_context": [
+        {
+          "case_title": "Requerimiento de la FNE contra Agrícola Agrosuper S.A. y otros",
+          "case_number": "TDLC C-236-11 · Sentencia 139/2014",
+          "date": "2014-09-25",
+          "role": "Consultoría económica para la Asociación de Productores Avícolas de Chile y elaboración de modelos e informes citados en el expediente.",
+          "summary": "La sentencia registra que la oficina de Jorge Quiroz trabajó en el modelo de estimación de consumo de la asociación, identifica documentos denominados “Modelo Quiroz” y reproduce apuntes titulados “Reunión Jorge Quiroz” sobre una asesoría en libre competencia y revisión de acuerdos y comunicaciones.",
+          "outcome": "El TDLC condenó a Agrosuper, Ariztía, Don Pollo y la asociación gremial; la Corte Suprema confirmó las multas principales, multó a la asociación y mantuvo su disolución.",
+          "personal_status": "named_professional_not_sanctioned",
+          "relevance_to_document": "Aporta contexto sobre su trayectoria previa como consultor económico en materias de diseño de mercado y libre competencia relacionadas con la orientación económica de la reforma.",
+          "caveat": "Jorge Quiroz no figura entre las partes requeridas ni entre las personas o entidades sancionadas en la parte resolutiva. El fallo acredita la asesoría y los documentos citados, no responsabilidad personal en la colusión.",
+          "source": {
+            "id": "tdlc-poultry-139-quiroz",
+            "title": "Sentencia 139/2014: Requerimiento de la FNE contra Agrícola Agrosuper S.A. y otros",
+            "url": "https://www.fne.gob.cl/wp-content/uploads/2016/03/Sentencia_139-_2014.pdf",
+            "publisher": "Tribunal de Defensa de la Libre Competencia",
+            "published_at": "2014-09-25",
+            "tier": "primary_document"
+          }
+        },
+        {
+          "case_title": "Requerimiento de la FNE en contra de Farmacias Ahumada S.A. y otros",
+          "case_number": "TDLC C-184-08 · Sentencia 119/2012",
+          "date": "2012-01-31",
+          "role": "Autor, junto con Felipe Givovich, de dos informes económicos presentados por Farmacias Salcobrand para sostener explicaciones alternativas a la hipótesis de colusión.",
+          "summary": "La sentencia consigna que Salcobrand acompañó dos informes sobre la posible colusión y la participación de la cadena, elaborados por Jorge Quiroz y Felipe Givovich como parte de su defensa económica.",
+          "outcome": "El TDLC condenó a Farmacias Cruz Verde y Salcobrand por colusión y la Corte Suprema confirmó la sentencia.",
+          "personal_status": "named_professional_not_sanctioned",
+          "relevance_to_document": "La relación profesional y el contenido de esos informes son contexto pertinente para interpretar su trayectoria en análisis de competencia, sin convertirla en una evaluación automática de sus propuestas actuales.",
+          "caveat": "Quiroz actuó como autor de informes económicos aportados por una parte. No fue requerido ni sancionado en esa causa, y la condena a las farmacias no establece que él haya integrado el acuerdo colusorio.",
+          "source": {
+            "id": "tdlc-pharmacies-119-quiroz",
+            "title": "Sentencia 119/2012: Requerimiento de la FNE en contra de Farmacias Ahumada S.A. y otros",
+            "url": "https://www.fne.gob.cl/wp-content/uploads/2012/01/Sentencia_119_2012.pdf",
+            "publisher": "Tribunal de Defensa de la Libre Competencia",
+            "published_at": "2012-01-31",
+            "tier": "primary_document"
+          }
+        }
+      ],
+      "official_record_audit": {
+        "status": "professional_context_attached",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "TDLC y FNE", "Contraloría General", "Tricel y Servel", "CMF"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; la evidencia adjunta documenta roles profesionales, no una imputación ni sanción personal, y no constituye por sí sola prueba de sesgo."
+      },
       "public_record": [
         {
           "date": "2026-05-28",
@@ -794,6 +846,16 @@
         {
           "label": "Ministerio de Hacienda",
           "url": "https://www.hacienda.cl/ministerio/ministro",
+          "kind": "official"
+        },
+        {
+          "label": "TDLC — Sentencia 139/2014",
+          "url": "https://www.fne.gob.cl/wp-content/uploads/2016/03/Sentencia_139-_2014.pdf",
+          "kind": "official"
+        },
+        {
+          "label": "TDLC — Sentencia 119/2012",
+          "url": "https://www.fne.gob.cl/wp-content/uploads/2012/01/Sentencia_119_2012.pdf",
           "kind": "official"
         },
         {
@@ -825,6 +887,12 @@
         "Representante del distrito 13 de la Región Metropolitana"
       ],
       "legal_record": [],
+      "official_record_audit": {
+        "status": "no_qualifying_record_documented",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "TDLC y FNE", "Contraloría General", "Tricel y Servel", "CMF"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; la ausencia de un hallazgo incorporado no certifica que nunca haya existido otro procedimiento o antecedente."
+      },
       "public_record": [
         {
           "date": "2026-05-03",
@@ -874,6 +942,12 @@
         "Ministro de Economía, 2022–2025"
       ],
       "legal_record": [],
+      "official_record_audit": {
+        "status": "no_qualifying_record_documented",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "TDLC y FNE", "Contraloría General", "Tricel y Servel", "CMF"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; la ausencia de un hallazgo incorporado no certifica que nunca haya existido otro procedimiento o antecedente."
+      },
       "public_record": [
         {
           "date": "2026-08-06",
@@ -924,6 +998,12 @@
         "Diputada, 2010–2018"
       ],
       "legal_record": [],
+      "official_record_audit": {
+        "status": "no_qualifying_record_documented",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "TDLC y FNE", "Contraloría General", "Tricel y Servel", "CMF"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; la ausencia de un hallazgo incorporado no certifica que nunca haya existido otro procedimiento o antecedente."
+      },
       "public_record": [
         {
           "date": "2026-07-01",
@@ -974,6 +1054,12 @@
         "Economista y académico"
       ],
       "legal_record": [],
+      "official_record_audit": {
+        "status": "no_qualifying_record_documented",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "TDLC y FNE", "Contraloría General", "Tricel y Servel", "CMF"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; la ausencia de un hallazgo incorporado no certifica que nunca haya existido otro procedimiento o antecedente."
+      },
       "public_record": [
         {
           "date": "2026-05-06",
@@ -1025,6 +1111,12 @@
         "Subsecretaria para las Fuerzas Armadas, 2015–2018"
       ],
       "legal_record": [],
+      "official_record_audit": {
+        "status": "no_qualifying_record_documented",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "TDLC y FNE", "Contraloría General", "Tricel y Servel", "CMF"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; la ausencia de un hallazgo incorporado no certifica que nunca haya existido otro procedimiento o antecedente."
+      },
       "public_record": [
         {
           "date": "2026-07-03",
@@ -1074,6 +1166,12 @@
         "Presidente de la UDI, 2020–2024"
       ],
       "legal_record": [],
+      "official_record_audit": {
+        "status": "no_qualifying_record_documented",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "TDLC y FNE", "Contraloría General", "Tricel y Servel", "CMF"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; la ausencia de un hallazgo incorporado no certifica que nunca haya existido otro procedimiento o antecedente."
+      },
       "public_record": [
         {
           "date": "2026-07-03",
@@ -1140,6 +1238,12 @@
           }
         }
       ],
+      "official_record_audit": {
+        "status": "personal_record_attached",
+        "checked_at": "2026-08-08",
+        "repositories": ["Ministerio Público", "Poder Judicial", "TDLC y FNE", "Contraloría General", "Tricel y Servel", "CMF"],
+        "caveat": "Búsqueda nominal en registros oficiales seleccionados; el antecedente adjunto conserva su estado procesal y presunción de inocencia, y nunca se usa como prueba automática de sesgo o falsedad."
+      },
       "public_record": [
         {
           "date": "2026-07-01",

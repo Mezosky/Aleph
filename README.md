@@ -52,8 +52,11 @@ market/investment incentives); it never ranks people, truth or moral worth. Clic
 see its derivation, counter-evidence and uncertainty. The meters are the first reading layer after
 the overview, and every meter exposes the linked actor profiles through interactive portraits.
 The compact preview expands in place to all linked portraits; hover, keyboard focus or a mobile
-tap opens the attributed profile. A red marker means that a qualifying primary official legal
-record is attached — never that Aleph inferred bias, dishonesty or a different factual verdict.
+tap opens the attributed profile. A red marker means either that a qualifying primary official
+legal record is attached or that an official judgment names the actor in a relevant professional
+role. The tooltip distinguishes those cases explicitly; it never means that Aleph inferred guilt,
+bias, dishonesty or a different factual verdict. All nine expanded profiles receive the same
+named-person search across the selected official repositories and disclose the audit limitation.
 
 ---
 

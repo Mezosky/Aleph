@@ -122,6 +122,8 @@ def _validate_megareforma() -> list[str]:
         "diariooficial.interior.gob.cl",
         "tribunalconstitucional.cl",
         "tribunalcalificador.cl",
+        "fne.gob.cl",
+        "tdlc.cl",
     }
     screenshots = ROOT / "frontend" / "public" / "data"
     for item in sources.get("items", []):
@@ -158,6 +160,36 @@ def _validate_megareforma() -> list[str]:
                 failures.append(
                     f"dossier.json:{actor.get('id')}: unresolved legal record lacks presumption note"
                 )
+        for record in actor.get("official_case_context", []):
+            source = record.get("source", {})
+            hostname = (urlparse(str(source.get("url", ""))).hostname or "").removeprefix("www.")
+            if hostname not in official_legal_hosts:
+                failures.append(
+                    f"dossier.json:{actor.get('id')}: official case context lacks an approved official source"
+                )
+            if source.get("tier") != "primary_document":
+                failures.append(
+                    f"dossier.json:{actor.get('id')}: official case context source is not primary"
+                )
+            if record.get("personal_status") != "named_professional_not_sanctioned":
+                failures.append(
+                    f"dossier.json:{actor.get('id')}: professional context misstates personal status"
+                )
+        has_legal = bool(actor.get("legal_record"))
+        has_context = bool(actor.get("official_case_context"))
+        expected_audit_status = (
+            "personal_record_and_professional_context_attached"
+            if has_legal and has_context
+            else "personal_record_attached"
+            if has_legal
+            else "professional_context_attached"
+            if has_context
+            else "no_qualifying_record_documented"
+        )
+        if actor.get("official_record_audit", {}).get("status") != expected_audit_status:
+            failures.append(
+                f"dossier.json:{actor.get('id')}: official audit status does not match attached evidence"
+            )
     for meter in dossier.get("meters", []):
         for actor_id in meter.get("actor_ids", []):
             if actor_id not in actor_ids:
