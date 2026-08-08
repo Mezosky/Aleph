@@ -21,7 +21,7 @@ export interface DossierMeter {
   methodology: string
   evidence: MeterEvidence[]
   actor_ids: string[]
-  pole_actor_ids?: { left: string[]; right: string[] }
+  pole_actor_ids: { left: string[]; right: string[] }
 }
 
 export interface OtherDebateAngle {

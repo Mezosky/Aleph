@@ -64,7 +64,7 @@
       "minItems": 3,
       "items": {
         "type": "object",
-        "required": ["id", "kind", "title", "question", "left_label", "center_label", "right_label", "value", "confidence", "explanation", "methodology", "evidence", "actor_ids"],
+        "required": ["id", "kind", "title", "question", "left_label", "center_label", "right_label", "value", "confidence", "explanation", "methodology", "evidence", "actor_ids", "pole_actor_ids"],
         "properties": {
           "id": {"type": "string"},
           "kind": {"enum": ["editorial_tone", "policy_tradeoff", "public_interest"]},

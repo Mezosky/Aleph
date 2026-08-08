@@ -237,7 +237,7 @@ export default function Home({ view = 'main' }: HomeProps) {
               style={{
                 backgroundImage: `url(${import.meta.env.BASE_URL}la-moneda.jpg)`,
                 backgroundSize: 'auto 100%',
-                backgroundPosition: '72% center',
+                backgroundPosition: '50% center',
               }}
             />
             <div

@@ -223,11 +223,15 @@
       "pole_actor_ids": {
         "left": [
           "gael-yeomans",
-          "nicolas-grau"
+          "nicolas-grau",
+          "paulina-vodanovic"
         ],
         "right": [
           "jose-antonio-kast",
-          "jorge-quiroz"
+          "jorge-quiroz",
+          "paulina-nunez",
+          "javier-macaya",
+          "ivan-moreira"
         ]
       }
     },
@@ -280,11 +284,15 @@
       "pole_actor_ids": {
         "left": [
           "gael-yeomans",
-          "nicolas-grau"
+          "nicolas-grau",
+          "paulina-vodanovic"
         ],
         "right": [
           "jose-antonio-kast",
-          "jorge-quiroz"
+          "jorge-quiroz",
+          "paulina-nunez",
+          "javier-macaya",
+          "ivan-moreira"
         ]
       }
     },
@@ -329,7 +337,17 @@
         "jorge-quiroz",
         "gael-yeomans",
         "nicolas-grau"
-      ]
+      ],
+      "pole_actor_ids": {
+        "left": [
+          "gael-yeomans",
+          "nicolas-grau"
+        ],
+        "right": [
+          "jose-antonio-kast",
+          "jorge-quiroz"
+        ]
+      }
     },
     {
       "id": "forecast-dependence",
@@ -373,7 +391,18 @@
         "gael-yeomans",
         "nicolas-grau",
         "paulina-vodanovic"
-      ]
+      ],
+      "pole_actor_ids": {
+        "left": [
+          "nicolas-grau",
+          "gael-yeomans",
+          "paulina-vodanovic"
+        ],
+        "right": [
+          "jorge-quiroz",
+          "jose-antonio-kast"
+        ]
+      }
     }
   ],
   "debate": [

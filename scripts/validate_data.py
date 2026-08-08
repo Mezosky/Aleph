@@ -135,7 +135,17 @@ def _validate_megareforma() -> list[str]:
             if actor_id not in actor_ids:
                 failures.append(f"dossier.json:{meter.get('id')}: unknown actor {actor_id}")
         poles = meter.get("pole_actor_ids", {})
-        for actor_id in [*poles.get("left", []), *poles.get("right", [])]:
+        left_pole_ids = poles.get("left", [])
+        right_pole_ids = poles.get("right", [])
+        if not left_pole_ids or not right_pole_ids:
+            failures.append(f"dossier.json:{meter.get('id')}: both actor poles must be populated")
+        if set(left_pole_ids) & set(right_pole_ids):
+            failures.append(f"dossier.json:{meter.get('id')}: actor poles must not overlap")
+        if not {*left_pole_ids, *right_pole_ids}.issubset(set(meter.get("actor_ids", []))):
+            failures.append(
+                f"dossier.json:{meter.get('id')}: pole actors must also appear in actor_ids"
+            )
+        for actor_id in [*left_pole_ids, *right_pole_ids]:
             if actor_id not in actor_ids:
                 failures.append(f"dossier.json:{meter.get('id')}: unknown actor {actor_id}")
         for evidence in meter.get("evidence", []):
