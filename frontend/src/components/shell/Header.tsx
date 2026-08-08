@@ -19,6 +19,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { to: '/', label: 'La Megarreforma', end: true },
+  { to: '/actores', label: 'Actores y fuentes' },
   { to: '/documento/18216-05', label: 'Evidencia' },
   { to: '/metodologia', label: 'Metodología' },
 ]

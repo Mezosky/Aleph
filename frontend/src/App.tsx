@@ -17,6 +17,7 @@ import { HashRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
 import Layout from '@/components/shell/Layout'
 
 const Home = lazy(() => import('@/pages/Home'))
+const Actors = lazy(() => import('@/pages/Actors'))
 const Reform = lazy(() => import('@/pages/Reform'))
 const Methodology = lazy(() => import('@/pages/Methodology'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
@@ -161,6 +162,7 @@ export default function App() {
           <Suspense fallback={<PageSkeleton />}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/actores" element={<Actors />} />
               <Route path="/documento/:slug" element={<Reform />} />
               <Route path="/metodologia" element={<Methodology />} />
               <Route path="*" element={<NotFound />} />
