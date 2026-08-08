@@ -1,7 +1,8 @@
 """Export a public, aggregate Cloudflare Web Analytics snapshot.
 
-The API token is read only in CI. The emitted JSON contains only the aggregate
-visit total; it deliberately excludes dimensions and event-level data.
+The API token is read only in CI. The emitted JSON contains the aggregate visit
+total plus country and referring-host groups of at least five visits. It
+deliberately excludes city, IP address, path, and event-level data.
 When credentials are absent, the committed awaiting-configuration snapshot is
 left untouched so local builds remain deterministic.
 """
@@ -20,6 +21,24 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "frontend" / "public" / "data" / "site-analytics.json"
 ENDPOINT = "https://api.cloudflare.com/client/v4/graphql"
 DEFAULT_START = "2026-08-08T00:00:00Z"
+MIN_PUBLIC_GROUP_SIZE = 5
+
+COUNTRY_NAMES = {
+    "AR": ("Argentina", "Argentina"),
+    "BO": ("Bolivia", "Bolivia"),
+    "BR": ("Brasil", "Brazil"),
+    "CA": ("Canadá", "Canada"),
+    "CL": ("Chile", "Chile"),
+    "CO": ("Colombia", "Colombia"),
+    "DE": ("Alemania", "Germany"),
+    "ES": ("España", "Spain"),
+    "FR": ("Francia", "France"),
+    "GB": ("Reino Unido", "United Kingdom"),
+    "MX": ("México", "Mexico"),
+    "PE": ("Perú", "Peru"),
+    "US": ("Estados Unidos", "United States"),
+    "UY": ("Uruguay", "Uruguay"),
+}
 
 
 def _safe_identifier(value: str, label: str) -> str:
@@ -42,6 +61,18 @@ def _query(account_id: str, site_tag: str, start: str, end: str) -> str:
           total: rumPageloadEventsAdaptiveGroups(filter: {common_filter}, limit: 1) {{
             count
             sum {{ visits }}
+          }}
+          countries: rumPageloadEventsAdaptiveGroups(
+            filter: {common_filter}, limit: 6, orderBy: [count_DESC]
+          ) {{
+            sum {{ visits }}
+            dimensions {{ metric: countryName }}
+          }}
+          referrers: rumPageloadEventsAdaptiveGroups(
+            filter: {common_filter}, limit: 6, orderBy: [count_DESC]
+          ) {{
+            sum {{ visits }}
+            dimensions {{ metric: refererHost }}
           }}
         }}
       }}
@@ -74,6 +105,18 @@ def _visits(row: dict) -> int:
     return max(0, int(row.get("sum", {}).get("visits") or 0))
 
 
+def _country(row: dict) -> dict:
+    raw = str(row.get("dimensions", {}).get("metric") or "Unknown").strip()
+    code = raw.upper() if len(raw) in {2, 3} else raw[:3].upper()
+    spanish, english = COUNTRY_NAMES.get(code, (raw, raw))
+    return {
+        "code": code,
+        "label_es": spanish,
+        "label_en": english,
+        "visits": _visits(row),
+    }
+
+
 def main() -> int:
     account_id = os.environ.get("CLOUDFLARE_ANALYTICS_ACCOUNT_ID", "").strip()
     site_tag = os.environ.get("CLOUDFLARE_ANALYTICS_SITE_TAG", "").strip()
@@ -102,20 +145,35 @@ def main() -> int:
         # that as zero visits, not as a credential failure.
         total_rows = result.get("total") or []
         total = total_rows[0] if total_rows else {}
+        countries = [
+            _country(row)
+            for row in result.get("countries", [])
+            if _visits(row) >= MIN_PUBLIC_GROUP_SIZE
+        ]
+        referrers = [
+            {
+                "host": str(row.get("dimensions", {}).get("metric") or "Directo / Direct"),
+                "visits": _visits(row),
+            }
+            for row in result.get("referrers", [])
+            if _visits(row) >= MIN_PUBLIC_GROUP_SIZE
+        ]
         snapshot = {
-            "schema_version": "1.0.0",
+            "schema_version": "1.1.0",
             "status": "active",
             "source": "cloudflare_web_analytics",
             "period_start": start,
             "generated_at": end,
             "visits": _visits(total),
+            "countries": countries,
+            "referrers": referrers,
             "privacy_note_es": (
-                "Sólo se publica el total agregado de visitas; nunca ubicaciones, "
-                "referentes, direcciones IP ni recorridos individuales."
+                "Sólo se publican países y sitios referentes con cinco o más visitas; "
+                "nunca ciudad, dirección IP, ruta ni recorridos individuales."
             ),
             "privacy_note_en": (
-                "Only the aggregate visit total is published; never locations, referrers, "
-                "IP addresses, or individual browsing histories."
+                "Countries and referring sites are published only with five or more visits; "
+                "never city, IP address, path, or individual browsing histories."
             ),
         }
         OUTPUT.write_text(

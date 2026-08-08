@@ -81,8 +81,9 @@ The general pipeline and upload API remain in this repository for local research
 are not part of this benchmark deployment.
 
 The footer has a deliberately minimal public audience counter backed by Cloudflare Web Analytics.
-It publishes only the aggregate visit total—never locations, referring sites, IP addresses, or
-individual paths.
+Its headline publishes only the aggregate visit total; an optional disclosure shows country and
+referring-host groups after each reaches five visits. It never publishes city, IP address,
+individual paths, or event-level records.
 Until an analytics property is connected it renders an honest dash instead of a fabricated zero.
 To activate it, create the `mezosky.github.io` Web Analytics property and configure the repository
 variable `CLOUDFLARE_ANALYTICS_ENABLED=true` plus these Actions secrets:

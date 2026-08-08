@@ -1,10 +1,12 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "status": "awaiting_configuration",
   "source": "cloudflare_web_analytics",
   "period_start": null,
   "generated_at": null,
   "visits": null,
-  "privacy_note_es": "Sólo se publica el total agregado de visitas; nunca ubicaciones, referentes, direcciones IP ni recorridos individuales.",
-  "privacy_note_en": "Only the aggregate visit total is published; never locations, referrers, IP addresses, or individual browsing histories."
+  "countries": [],
+  "referrers": [],
+  "privacy_note_es": "Sólo se publican países y sitios referentes con cinco o más visitas; nunca ciudad, dirección IP, ruta ni recorridos individuales.",
+  "privacy_note_en": "Countries and referring sites are published only with five or more visits; never city, IP address, path, or individual browsing histories."
 }

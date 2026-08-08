@@ -8,6 +8,8 @@ interface SiteAnalytics {
   period_start: string | null
   generated_at: string | null
   visits: number | null
+  countries: Array<{ code: string; label_es: string; label_en: string; visits: number }>
+  referrers: Array<{ host: string; visits: number }>
   privacy_note_es: string
   privacy_note_en: string
 }
@@ -54,6 +56,50 @@ export default function AudienceSnapshot() {
       <p className="mt-3 text-micro text-ink-muted">
         {snapshot ? (language === 'es' ? snapshot.privacy_note_es : snapshot.privacy_note_en) : tr('Cargando métricas agregadas…', 'Loading aggregate metrics…')}
       </p>
+      {configured && (
+        <details className="mt-3 border-t border-line-hairline pt-3">
+          <summary className="cursor-pointer text-micro font-semibold uppercase tracking-[0.12em] text-ink-secondary">
+            {tr('Ver procedencia agregada', 'View aggregate origins')}
+          </summary>
+          {snapshot && (snapshot.countries.length > 0 || snapshot.referrers.length > 0) ? (
+            <div className="mt-4 grid gap-5 text-caption sm:grid-cols-2">
+              {snapshot.countries.length > 0 && <div>
+                <p className="text-micro font-semibold uppercase tracking-wide text-ink-muted">
+                  {tr('Países', 'Countries')}
+                </p>
+                <ul className="mt-2 space-y-1.5">
+                  {snapshot.countries.map((country) => (
+                    <li key={country.code} className="flex justify-between gap-4">
+                      <span>{language === 'es' ? country.label_es : country.label_en}</span>
+                      <span className="tabular text-ink-primary">{country.visits.toLocaleString(locale)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>}
+              {snapshot.referrers.length > 0 && <div>
+                <p className="text-micro font-semibold uppercase tracking-wide text-ink-muted">
+                  {tr('Cómo llegaron', 'How they arrived')}
+                </p>
+                <ul className="mt-2 space-y-1.5">
+                  {snapshot.referrers.map((referrer) => (
+                    <li key={referrer.host} className="flex justify-between gap-4">
+                      <span className="truncate">{referrer.host}</span>
+                      <span className="tabular text-ink-primary">{referrer.visits.toLocaleString(locale)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>}
+            </div>
+          ) : (
+            <p className="mt-3 text-caption text-ink-muted">
+              {tr(
+                'Todavía no hay grupos con cinco visitas para mostrar.',
+                'No groups have reached five visits yet.',
+              )}
+            </p>
+          )}
+        </details>
+      )}
     </section>
   )
 }
