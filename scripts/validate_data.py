@@ -47,6 +47,66 @@ def _validate_megareforma() -> list[str]:
     municipal = payloads.get("municipal-actors.json", {})
     deep = payloads.get("deep-analysis.json", {})
     census = payloads.get("actor-census.json", {})
+    translation_path = (
+        ROOT / "frontend" / "public" / "data" / "megareforma" / "translations-en.json"
+    )
+    try:
+        translation_catalog = json.loads(translation_path.read_text(encoding="utf-8"))
+        translations = translation_catalog.get("translations", {})
+        if translation_catalog.get("source_language") != "es":
+            failures.append("translations-en.json: source_language must be es")
+        if translation_catalog.get("target_language") != "en":
+            failures.append("translations-en.json: target_language must be en")
+        if not isinstance(translations, dict) or len(translations) < 500:
+            failures.append("translations-en.json: expected at least 500 translated prose strings")
+        elif any(
+            not isinstance(source, str) or not isinstance(target, str) or not target.strip()
+            for source, target in translations.items()
+        ):
+            failures.append(
+                "translations-en.json: translations must map strings to non-empty strings"
+            )
+        else:
+            protected_keys = {
+                "name",
+                "publisher",
+                "author",
+                "affiliation",
+                "institution",
+                "municipality",
+                "source_quote",
+                "evidence_quote",
+                "quote",
+                "verbatim_quote",
+            }
+
+            def protected_values(value: object) -> set[str]:
+                values: set[str] = set()
+                if isinstance(value, dict):
+                    for key, item in value.items():
+                        if key in protected_keys and isinstance(item, str):
+                            values.add(item.strip())
+                        else:
+                            values.update(protected_values(item))
+                elif isinstance(value, list):
+                    for item in value:
+                        values.update(protected_values(item))
+                return values
+
+            protected = set().union(*(protected_values(payload) for payload in payloads.values()))
+            protected.update(
+                item.get("title", "").strip()
+                for item in sources.get("items", [])
+                if isinstance(item.get("title"), str)
+            )
+            overlap = protected.intersection(translations)
+            if overlap:
+                failures.append(
+                    "translations-en.json: primary evidence or identity strings were translated: "
+                    + ", ".join(sorted(overlap)[:3])
+                )
+    except Exception as exc:
+        failures.append(f"translations-en.json: {exc}")
     source_ids = {item.get("id") for item in sources.get("items", [])}
     known_source_ids = source_ids | {item.get("id") for item in sources.get("gaps", [])}
     actor_ids = {item.get("id") for item in dossier.get("actors", [])}

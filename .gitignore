@@ -82,3 +82,4 @@ Thumbs.db
 # ---------------------------------------------------------------------------
 !frontend/public/data/
 !frontend/public/data/**
+frontend/public/data/megareforma/translations-en.partial.json

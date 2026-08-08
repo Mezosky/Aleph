@@ -61,6 +61,13 @@ for Boletín 18.216-05. There is no “analyse a new document” control on the 
 news sweep, screenshots, actor profiles and model outputs are prepared offline and exported as
 frozen JSON and image assets. The browser makes **zero LLM calls** and needs no API or database.
 
+The static edition is bilingual (ES/EN). Explanatory prose is translated offline by the pinned
+local model; names, original headlines and evidence quotations stay in Spanish so a translation
+is never presented as primary evidence. “¿Quién tiene razón?” accounts for every captured press
+item, including a disclosed remainder outside the four evaluated questions. The actor tab adds a
+touch-enabled UMAP explorer over all 100 indexed actors; its position represents documentary
+similarity and declared affiliation, never truthfulness or ideological extremity.
+
 The general pipeline and upload API remain in this repository for local research and tests; they
 are not part of this benchmark deployment.
 
@@ -174,6 +181,16 @@ source ids in each topic packet, and code rejects an invented reference before e
 The frozen result covers corporate tax and investment, fiscal self-financing, environmental
 permitting, housing taxation, higher-education access and text/data-mining exceptions. Foreign
 evidence is presented as a benchmark, never as an automatic forecast for Chile.
+
+The English catalog and the licensed La Moneda background are also reproducible build artifacts:
+
+```bash
+# Requires the pinned local Qwen endpoint; no hosted API is used.
+.venv/bin/python scripts/translate_megareforma.py
+
+# Network access is explicit and downloads the documented Wikimedia original.
+.venv/bin/python scripts/sync_site_images.py --allow-network
+```
 
 Analyse a document through the library:
 

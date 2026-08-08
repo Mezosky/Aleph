@@ -8,6 +8,7 @@
  */
 
 import { useTheme, type ThemeChoice } from '@/lib/theme'
+import { useLanguage } from '@/i18n/LanguageContext'
 
 const LABELS: Record<ThemeChoice, string> = {
   system: 'Sistema',
@@ -61,21 +62,24 @@ function Icon({ choice }: { choice: ThemeChoice }) {
 }
 
 export default function ThemeToggle() {
+  const { language, tr } = useLanguage()
   const { choice, resolved, cycleTheme } = useTheme()
   const next = NEXT[choice]
+  const labels: Record<ThemeChoice, string> =
+    language === 'es' ? LABELS : { system: 'System', light: 'Light', dark: 'Dark' }
 
   return (
     <button
       type="button"
       onClick={cycleTheme}
-      aria-label={`Tema actual: ${LABELS[choice].toLowerCase()}${
-        choice === 'system' ? ` (${resolved === 'dark' ? 'oscuro' : 'claro'})` : ''
-      }. Cambiar a ${LABELS[next].toLowerCase()}.`}
-      title={`Tema: ${LABELS[choice].toLowerCase()}`}
+      aria-label={`${tr('Tema actual', 'Current theme')}: ${labels[choice].toLowerCase()}${
+        choice === 'system' ? ` (${resolved === 'dark' ? labels.dark.toLowerCase() : labels.light.toLowerCase()})` : ''
+      }. ${tr('Cambiar a', 'Switch to')} ${labels[next].toLowerCase()}.`}
+      title={`${tr('Tema', 'Theme')}: ${labels[choice].toLowerCase()}`}
       className="inline-flex items-center gap-1.5 rounded-data border border-line-hairline bg-surface-card px-2.5 py-1.5 text-micro uppercase tracking-wide text-ink-secondary transition-colors duration-200 ease-subtle hover:border-line-strong hover:text-ink-primary"
     >
       <Icon choice={choice} />
-      <span className="sr-only sm:not-sr-only">{LABELS[choice]}</span>
+      <span className="sr-only sm:not-sr-only">{labels[choice]}</span>
     </button>
   )
 }

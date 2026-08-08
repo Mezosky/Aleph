@@ -10,18 +10,26 @@
 
 import { NavLink } from 'react-router-dom'
 import ThemeToggle from '@/components/shell/ThemeToggle'
+import { useLanguage } from '@/i18n/LanguageContext'
 
 interface NavItem {
   to: string
-  label: string
+  label: { es: string; en: string }
   end?: boolean
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { to: '/', label: 'La Megarreforma', end: true },
-  { to: '/actores', label: 'Actores y fuentes' },
-  { to: '/documento/18216-05', label: 'Evidencia' },
-  { to: '/metodologia', label: 'Metodología' },
+  {
+    to: '/',
+    label: { es: 'La Megarreforma', en: 'The Megareform' },
+    end: true,
+  },
+  {
+    to: '/actores',
+    label: { es: 'Actores y fuentes', en: 'Actors & sources' },
+  },
+  { to: '/documento/18216-05', label: { es: 'Evidencia', en: 'Evidence' } },
+  { to: '/metodologia', label: { es: 'Metodología', en: 'Methodology' } },
 ]
 
 const LINK_BASE = 'whitespace-nowrap rounded-data px-2 py-1 text-caption transition-colors duration-200 ease-subtle'
@@ -33,6 +41,7 @@ function navClass({ isActive }: { isActive: boolean }): string {
 }
 
 export default function Header() {
+  const { language, setLanguage, tr } = useLanguage()
   return (
     <header
       className="sticky top-0 z-50 border-b border-line-hairline bg-surface-page backdrop-blur-md"
@@ -44,7 +53,7 @@ export default function Header() {
         href="#content"
         className="sr-only rounded-data focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:border focus:border-line-strong focus:bg-surface-raised focus:px-3 focus:py-2 focus:text-caption focus:text-ink-primary"
       >
-        Saltar al contenido
+        {tr('Saltar al contenido', 'Skip to content')}
       </a>
 
       <div className="mx-auto w-full max-w-shell px-5 sm:px-8">
@@ -63,23 +72,42 @@ export default function Header() {
           </NavLink>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            <nav aria-label="Principal" className="hidden items-center gap-1 md:flex">
+            <nav aria-label={tr('Principal', 'Main')} className="hidden items-center gap-1 md:flex">
               {NAV_ITEMS.map((item) => (
                 <NavLink key={item.to} to={item.to} end={item.end} className={navClass}>
-                  {item.label}
+                  {item.label[language]}
                 </NavLink>
               ))}
             </nav>
+            <div
+              className="inline-flex rounded-data border border-line-hairline p-0.5 text-micro font-semibold"
+              role="group"
+              aria-label={tr('Idioma', 'Language')}
+            >
+              {(['es', 'en'] as const).map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => setLanguage(option)}
+                  aria-pressed={language === option}
+                  className={`rounded-data px-2 py-1 uppercase transition-colors ${
+                    language === option ? 'bg-ink-primary text-ink-inverse' : 'text-ink-muted hover:text-ink-primary'
+                  }`}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
             <ThemeToggle />
           </div>
         </div>
 
         {/* Below `md` the nav moves to its own row and scrolls inside itself, so
             a narrow viewport never produces horizontal page scroll. */}
-        <nav aria-label="Secciones" className="-mx-2 flex gap-1 overflow-x-auto pb-2 md:hidden">
+        <nav aria-label={tr('Secciones', 'Sections')} className="-mx-2 flex gap-1 overflow-x-auto pb-2 md:hidden">
           {NAV_ITEMS.map((item) => (
             <NavLink key={item.to} to={item.to} end={item.end} className={navClass}>
-              {item.label}
+              {item.label[language]}
             </NavLink>
           ))}
         </nav>

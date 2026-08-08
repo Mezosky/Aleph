@@ -15,6 +15,7 @@
 import { Component, Suspense, lazy, useEffect, useRef, type ReactNode } from 'react'
 import { HashRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
 import Layout from '@/components/shell/Layout'
+import { LanguageProvider } from '@/i18n/LanguageContext'
 
 const Home = lazy(() => import('@/pages/Home'))
 const Actors = lazy(() => import('@/pages/Actors'))
@@ -155,21 +156,23 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <HashRouter>
-      <ScrollToTop />
-      <Layout>
-        <ErrorBoundary>
-          <Suspense fallback={<PageSkeleton />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/actores" element={<Actors />} />
-              <Route path="/documento/:slug" element={<Reform />} />
-              <Route path="/metodologia" element={<Methodology />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </ErrorBoundary>
-      </Layout>
-    </HashRouter>
+    <LanguageProvider>
+      <HashRouter>
+        <ScrollToTop />
+        <Layout>
+          <ErrorBoundary>
+            <Suspense fallback={<PageSkeleton />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/actores" element={<Actors />} />
+                <Route path="/documento/:slug" element={<Reform />} />
+                <Route path="/metodologia" element={<Methodology />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
+        </Layout>
+      </HashRouter>
+    </LanguageProvider>
   )
 }

@@ -1,7 +1,9 @@
 import { dataUrl } from '@/lib/data'
 import type { ActorProfile } from '@/types/megareforma'
+import { useLanguage } from '@/i18n/LanguageContext'
 
 export default function ActorPopover({ actor }: { actor: ActorProfile }) {
+  const { tr } = useLanguage()
   return (
     <span className="group/actor relative inline-block">
       <button
@@ -35,7 +37,8 @@ export default function ActorPopover({ actor }: { actor: ActorProfile }) {
           {actor.public_record[0]?.assessment}
         </span>
         <span className="mt-2 block text-micro font-normal text-ink-muted">
-          Foto: {actor.image_credit} · {actor.image_license}. Historial factual; no interviene en el veredicto.
+          {tr('Foto', 'Photo')}: {actor.image_credit} · {actor.image_license}.{' '}
+          {tr('Historial factual; no interviene en el veredicto.', 'Factual history; it does not affect the verdict.')}
         </span>
       </span>
     </span>

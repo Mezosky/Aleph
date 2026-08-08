@@ -1,9 +1,11 @@
 import { dataUrl } from '@/lib/data'
 import type { ActorProfile, DossierMeter as Meter } from '@/types/megareforma'
+import { useLanguage } from '@/i18n/LanguageContext'
 
 const CONFIDENCE = { low: 'baja', medium: 'media', high: 'alta' } as const
 
 export default function DossierMeter({ meter, actors = [] }: { meter: Meter; actors?: ActorProfile[] }) {
+  const { language, tr } = useLanguage()
   const bounded = Math.max(0, Math.min(100, meter.value))
   const byId = new Map(actors.map((actor) => [actor.id, actor]))
   const leftActors = (meter.pole_actor_ids?.left ?? []).map((id) => byId.get(id)).filter(Boolean) as ActorProfile[]
@@ -15,15 +17,18 @@ export default function DossierMeter({ meter, actors = [] }: { meter: Meter; act
         <div>
           <p className="text-micro font-semibold uppercase tracking-[0.16em] text-ink-muted">
             {meter.kind === 'editorial_tone'
-              ? 'Lectura de cobertura'
+              ? tr('Lectura de cobertura', 'Coverage reading')
               : meter.kind === 'public_interest'
-                ? 'Interés público'
-                : 'Tensión de diseño'}
+                ? tr('Interés público', 'Public interest')
+                : tr('Tensión de diseño', 'Design tension')}
           </p>
           <h3 className="mt-2 text-lede font-semibold text-ink-primary">{meter.title}</h3>
         </div>
         <span className="border border-line-hairline bg-surface-sunken px-2 py-1 text-micro uppercase text-ink-secondary">
-          confianza {CONFIDENCE[meter.confidence]}
+          {tr('confianza', 'confidence')}{' '}
+          {language === 'es'
+            ? CONFIDENCE[meter.confidence]
+            : { low: 'low', medium: 'medium', high: 'high' }[meter.confidence]}
         </span>
       </div>
 
@@ -32,7 +37,7 @@ export default function DossierMeter({ meter, actors = [] }: { meter: Meter; act
       <div
         className="mt-7"
         role="img"
-        aria-label={`${meter.title}: ${bounded} de 100, desde ${meter.left_label} hacia ${meter.right_label}`}
+        aria-label={`${meter.title}: ${bounded} ${tr('de', 'out of')} 100, ${tr('desde', 'from')} ${meter.left_label} ${tr('hacia', 'toward')} ${meter.right_label}`}
       >
         {(leftActors.length > 0 || rightActors.length > 0) && (
           <div className="mb-2 flex items-end justify-between" aria-hidden="true">
@@ -76,7 +81,7 @@ export default function DossierMeter({ meter, actors = [] }: { meter: Meter; act
       <p className="mt-5 text-body text-ink-primary">{meter.explanation}</p>
       <details className="mt-4 border-t border-line-hairline pt-3">
         <summary className="cursor-pointer text-caption font-semibold text-ink-secondary">
-          Ver cálculo y componentes
+          {tr('Ver cálculo y componentes', 'View calculation and components')}
         </summary>
         <p className="mt-3 text-caption text-ink-secondary">{meter.methodology}</p>
         <ul className="mt-3 space-y-2">

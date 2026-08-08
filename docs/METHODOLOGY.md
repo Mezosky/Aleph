@@ -244,6 +244,11 @@ hashed phase artifacts, final output hash, timestamps and failure state. A later
 run it supersedes, allowing a reader to distinguish a changed document or evidence set from a
 changed model or implementation.
 
+The bilingual edition follows the same rule. The pinned local model translates explanatory prose
+into English before deployment and the resulting catalog is committed as static data. Actor names,
+publication headlines and verbatim evidence remain in their original Spanish. The browser only
+performs exact catalog lookup; changing languages never invokes a model or rewrites primary evidence.
+
 Live news collection is a separate, explicit input-acquisition step. It polls only verified feeds
 declared in the source registry, obeys the recorded robots decision and rate limit, stores the
 exact response bytes, and records failures as coverage gaps. Canonical URLs and response hashes
@@ -282,6 +287,13 @@ same immutable source id. The published census currently records 100 actors and 
 mentions; 265 model candidates were rejected by the structural tests. Quantified municipal
 signatory groups remain visible as institutional collectives rather than being misreported as
 individual people, and close name variants are merged only under conservative deterministic rules.
+
+The actor explorer embeds this census with UMAP using actor type, shared source membership, profile
+depth and a coarse value derived only from a declared party or coalition. Neutral marker shapes
+communicate those declared sectors and an unaffiliated category; colour does not encode a political
+side. UMAP distance is documentary similarity: the axes may
+rotate and neither distance nor colour measures honesty, truth, extremism or the quality of an actor's
+argument. The factual verdict remains outside this feature set by construction.
 
 Document coverage is measured just as explicitly. The first implementation silently stopped after
 250 paragraphs, which covered only pages 1–21 of the 46-page financial report. That cap was removed

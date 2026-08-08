@@ -30,6 +30,7 @@ import type {
   MegareformaTheory,
   MunicipalActorIndex,
 } from '@/types/megareforma'
+import type { TranslationCatalog } from '@/i18n/translateData'
 
 /* ------------------------------------------------------------------ *
  * URLs
@@ -58,6 +59,7 @@ export const DATA_PATHS = {
   megareformaMunicipalActors: 'megareforma/municipal-actors.json',
   megareformaDeepAnalysis: 'megareforma/deep-analysis.json',
   megareformaActorCensus: 'megareforma/actor-census.json',
+  megareformaEnglish: 'megareforma/translations-en.json',
 } as const
 
 /* ------------------------------------------------------------------ *
@@ -312,6 +314,16 @@ export async function loadMegareformaActorCensus(signal?: AbortSignal): Promise<
   const value = await loadJson<ActorCensus>(url, signal)
   if (!value || value.coverage?.actors_indexed !== value.actors?.length) {
     throw new DataError('parse', 'El censo de actores está incompleto.', url)
+  }
+  return value
+}
+
+/** English analysis prose generated offline; primary Spanish evidence is intentionally absent. */
+export async function loadMegareformaEnglish(signal?: AbortSignal): Promise<TranslationCatalog> {
+  const url = dataUrl(DATA_PATHS.megareformaEnglish)
+  const value = await loadJson<TranslationCatalog>(url, signal)
+  if (!value || value.source_language !== 'es' || value.target_language !== 'en' || !value.translations) {
+    throw new DataError('parse', 'El catálogo bilingüe no tiene la forma esperada.', url)
   }
   return value
 }

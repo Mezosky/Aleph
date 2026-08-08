@@ -1,7 +1,9 @@
 import { dataUrl } from '@/lib/data'
 import type { CensusActor } from '@/types/megareforma'
+import { useLanguage } from '@/i18n/LanguageContext'
 
 export default function CensusActorPopover({ actor }: { actor: CensusActor }) {
+  const { tr } = useLanguage()
   return (
     <span className="group/census relative inline-block">
       <button
@@ -20,14 +22,14 @@ export default function CensusActorPopover({ actor }: { actor: CensusActor }) {
           {actor.image && (
             <img
               src={dataUrl(actor.image)}
-              alt={actor.image_alt || `Retrato de ${actor.name}`}
+              alt={actor.image_alt || `${tr('Retrato de', 'Portrait of')} ${actor.name}`}
               className="h-24 w-20 shrink-0 object-cover object-top grayscale"
               loading="lazy"
             />
           )}
           <span>
             <span className="block text-caption font-semibold text-ink-primary">
-              {actor.role || 'Rol no especificado en la captura'}
+              {actor.role || tr('Rol no especificado en la captura', 'Role not specified in the capture')}
             </span>
             {(actor.institution || actor.affiliation) && (
               <span className="mt-1 block text-micro text-ink-muted">
@@ -41,18 +43,28 @@ export default function CensusActorPopover({ actor }: { actor: CensusActor }) {
         </span>
         {actor.public_record?.[0] && (
           <span className="mt-3 block border-t border-line-hairline pt-3 text-micro font-normal text-ink-secondary">
-            <span className="font-semibold text-ink-primary">Historial verificado:</span>{' '}
+            <span className="font-semibold text-ink-primary">{tr('Historial verificado', 'Verified record')}:</span>{' '}
             {actor.public_record[0].action} {actor.public_record[0].assessment}
           </span>
         )}
         <span className="mt-3 block border-t border-line-hairline pt-3 text-micro font-normal text-ink-muted">
-          {actor.source_ids.length} {actor.source_ids.length === 1 ? 'fuente archivada' : 'fuentes archivadas'} ·{' '}
-          {actor.profile_depth === 'detailed' ? 'ficha ampliada disponible' : 'sólo índice documental'}.
-          La trayectoria atribuida no altera ningún veredicto ciego.
+          {actor.source_ids.length}{' '}
+          {actor.source_ids.length === 1
+            ? tr('fuente archivada', 'archived source')
+            : tr('fuentes archivadas', 'archived sources')}{' '}
+          ·{' '}
+          {actor.profile_depth === 'detailed'
+            ? tr('ficha ampliada disponible', 'expanded profile available')
+            : tr('sólo índice documental', 'document index only')}
+          .{' '}
+          {tr(
+            'La trayectoria atribuida no altera ningún veredicto ciego.',
+            'The attributed record does not alter any blind verdict.',
+          )}
         </span>
         {actor.image && (
           <span className="mt-2 block text-micro font-normal text-ink-muted">
-            Foto: {actor.image_credit} · {actor.image_license}.
+            {tr('Foto', 'Photo')}: {actor.image_credit} · {actor.image_license}.
           </span>
         )}
       </span>
