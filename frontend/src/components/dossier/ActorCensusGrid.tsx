@@ -64,18 +64,20 @@ export default function ActorCensusGrid({
                 }`}
               >
                 {image ? (
-                  <img
-                    src={dataUrl(image)}
-                    alt=""
-                    className="h-full w-full rounded-full object-cover object-top grayscale transition group-hover:grayscale-0"
-                    loading="lazy"
-                  />
+                  <span className="absolute inset-0 overflow-hidden rounded-full">
+                    <img
+                      src={dataUrl(image)}
+                      alt=""
+                      className="h-full w-full object-cover object-top grayscale transition group-hover:grayscale-0"
+                      loading="lazy"
+                    />
+                  </span>
                 ) : (
                   initials(actor.name)
                 )}
                 {hasPersonalRecord && (
                   <span
-                    className="absolute right-[-0.1rem] top-[-0.1rem] h-2.5 w-2.5 rounded-full border-2 border-surface-card bg-status-critical"
+                    className="absolute right-[-0.1rem] top-[-0.1rem] z-10 h-2.5 w-2.5 rounded-full border-2 border-surface-card bg-status-critical"
                     aria-hidden="true"
                   />
                 )}
