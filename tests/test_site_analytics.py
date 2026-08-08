@@ -5,7 +5,7 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-from scripts.export_site_analytics import _query
+from scripts.export_site_analytics import _query, _visits
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -36,3 +36,8 @@ def test_cloudflare_query_requests_only_visit_total() -> None:
     assert "city" not in query
     assert "refererPath" not in query
     assert "requestPath" not in query
+
+
+def test_new_site_without_aggregate_rows_starts_at_zero() -> None:
+    assert _visits({}) == 0
+    assert _visits({"sum": {"visits": None}}) == 0

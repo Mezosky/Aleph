@@ -61,7 +61,13 @@ def _request(token: str, query: str) -> dict:
         payload = json.load(response)
     if payload.get("errors"):
         raise RuntimeError(json.dumps(payload["errors"], ensure_ascii=False))
-    return payload["data"]["viewer"]["accounts"][0]
+    accounts = payload.get("data", {}).get("viewer", {}).get("accounts", [])
+    if not accounts:
+        raise RuntimeError(
+            "Cloudflare returned no accessible account; verify "
+            "CLOUDFLARE_ANALYTICS_ACCOUNT_ID and Account Analytics Read permission"
+        )
+    return accounts[0]
 
 
 def _visits(row: dict) -> int:
@@ -73,14 +79,29 @@ def main() -> int:
     site_tag = os.environ.get("CLOUDFLARE_ANALYTICS_SITE_TAG", "").strip()
     token = os.environ.get("CLOUDFLARE_ANALYTICS_API_TOKEN", "").strip()
     if not all((account_id, site_tag, token)):
-        print("Cloudflare analytics credentials absent; keeping public placeholder")
+        missing = [
+            name
+            for name, value in (
+                ("CLOUDFLARE_ANALYTICS_ACCOUNT_ID", account_id),
+                ("CLOUDFLARE_ANALYTICS_SITE_TAG", site_tag),
+                ("CLOUDFLARE_ANALYTICS_API_TOKEN", token),
+            )
+            if not value
+        ]
+        print(
+            "Cloudflare analytics credentials absent; keeping public placeholder: "
+            + ", ".join(missing)
+        )
         return 0
 
     start = os.environ.get("CLOUDFLARE_ANALYTICS_START", DEFAULT_START).strip()
     end = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
     try:
         result = _request(token, _query(account_id, site_tag, start, end))
-        total = result.get("total", [{}])[0]
+        # A newly installed beacon legitimately has no aggregate row yet. Treat
+        # that as zero visits, not as a credential failure.
+        total_rows = result.get("total") or []
+        total = total_rows[0] if total_rows else {}
         snapshot = {
             "schema_version": "1.0.0",
             "status": "active",
@@ -102,7 +123,7 @@ def main() -> int:
         )
         print(f"Exported {snapshot['visits']} aggregate visits")
         return 0
-    except (HTTPError, URLError, RuntimeError, ValueError, KeyError, IndexError) as exc:
+    except (HTTPError, URLError, RuntimeError, ValueError, KeyError) as exc:
         print(f"Cloudflare analytics export failed; keeping prior snapshot: {exc}", file=sys.stderr)
         return 0
 
