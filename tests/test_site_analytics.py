@@ -47,3 +47,5 @@ def test_public_origin_groups_use_a_five_visit_floor() -> None:
     assert MIN_PUBLIC_GROUP_SIZE == 5
     chile = _country({"dimensions": {"metric": "CL"}, "sum": {"visits": 7}})
     assert chile == {"code": "CL", "label_es": "Chile", "label_en": "Chile", "visits": 7}
+    australia = _country({"dimensions": {"metric": "AU"}, "sum": {"visits": 19}})
+    assert australia["label_es"] == "Australia"

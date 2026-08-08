@@ -25,6 +25,7 @@ MIN_PUBLIC_GROUP_SIZE = 5
 
 COUNTRY_NAMES = {
     "AR": ("Argentina", "Argentina"),
+    "AU": ("Australia", "Australia"),
     "BO": ("Bolivia", "Bolivia"),
     "BR": ("Brasil", "Brazil"),
     "CA": ("Canadá", "Canada"),
