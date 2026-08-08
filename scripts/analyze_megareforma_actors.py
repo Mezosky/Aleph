@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from aleph.dossier.actor_affiliations import enrich_actor_affiliations  # noqa: E402
 from aleph.dossier.actor_census import (  # noqa: E402
     census_batch,
     merge_census,
@@ -345,6 +346,7 @@ def main() -> int:
     for actor in actors:
         if actor["entity_kind"] == "person":
             actor["actor_type"] = _role_actor_type(actor["role"], actor["actor_type"])
+    enrich_actor_affiliations(actors)
     generated_at = datetime.now(UTC).isoformat().replace("+00:00", "Z")
     accepted_mentions = sum(len(actor["mentions"]) for actor in actors)
     people = sum(actor["entity_kind"] == "person" for actor in actors)

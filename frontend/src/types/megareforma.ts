@@ -193,6 +193,14 @@ export interface CensusActor {
   role: string
   institution: string
   affiliation: string
+  affiliation_status:
+    | 'verified_public_record'
+    | 'independent_public_record'
+    | 'reported_in_corpus'
+    | 'institutional_not_applicable'
+    | 'not_documented'
+  affiliation_source_url?: string
+  affiliation_verified_at?: string
   participation_summary: string
   profile_depth: 'detailed' | 'indexed'
   source_ids: string[]

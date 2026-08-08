@@ -7,11 +7,11 @@
     "captured_sources_total": 64,
     "captured_sources_audited": 64,
     "text_chunks_audited": 72,
-    "actors_indexed": 100,
-    "people": 89,
+    "actors_indexed": 98,
+    "people": 87,
     "institutions": 11,
     "detailed_profiles": 26,
-    "indexed_only": 74,
+    "indexed_only": 72,
     "accepted_mentions": 218,
     "rejected_ungrounded_candidates": 265,
     "universe": "Toda persona o institución con una acción, posición, voto, evaluación técnica, negociación o responsabilidad de implementación atribuida en las capturas congeladas.",
@@ -188,7 +188,8 @@
       "image_alt": "Retrato oficial de Jorge Quiroz",
       "image_credit": "Estado de Chile",
       "image_license": "CC BY 3.0 CL",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:JORGE-QUIROZ.jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:JORGE-QUIROZ.jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "jose-antonio-kast",
@@ -282,7 +283,8 @@
       "image_alt": "Retrato oficial de José Antonio Kast",
       "image_credit": "Estado de Chile",
       "image_license": "CC BY 3.0 CL",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Retrato_Presidente_Jos%C3%A9_Antonio_Kast.png"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Retrato_Presidente_Jos%C3%A9_Antonio_Kast.png",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "gustavo-alessandri",
@@ -365,7 +367,8 @@
           ]
         }
       ],
-      "record_caveat": "La posición y el resultado se presentan como hechos públicos; no son una nota de credibilidad ni prueban que una afirmación posterior sea verdadera."
+      "record_caveat": "La posición y el resultado se presentan como hechos públicos; no son una nota de credibilidad ni prueban que una afirmación posterior sea verdadera.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "karina-delfino",
@@ -441,7 +444,8 @@
           ]
         }
       ],
-      "record_caveat": "La ficha distingue compensación agregada de distribución entre comunas y no usa la afiliación política como señal de veracidad."
+      "record_caveat": "La ficha distingue compensación agregada de distribución entre comunas y no usa la afiliación política como señal de veracidad.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "paulina-nunez",
@@ -516,7 +520,8 @@
       "image_alt": "Retrato oficial de Paulina Núñez",
       "image_credit": "Biblioteca del Congreso Nacional de Chile",
       "image_license": "CC BY-SA 3.0 CL",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senadora_Paulina_N%C3%BA%C3%B1ez_Urrutia_(2022).jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senadora_Paulina_N%C3%BA%C3%B1ez_Urrutia_(2022).jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "gobierno",
@@ -561,7 +566,8 @@
           "action_or_position": "Anunció el Proyecto de Ley de Reconstrucción Nacional y Reforma Tributaria el 14 de marzo.",
           "evidence_quote": "nacional y reforma tributaria 18 marzo, 2026 tributaria el pasado 14 de marzo, el poder ejecutivo anunció el \"proyecto de ley de reconstrucción nacional\" (\"proyecto de ley\"), el cual sería presentado al congreso en los próximos días. la iniciativa contempla, entre otras, medidas tributarias orientadas a reactivar la inversión y el"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "tomas-vodanovic",
@@ -636,7 +642,8 @@
       "image_alt": "Retrato de Tomás Vodanovic",
       "image_credit": "Municipalidad de Maipú",
       "image_license": "CC BY 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Tom%C3%A1s_Vodanivic_-_2024.jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Tom%C3%A1s_Vodanivic_-_2024.jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "jaime-bellolio",
@@ -694,7 +701,8 @@
       "image_alt": "Retrato de Jaime Bellolio",
       "image_credit": "KatKirLu",
       "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ministro_Vocero_de_Gobierno_Jaime_Bellolio.jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Ministro_Vocero_de_Gobierno_Jaime_Bellolio.jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "paulina-vodanovic",
@@ -751,7 +759,8 @@
       "image_alt": "Retrato oficial de Paulina Vodanovic",
       "image_credit": "Senado de Chile",
       "image_license": "CC BY 3.0 CL",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senadora_Paulina_Vodanovic.jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senadora_Paulina_Vodanovic.jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "pedro-araya",
@@ -760,7 +769,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido por la Democracia",
       "participation_summary": "Negoció con el Ejecutivo y aprobó la indicación sobre el mecanismo de compensación a los municipios.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -790,7 +799,10 @@
           "action_or_position": "reivindicó lo que hizo el Comité PPD y el diálogo, cuestionó que colegas hayan caído en la descalificación personal, transparentó sus dudas sobre temas ambientales y anunció su voto en contra por invariabilidad",
           "evidence_quote": "la manera más fácil de perder la legitimidad\" y lamentó \"el tono del debate\". el senador pedro araya reivindicó lo que hizo el comité ppd y el diálogo y cuestionó \"que colegas hayan caído en la descalificación personal\" y transparentó sus dudas sobre temas ambientales y anunció su voto en contra por invariabilidad. el reproche a la"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "senado",
@@ -829,7 +841,8 @@
           "action_or_position": "Aprobó en general el proyecto de Reconstrucción y Reactivación Económica con 26 votos a favor.",
           "evidence_quote": "el ejecutivo deberá negociar posibles cambios para asegurar su aprobación definitiva. el senado aprobó este miércoles en general el proyecto de reconstrucción y reactivación económica impulsado por el gobierno. la denominada megarreforma superó así su primer gran trámite en la cámara alta, tras obtener exactamente los 26 votos"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "yasna-provoste",
@@ -838,7 +851,7 @@
       "actor_type": "legislator",
       "role": "senadora",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Demócrata Cristiano",
       "participation_summary": "Asistió de manera telemática a la reunión de la Mesa Técnica y Política constituida para generar un protocolo de acuerdo en el marco de la tramitación del proyecto de reconstrucción nacional.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -868,7 +881,10 @@
           "action_or_position": "Afirmó que repondrá la indicación que recoge el acuerdo de alcaldes para proteger las finanzas municipales y el Fondo Común Municipal durante la votación.",
           "evidence_quote": "del senado. foto: agencia uno. en el senado encontró una aliada. se trata de la senadora yasna provoste (dc), quien afirmó que durante la votación de la megarreforma en particular repondrá la indicación que recoge el acuerdo suscrito entre alcaldes. \" insistiremos en que el gobierno entienda que la rebaja de contribuciones puede poner en"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "claudia-pascual",
@@ -877,7 +893,7 @@
       "actor_type": "legislator",
       "role": "senadora",
       "institution": "Senado",
-      "affiliation": "",
+      "affiliation": "Partido Comunista",
       "participation_summary": "Asistió a la reunión de la Mesa Técnica y Política constituida para generar un protocolo de acuerdo en el marco de la tramitación del proyecto de reconstrucción nacional.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -906,7 +922,10 @@
           "action_or_position": "declaró que estamos a las puertas de aprobar temáticas tremendamente complejas y regresivas para el país y el Estado y que vamos a retroceder",
           "evidence_quote": "y salud, cuestión que no fue considerada por el ejecutivo; por su parte, la senadora claudia pascual declaró que \"estamos a las puertas de aprobar temáticas tremendamente complejas y regresivas para el país y el estado (…). vamos a retroceder\". también dejaron planteados sus cuestionamientos del senador vlado mirosevic y la senadora"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "claudio-castro",
@@ -958,7 +977,8 @@
       "image_alt": "Retrato de Claudio Castro",
       "image_credit": "Vocería de Gobierno",
       "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Claudio_Castro_Salas_(cropped).jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Claudio_Castro_Salas_(cropped).jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "felipe-alessandri",
@@ -1010,7 +1030,8 @@
       "image_alt": "Retrato de Felipe Alessandri",
       "image_credit": "I. Municipalidad de Santiago",
       "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Felipe_Alessandri_(32727066712)_(cropped).jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Felipe_Alessandri_(32727066712)_(cropped).jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "javier-macaya",
@@ -1066,7 +1087,44 @@
       "image_alt": "Retrato oficial de Javier Macaya",
       "image_credit": "Biblioteca del Congreso Nacional de Chile",
       "image_license": "CC BY-SA 3.0 CL",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senador_Javier_Ignacio_Macaya_Danus.jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senador_Javier_Ignacio_Macaya_Danus.jpg",
+      "affiliation_status": "reported_in_corpus"
+    },
+    {
+      "id": "loreto-carvajal",
+      "name": "Loreto Carvajal",
+      "entity_kind": "person",
+      "actor_type": "legislator",
+      "role": "Senadora",
+      "institution": "Senado",
+      "affiliation": "Partido por la Democracia",
+      "participation_summary": "Aseguró que Chile requiere crecer de manera consensuada, se necesita un paquete de medidas para compensar la menor recaudación y se debe ver cómo afectan las medidas a los territorios.",
+      "profile_depth": "indexed",
+      "source_ids": [
+        "senate-negotiation-table-progress",
+        "senate-negotiation-table-start",
+        "senate-particular-vote"
+      ],
+      "mentions": [
+        {
+          "source_id": "senate-negotiation-table-progress",
+          "action_or_position": "Aseguró que Chile requiere crecer de manera consensuada, se necesita un paquete de medidas para compensar la menor recaudación y se debe ver cómo afectan las medidas a los territorios.",
+          "evidence_quote": "distinta del ministro quiroz y lo valoramos\". a nombre de la bancada del ppd, loreto carvajal aseguró que \"chile requiere crecer pero de manera consensuada. hay que revisar la megarreforma, se necesita un paquete de medidas para compensar la menor recaudacion. también hay que ver cómo afectan las medidas a los territorios,"
+        },
+        {
+          "source_id": "senate-negotiation-table-start",
+          "action_or_position": "Participó en la Mesa política y técnica por reconstrucción.",
+          "evidence_quote": "al ministro de hacienda, jorge quiroz. en el encuentro participaron las y los senadores: loreto carvajal, paulina vodanovic, yasna provoste, javier macaya y claudia pascual. la presidenta del senado, paulina núñez, destacó que \"esto es hacer política: abrir espacios de conversación, escucharnos y entender que todos queremos que el país"
+        },
+        {
+          "source_id": "senate-particular-vote",
+          "action_or_position": "manifestó preocupaciones por lo que se dejará de recaudar, los privilegios a los que más tienen, el cambio de modelo y las medidas compensatorias inciertas, y dejó constancia de la forma en la que el gobierno ha entendido la política sin construir un acuerdo político amplio y legislando en un escena",
+          "evidence_quote": ". en línea similar se expresaron las y los senadores ricardo celis , daniella cicardini, loreto cravajal y danisa astudillo , quienes manifestaron preocupaciones por lo que se dejará de recaudar, \"los privilegios a los que más tienen\", \"el cambio de modelo\" y las medidas compensatorias inciertas, entre otras. además, dejaron constancia de"
+        }
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "sergio-gahona",
@@ -1075,7 +1133,7 @@
       "actor_type": "legislator",
       "role": "presidente de la Comisión de Medio Ambiente",
       "institution": "Comisión de Medio Ambiente",
-      "affiliation": "",
+      "affiliation": "Unión Demócrata Independiente",
       "participation_summary": "Negoció con el Ejecutivo y aprobó la indicación sobre el mecanismo de compensación a los municipios.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1099,7 +1157,10 @@
           "action_or_position": "detalló el análisis y apertura en el estudio en la Comisión de Medio Ambiente que avanzó en racionalización de impacto ambiental, equilibrio en los límites a la paralización judicial, indemnización por confianza legítima, rigor y ética al consejo de monumentos nacionales y pragmatismos en la acuicul",
           "evidence_quote": "como una \"garantía\" que \"otorga certeza de largo plazo\". a su turno, el senador sergio gahona , presidente de la comisión de medio ambiente , detalló el análisis y apertura en el estudio en la comisión de medio ambiente que avanzó en: racionalización de impacto ambiental; equilibrio en los límites a la paralización judicial;"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "asociacion-chilena-de-municipalidades",
@@ -1126,7 +1187,8 @@
           "action_or_position": "Presentó una propuesta al Ejecutivo que buscaba hacerse cargo de la compensación a los municipios y la definición de quiénes deberían quedar exentos del pago de contribuciones.",
           "evidence_quote": "y la definición de quiénes deberían quedar exentos del pago de contribuciones. \"como asociación chilena de municipalidades nosotros presentamos una propuesta del ejecutivo que buscaba hacerse cargo de dos preguntas fundamentales\", indicó. sobre el primer punto, afirmó que hubo avances, aunque advirtió que las compensaciones aún son insuficientes. \"el ministro"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "claudio-alvarado",
@@ -1153,7 +1215,8 @@
           "action_or_position": "Defendió el calendario original y sostuvo que los espacios de conversación seguían abiertos en las comisiones.",
           "evidence_quote": "en la misma línea, el biministro del interior y la secretaría general de gobierno, claudio alvarado, defendió el calendario original y sostuvo que los espacios de conversación seguían abiertos. \"qué mejor que hacerlo en las comisiones respectivas, en las discusiones en particular del articulado del proyecto\", planteó. desde evópoli, el"
         }
-      ]
+      ],
+      "affiliation_status": "not_documented"
     },
     {
       "id": "camara-de-diputados",
@@ -1180,7 +1243,8 @@
           "action_or_position": "Aprobó la mayor parte de las modificaciones introducidas por el Senado al proyecto de Reconstrucción Nacional.",
           "evidence_quote": "2026 política proyecto de megareforma del gobierno de kast queda a un paso de ser ley: cámara de diputados aprueba mayoría de los cambios y una enmienda irá a comisión mixta la única enmienda que no logró ser aprobada corresponde al mecanismo de compensación para los municipios por la exención del pago de contribuciones a la vivienda principal"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "diego-ibanez",
@@ -1189,7 +1253,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Frente Amplio",
       "participation_summary": "Aseguró que presentarán indicaciones para eliminar la invariabilidad tributaria y fortalecer el subsidio unificado al empleo.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1212,7 +1276,10 @@
           "action_or_position": "Dijo que quienes votan a favor de esta reforma renuncian al principio de responsabilidad fiscal y que en los hechos esto es desregulación y no creer en lo público.",
           "evidence_quote": "el senador ignacio urrutia se manifestó en un sentido similar. por su parte, el senador diego ibáñez dijo que \"quienes votan a favor de esta reforma, renuncian al principio de responsabilidad fiscal\" y dijo que en los hechos \"esto es desregulación y no creer en lo público\". noticias relacionadas ir a todas las noticias lunes 13 de julio"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "gael-yeomans",
@@ -1263,7 +1330,8 @@
       "image_alt": "Retrato oficial de Gael Yeomans",
       "image_credit": "Biblioteca del Congreso Nacional de Chile",
       "image_license": "CC BY-SA 3.0 CL",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Diputados_2026_Gael_Fernanda_Yeomans_Araya.jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Diputados_2026_Gael_Fernanda_Yeomans_Araya.jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "ivan-moreira",
@@ -1309,7 +1377,8 @@
       "image_alt": "Retrato oficial de Iván Moreira",
       "image_credit": "Biblioteca del Congreso Nacional de Chile",
       "image_license": "CC BY-SA 3.0 CL",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senador_Iv%C3%A1n_Moreira_Barros_(2022).jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Senador_Iv%C3%A1n_Moreira_Barros_(2022).jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "javiera-reyes",
@@ -1355,7 +1424,8 @@
       "image_alt": "Retrato de Javiera Reyes",
       "image_credit": "Salvador Saez",
       "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:RETRATOS_ALCALDESA_JAVIERA_REYES_11149.jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:RETRATOS_ALCALDESA_JAVIERA_REYES_11149.jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "joel-olmos",
@@ -1396,7 +1466,8 @@
           ]
         }
       ],
-      "record_caveat": "Se limita a intervenciones documentadas dentro de este debate y no pretende resumir toda su gestión municipal."
+      "record_caveat": "Se limita a intervenciones documentadas dentro de este debate y no pretende resumir toda su gestión municipal.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "jose-garcia-ruminot",
@@ -1423,7 +1494,8 @@
           "action_or_position": "Participó en la reunión con los presidentes de los municipios del país para discutir puntos de la megarreforma.",
           "evidence_quote": "también estuvieron presentes el ministro secretario general de la presidencia, josé garcía ruminot, y el subsecretario de desarrollo regional y administrativo, sebastián figueroa. \"durante la instancia, las asociaciones municipales valoraron la disposición de las autoridades presentes para escuchar a los municipios, en un contexto"
         }
-      ]
+      ],
+      "affiliation_status": "not_documented"
     },
     {
       "id": "jose-manuel-palacios",
@@ -1469,34 +1541,36 @@
       "image_alt": "Retrato de José Manuel Palacios",
       "image_credit": "Cpgonzalezrod",
       "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:JmPalacios2025.jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:JmPalacios2025.jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
-      "id": "loreto-carvajal",
-      "name": "Loreto Carvajal",
+      "id": "juan-luis-castro",
+      "name": "Juan Luis Castro",
       "entity_kind": "person",
       "actor_type": "legislator",
-      "role": "Senadora",
-      "institution": "Senado",
-      "affiliation": "",
-      "participation_summary": "Aseguró que Chile requiere crecer de manera consensuada, se necesita un paquete de medidas para compensar la menor recaudación y se debe ver cómo afectan las medidas a los territorios.",
+      "role": "Jefe de la bancada del PS",
+      "institution": "Partido Socialista",
+      "affiliation": "PS",
+      "participation_summary": "Reconoció que el proyecto genera gran endeudamiento y que buscan formas de compensar y contener el gasto, coincidiendo en medidas que buscan recaudar.",
       "profile_depth": "indexed",
       "source_ids": [
         "senate-negotiation-table-progress",
-        "senate-negotiation-table-start"
+        "senate-particular-vote"
       ],
       "mentions": [
         {
           "source_id": "senate-negotiation-table-progress",
-          "action_or_position": "Aseguró que Chile requiere crecer de manera consensuada, se necesita un paquete de medidas para compensar la menor recaudación y se debe ver cómo afectan las medidas a los territorios.",
-          "evidence_quote": "distinta del ministro quiroz y lo valoramos\". a nombre de la bancada del ppd, loreto carvajal aseguró que \"chile requiere crecer pero de manera consensuada. hay que revisar la megarreforma, se necesita un paquete de medidas para compensar la menor recaudacion. también hay que ver cómo afectan las medidas a los territorios,"
+          "action_or_position": "Reconoció que el proyecto genera gran endeudamiento y que buscan formas de compensar y contener el gasto, coincidiendo en medidas que buscan recaudar.",
+          "evidence_quote": "propuesta que todos valoramos\". por su parte, el jefe de la bancada del ps, el senador juan luis castro reconoció que \"este proyecto genera gran endeudamiento entonces buscamos formas de compensar, contener el gasto. ahí surge el impuesto de primera categoría y el subsidio al empleo que tienen un alto costo. coincidimos en medidas que"
         },
         {
-          "source_id": "senate-negotiation-table-start",
-          "action_or_position": "Participó en la Mesa política y técnica por reconstrucción.",
-          "evidence_quote": "al ministro de hacienda, jorge quiroz. en el encuentro participaron las y los senadores: loreto carvajal, paulina vodanovic, yasna provoste, javier macaya y claudia pascual. la presidenta del senado, paulina núñez, destacó que \"esto es hacer política: abrir espacios de conversación, escucharnos y entender que todos queremos que el país"
+          "source_id": "senate-particular-vote",
+          "action_or_position": "anunció que recurrirán al Tribunal Constitucional y que harán ver la objeción que se está instalando por la perdurabilidad de garantías para aquellos que tienen más",
+          "evidence_quote": "por senadores como gastón saavedra y yasna provoste . legitimidad en tanto, el senador juan castro , anunció que recurrirán al tribunal constitucional . \"haremos ver la objeción que se está instalando por la perdurabilidad de garantías para aquellos que tienen más\" y la senadora ximena ordenes hizo notar que se aplican \"cambios"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "luciano-cruz-coke",
@@ -1505,7 +1579,7 @@
       "actor_type": "legislator",
       "role": "Senador",
       "institution": "Senado",
-      "affiliation": "",
+      "affiliation": "Evolución Política",
       "participation_summary": "Lideró la Comisión de Trabajo durante el trabajo en la megarreforma",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1523,7 +1597,10 @@
           "action_or_position": "Cuestionó las críticas contra la iniciativa y apuntó a responsabilidades políticas en la situación de las familias afectadas.",
           "evidence_quote": "en particular del articulado del proyecto\", planteó. desde evópoli, el senador luciano cruz-coke cuestionó las críticas contra la iniciativa y apuntó a responsabilidades políticas en la situación de las familias afectadas en ñuble y biobío. \"hay personas obrando de buena fe, pero otras nos señalan que este proyecto no estaría pensado"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "matias-walker",
@@ -1532,7 +1609,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Demócratas",
       "participation_summary": "Negoció su voto con el gobierno para aprobar la indicación sobre el mecanismo de compensación a los municipios.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1550,7 +1627,10 @@
           "action_or_position": "manifestó que no se crean empleos de calidad si crecemos al 2% y recordó la propuesta del exministro Marcel para rebajar el impuesto corporativo con compensaciones",
           "evidence_quote": "al país\" y \"salir de la situación de mediocridad\", indicaron. en tanto, el senador matías walker manifestó que \"no se crean empleos de calidad si crecemos al 2%\", y recordó la propuesta del exministro marcel para rebajar el impuesto corporativo con compensaciones; a su turno, el senador miguel ángel calisto constató el contexto de"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "miguel-angel-calisto",
@@ -1559,7 +1639,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "Aportó el voto número 26 y fundamentó su decisión para asegurar la aprobación del proyecto.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1577,7 +1657,10 @@
           "action_or_position": "constató el contexto de desaceleración económica del país, el desempleo y la deuda pública",
           "evidence_quote": "marcel para rebajar el impuesto corporativo con compensaciones; a su turno, el senador miguel ángel calisto constató el contexto de desaceleración económica del país, el desempleo, y la deuda pública. por su parte, el senador karim bianchi marcó la \"mayoría circunstancial\" y que para avanzar \"se requerirán de acuerdos\". además, durante el"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "partido-por-la-democracia",
@@ -1604,7 +1687,8 @@
           "action_or_position": "Acordó una fórmula para la aprobación de la invariabilidad tributaria en la megarreforma",
           "evidence_quote": "megarreforma: senado aprueba invariabilidad tributaria con fórmula acordada con el ppd jueves 16 julio, 2026 | 01:58 del mismo modo, quiroz reconoció que este es un paso importante, pero no es el último, ya que queda un trabajo con los diputados en la cámara. en ese punto, agradeció el amplio apoyo, no solo de los partidos"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "ricardo-celis",
@@ -1613,7 +1697,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido por la Democracia",
       "participation_summary": "Anunció reserva de constitucionalidad y criticó la improvisación del ministro de Hacienda.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1631,7 +1715,10 @@
           "action_or_position": "manifestó preocupaciones por lo que se dejará de recaudar, los privilegios a los que más tienen, el cambio de modelo y las medidas compensatorias inciertas, y dejó constancia de la forma en la que el gobierno ha entendido la política sin construir un acuerdo político amplio y legislando en un escena",
           "evidence_quote": ", esteban velásquez e iván flores . en línea similar se expresaron las y los senadores ricardo celis , daniella cicardini, loreto cravajal y danisa astudillo , quienes manifestaron preocupaciones por lo que se dejará de recaudar, \"los privilegios a los que más tienen\", \"el cambio de modelo\" y las medidas compensatorias inciertas, entre"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "rodolfo-carter",
@@ -1640,7 +1727,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "Planteó una propuesta que todos valoraron en el marco de la discusión sobre compensaciones y exención de contribuciones.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1658,7 +1745,10 @@
           "action_or_position": "dijo que apoya el proyecto porque se trata de ver cómo romper con la pobreza y que cuando hablamos de bajar el impuesto corporativo queremos volver a crecer",
           "evidence_quote": "jóvenes estudiantes, y una mirada estratégica para la innovación y turismo. el senador rodolfo carter dijo que apoya el proyecto porque se trata de ver \"cómo romper con la pobreza\" y \"cuando hablamos de bajar el impuesto corporativo queremos volver a crecer\". en una línea similar se manifestó el senador enrique lee , quien señaló que"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "vlado-mirosevic",
@@ -1667,7 +1757,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Liberal",
       "participation_summary": "Asistió a la reunión de la Mesa Técnica y Política constituida para generar un protocolo de acuerdo en el marco de la tramitación del proyecto de reconstrucción nacional.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1685,7 +1775,10 @@
           "action_or_position": "dejó planteados sus cuestionamientos sobre la propuesta",
           "evidence_quote": "(…). vamos a retroceder\". también dejaron planteados sus cuestionamientos del senador vlado mirosevic y la senadora fabiola campillai . reprocharon que no se incluya en las ayudas a las regiones del norte y reclamaron porque el proyecto \"que es una reforma tributaria\", traerá \"recortes en derechos sociales\". la senadora karol cariola"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "104-jefes-comunales",
@@ -1706,7 +1799,8 @@
           "action_or_position": "Propusieron que el Presidente utilice su veto aditivo y solicitaron que los US$200 millones de compensación vayan íntegramente al Fondo Común Municipal.",
           "evidence_quote": "justa de estos, mediante un mecanismo ya existente y legitimado como el fcm\", señalaron 104 jefes comunales a través de una declaración pública. el mecanismo de compensación que se votará en el senado la próxima semana es injusto y regresivo. inyectar casi 30 mil millones de pesos en las 3 comunas más ricas del país y dejar a las más pobres con"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "161-autoridades-comunales",
@@ -1727,7 +1821,8 @@
           "action_or_position": "Valoraron el diálogo con el Gobierno y llamaron al Senado a aprobar la propuesta de compensación del 100% de los recursos.",
           "evidence_quote": "july 29, 2026 desde el oficialismo respondieron con un escrito firmado por 161 autoridades comunales, en el que valoraron el diálogo con la administración de josé antonio kast. \"nuestra responsabilidad como alcaldes y alcaldesas es velar por el bien de nuestros vecinos. por lo tanto, valoramos que el diálogo con el gobierno permitiera"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "alcaldes-de-oposicion",
@@ -1736,7 +1831,7 @@
       "actor_type": "municipal_association",
       "role": "Alcaldes",
       "institution": "Municipalidades de Chile",
-      "affiliation": "Oposición",
+      "affiliation": "",
       "participation_summary": "Entregaron una carta al presidente José Antonio Kast con seis demandas, rechazando reuniones separadas con alcaldes oficialistas y manifestando la unidad municipalista.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1758,7 +1853,8 @@
           "action_or_position": "Rechazaron categóricamente la propuesta de modificación a la Ordenanza General de Urbanismo y Construcciones (OGUC) por arrebatar el control territorial a los municipios.",
           "evidence_quote": "de los jefes comunales a que el mandatario haya acordado dos reuniones distintas con alcaldes de oposición y del oficialismo. \" históricamente en chile el municipalismo es uno solo \", sostienen. lee también... kast dice a alcaldes opositores que \"las crisis no las pueden pagar los que tienen menos\" miércoles 13 mayo, 2026 | 17:08 tras ello, se"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "alejandra-sepulveda",
@@ -1767,7 +1863,7 @@
       "actor_type": "legislator",
       "role": "senadora",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "declaró que es de los peores proyectos que nos ha tocado analizar y con una tozudez irracional",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1779,7 +1875,10 @@
           "action_or_position": "declaró que es de los peores proyectos que nos ha tocado analizar y con una tozudez irracional",
           "evidence_quote": "\"la prisa de legislar tiene que ver con el temor a perder mayorías\". para la senadora alejandra sepúlveda , \"es de los peores proyectos que nos ha tocado analizar y con una tozudez irracional\"; es más, agregó la senadora paulina vodanovic , \"ganar por un voto puede ser la manera más fácil de perder la legitimidad\" y lamentó \"el tono del"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "alejandro-kusanovic",
@@ -1788,7 +1887,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "advirtió sobre el riesgo de un plan diseñado",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1805,7 +1904,10 @@
           "action_or_position": "advirtió sobre el riesgo de un plan diseñado desde el centralismo, dándole la espalda a las regiones",
           "evidence_quote": "la \"libertad económica\" y el \"respeto a la propiedad\", \"generando certezas\". el senador alejandro kusanovic advirtió sobre el \"riesgo de un plan diseñado desde el centralismo, dándole la espalda a las regiones\"; en tanto, el senador iván moreira reafirmó \"que tenemos mayoría\". \"en las buenas y en las malas este oficialismo apoya al ministro"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "alfonso-de-urresti",
@@ -1826,7 +1928,8 @@
           "action_or_position": "Exigió ver la firma del Presidente y el ministro para validar el patrocinio de la indicación y criticó la improvisación.",
           "evidence_quote": "de los senadores andrés longton (rn) y sergio gahona (udi), sus pares de oposición alfonso de urresti (ps) y ricardo celis (ppd) se molestaron. \"esto es una indicación del ejecutivo. yo quiero ver dónde está ingresado con la firma del presidente de la república y del ministro respectivo. eso es el ingreso formal del patrocinio de una"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "andrea-balladares",
@@ -1847,7 +1950,8 @@
           "action_or_position": "Comentó que hablaron distintos temas y que espera que sean capaces de complementar lo conversado y adoptar un protocolo la próxima semana con apoyo transversal.",
           "evidence_quote": "habla bien del diálogo que hay que promover\". finalmente la presidenta del partido rn, andrea balladares comentó que \"hablamos distintos temas, el detalle no se puede entregar porque cada sector deberá tomar decisiones tras estos acercamientos. espero que seamos capaces de complementar lo conversado y adoptar un protocolo la próxima semana."
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "andres-couble",
@@ -1873,7 +1977,8 @@
           "action_or_position": "Hizo un llamado al Gobierno a escuchar y construir mayorías amplias para lograr consensos.",
           "evidence_quote": "redactado por maría cristina romero, emol el secretario general del frente amplio (fa), andrés couble. aton chile/ archivo. el secretario general del frente amplio (fa), andrés couble , reconoció que cuando tengan mayoría en el congreso, echarán pie atrás a la megarreforma del gobierno. aprobada la semana pasada en general por el senado."
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "andres-longton",
@@ -1894,7 +1999,8 @@
           "action_or_position": "Ingresó una indicación del Ejecutivo con adecuaciones que generó debate sobre el patrocinio formal.",
           "evidence_quote": "cuando se informó que una indicación del ejecutivo tenía \"adecuaciones\" de los senadores andrés longton (rn) y sergio gahona (udi), sus pares de oposición alfonso de urresti (ps) y ricardo celis (ppd) se molestaron. \"esto es una indicación del ejecutivo. yo quiero ver dónde está ingresado con la firma del presidente de la república y del"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "arturo-squella",
@@ -1903,7 +2009,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Republicano",
       "participation_summary": "relevó materias como la imputación a la tributación final del impuesto pagado a nivel corporativo y la invariabilidad tributaria como una garantía que otorga certeza de largo plazo",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1915,7 +2021,10 @@
           "action_or_position": "relevó materias como la imputación a la tributación final del impuesto pagado a nivel corporativo y la invariabilidad tributaria como una garantía que otorga certeza de largo plazo",
           "evidence_quote": "capacidad de recuperarse (…), el alma emprendedora del país\". por su parte, el senador arturo squella relevó materias como la imputación a la tributación final del impuesto pagado a nivel corporativo y la invariabilidad tributaria, como una \"garantía\" que \"otorga certeza de largo plazo\". a su turno, el senador sergio gahona , presidente"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "beatriz-sanchez",
@@ -1924,7 +2033,7 @@
       "actor_type": "legislator",
       "role": "senadora",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Frente Amplio",
       "participation_summary": "argumentó sobre el reproche a la propuesta, el beneficio a los más ricos, la desigualdad, el recorte en contribuciones y su impacto municipal, la falta de una visión territorial, invariabilidad tributaria e incertezas",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1936,7 +2045,10 @@
           "action_or_position": "argumentó sobre el reproche a la propuesta, el beneficio a los más ricos, la desigualdad, el recorte en contribuciones y su impacto municipal, la falta de una visión territorial, invariabilidad tributaria e incertezas",
           "evidence_quote": "e incertezas, estuvieron presentes en las argumentaciones de las y los senadores beatriz sánchez , esteban velásquez e iván flores . en línea similar se expresaron las y los senadores ricardo celis , daniella cicardini, loreto cravajal y danisa astudillo , quienes manifestaron preocupaciones por lo que se dejará de recaudar, \"los"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "camila-nieto",
@@ -1957,7 +2069,8 @@
           "action_or_position": "Insistió en que quienes ganen más de 3 millones deben seguir pagando contribuciones para no afectar los ingresos municipales.",
           "evidence_quote": "común municipal \", afirmó la representante por atacama. la alcaldesa de valparaíso, camila nieto (frente amplio), también insistió en el punto. \"de todos los rincones de chile, de todos los colores políticos, todos de acuerdo: si el gobierno insiste con la exención de contribuciones, quienes ganen más de $3m deben seguir pagándolas."
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "carlo-arquero",
@@ -1978,7 +2091,8 @@
           "action_or_position": "Votó a favor de las modificaciones al proyecto de ley en la Cámara de Diputados.",
           "evidence_quote": "de la siguiente forma: sebastián videla y jaime araya rechazaron, fabián ossandón y carlo arquero estuvieron a favor, y marcela hernando no votó. comparte esta noticia facebook twitter whatsapp linkedin email impresión telegram copy url - publicidad - - publicidad - - publicidad - - publicidad - - publicidad - - publicidad - -"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "carlos-kuschel",
@@ -1987,7 +2101,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Renovación Nacional",
       "participation_summary": "valoró el mensaje del proyecto",
       "profile_depth": "indexed",
       "source_ids": [
@@ -1999,7 +2113,10 @@
           "action_or_position": "valoró el mensaje del proyecto",
           "evidence_quote": "la acuicultura y permisos sectoriales. el mensaje también fue valorado por los senadores carlos kuschel , rojo edwards y cristián vial . incluso, se declaró que \"nos vamos a quedar cortos\" y se instó a \"dar más certeza jurídica, combatir más la permisología, bajar más los impuestos, y generar empleos rápidos\". este proyecto \"busca"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "catalina-san-martin",
@@ -2034,7 +2151,8 @@
           ]
         }
       ],
-      "record_caveat": "El perfil conserva la diferencia entre una preocupación presupuestaria y un resultado fiscal ya observado."
+      "record_caveat": "El perfil conserva la diferencia entre una preocupación presupuestaria y un resultado fiscal ya observado.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "christopher-white",
@@ -2069,7 +2187,8 @@
           ]
         }
       ],
-      "record_caveat": "La oposición al diseño no equivale a evidencia sobre su resultado; la ficha mantiene separadas posición y comprobación."
+      "record_caveat": "La oposición al diseño no equivale a evidencia sobre su resultado; la ficha mantiene separadas posición y comprobación.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "claudia-pizarro",
@@ -2090,7 +2209,8 @@
           "action_or_position": "Señala que no hubo una resolución transversal y que la propuesta estandarizada de los jefes comunales no fue acogida por el Gobierno.",
           "evidence_quote": "alcaldes acusan que no hubo una resolución transversal . la alcaldesa de la pintana, claudia pizarro, señaló que no hubo a diferencia de lo que planteó el gobierno, y que ellos habían realizado una propuesta estandarizada que no fue acogida . https://media.biobiochile.cl/wp-content/uploads/2026/07/518-cu-alcaldes-pizarro.mp3 en"
         }
-      ]
+      ],
+      "affiliation_status": "not_documented"
     },
     {
       "id": "comision-mixta",
@@ -2111,7 +2231,8 @@
           "action_or_position": "Aprobó la fórmula de compensación el miércoles antes de pasar a la Cámara de Diputados.",
           "evidence_quote": "el reclamo de alcaldes de oposición sobre la fórmula que se aprobó este miércoles en comisión mixta, y luego en la cámara de diputados, para compensar a las municipalidades la exención de contribuciones a la vivienda principal de los adultos mayores desde los 65 años, que está dispuesto en el proyecto de reconstrucción. esta indica que"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "consejo-fiscal-autonomo",
@@ -2132,7 +2253,8 @@
           "action_or_position": "advirtió sobre los riesgos de aprobar la megarreforma por decreto y señaló que la potestad reglamentaria tiene límites.",
           "evidence_quote": "legislar el proyecto de ley de reconstrucción nacional, a pesar de las advertencias del consejo fiscal autónomo y un quiebre con el pdg. el ministro jorge quiroz advirtió que, de no avanzar la megareforma, se podría recurrir a decretos para seguir gobernando. la potestad reglamentaria del presidente tiene límites y no puede reemplazar la función"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "cristian-vial",
@@ -2141,7 +2263,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "valoró el mensaje del proyecto",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2153,7 +2275,10 @@
           "action_or_position": "valoró el mensaje del proyecto",
           "evidence_quote": "el mensaje también fue valorado por los senadores carlos kuschel , rojo edwards y cristián vial . incluso, se declaró que \"nos vamos a quedar cortos\" y se instó a \"dar más certeza jurídica, combatir más la permisología, bajar más los impuestos, y generar empleos rápidos\". este proyecto \"busca transformar al país\" y \"salir de la"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "cristofer-valdes",
@@ -2188,7 +2313,8 @@
           ]
         }
       ],
-      "record_caveat": "Se distingue el apoyo condicionado de una adhesión general y no se atribuyen resultados antes de la ejecución."
+      "record_caveat": "Se distingue el apoyo condicionado de una adhesión general y no se atribuyen resultados antes de la ejecución.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "cuello",
@@ -2209,7 +2335,8 @@
           "action_or_position": "Evaluó el fallido acuerdo entre PPD y Gobierno por la megarreforma como un evento de política muy regresivo que significará un perjuicio enorme de largo plazo para la población.",
           "evidence_quote": "canal 24 horas ver video lunes 13 de julio de 2026 \"quiroz se pasó de listo\": diputado cuello por fallido acuerdo entre ppd y gobierno por megarreforma \"desde un inicio la hemos evaluado como un evento de política muy regresivo, que significará un perjuicio enorme de largo plazo para la población\", detalló el parlamentario del"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "daniel-nunez",
@@ -2218,7 +2345,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "Senado",
-      "affiliation": "",
+      "affiliation": "Partido Comunista",
       "participation_summary": "hizo el punto político sobre la propuesta para la eliminación de la Unidad de Fomento en contratos de arriendo, educación y salud",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2235,7 +2362,10 @@
           "action_or_position": "hizo el punto político sobre la propuesta para la eliminación de la Unidad de Fomento (UF) en contratos de arriendo, educación y salud, cuestión que no fue considerada por el Ejecutivo",
           "evidence_quote": "tras. \"vamos a retroceder\" el senador daniel núñez hizo el punto político sobre la propuesta para la eliminación de la unidad de fomento (uf) en contratos de arriendo, educación y salud, cuestión que no fue considerada por el ejecutivo; por su parte, la senadora claudia pascual declaró"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "daniella-cicardini",
@@ -2244,7 +2374,7 @@
       "actor_type": "legislator",
       "role": "senadora",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Socialista",
       "participation_summary": "manifestó preocupaciones por lo que se dejará de recaudar, los privilegios a los que más tienen, el cambio de modelo y las medidas compensatorias inciertas, y dejó constancia de la forma en la que el gobierno ha entendido la política sin construir un acuerdo político amplio y legislando en un escena",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2256,7 +2386,10 @@
           "action_or_position": "manifestó preocupaciones por lo que se dejará de recaudar, los privilegios a los que más tienen, el cambio de modelo y las medidas compensatorias inciertas, y dejó constancia de la forma en la que el gobierno ha entendido la política sin construir un acuerdo político amplio y legislando en un escena",
           "evidence_quote": "e iván flores . en línea similar se expresaron las y los senadores ricardo celis , daniella cicardini, loreto cravajal y danisa astudillo , quienes manifestaron preocupaciones por lo que se dejará de recaudar, \"los privilegios a los que más tienen\", \"el cambio de modelo\" y las medidas compensatorias inciertas, entre otras. además, dejaron"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "danisa-astudillo",
@@ -2265,7 +2398,7 @@
       "actor_type": "legislator",
       "role": "senadora",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Socialista",
       "participation_summary": "manifestó preocupaciones por lo que se dejará de recaudar, los privilegios a los que más tienen, el cambio de modelo y las medidas compensatorias inciertas, y dejó constancia de la forma en la que el gobierno ha entendido la política sin construir un acuerdo político amplio y legislando en un escena",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2277,7 +2410,10 @@
           "action_or_position": "manifestó preocupaciones por lo que se dejará de recaudar, los privilegios a los que más tienen, el cambio de modelo y las medidas compensatorias inciertas, y dejó constancia de la forma en la que el gobierno ha entendido la política sin construir un acuerdo político amplio y legislando en un escena",
           "evidence_quote": "se expresaron las y los senadores ricardo celis , daniella cicardini, loreto cravajal y danisa astudillo , quienes manifestaron preocupaciones por lo que se dejará de recaudar, \"los privilegios a los que más tienen\", \"el cambio de modelo\" y las medidas compensatorias inciertas, entre otras. además, dejaron constancia de \"la forma en la que"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "diego-schalper",
@@ -2298,7 +2434,8 @@
           "action_or_position": "dijo que escucharán al Consejo Fiscal Autónomo",
           "evidence_quote": "han sido \"con un nivel de detalle técnico\" que antes no existía, mientras que si bien diego schalper (rn) dijo que escucharán al consejo fiscal autónomo (cfa),"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "enrique-lee",
@@ -2307,7 +2444,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "se manifestó en una línea similar señalando que queremos más trabajo, más crecimiento y menos trabas aunque reconoció que le hubiese gustado que el proyecto tuviera normas que favorecieran a zonas extremas",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2319,7 +2456,10 @@
           "action_or_position": "se manifestó en una línea similar señalando que queremos más trabajo, más crecimiento y menos trabas aunque reconoció que le hubiese gustado que el proyecto tuviera normas que favorecieran a zonas extremas",
           "evidence_quote": "corporativo queremos volver a crecer\". en una línea similar se manifestó el senador enrique lee , quien señaló que \"queremos más trabajo, más crecimiento y menos trabas\" aunque reconoció que \"me hubiese gustado que el proyecto tuviera normas que favorecieran a zonas extremas\". el senador renzo trisotti insistió en que se necesitan"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "esteban-velasquez",
@@ -2328,7 +2468,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Federación Regionalista Verde Social",
       "participation_summary": "argumentó sobre el reproche a la propuesta, el beneficio a los más ricos, la desigualdad, el recorte en contribuciones y su impacto municipal, la falta de una visión territorial, invariabilidad tributaria e incertezas",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2340,7 +2480,10 @@
           "action_or_position": "argumentó sobre el reproche a la propuesta, el beneficio a los más ricos, la desigualdad, el recorte en contribuciones y su impacto municipal, la falta de una visión territorial, invariabilidad tributaria e incertezas",
           "evidence_quote": "estuvieron presentes en las argumentaciones de las y los senadores beatriz sánchez , esteban velásquez e iván flores . en línea similar se expresaron las y los senadores ricardo celis , daniella cicardini, loreto cravajal y danisa astudillo , quienes manifestaron preocupaciones por lo que se dejará de recaudar, \"los privilegios a los que"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "fabiola-campillai",
@@ -2349,7 +2492,7 @@
       "actor_type": "legislator",
       "role": "senadora",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "dejó planteados sus cuestionamientos sobre la propuesta",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2361,7 +2504,10 @@
           "action_or_position": "dejó planteados sus cuestionamientos sobre la propuesta",
           "evidence_quote": "dejaron planteados sus cuestionamientos del senador vlado mirosevic y la senadora fabiola campillai . reprocharon que no se incluya en las ayudas a las regiones del norte y reclamaron porque el proyecto \"que es una reforma tributaria\", traerá \"recortes en derechos sociales\". la senadora karol cariola transparentó que, si el proyecto se"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "fabian-ossandon",
@@ -2382,7 +2528,8 @@
           "action_or_position": "Votó a favor de las modificaciones al proyecto de ley en la Cámara de Diputados.",
           "evidence_quote": "de antofagasta votaron de la siguiente forma: sebastián videla y jaime araya rechazaron, fabián ossandón y carlo arquero estuvieron a favor, y marcela hernando no votó. comparte esta noticia facebook twitter whatsapp linkedin email impresión telegram copy url - publicidad - - publicidad - - publicidad - - publicidad - - publicidad - -"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "fidel-espinoza",
@@ -2391,7 +2538,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Socialista",
       "participation_summary": "reprochó que mientras millones de chilenos viven en malas condiciones el gobierno decide priorizar a los sectores con más capacidad económica",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2403,7 +2550,10 @@
           "action_or_position": "reprochó que mientras millones de chilenos viven en malas condiciones el gobierno decide priorizar a los sectores con más capacidad económica",
           "evidence_quote": "dado de la manera tramposa en la se ha venido expresando\"; en línea similar, el senador fidel espinoza reprochó que \"mientras millones de chilenos viven en malas condiciones … el gobierno decide priorizar a los sectores con más capacidad económica\". la \"precariedad del trabajo\", la \" protección del empleo, y de la pequeña y mediana"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "franco-parisi",
@@ -2444,7 +2594,8 @@
       "image_alt": "Retrato de Franco Parisi",
       "image_credit": "Franco Parisi / Wikimedia Commons",
       "image_license": "CC BY-SA 3.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Franco_Parisi.png"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Franco_Parisi.png",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "gaston-saavedra",
@@ -2453,7 +2604,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Socialista",
       "participation_summary": "puso sobre la mesa la precariedad del trabajo, la protección del empleo, y de la pequeña y mediana empresa, sumado al costo fiscal de la baja de impuestos de primera categoría",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2465,7 +2616,10 @@
           "action_or_position": "puso sobre la mesa la precariedad del trabajo, la protección del empleo, y de la pequeña y mediana empresa, sumado al costo fiscal de la baja de impuestos de primera categoría",
           "evidence_quote": "de impuestos de primera categoría\", también fue puesto sobre la mesa por senadores como gastón saavedra y yasna provoste . legitimidad en tanto, el senador juan castro , anunció que recurrirán al tribunal constitucional . \"haremos ver la objeción que se está instalando por la perdurabilidad de garantías para aquellos que tienen más\" y la"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "gustavo-sanhueza",
@@ -2491,7 +2645,8 @@
           "action_or_position": "afirmó que el proyecto vuelve a poner al país en la senda del desarrollo económico",
           "evidence_quote": "mplejo\". \"en la senda del desarrollo económico\" desde el oficialismo, el senador gustavo sanhueza afirmó que \"este proyecto vuelve a poner al país en la senda del desarrollo económico\" y la senadora vanessa kaiser valoró que se avanza defendiendo la \"libertad económica\" y el \"respeto a la propiedad\", \"generando certezas\". el senador"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "gustavo-toro",
@@ -2526,7 +2681,8 @@
           ]
         }
       ],
-      "record_caveat": "La ficha documenta el conflicto de representación y no usa ese conflicto para decidir la verdad de las proyecciones económicas."
+      "record_caveat": "La ficha documenta el conflicto de representación y no usa ese conflicto para decidir la verdad de las proyecciones económicas.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "ignacio-urrutia",
@@ -2535,7 +2691,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Republicano",
       "participation_summary": "se manifestó en un sentido similar a la necesidad de reglas claras y certeza jurídica",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2552,7 +2708,10 @@
           "action_or_position": "Se manifestó en un sentido similar a Trisotti respecto a la necesidad de reglas claras y certeza jurídica.",
           "evidence_quote": "crecimiento, \"y que el desarrollo llegue a todas las regiones; mientras que el senador ignacio urrutia se manifestó en un sentido similar. por su parte, el senador diego ibáñez dijo que \"quienes votan a favor de esta reforma, renuncian al principio de responsabilidad fiscal\" y dijo que en los hechos \"esto es desregulación y no creer en lo"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "iraci-hassler",
@@ -2573,7 +2732,8 @@
           "action_or_position": "dijo que las dudas no han tenido respuesta del Ejecutivo y es fundamental transparentar los números y las estimaciones que han hecho",
           "evidence_quote": "kast responda las preguntas planteadas sobre el if y el informe de impacto regulatorio. irací hassler (pc), dijo que las dudas \"no han tenido respuesta del ejecutivo, y es fundamental transparentar los números y las estimaciones que han hecho\". por el contrario, pier karlezi (pnl) sostuvo que la tramitación y las presentaciones de"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "ivan-flores",
@@ -2582,7 +2742,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Demócrata Cristiano",
       "participation_summary": "argumentó sobre el reproche a la propuesta, el beneficio a los más ricos, la desigualdad, el recorte en contribuciones y su impacto municipal, la falta de una visión territorial, invariabilidad tributaria e incertezas",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2594,7 +2754,10 @@
           "action_or_position": "argumentó sobre el reproche a la propuesta, el beneficio a los más ricos, la desigualdad, el recorte en contribuciones y su impacto municipal, la falta de una visión territorial, invariabilidad tributaria e incertezas",
           "evidence_quote": "en las argumentaciones de las y los senadores beatriz sánchez , esteban velásquez e iván flores . en línea similar se expresaron las y los senadores ricardo celis , daniella cicardini, loreto cravajal y danisa astudillo , quienes manifestaron preocupaciones por lo que se dejará de recaudar, \"los privilegios a los que más tienen\","
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "jaime-araya",
@@ -2615,7 +2778,8 @@
           "action_or_position": "Rechazó las modificaciones al proyecto de ley en la votación de la Cámara de Diputados.",
           "evidence_quote": "de la región de antofagasta votaron de la siguiente forma: sebastián videla y jaime araya rechazaron, fabián ossandón y carlo arquero estuvieron a favor, y marcela hernando no votó. comparte esta noticia facebook twitter whatsapp linkedin email impresión telegram copy url - publicidad - - publicidad - - publicidad - -"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "juan-carlos-ramirez",
@@ -2636,49 +2800,8 @@
           "action_or_position": "Afirmó que la exención debe ser focalizada y contar con un mecanismo de compensación permanente, advirtiendo que de lo contrario sería un duro golpe para las finanzas municipales.",
           "evidence_quote": "asistencia social y muchas otras acciones\". en la misma línea, el alcalde de portezuelo, juan carlos ramírez, afirmó que la reforma debe beneficiar \"a quienes realmente requieren apoyo\", pero recalcó que la exención \"debe ser focalizada y contar con un mecanismo de compensación permanente\". recordó que más del 80% de los ingresos de su municipio"
         }
-      ]
-    },
-    {
-      "id": "juan-castro",
-      "name": "Juan Castro",
-      "entity_kind": "person",
-      "actor_type": "legislator",
-      "role": "senador",
-      "institution": "",
-      "affiliation": "",
-      "participation_summary": "anunció que recurrirán al Tribunal Constitucional y que harán ver la objeción que se está instalando por la perdurabilidad de garantías para aquellos que tienen más",
-      "profile_depth": "indexed",
-      "source_ids": [
-        "senate-particular-vote"
       ],
-      "mentions": [
-        {
-          "source_id": "senate-particular-vote",
-          "action_or_position": "anunció que recurrirán al Tribunal Constitucional y que harán ver la objeción que se está instalando por la perdurabilidad de garantías para aquellos que tienen más",
-          "evidence_quote": "por senadores como gastón saavedra y yasna provoste . legitimidad en tanto, el senador juan castro , anunció que recurrirán al tribunal constitucional . \"haremos ver la objeción que se está instalando por la perdurabilidad de garantías para aquellos que tienen más\" y la senadora ximena ordenes hizo notar que se aplican \"cambios"
-        }
-      ]
-    },
-    {
-      "id": "juan-luis-castro",
-      "name": "Juan Luis Castro",
-      "entity_kind": "person",
-      "actor_type": "legislator",
-      "role": "Jefe de la bancada del PS",
-      "institution": "Partido Socialista",
-      "affiliation": "PS",
-      "participation_summary": "Reconoció que el proyecto genera gran endeudamiento y que buscan formas de compensar y contener el gasto, coincidiendo en medidas que buscan recaudar.",
-      "profile_depth": "indexed",
-      "source_ids": [
-        "senate-negotiation-table-progress"
-      ],
-      "mentions": [
-        {
-          "source_id": "senate-negotiation-table-progress",
-          "action_or_position": "Reconoció que el proyecto genera gran endeudamiento y que buscan formas de compensar y contener el gasto, coincidiendo en medidas que buscan recaudar.",
-          "evidence_quote": "propuesta que todos valoramos\". por su parte, el jefe de la bancada del ps, el senador juan luis castro reconoció que \"este proyecto genera gran endeudamiento entonces buscamos formas de compensar, contener el gasto. ahí surge el impuesto de primera categoría y el subsidio al empleo que tienen un alto costo. coincidimos en medidas que"
-        }
-      ]
+      "affiliation_status": "not_documented"
     },
     {
       "id": "karim-bianchi",
@@ -2687,7 +2810,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "marcó la mayoría circunstancial y que para avanzar se requerirán de acuerdos",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2699,7 +2822,10 @@
           "action_or_position": "marcó la mayoría circunstancial y que para avanzar se requerirán de acuerdos",
           "evidence_quote": "económica del país, el desempleo, y la deuda pública. por su parte, el senador karim bianchi marcó la \"mayoría circunstancial\" y que para avanzar \"se requerirán de acuerdos\". además, durante el debate, se profundizó sobre otros temas como riesgos para la administración de los municipios, el componente ambiental, la seguridad en"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "karol-cariola",
@@ -2708,7 +2834,7 @@
       "actor_type": "legislator",
       "role": "senadora",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Comunista",
       "participation_summary": "transparentó que si el proyecto se hubiera remitido al Fondo de Emergencia por Incendios el debate público no se hubiese dado de la manera tramposa en la se ha venido expresando",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2720,28 +2846,10 @@
           "action_or_position": "transparentó que si el proyecto se hubiera remitido al Fondo de Emergencia por Incendios el debate público no se hubiese dado de la manera tramposa en la se ha venido expresando",
           "evidence_quote": "\"que es una reforma tributaria\", traerá \"recortes en derechos sociales\". la senadora karol cariola transparentó que, si el proyecto se hubiera remitido al fondo de emergencia por incendios, \"el debate público no se hubiese dado de la manera tramposa en la se ha venido expresando\"; en línea similar, el senador fidel espinoza reprochó"
         }
-      ]
-    },
-    {
-      "id": "loreto-cravajal",
-      "name": "Loreto Cravajal",
-      "entity_kind": "person",
-      "actor_type": "legislator",
-      "role": "senadora",
-      "institution": "",
-      "affiliation": "",
-      "participation_summary": "manifestó preocupaciones por lo que se dejará de recaudar, los privilegios a los que más tienen, el cambio de modelo y las medidas compensatorias inciertas, y dejó constancia de la forma en la que el gobierno ha entendido la política sin construir un acuerdo político amplio y legislando en un escena",
-      "profile_depth": "indexed",
-      "source_ids": [
-        "senate-particular-vote"
       ],
-      "mentions": [
-        {
-          "source_id": "senate-particular-vote",
-          "action_or_position": "manifestó preocupaciones por lo que se dejará de recaudar, los privilegios a los que más tienen, el cambio de modelo y las medidas compensatorias inciertas, y dejó constancia de la forma en la que el gobierno ha entendido la política sin construir un acuerdo político amplio y legislando en un escena",
-          "evidence_quote": ". en línea similar se expresaron las y los senadores ricardo celis , daniella cicardini, loreto cravajal y danisa astudillo , quienes manifestaron preocupaciones por lo que se dejará de recaudar, \"los privilegios a los que más tienen\", \"el cambio de modelo\" y las medidas compensatorias inciertas, entre otras. además, dejaron constancia de"
-        }
-      ]
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "luis-astudillo",
@@ -2762,7 +2870,8 @@
           "action_or_position": "Asegura que la indicación estaría beneficiando a las personas con más ingresos.",
           "evidence_quote": "de oposición comparten el rechazo a la indicación . el alcalde de pedro aguirre cerda, luis astudillo, aseguró que se estaría beneficiando a las personas con más ingresos . en la misma línea, el alcalde de la cisterna, joel olmos, sostuvo que este no fue un acuerdo transversal y que la postura de alcaldes de oposición no fue considerada ."
         }
-      ]
+      ],
+      "affiliation_status": "not_documented"
     },
     {
       "id": "marcela-hernando",
@@ -2783,7 +2892,8 @@
           "action_or_position": "No votó en la sesión de la Cámara de Diputados sobre las modificaciones al proyecto.",
           "evidence_quote": "videla y jaime araya rechazaron, fabián ossandón y carlo arquero estuvieron a favor, y marcela hernando no votó. comparte esta noticia facebook twitter whatsapp linkedin email impresión telegram copy url - publicidad - - publicidad - - publicidad - - publicidad - - publicidad - - publicidad - - publicidad -"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "maria-jose-gatica",
@@ -2804,7 +2914,8 @@
           "action_or_position": "Compartió la inquietud de los alcaldes pero señaló que no podía votar sola a favor de la idea sin concitar adhesión en el oficialismo.",
           "evidence_quote": "como la presidenta del senado, paulina núñez , y la jefa de bancada del comité de rn, maría josé gatica . con ambas los resultados no han sido los esperados. en su encuentro con núñez, en el marco de la mesa político-técnica instaurada por la líder de la cámara alta, no salieron con buenas impresiones, pues consideraron que el ministro de"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "matias-acevedo",
@@ -2825,7 +2936,8 @@
           "action_or_position": "Analizó que en el corto plazo, el sector de la construcción va a reaccionar en forma más dinámica debido a las medidas de la megarreforma.",
           "evidence_quote": "a corto plazo por el exdirector de la dirección de presupuestos (dipres) y economista, matías acevedo , analizó este miércoles la megarreforma, cuyo último artículo pendiente fue aprobado, dejándola lista para ser promulgada como ley. en conversación con hoy es noticia , la exautoridad sostuvo que \"en el corto plazo, el sector que va a"
         }
-      ]
+      ],
+      "affiliation_status": "not_documented"
     },
     {
       "id": "matias-toledo",
@@ -2860,7 +2972,8 @@
           ]
         }
       ],
-      "record_caveat": "Se registra una acción pública y su desenlace institucional, no una inferencia sobre confiabilidad o motivación."
+      "record_caveat": "Se registra una acción pública y su desenlace institucional, no una inferencia sobre confiabilidad o motivación.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "mauro-tamayo",
@@ -2900,7 +3013,8 @@
       "image_alt": "Retrato de Mauro Tamayo",
       "image_credit": "Ministerio Secretaría General de Gobierno",
       "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Mauro_Tamayo_(30663438223)_(cropped).jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Mauro_Tamayo_(30663438223)_(cropped).jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "miguel-angel-aguilera",
@@ -2921,7 +3035,8 @@
           "action_or_position": "Presentó una acción civil en contra de la cobertura periodística de CIPER exigiendo un pago de $1.700 millones.",
           "evidence_quote": "de procedimiento ya que la parte querellante no realizó movimientos por la causa. miguel ángel aguilera saliendo del centro de justicia el año pasado (créditos: diego martín / agencia uno) gobierno ingresa proyecto que aumenta subsidio a la tasa hipotecaria para viviendas hasta 6 mil uf el gobierno ingresó este martes un proyecto de ley"
         }
-      ]
+      ],
+      "affiliation_status": "not_documented"
     },
     {
       "id": "nicolas-grau",
@@ -2961,7 +3076,8 @@
       "image_alt": "Retrato oficial de Nicolás Grau",
       "image_credit": "Estado de Chile",
       "image_license": "CC BY 3.0 CL",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Nicol%C3%A1s_Grau_Veloso_(cropped).jpg"
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Nicol%C3%A1s_Grau_Veloso_(cropped).jpg",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "partido-de-la-gente",
@@ -2970,7 +3086,7 @@
       "actor_type": "political_party",
       "role": "colectividad",
       "institution": "",
-      "affiliation": "PDG",
+      "affiliation": "",
       "participation_summary": "Anunció la caída del acuerdo político alcanzado con el Ejecutivo para respaldar la ley miscelánea y acusó incumplimientos y cambios de último minuto en compromisos esenciales.",
       "profile_depth": "indexed",
       "source_ids": [
@@ -2982,7 +3098,8 @@
           "action_or_position": "Anunció la caída del acuerdo político alcanzado con el Ejecutivo para respaldar la ley miscelánea y acusó incumplimientos y cambios de último minuto en compromisos esenciales.",
           "evidence_quote": "por biobiochile y revisado por el autor de este artículo. franco parisi, líder del partido de la gente, se reunió con el ministro de hacienda, jorge quiroz, para discutir la ley de reconstrucción en un día clave. tras el quiebre del acuerdo político con el gobierno, parisi destacó avances en las negociaciones pero evitó confirmar un"
         }
-      ]
+      ],
+      "affiliation_status": "institutional_not_applicable"
     },
     {
       "id": "paulina-bobadilla",
@@ -3017,7 +3134,8 @@
           ]
         }
       ],
-      "record_caveat": "La ficha no atribuye una posición más específica que la publicada ni completa silencios con supuestos partidarios."
+      "record_caveat": "La ficha no atribuye una posición más específica que la publicada ni completa silencios con supuestos partidarios.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "pier-karlezi",
@@ -3038,7 +3156,8 @@
           "action_or_position": "sostuvo que la tramitación y las presentaciones de Hacienda han sido con un nivel de detalle técnico que antes no existía",
           "evidence_quote": "transparentar los números y las estimaciones que han hecho\". por el contrario, pier karlezi (pnl) sostuvo que la tramitación y las presentaciones de hacienda han sido \"con un nivel de detalle técnico\" que antes no existía, mientras que si bien diego schalper (rn) dijo que escucharán al consejo fiscal autónomo (cfa),"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "renzo-trisotti",
@@ -3047,7 +3166,7 @@
       "actor_type": "legislator",
       "role": "",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Partido Republicano",
       "participation_summary": "insistió en que se necesitan reglas claras y certeza jurídica para construir confianzas y recuperar el crecimiento y que el desarrollo llegue a todas las regiones",
       "profile_depth": "indexed",
       "source_ids": [
@@ -3064,7 +3183,10 @@
           "action_or_position": "Insistió en que se necesitan reglas claras y certeza jurídica para construir confianzas y recuperar el crecimiento, y que el desarrollo llegue a todas las regiones.",
           "evidence_quote": "trisotti insistió en que se necesitan \"reglas claras y certeza jurídica\" para construir confianzas y recuperar el crecimiento, \"y que el desarrollo llegue a todas las regiones; mientras que el senador ignacio urrutia se manifestó en un sentido"
         }
-      ]
+      ],
+      "affiliation_status": "verified_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "renan-cabezas",
@@ -3085,7 +3207,8 @@
           "action_or_position": "Respaldó la propuesta consensuada por los municipios que protege a los adultos mayores y garantiza una compensación permanente para los municipios.",
           "evidence_quote": "proyectos y la atención de las necesidades de la comunidad. desde el carmen, el alcalde renán cabezas respaldó la propuesta consensuada por los municipios, señalando que \"protege a los adultos mayores y a las familias que realmente requieren un alivio\", pero \"garantiza una compensación permanente para los municipios\". asimismo, advirtió"
         }
-      ]
+      ],
+      "affiliation_status": "not_documented"
     },
     {
       "id": "rodrigo-contreras",
@@ -3120,7 +3243,8 @@
           ]
         }
       ],
-      "record_caveat": "La condición rural se registra porque altera la implementación, no como una etiqueta que aumente o reduzca credibilidad."
+      "record_caveat": "La condición rural se registra porque altera la implementación, no como una etiqueta que aumente o reduzca credibilidad.",
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "rojo-edwards",
@@ -3129,7 +3253,7 @@
       "actor_type": "legislator",
       "role": "senador",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "valoró el mensaje del proyecto",
       "profile_depth": "indexed",
       "source_ids": [
@@ -3141,7 +3265,10 @@
           "action_or_position": "valoró el mensaje del proyecto",
           "evidence_quote": "permisos sectoriales. el mensaje también fue valorado por los senadores carlos kuschel , rojo edwards y cristián vial . incluso, se declaró que \"nos vamos a quedar cortos\" y se instó a \"dar más certeza jurídica, combatir más la permisología, bajar más los impuestos, y generar empleos rápidos\". este proyecto \"busca transformar al país\" y"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     },
     {
       "id": "sebastian-figueroa",
@@ -3162,7 +3289,8 @@
           "action_or_position": "Participó en la reunión con los presidentes de los municipios del país para discutir puntos de la megarreforma.",
           "evidence_quote": "josé garcía ruminot, y el subsecretario de desarrollo regional y administrativo, sebastián figueroa. \"durante la instancia, las asociaciones municipales valoraron la disposición de las autoridades presentes para escuchar a los municipios, en un contexto donde el diálogo, los acuerdos y la comprensión de las distintas posiciones fueron"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "sebastian-sichel",
@@ -3183,7 +3311,8 @@
           "action_or_position": "Dijo que los municipios necesitan fuentes de financiamiento permanentes y propuso eliminar la asignación de recursos del Gore vía proyectos y establecer montos fijos.",
           "evidence_quote": "recursos que permiten a los municipios seguir cumpliendo su labor\". el alcalde de ñuñoa, sebastián sichel , difiere de la postura de sus pares del sector y apunta a que más que las contribuciones, los municipios necesitan fuentes de financiamiento permanentes. en ese sentido, el alcalde asegura a el dínamo que \"una alternativa es eliminar la"
         }
-      ]
+      ],
+      "affiliation_status": "not_documented"
     },
     {
       "id": "sebastian-videla",
@@ -3204,7 +3333,8 @@
           "action_or_position": "Rechazó las modificaciones al proyecto de ley en la votación de la Cámara de Diputados.",
           "evidence_quote": "que los parlamentarios de la región de antofagasta votaron de la siguiente forma: sebastián videla y jaime araya rechazaron, fabián ossandón y carlo arquero estuvieron a favor, y marcela hernando no votó. comparte esta noticia facebook twitter whatsapp linkedin email impresión telegram copy url - publicidad - - publicidad - -"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "vanessa-kaiser",
@@ -3230,7 +3360,8 @@
           "action_or_position": "valoró que se avanza defendiendo la libertad económica y el respeto a la propiedad, generando certezas",
           "evidence_quote": "proyecto vuelve a poner al país en la senda del desarrollo económico\" y la senadora vanessa kaiser valoró que se avanza defendiendo la \"libertad económica\" y el \"respeto a la propiedad\", \"generando certezas\". el senador alejandro kusanovic advirtió sobre el \"riesgo de un plan diseñado desde el centralismo, dándole la espalda a las"
         }
-      ]
+      ],
+      "affiliation_status": "reported_in_corpus"
     },
     {
       "id": "ximena-ordenes",
@@ -3239,7 +3370,7 @@
       "actor_type": "legislator",
       "role": "senadora",
       "institution": "",
-      "affiliation": "",
+      "affiliation": "Independiente",
       "participation_summary": "hizo notar que se aplican cambios importantes al sistema tributario y la regulación medio ambiental y sentenció que la prisa de legislar tiene que ver con el temor a perder mayorías",
       "profile_depth": "indexed",
       "source_ids": [
@@ -3251,7 +3382,10 @@
           "action_or_position": "hizo notar que se aplican cambios importantes al sistema tributario y la regulación medio ambiental y sentenció que la prisa de legislar tiene que ver con el temor a perder mayorías",
           "evidence_quote": "por la perdurabilidad de garantías para aquellos que tienen más\" y la senadora ximena ordenes hizo notar que se aplican \"cambios importantes al sistema tributario y la regulación medio ambiental\" y sentenció que \"la prisa de legislar tiene que ver con el temor a perder mayorías\". para la senadora alejandra sepúlveda , \"es de los"
         }
-      ]
+      ],
+      "affiliation_status": "independent_public_record",
+      "affiliation_source_url": "https://www.senado.cl/senadoras-y-senadores/listado-de-senadoras-y-senadores",
+      "affiliation_verified_at": "2026-08-08"
     }
   ],
   "model": {

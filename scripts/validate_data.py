@@ -180,6 +180,17 @@ def _validate_megareforma() -> list[str]:
     census_actors = census.get("actors", [])
     if census.get("coverage", {}).get("actors_indexed") != len(census_actors):
         failures.append("actor-census.json: actor count does not match actors")
+    census_ids = [actor.get("id") for actor in census_actors]
+    if len(census_ids) != len(set(census_ids)):
+        failures.append("actor-census.json: actor ids must be unique after identity reconciliation")
+    census_people = [actor for actor in census_actors if actor.get("entity_kind") == "person"]
+    documented_affiliations = sum(
+        actor.get("affiliation_status") != "not_documented" for actor in census_people
+    )
+    if documented_affiliations * 2 <= len(census_people):
+        failures.append(
+            "actor-census.json: most people must have a sourced affiliation or independent status"
+        )
     for actor in census_actors:
         for source_id in actor.get("source_ids", []):
             if source_id not in source_ids:

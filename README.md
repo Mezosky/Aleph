@@ -65,7 +65,7 @@ The static edition is bilingual (ES/EN). Explanatory prose is translated offline
 local model; names, original headlines and evidence quotations stay in Spanish so a translation
 is never presented as primary evidence. “¿Quién tiene razón?” accounts for every captured press
 item, including a disclosed remainder outside the four evaluated questions. The actor tab adds a
-touch-enabled UMAP explorer over all 100 indexed actors; its position represents documentary
+touch-enabled UMAP explorer over all 98 indexed actors; its position represents documentary
 similarity and declared affiliation, never truthfulness or ideological extremity.
 
 The general pipeline and upload API remain in this repository for local research and tests; they
@@ -288,8 +288,12 @@ The actor census audits every captured source for people and institutions with a
 position, action, vote, technical assessment or implementation role. A candidate is retained only
 with a literal excerpt from its source. Detailed national and municipal profiles are an attributed
 subset of that census; the site no longer presents the profiled subset as the complete actor
-universe. The frozen result contains 100 actors (89 people and 11 institutions), 218 grounded
-mentions and 26 expanded track-record profiles. Seven additional municipal portraits are frozen
+universe. The frozen result contains 98 actors (87 people and 11 institutions), 218 grounded
+mentions and 26 expanded track-record profiles. Identity reconciliation removes two source-name
+duplicates. Of the 87 people, 78 have a documented party affiliation or independent status; the
+remaining nine are explicitly marked as not documented, while institutions are marked not
+applicable. Current senators are checked against the dated official Senate roster. Seven additional
+municipal portraits are frozen
 from Wikimedia with source, credit, licence and SHA-256; actors without an unambiguous reusable
 portrait keep initials instead of receiving a namesake's photograph. Neither layer claims to be
 exhaustive of the internet, and capture gaps remain visible.
@@ -299,6 +303,7 @@ Both publication datasets are generated locally and accumulated in SQLite before
 ```bash
 .venv/bin/python scripts/analyze_megareforma_deep.py
 .venv/bin/python scripts/analyze_megareforma_actors.py --workers 4
+.venv/bin/python scripts/enrich_actor_census.py
 ```
 
 The deployed browser only reads the resulting JSON and screenshots; it never invokes the model.

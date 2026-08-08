@@ -72,6 +72,9 @@ still allowing discourse analysis on top of it.
 Actor profiles also live only in this second stage. Roles and affiliations are recorded as sourced
 facts; declared interests require an official declaration; legal entries require a primary
 official record, explicit procedural status, and a presumption-of-innocence note while unresolved.
+The corpus-wide census additionally distinguishes a verified public-record affiliation, a reported
+corpus affiliation, a verified independent status, a genuinely undocumented affiliation and the
+institutional “not applicable” case. Empty fields are never silently rendered as independence.
 The interface places this material behind a strong attributed-stage divider so it cannot be read
 as an explanation for a verdict.
 
@@ -283,15 +286,19 @@ institution, because bibliography names are evidence authors, not actors in the 
 model candidate is discarded unless code can find the actor's exact surface name, reform context and
 action terms in the frozen chunk; code then extracts the displayed quotation directly from that text.
 Dense official voting lists are divided into 3,500-character subchunks and reconciled back to the
-same immutable source id. The published census currently records 100 actors and 218 accepted
+same immutable source id. The published census currently records 98 actors and 218 accepted
 mentions; 265 model candidates were rejected by the structural tests. Quantified municipal
 signatory groups remain visible as institutional collectives rather than being misreported as
 individual people, and close name variants are merged only under conservative deterministic rules.
+Two source-name variants are reconciled into their full identities. Of 87 people, 78 have a dated
+party-affiliation or independent-status record; nine remain explicitly undocumented and the 11
+institutions are labelled “not applicable.”
 
 The actor explorer embeds this census with UMAP using actor type, shared source membership, profile
-depth and a coarse value derived only from a declared party or coalition. Neutral marker shapes
-communicate those declared sectors and an unaffiliated category; colour does not encode a political
-side. UMAP distance is documentary similarity: the axes may
+depth and a coarse value derived only from a declared party or coalition. Colour encodes those
+declared-sector categories, marker shape encodes actor type and marker area encodes the number of
+quote-grounded interventions retained for that actor. These encodings describe corpus composition,
+not reliability or political value. UMAP distance is documentary similarity: the axes may
 rotate and neither distance nor colour measures honesty, truth, extremism or the quality of an actor's
 argument. The factual verdict remains outside this feature set by construction.
 

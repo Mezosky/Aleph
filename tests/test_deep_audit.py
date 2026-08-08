@@ -232,6 +232,32 @@ def test_actor_census_normalizes_source_typo_and_named_municipal_collective() ->
     assert by_name["104 jefes comunales"]["actor_type"] == "municipal_association"
 
 
+def test_actor_census_normalizes_known_full_name_aliases() -> None:
+    batch = {
+        "rejected": 0,
+        "usage": {},
+        "actors": [
+            {
+                "name": "Juan Castro",
+                "entity_kind": "person",
+                "actor_type": "legislator",
+                "role": "senador",
+                "institution": "Senado",
+                "affiliation": "",
+                "mentions": [
+                    {
+                        "source_id": "senate",
+                        "action_or_position": "Anunció una reserva ante el Tribunal Constitucional.",
+                        "evidence_quote": "el senador Juan Castro anunció una reserva",
+                    }
+                ],
+            }
+        ],
+    }
+    result = merge_census([batch], detailed_names=set())
+    assert result["actors"][0]["name"] == "Juan Luis Castro"
+
+
 def test_detailed_profile_role_controls_actor_type() -> None:
     assert _profile_actor_type("Alcaldesa y vicepresidenta de la AChM") == "mayor"
     assert _profile_actor_type("Presidenta del Senado") == "legislator"

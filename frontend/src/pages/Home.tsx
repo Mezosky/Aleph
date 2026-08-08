@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ActorPopover from '@/components/dossier/ActorPopover'
 import CensusActorPopover from '@/components/dossier/CensusActorPopover'
 import DossierMeter from '@/components/dossier/DossierMeter'
+import DossierSectionNav from '@/components/dossier/DossierSectionNav'
 import SourceCard from '@/components/dossier/SourceCard'
 import AnimatedNumber from '@/components/ui/AnimatedNumber'
 import {
@@ -247,8 +248,10 @@ export default function Home({ view = 'main' }: HomeProps) {
   return (
     <>
       {view === 'main' && (
-        <>
-          <section className="relative isolate overflow-hidden border-b border-line-hairline px-5 pb-12 pt-8 sm:px-8 sm:pb-16 lg:grid lg:grid-cols-[1fr_18rem] lg:gap-14">
+        <div className="lg:grid lg:grid-cols-[11rem_minmax(0,1fr)] lg:gap-8 xl:grid-cols-[13rem_minmax(0,1fr)] xl:gap-10">
+          <DossierSectionNav />
+          <div className="min-w-0">
+          <section id="resumen" className="relative isolate scroll-mt-36 overflow-hidden border-b border-line-hairline px-5 pb-12 pt-8 sm:px-8 sm:pb-16 lg:grid lg:scroll-mt-24 lg:grid-cols-[1fr_18rem] lg:gap-14">
             <div
               aria-hidden="true"
               className="absolute inset-0 -z-20 scale-105 bg-cover bg-center opacity-[0.18] grayscale blur-[2px]"
@@ -334,7 +337,7 @@ export default function Home({ view = 'main' }: HomeProps) {
             ))}
           </dl>
 
-          <section id="objetivos" className="mt-20">
+          <section id="objetivos" className="mt-20 scroll-mt-36 lg:scroll-mt-24">
             <div className="grid gap-8 lg:grid-cols-[1fr_20rem] lg:items-start">
               <div className="max-w-3xl">
                 <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
@@ -518,7 +521,7 @@ export default function Home({ view = 'main' }: HomeProps) {
             </div>
           </section>
 
-          <section id="medidores" className="mt-24 border-t border-line-hairline pt-12">
+          <section id="medidores" className="mt-24 scroll-mt-36 border-t border-line-hairline pt-12 lg:scroll-mt-24">
             <div className="max-w-3xl">
               <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
                 {tr('Medidores desarmables', 'Inspectable meters')}
@@ -540,7 +543,7 @@ export default function Home({ view = 'main' }: HomeProps) {
             </div>
           </section>
 
-          <section id="debate" className="mt-24 border-t border-line-hairline pt-12">
+          <section id="debate" className="mt-24 scroll-mt-36 border-t border-line-hairline pt-12 lg:scroll-mt-24">
             <div className="max-w-3xl">
               <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
                 {tr('Gobierno, oposición y evidencia', 'Government, opposition and evidence')}
@@ -701,7 +704,7 @@ export default function Home({ view = 'main' }: HomeProps) {
             )}
           </section>
 
-          <section id="evidencia-comparada" className="mt-24 border-t border-line-hairline pt-12">
+          <section id="evidencia-comparada" className="mt-24 scroll-mt-36 border-t border-line-hairline pt-12 lg:scroll-mt-24">
             <div className="max-w-3xl">
               <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
                 {tr('Teoría y evidencia global', 'Theory and global evidence')}
@@ -772,7 +775,8 @@ export default function Home({ view = 'main' }: HomeProps) {
               {tr('llamadas de IA desde esta página.', 'AI calls from this page.')}
             </p>
           </section>
-        </>
+          </div>
+        </div>
       )}
 
       {view === 'actors' && (

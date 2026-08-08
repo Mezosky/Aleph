@@ -4,6 +4,12 @@ import { useLanguage } from '@/i18n/LanguageContext'
 
 export default function CensusActorPopover({ actor }: { actor: CensusActor }) {
   const { tr } = useLanguage()
+  const affiliation =
+    actor.affiliation_status === 'institutional_not_applicable'
+      ? tr('Afiliación partidaria no aplica', 'Party affiliation does not apply')
+      : actor.affiliation_status === 'not_documented'
+        ? tr('Afiliación no documentada', 'Affiliation not documented')
+        : actor.affiliation
   return (
     <span className="group/census relative inline-block">
       <button
@@ -31,9 +37,9 @@ export default function CensusActorPopover({ actor }: { actor: CensusActor }) {
             <span className="block text-caption font-semibold text-ink-primary">
               {actor.role || tr('Rol no especificado en la captura', 'Role not specified in the capture')}
             </span>
-            {(actor.institution || actor.affiliation) && (
+            {(actor.institution || affiliation) && (
               <span className="mt-1 block text-micro text-ink-muted">
-                {[actor.institution, actor.affiliation].filter(Boolean).join(' · ')}
+                {[actor.institution, affiliation].filter(Boolean).join(' · ')}
               </span>
             )}
             <span className="mt-3 block text-caption font-normal text-ink-secondary">
@@ -41,6 +47,16 @@ export default function CensusActorPopover({ actor }: { actor: CensusActor }) {
             </span>
           </span>
         </span>
+        {actor.affiliation_source_url && (
+          <a
+            href={actor.affiliation_source_url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-3 block border-t border-line-hairline pt-3 text-micro font-semibold text-ink-primary underline decoration-line-strong underline-offset-4"
+          >
+            {tr('Afiliación en registro público', 'Affiliation in public record')} · {actor.affiliation_verified_at}
+          </a>
+        )}
         {actor.public_record?.[0] && (
           <span className="mt-3 block border-t border-line-hairline pt-3 text-micro font-normal text-ink-secondary">
             <span className="font-semibold text-ink-primary">{tr('Historial verificado', 'Verified record')}:</span>{' '}

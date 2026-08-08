@@ -398,6 +398,8 @@ _INSTITUTION_ALIASES = {
 }
 _PERSON_ALIASES = {
     "josé garcía": "José García Ruminot",
+    "juan castro": "Juan Luis Castro",
+    "loreto cravajal": "Loreto Carvajal",
     "trisotti": "Renzo Trisotti",
 }
 _MUNICIPAL_COLLECTIVE = re.compile(

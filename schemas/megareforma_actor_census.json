@@ -33,7 +33,7 @@
       "minItems": 20,
       "items": {
         "type": "object",
-        "required": ["id", "name", "entity_kind", "actor_type", "role", "institution", "affiliation", "participation_summary", "profile_depth", "source_ids", "mentions"],
+        "required": ["id", "name", "entity_kind", "actor_type", "role", "institution", "affiliation", "affiliation_status", "participation_summary", "profile_depth", "source_ids", "mentions"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
           "name": {"type": "string"},
@@ -42,6 +42,9 @@
           "role": {"type": "string"},
           "institution": {"type": "string"},
           "affiliation": {"type": "string"},
+          "affiliation_status": {"enum": ["verified_public_record", "independent_public_record", "reported_in_corpus", "institutional_not_applicable", "not_documented"]},
+          "affiliation_source_url": {"type": "string", "format": "uri"},
+          "affiliation_verified_at": {"type": "string", "format": "date"},
           "participation_summary": {"type": "string", "minLength": 20},
           "profile_depth": {"enum": ["detailed", "indexed"]},
           "public_record": {
@@ -82,6 +85,24 @@
             }
           }
         },
+        "allOf": [
+          {
+            "if": {"properties": {"entity_kind": {"const": "institution"}}},
+            "then": {"properties": {"affiliation_status": {"const": "institutional_not_applicable"}}}
+          },
+          {
+            "if": {"properties": {"affiliation_status": {"enum": ["verified_public_record", "independent_public_record"]}}},
+            "then": {"required": ["affiliation_source_url", "affiliation_verified_at"]}
+          },
+          {
+            "if": {"properties": {"affiliation_status": {"const": "independent_public_record"}}},
+            "then": {"properties": {"affiliation": {"const": "Independiente"}}}
+          },
+          {
+            "if": {"properties": {"affiliation_status": {"enum": ["institutional_not_applicable", "not_documented"]}}},
+            "then": {"properties": {"affiliation": {"maxLength": 0}}}
+          }
+        ],
         "additionalProperties": false
       }
     },
