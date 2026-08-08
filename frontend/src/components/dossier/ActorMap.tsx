@@ -27,7 +27,7 @@ const SECTORS: Record<Sector, { label: string; color: string; glyph: string; sco
   },
   undocumented: {
     label: 'Afiliación no documentada',
-    color: 'var(--line-disabled)',
+    color: 'var(--ink-secondary)',
     glyph: '?',
     score: 0,
   },
@@ -179,15 +179,34 @@ export default function ActorMap({ actors }: { actors: CensusActor[] }) {
       return property ? rootStyle.getPropertyValue(property).trim() : token
     }
 
-    const traces = (Object.keys(SECTORS) as Sector[]).map((sector) => {
-      const points = actors
+    const groups = (Object.keys(SECTORS) as Sector[]).map((sector) => ({
+      sector,
+      points: actors
         .map((actor, index) => ({
           actor,
           coordinates: [embedding[index]?.[0] ?? 0, embedding[index]?.[1] ?? 0] as [number, number],
           index,
         }))
-        .filter(({ actor }) => sectorFor(actor) === sector)
-      return {
+        .filter(({ actor }) => sectorFor(actor) === sector),
+    }))
+    const traces = groups.flatMap(({ sector, points }) => {
+      const color = resolveColor(SECTORS[sector].color)
+      const halo = {
+        type: 'scattergl' as const,
+        mode: 'markers' as const,
+        x: points.map(({ coordinates }) => coordinates[0]),
+        y: points.map(({ coordinates }) => coordinates[1]),
+        hoverinfo: 'skip' as const,
+        marker: {
+          color,
+          symbol: 'circle',
+          size: points.map(({ actor }) => Math.min(76, 44 + Math.sqrt(actor.mentions.length) * 7)),
+          opacity: sector === 'institutional' || sector === 'undocumented' ? 0.06 : 0.105,
+          line: { width: 0 },
+        },
+        showlegend: false,
+      }
+      const markers = {
         type: 'scattergl' as const,
         mode: 'markers' as const,
         name: language === 'es' ? SECTORS[sector].label : SECTOR_EN[sector],
@@ -204,7 +223,7 @@ export default function ActorMap({ actors }: { actors: CensusActor[] }) {
         ]),
         hovertemplate: `<b>%{text}</b><br>%{customdata[1]}<br>%{customdata[2]}<br>%{customdata[3]}<br><b>%{customdata[4]} ${tr('intervenciones verificadas', 'verified interventions')}</b><br>%{customdata[5]} ${tr('fuentes', 'sources')}<extra></extra>`,
         marker: {
-          color: resolveColor(SECTORS[sector].color),
+          color,
           symbol: points.map(({ actor }) => ACTOR_VISUAL[actor.actor_type].symbol),
           size: points.map(({ actor }) => Math.min(25, 8 + Math.sqrt(actor.mentions.length) * 3.2)),
           opacity: 0.8,
@@ -212,6 +231,7 @@ export default function ActorMap({ actors }: { actors: CensusActor[] }) {
         },
         showlegend: false,
       }
+      return [halo, markers]
     })
 
     void Plotly.newPlot(
@@ -221,8 +241,8 @@ export default function ActorMap({ actors }: { actors: CensusActor[] }) {
         autosize: true,
         height: 560,
         margin: { l: 24, r: 24, t: 20, b: 30 },
-        paper_bgcolor: 'rgba(0,0,0,0)',
-        plot_bgcolor: 'rgba(0,0,0,0)',
+        paper_bgcolor: resolveColor('var(--surface-sunken)'),
+        plot_bgcolor: resolveColor('var(--surface-sunken)'),
         hovermode: 'closest',
         dragmode: 'pan',
         xaxis: { visible: false, fixedrange: false },
@@ -277,8 +297,8 @@ export default function ActorMap({ actors }: { actors: CensusActor[] }) {
           </p>
           <p className="mt-2">
             {tr(
-              'Color = sector declarado; icono = tipo de actor; tamaño = intervenciones verificadas en este corpus. La posición UMAP expresa similitud documental y puede rotar. Ninguna señal mide extremismo, honestidad ni quién tiene razón.',
-              'Color = declared sector; icon = actor type; size = verified interventions in this corpus. UMAP position represents documentary similarity and may rotate. No signal measures extremism, honesty or who is right.',
+              'Color y halo = sector declarado y su acumulación; icono = tipo de actor; tamaño = intervenciones verificadas en este corpus. La posición UMAP expresa similitud documental y puede rotar. Ninguna señal mide extremismo, honestidad ni quién tiene razón.',
+              'Color and halo = declared sector and its accumulation; icon = actor type; size = verified interventions in this corpus. UMAP position represents documentary similarity and may rotate. No signal measures extremism, honesty or who is right.',
             )}
           </p>
         </aside>
@@ -314,7 +334,7 @@ export default function ActorMap({ actors }: { actors: CensusActor[] }) {
         ))}
         <span>· {tr('círculo mayor = más intervenciones', 'larger marker = more interventions')}</span>
       </div>
-      <div className="mt-8 border border-line-hairline bg-surface-card p-2 sm:p-4">
+      <div className="mt-8 border border-line-hairline bg-surface-sunken p-2 sm:p-4">
         <div
           ref={chartRef}
           aria-label={tr('Mapa interactivo de actores', 'Interactive actor map')}

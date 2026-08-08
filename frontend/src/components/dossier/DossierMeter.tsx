@@ -1,4 +1,4 @@
-import { dataUrl } from '@/lib/data'
+import ActorPopover from '@/components/dossier/ActorPopover'
 import type { ActorProfile, DossierMeter as Meter } from '@/types/megareforma'
 import { useLanguage } from '@/i18n/LanguageContext'
 
@@ -8,8 +8,7 @@ export default function DossierMeter({ meter, actors = [] }: { meter: Meter; act
   const { language, tr } = useLanguage()
   const bounded = Math.max(0, Math.min(100, meter.value))
   const byId = new Map(actors.map((actor) => [actor.id, actor]))
-  const leftActors = (meter.pole_actor_ids?.left ?? []).map((id) => byId.get(id)).filter(Boolean) as ActorProfile[]
-  const rightActors = (meter.pole_actor_ids?.right ?? []).map((id) => byId.get(id)).filter(Boolean) as ActorProfile[]
+  const meterActors = meter.actor_ids.map((id) => byId.get(id)).filter(Boolean) as ActorProfile[]
 
   return (
     <article className="border border-line-hairline bg-surface-card p-5 sm:p-6">
@@ -34,35 +33,30 @@ export default function DossierMeter({ meter, actors = [] }: { meter: Meter; act
 
       <p className="mt-3 text-caption text-ink-secondary">{meter.question}</p>
 
+      <div className="mt-5 border-t border-line-hairline pt-4">
+        <p className="text-micro font-semibold uppercase tracking-wide text-ink-muted">
+          {tr('Actores vinculados a esta lectura', 'Actors linked to this reading')} · {meterActors.length}
+        </p>
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {meterActors.map((actor, index) => (
+            <ActorPopover
+              key={actor.id}
+              actor={actor}
+              trigger="avatar"
+              align={index >= Math.ceil(meterActors.length / 2) ? 'right' : 'left'}
+            />
+          ))}
+        </div>
+        <p className="mt-2 text-micro text-ink-muted">
+          {tr('Toca o pasa el cursor para abrir cada ficha.', 'Tap or hover to open each profile.')}
+        </p>
+      </div>
+
       <div
         className="mt-7"
         role="img"
         aria-label={`${meter.title}: ${bounded} ${tr('de', 'out of')} 100, ${tr('desde', 'from')} ${meter.left_label} ${tr('hacia', 'toward')} ${meter.right_label}`}
       >
-        {(leftActors.length > 0 || rightActors.length > 0) && (
-          <div className="mb-2 flex items-end justify-between" aria-hidden="true">
-            <div className="flex -space-x-2">
-              {leftActors.map((actor) => (
-                <img
-                  key={actor.id}
-                  src={dataUrl(actor.image)}
-                  alt=""
-                  className="h-10 w-10 rounded-full border-2 border-surface-card object-cover object-top grayscale"
-                />
-              ))}
-            </div>
-            <div className="flex -space-x-2">
-              {rightActors.map((actor) => (
-                <img
-                  key={actor.id}
-                  src={dataUrl(actor.image)}
-                  alt=""
-                  className="h-10 w-10 rounded-full border-2 border-surface-card object-cover object-top grayscale"
-                />
-              ))}
-            </div>
-          </div>
-        )}
         <div className="relative h-3 rounded-full bg-[linear-gradient(90deg,var(--div-neg-3),var(--div-mid)_50%,var(--div-pos-3))] shadow-[inset_0_0_0_1px_var(--line-strong)]">
           <span className="absolute left-1/2 top-0 h-full w-px bg-line-strong" aria-hidden="true" />
           <span

@@ -111,35 +111,6 @@ const ACTOR_TYPE_EN: Record<CensusActor['actor_type'], string> = {
   other: 'Other actors',
 }
 
-const DEBATE_NEWS_TERMS: Record<string, readonly string[]> = {
-  'growth-pays': ['crecimiento', 'empleo', 'inversión', 'recaudación', 'riesgo fiscal', 'consejo fiscal autónomo'],
-  'hidden-tax-reform': [
-    'reforma tributaria',
-    'impuesto corporativo',
-    'primera categoría',
-    'reintegración',
-    'sence',
-    'dfl2',
-    'repatriación',
-    'invariabilidad tributaria',
-  ],
-  'permits-environment': [
-    'permiso ambiental',
-    'permisos ambientales',
-    'evaluación ambiental',
-    'rca',
-    'acuicultura',
-    'tribunal constitucional',
-  ],
-  'municipal-compensation': [
-    'compensación municipal',
-    'fondo común municipal',
-    'exención de contribuciones',
-    'alcaldes',
-    'municipios',
-  ],
-}
-
 function Loading() {
   const { tr } = useLanguage()
   return (
@@ -149,20 +120,9 @@ function Loading() {
   )
 }
 
-function debateNews(
-  question: DebateQuestion,
-  searchSourceById: Map<string, CapturedSource>,
-  displaySourceById = searchSourceById,
-): CapturedSource[] {
-  const ids = new Set(question.source_ids)
-  question.positions.forEach((position) => position.source_ids.forEach((id) => ids.add(id)))
-  const terms = DEBATE_NEWS_TERMS[question.id] ?? []
-  searchSourceById.forEach((source) => {
-    const searchable = `${source.title} ${source.summary}`.toLocaleLowerCase('es')
-    if (source.kind === 'news' && terms.some((term) => searchable.includes(term))) ids.add(source.id)
-  })
-  return [...ids]
-    .map((id) => displaySourceById.get(id))
+function debateNews(question: DebateQuestion, sourceById: Map<string, CapturedSource>): CapturedSource[] {
+  return question.news_source_ids
+    .map((id) => sourceById.get(id))
     .filter((source): source is CapturedSource => source?.kind === 'news')
     .sort((left, right) => right.published_at.localeCompare(left.published_at))
 }
@@ -222,10 +182,6 @@ export default function Home({ view = 'main' }: HomeProps) {
 
   const actors = useMemo(() => new Map(dossier?.actors.map((actor) => [actor.id, actor]) ?? []), [dossier])
   const sourceById = useMemo(() => new Map(sources?.items.map((source) => [source.id, source]) ?? []), [sources])
-  const rawSourceById = useMemo(
-    () => new Map(rawSources?.items.map((source) => [source.id, source]) ?? []),
-    [rawSources],
-  )
   const gapById = useMemo(() => new Map(sources?.gaps.map((gap) => [gap.id, gap]) ?? []), [sources])
 
   if (error)
@@ -240,10 +196,33 @@ export default function Home({ view = 'main' }: HomeProps) {
     .filter((source) => source.kind === 'news')
     .sort((left, right) => right.published_at.localeCompare(left.published_at))
   const evaluatedNewsIds = new Set(
-    dossier.debate.flatMap((question) => debateNews(question, rawSourceById, sourceById).map((source) => source.id)),
+    dossier.debate.flatMap((question) => debateNews(question, sourceById).map((source) => source.id)),
   )
   const otherDebateNews = allNews.filter((source) => !evaluatedNewsIds.has(source.id))
   const newestNews = allNews[0]
+  const metersSection = (
+    <section id="medidores" className="mt-16 scroll-mt-36 border-t border-line-hairline pt-12 lg:scroll-mt-24">
+      <div className="max-w-3xl">
+        <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
+          {tr('Primera lectura', 'First reading')} · {tr('Medidores desarmables', 'Inspectable meters')}
+        </p>
+        <h2 className="mt-3 text-title font-semibold text-ink-primary">
+          {tr('Dónde cae el debate', 'Where the debate falls')}
+        </h2>
+        <p className="mt-4 text-body text-ink-secondary">
+          {tr(
+            'Esta es la primera capa después del resumen. No son notas de bondad ni un detector mágico de sesgo: cada aguja resume componentes nombrados. Abre el cálculo y toca cada retrato para auditar evidencia y actores.',
+            'This is the first layer after the overview. These are not goodness scores or a magic bias detector: each needle summarizes named components. Open the calculation and tap each portrait to audit evidence and actors.',
+          )}
+        </p>
+      </div>
+      <div className="mt-8 grid gap-5 lg:grid-cols-2">
+        {dossier.meters.map((meter) => (
+          <DossierMeter key={meter.id} meter={meter} actors={dossier.actors} />
+        ))}
+      </div>
+    </section>
+  )
 
   return (
     <>
@@ -254,9 +233,11 @@ export default function Home({ view = 'main' }: HomeProps) {
           <section id="resumen" className="relative isolate scroll-mt-36 overflow-hidden border-b border-line-hairline px-5 pb-12 pt-8 sm:px-8 sm:pb-16 lg:grid lg:scroll-mt-24 lg:grid-cols-[1fr_18rem] lg:gap-14">
             <div
               aria-hidden="true"
-              className="absolute inset-0 -z-20 scale-105 bg-cover bg-center opacity-[0.18] grayscale blur-[2px]"
+              className="absolute inset-0 -z-20 bg-no-repeat opacity-[0.78] saturate-[0.72] contrast-125"
               style={{
                 backgroundImage: `url(${import.meta.env.BASE_URL}la-moneda.jpg)`,
+                backgroundSize: 'auto 100%',
+                backgroundPosition: '72% center',
               }}
             />
             <div
@@ -264,7 +245,7 @@ export default function Home({ view = 'main' }: HomeProps) {
               className="absolute inset-0 -z-10"
               style={{
                 background:
-                  'linear-gradient(90deg, var(--surface-page) 8%, color-mix(in srgb, var(--surface-page) 88%, transparent) 62%, color-mix(in srgb, var(--surface-page) 72%, transparent))',
+                  'linear-gradient(90deg, color-mix(in srgb, var(--surface-page) 92%, transparent) 4%, color-mix(in srgb, var(--surface-page) 80%, transparent) 52%, color-mix(in srgb, var(--surface-page) 16%, transparent)), linear-gradient(180deg, transparent 35%, color-mix(in srgb, var(--surface-page) 72%, transparent) 100%)',
               }}
             />
             <div className="relative">
@@ -292,7 +273,10 @@ export default function Home({ view = 'main' }: HomeProps) {
                 </Link>
               </div>
             </div>
-            <aside className="mt-10 border-l-2 border-line-strong pl-5 lg:mt-1">
+            <aside
+              className="mt-10 border-l-2 border-line-strong p-5 lg:mt-1"
+              style={{ backgroundColor: 'color-mix(in srgb, var(--surface-card) 70%, transparent)' }}
+            >
               <p className="text-micro uppercase tracking-wide text-ink-muted">
                 {tr('Qué está analizado', 'What was analyzed')}
               </p>
@@ -336,6 +320,8 @@ export default function Home({ view = 'main' }: HomeProps) {
               </div>
             ))}
           </dl>
+
+          {metersSection}
 
           <section id="objetivos" className="mt-20 scroll-mt-36 lg:scroll-mt-24">
             <div className="grid gap-8 lg:grid-cols-[1fr_20rem] lg:items-start">
@@ -521,28 +507,6 @@ export default function Home({ view = 'main' }: HomeProps) {
             </div>
           </section>
 
-          <section id="medidores" className="mt-24 scroll-mt-36 border-t border-line-hairline pt-12 lg:scroll-mt-24">
-            <div className="max-w-3xl">
-              <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
-                {tr('Medidores desarmables', 'Inspectable meters')}
-              </p>
-              <h2 className="mt-3 text-title font-semibold text-ink-primary">
-                {tr('Dónde cae el debate', 'Where the debate falls')}
-              </h2>
-              <p className="mt-4 text-body text-ink-secondary">
-                {tr(
-                  'No son notas de bondad ni un detector mágico de sesgo. Cada aguja resume componentes nombrados; abre “Ver cálculo” para auditar qué la mueve. Las fotografías son neutrales y simétricas.',
-                  'These are not goodness scores or a magic bias detector. Each needle summarizes named components; open “View calculation” to audit what moves it. The photographs are neutral and symmetric.',
-                )}
-              </p>
-            </div>
-            <div className="mt-8 grid gap-5 lg:grid-cols-2">
-              {dossier.meters.map((meter) => (
-                <DossierMeter key={meter.id} meter={meter} actors={dossier.actors} />
-              ))}
-            </div>
-          </section>
-
           <section id="debate" className="mt-24 scroll-mt-36 border-t border-line-hairline pt-12 lg:scroll-mt-24">
             <div className="max-w-3xl">
               <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
@@ -587,11 +551,11 @@ export default function Home({ view = 'main' }: HomeProps) {
                       {question.verdict_label}
                     </span>
                   </div>
-                  {debateNews(question, rawSourceById, sourceById)[0] && (
+                  {debateNews(question, sourceById)[0] && (
                     <p className="mt-3 text-micro font-semibold uppercase tracking-wide text-ink-muted">
-                      {tr('Debate público', 'Public debate')} · {debateNews(question, rawSourceById, sourceById).length}{' '}
+                      {tr('Debate público', 'Public debate')} · {debateNews(question, sourceById).length}{' '}
                       {tr('publicaciones incorporadas', 'publications included')} · {tr('última', 'latest')}{' '}
-                      {new Date(debateNews(question, rawSourceById, sourceById)[0]!.published_at).toLocaleDateString(
+                      {new Date(debateNews(question, sourceById)[0]!.published_at).toLocaleDateString(
                         locale,
                       )}
                     </p>
@@ -630,13 +594,13 @@ export default function Home({ view = 'main' }: HomeProps) {
                     </span>{' '}
                     {question.what_would_resolve_it}
                   </p>
-                  {debateNews(question, rawSourceById, sourceById).length > 0 && (
+                  {debateNews(question, sourceById).length > 0 && (
                     <details className="mt-5 border-t border-line-hairline pt-4">
                       <summary className="cursor-pointer text-caption font-semibold text-ink-primary">
                         {tr('Noticias que actualizan este debate', 'News updating this debate')}
                       </summary>
                       <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                        {debateNews(question, rawSourceById, sourceById).map((source) => (
+                        {debateNews(question, sourceById).map((source) => (
                           <a
                             key={source.id}
                             href={source.original_url}
@@ -672,36 +636,82 @@ export default function Home({ view = 'main' }: HomeProps) {
                 </article>
               ))}
             </div>
-            {otherDebateNews.length > 0 && (
-              <details className="mt-8 border border-line-hairline bg-surface-card p-5">
-                <summary className="cursor-pointer text-body font-semibold text-ink-primary">
-                  {tr('Otras aristas y tramitación', 'Other angles and legislative process')} · {otherDebateNews.length}{' '}
-                  {tr('publicaciones', 'publications')}
-                </summary>
-                <p className="mt-3 max-w-3xl text-caption text-ink-secondary">
-                  {tr(
-                    'Estas piezas forman parte del debate público —votaciones, negociación, procedimiento y materias que aún no tienen una pregunta factual propia—. Se muestran para que ninguna captura desaparezca por no encajar en las cuatro evaluaciones actuales.',
-                    'These pieces are part of the public debate—votes, negotiation, procedure and topics that do not yet have their own factual question. They are shown so no capture disappears merely because it does not fit the four current evaluations.',
-                  )}
-                </p>
-                <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {otherDebateNews.map((source) => (
-                    <a
-                      key={source.id}
-                      href={source.original_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="border border-line-hairline bg-surface-raised p-3 text-caption text-ink-secondary hover:border-line-strong"
-                    >
-                      <span className="block text-micro font-semibold uppercase text-ink-muted">
-                        {source.publisher} · {new Date(source.published_at).toLocaleDateString(locale)}
-                      </span>
-                      <span className="mt-1 block text-ink-primary">{source.title} ↗</span>
-                    </a>
-                  ))}
-                </div>
-              </details>
-            )}
+            <section className="mt-12 border-t border-line-hairline pt-10" aria-labelledby="other-angles-title">
+              <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
+                {tr('Lectura ampliada', 'Expanded reading')}
+              </p>
+              <h3 id="other-angles-title" className="mt-3 text-title font-semibold text-ink-primary">
+                {tr('Otras aristas, ya analizadas', 'Other angles, now analyzed')}
+              </h3>
+              <p className="mt-4 max-w-3xl text-body text-ink-secondary">
+                {tr(
+                  'Las publicaciones que no caben en las cuatro preguntas principales ya no quedan como una lista residual. Se agrupan en cinco preguntas adicionales; cada conclusión declara qué demuestra, qué no demuestra y qué fuentes la sostienen.',
+                  'Publications that do not fit the four main questions are no longer left as a residual list. They are grouped into five additional questions; each conclusion states what it shows, what it does not show, and which sources support it.',
+                )}
+              </p>
+              <p className="mt-3 text-caption font-semibold text-ink-primary">
+                {dossier.other_angles.length} {tr('aristas analizadas', 'angles analyzed')} · {otherDebateNews.length}/
+                {otherDebateNews.length} {tr('publicaciones restantes asignadas', 'remaining publications assigned')}
+              </p>
+              <div className="mt-8 space-y-5">
+                {dossier.other_angles.map((angle, index) => {
+                  const angleSources = angle.source_ids
+                    .map((id) => sourceById.get(id))
+                    .filter((source): source is CapturedSource => Boolean(source))
+                  return (
+                    <article key={angle.id} className="border border-line-hairline bg-surface-card p-6 sm:p-8">
+                      <p className="text-micro font-semibold uppercase tracking-wide text-ink-muted">
+                        {String(index + 1).padStart(2, '0')} · {angleSources.length}{' '}
+                        {angleSources.length === 1 ? tr('fuente', 'source') : tr('fuentes', 'sources')}
+                      </p>
+                      <h4 className="mt-2 text-lede font-semibold text-ink-primary">{angle.title}</h4>
+                      <p className="mt-3 text-caption font-semibold text-ink-secondary">{angle.question}</p>
+                      <p className="mt-5 border-l-4 border-status-neutral pl-4 text-body text-ink-primary">
+                        {angle.finding}
+                      </p>
+                      <div className="mt-5 grid gap-4 md:grid-cols-2">
+                        <p className="text-caption text-ink-secondary">
+                          <span className="font-semibold text-ink-primary">
+                            {tr('Por qué importa', 'Why it matters')}:
+                          </span>{' '}
+                          {angle.why_it_matters}
+                        </p>
+                        <p className="text-caption text-ink-secondary">
+                          <span className="font-semibold text-ink-primary">{tr('Límite', 'Limitation')}:</span>{' '}
+                          {angle.limitation}
+                        </p>
+                      </div>
+                      {angle.actor_ids.length > 0 && (
+                        <p className="mt-5 text-caption text-ink-secondary">
+                          <span className="mr-2 text-micro font-semibold uppercase text-ink-muted">
+                            {tr('Actores', 'Actors')}
+                          </span>
+                          {angle.actor_ids.map((id, actorIndex) => {
+                            const actor = actors.get(id)
+                            return actor ? (
+                              <span key={id}>
+                                {actorIndex > 0 && ', '}
+                                <ActorPopover actor={actor} />
+                              </span>
+                            ) : null
+                          })}
+                        </p>
+                      )}
+                      <details className="mt-6 border-t border-line-hairline pt-4">
+                        <summary className="cursor-pointer text-caption font-semibold text-ink-primary">
+                          {tr('Abrir capturas y publicaciones originales', 'Open captures and original publications')}
+                        </summary>
+                        <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                          {angleSources.map((source) => (
+                            <SourceCard key={source.id} source={source} />
+                          ))}
+                        </div>
+                      </details>
+                    </article>
+                  )
+                })}
+              </div>
+            </section>
           </section>
 
           <section id="evidencia-comparada" className="mt-24 scroll-mt-36 border-t border-line-hairline pt-12 lg:scroll-mt-24">

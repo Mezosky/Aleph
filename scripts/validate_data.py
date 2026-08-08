@@ -108,6 +108,10 @@ def _validate_megareforma() -> list[str]:
     except Exception as exc:
         failures.append(f"translations-en.json: {exc}")
     source_ids = {item.get("id") for item in sources.get("items", [])}
+    source_by_id = {item.get("id"): item for item in sources.get("items", [])}
+    all_news_ids = {
+        source_id for source_id, source in source_by_id.items() if source.get("kind") == "news"
+    }
     known_source_ids = source_ids | {item.get("id") for item in sources.get("gaps", [])}
     actor_ids = {item.get("id") for item in dossier.get("actors", [])}
     screenshots = ROOT / "frontend" / "public" / "data"
@@ -127,6 +131,9 @@ def _validate_megareforma() -> list[str]:
                         f"dossier.json:{actor.get('id')}: unknown record source {source_id}"
                     )
     for meter in dossier.get("meters", []):
+        for actor_id in meter.get("actor_ids", []):
+            if actor_id not in actor_ids:
+                failures.append(f"dossier.json:{meter.get('id')}: unknown actor {actor_id}")
         poles = meter.get("pole_actor_ids", {})
         for actor_id in [*poles.get("left", []), *poles.get("right", [])]:
             if actor_id not in actor_ids:
@@ -135,6 +142,56 @@ def _validate_megareforma() -> list[str]:
             for source_id in evidence.get("source_ids", []):
                 if source_id not in source_ids:
                     failures.append(f"dossier.json:{meter.get('id')}: unknown source {source_id}")
+        if meter.get("id") == "coverage-position":
+            meter_news_ids = {
+                source_id
+                for evidence in meter.get("evidence", [])
+                for source_id in evidence.get("source_ids", [])
+            }
+            if meter_news_ids != all_news_ids:
+                failures.append(
+                    "dossier.json: coverage meter must classify every captured news item"
+                )
+    evaluated_news_ids: set[str] = set()
+    for question in dossier.get("debate", []):
+        for source_id in question.get("news_source_ids", []):
+            source = source_by_id.get(source_id)
+            if source is None:
+                failures.append(
+                    f"dossier.json:{question.get('id')}: unknown debate-news source {source_id}"
+                )
+            elif source.get("kind") != "news":
+                failures.append(
+                    f"dossier.json:{question.get('id')}: debate-news source is not press {source_id}"
+                )
+            evaluated_news_ids.add(source_id)
+    other_angle_news_ids: list[str] = []
+    for angle in dossier.get("other_angles", []):
+        for actor_id in angle.get("actor_ids", []):
+            if actor_id not in actor_ids:
+                failures.append(f"dossier.json:{angle.get('id')}: unknown actor {actor_id}")
+        for source_id in angle.get("source_ids", []):
+            source = source_by_id.get(source_id)
+            if source is None:
+                failures.append(f"dossier.json:{angle.get('id')}: unknown source {source_id}")
+            elif source.get("kind") == "news":
+                other_angle_news_ids.append(source_id)
+    if len(other_angle_news_ids) != len(set(other_angle_news_ids)):
+        failures.append("dossier.json: a news item appears in more than one other angle")
+    overlap = evaluated_news_ids.intersection(other_angle_news_ids)
+    if overlap:
+        failures.append(
+            "dossier.json: evaluated news must not be duplicated in other angles: "
+            + ", ".join(sorted(overlap)[:3])
+        )
+    assigned_news_ids = evaluated_news_ids | set(other_angle_news_ids)
+    if assigned_news_ids != all_news_ids:
+        missing = all_news_ids - assigned_news_ids
+        unexpected = assigned_news_ids - all_news_ids
+        failures.append(
+            "dossier.json: every captured news item must belong to an evaluated question or "
+            f"other angle (missing={sorted(missing)}, unexpected={sorted(unexpected)})"
+        )
     for topic in theory.get("topics", []):
         for source_id in topic.get("source_ids", []):
             if source_id not in known_source_ids:

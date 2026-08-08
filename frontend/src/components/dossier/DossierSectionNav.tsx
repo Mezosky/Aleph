@@ -9,8 +9,8 @@ interface SectionDefinition {
 
 const SECTIONS: readonly SectionDefinition[] = [
   { id: 'resumen', es: 'Resumen', en: 'Overview' },
-  { id: 'objetivos', es: 'La reforma', en: 'The reform' },
   { id: 'medidores', es: 'Medidores', en: 'Meters' },
+  { id: 'objetivos', es: 'La reforma', en: 'The reform' },
   { id: 'debate', es: 'Debate público', en: 'Public debate' },
   { id: 'evidencia-comparada', es: 'Evidencia global', en: 'Global evidence' },
 ]

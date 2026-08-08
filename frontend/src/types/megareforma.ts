@@ -20,7 +20,19 @@ export interface DossierMeter {
   explanation: string
   methodology: string
   evidence: MeterEvidence[]
+  actor_ids: string[]
   pole_actor_ids?: { left: string[]; right: string[] }
+}
+
+export interface OtherDebateAngle {
+  id: string
+  title: string
+  question: string
+  finding: string
+  why_it_matters: string
+  limitation: string
+  source_ids: string[]
+  actor_ids: string[]
 }
 
 export interface ReformObjective {
@@ -71,10 +83,7 @@ export interface ActorPublicRecord {
 }
 
 export type MunicipalPositionGroup =
-  | 'government_formula'
-  | 'targeted_exemption'
-  | 'revenue_protection'
-  | 'dialogue_participant'
+  'government_formula' | 'targeted_exemption' | 'revenue_protection' | 'dialogue_participant'
 
 export interface MunicipalActor {
   id: string
@@ -254,6 +263,7 @@ export interface DebateQuestion {
   assessment: string
   what_would_resolve_it: string
   source_ids: string[]
+  news_source_ids: string[]
 }
 
 export interface MegareformaDossier {
@@ -282,6 +292,7 @@ export interface MegareformaDossier {
   objectives: ReformObjective[]
   meters: DossierMeter[]
   debate: DebateQuestion[]
+  other_angles: OtherDebateAngle[]
   actors: ActorProfile[]
   counts: {
     propositions: number
@@ -326,7 +337,13 @@ export interface MegareformaSources {
 }
 
 export interface TheoryTopic {
-  id: 'corporate_tax_growth' | 'fiscal_self_financing' | 'environmental_permits' | 'housing_property_tax' | 'higher_education' | 'text_data_mining'
+  id:
+    | 'corporate_tax_growth'
+    | 'fiscal_self_financing'
+    | 'environmental_permits'
+    | 'housing_property_tax'
+    | 'higher_education'
+    | 'text_data_mining'
   title: string
   question: string
   bottom_line: string

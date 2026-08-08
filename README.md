@@ -49,7 +49,8 @@ because the evaluator cannot tell them apart.
 components and source IDs ship beside it. The benchmark includes a left/right economic-policy
 axis because readers asked that question, but it classifies mechanisms (state provision versus
 market/investment incentives); it never ranks people, truth or moral worth. Click any meter to
-see its derivation, counter-evidence and uncertainty.
+see its derivation, counter-evidence and uncertainty. The meters are the first reading layer after
+the overview, and every meter exposes the linked actor profiles through interactive portraits.
 
 ---
 
@@ -63,10 +64,12 @@ frozen JSON and image assets. The browser makes **zero LLM calls** and needs no 
 
 The static edition is bilingual (ES/EN). Explanatory prose is translated offline by the pinned
 local model; names, original headlines and evidence quotations stay in Spanish so a translation
-is never presented as primary evidence. “¿Quién tiene razón?” accounts for every captured press
-item, including a disclosed remainder outside the four evaluated questions. The actor tab adds a
+is never presented as primary evidence. “¿Quién tiene razón?” assigns every captured press item:
+34 unique pieces update the four principal questions and the remaining 17 are analyzed across five
+additional angles rather than left as a residual link list. The actor tab adds a
 touch-enabled UMAP explorer over all 98 indexed actors; its position represents documentary
-similarity and declared affiliation, never truthfulness or ideological extremity.
+similarity and declared affiliation, never truthfulness or ideological extremity. Translucent
+sector halos make concentrations legible without turning either UMAP axis into an ideology scale.
 
 The general pipeline and upload API remain in this repository for local research and tests; they
 are not part of this benchmark deployment.

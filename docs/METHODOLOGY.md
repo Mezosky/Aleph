@@ -170,7 +170,14 @@ guess.
 The coverage meter follows the same rule. It counts whether a captured story is centred on a
 critical/opposition argument, a descriptive/negotiation frame, or a favourable/government
 argument. It describes the frozen collection, not the inherent bias or reliability of an outlet.
-Neutral portraits may label the poles; degrading or asymmetric political imagery is prohibited.
+Interactive portraits identify every actor explicitly linked to each meter, but their history does
+not move the needle. Degrading or asymmetric political imagery is prohibited.
+
+All 51 captured press pieces must be assigned in the static data. A piece either updates one or
+more of the four principal factual questions, or belongs to one of five additional analyzed angles.
+CI rejects a dossier with unassigned news, duplicated residual news or an incomplete coverage
+meter. Each additional angle publishes a bounded finding, why it matters, its limitation, and the
+archived screenshots behind it.
 
 ---
 
@@ -298,7 +305,9 @@ The actor explorer embeds this census with UMAP using actor type, shared source 
 depth and a coarse value derived only from a declared party or coalition. Colour encodes those
 declared-sector categories, marker shape encodes actor type and marker area encodes the number of
 quote-grounded interventions retained for that actor. These encodings describe corpus composition,
-not reliability or political value. UMAP distance is documentary similarity: the axes may
+not reliability or political value. Low-opacity halos repeat the same categorical colour around
+each point so dense accumulations are visible; they do not introduce a new score. UMAP distance is
+documentary similarity: the axes may
 rotate and neither distance nor colour measures honesty, truth, extremism or the quality of an actor's
 argument. The factual verdict remains outside this feature set by construction.
 

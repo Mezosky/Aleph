@@ -5,12 +5,11 @@
 /*
  * ALEPH DESIGN TOKENS
  *
- * One rule governs colour in this product: colour encodes EPISTEMIC STATUS —
- * how strong the evidence is, what kind of statement something is, which side
- * of a policy axis an effect falls on. Colour never encodes a political side.
- * There is deliberately no red-vs-blue anywhere, and the diverging ramp used
- * for the impact axes is teal-vs-orange precisely so it cannot be read as a
- * party colour.
+ * Colour normally encodes EPISTEMIC STATUS — how strong the evidence is, what
+ * kind of statement something is, or which side of a named policy axis an
+ * effect falls on. The actor map is the one categorical exception: its labelled
+ * palette distinguishes sourced affiliation groups without using conventional
+ * red-vs-blue party colours. It never encodes credibility or truthfulness.
  *
  * Consequently the UI chrome is monochrome: ink, hairlines and paper. Every
  * saturated colour on the page belongs to a data mark or a status chip, so
@@ -69,8 +68,8 @@
     --status-critical: #d03b3b;
     --status-neutral: #898781;
 
-    /* Categorical — outlet identity in cross-coverage comparisons.
-       Fixed order, assigned in sequence, never cycled. */
+    /* Categorical — outlet identity or explicitly labelled actor-map groups.
+       Fixed order, assigned in sequence, never cycled or used as a verdict. */
     --cat-1: #2a78d6;
     --cat-2: #eb6834;
     --cat-3: #1baf7a;

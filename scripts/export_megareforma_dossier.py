@@ -69,6 +69,7 @@ def main() -> int:
         },
         "descriptive": {
             "legislative_update",
+            "legal_analysis",
             "negotiation",
             "municipal_negotiation",
             "municipal_cross_party",
@@ -102,7 +103,7 @@ def main() -> int:
     coverage_meter["methodology"] = (
         "Se clasificó cada pieza por el argumento que su título y foco principal presentan: "
         f"{len(coverage['critical'])} críticas/oposición o alertas fiscales, "
-        f"{len(coverage['descriptive'])} descriptivas o de negociación y "
+        f"{len(coverage['descriptive'])} descriptivas, jurídicas o de negociación y "
         f"{len(coverage['favourable'])} favorables/gubernamentales. Posición = promedio "
         "ponderado 0/50/100. Las fuentes oficiales no entran en este medidor."
     )

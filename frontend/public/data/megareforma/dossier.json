@@ -130,14 +130,14 @@
       "id": "coverage-position",
       "kind": "editorial_tone",
       "title": "Tendencia de la cobertura reunida",
-      "question": "¿Las 50 piezas de prensa capturadas priorizan críticas/oposición o argumentos favorables del Gobierno?",
+      "question": "¿Las 51 piezas de prensa capturadas priorizan críticas/oposición o argumentos favorables del Gobierno?",
       "left_label": "Crítica / oposición",
       "center_label": "Descriptiva",
       "right_label": "Favorable / Gobierno",
       "value": 39,
       "confidence": "medium",
       "explanation": "La muestra curada contiene más piezas centradas en objeciones fiscales, distributivas o ambientales que piezas centradas en la defensa gubernamental. Eso describe esta colección y su encuadre; no prueba que un medio o una posición sea falsa.",
-      "methodology": "Se clasificó cada pieza por el argumento que su título y foco principal presentan: 18 críticas/oposición o alertas fiscales, 25 descriptivas o de negociación y 7 favorables/gubernamentales. Posición = promedio ponderado 0/50/100. Las fuentes oficiales no entran en este medidor.",
+      "methodology": "Se clasificó cada pieza por el argumento que su título y foco principal presentan: 18 críticas/oposición o alertas fiscales, 26 descriptivas, jurídicas o de negociación y 7 favorables/gubernamentales. Posición = promedio ponderado 0/50/100. Las fuentes oficiales no entran en este medidor.",
       "evidence": [
         {
           "label": "Críticas, oposición o alerta fiscal",
@@ -164,8 +164,8 @@
           ]
         },
         {
-          "label": "Descriptivas, trámite o negociación",
-          "value": 25,
+          "label": "Descriptivas, jurídicas, trámite o negociación",
+          "value": 26,
           "source_ids": [
             "biobio-parisi-negotiation",
             "emol-chamber-vote",
@@ -191,7 +191,8 @@
             "pauta-senate-general-approval",
             "elmostrador-senate-general-approval",
             "timeline-final-chamber-stage",
-            "t13-finance-committee-votes"
+            "t13-finance-committee-votes",
+            "biobio-presidential-decree-explainer"
           ]
         },
         {
@@ -207,6 +208,17 @@
             "as-video-announcement"
           ]
         }
+      ],
+      "actor_ids": [
+        "jose-antonio-kast",
+        "jorge-quiroz",
+        "gael-yeomans",
+        "nicolas-grau",
+        "paulina-nunez",
+        "franco-parisi",
+        "paulina-vodanovic",
+        "javier-macaya",
+        "ivan-moreira"
       ],
       "pole_actor_ids": {
         "left": [
@@ -254,6 +266,17 @@
           ]
         }
       ],
+      "actor_ids": [
+        "jose-antonio-kast",
+        "jorge-quiroz",
+        "gael-yeomans",
+        "nicolas-grau",
+        "paulina-nunez",
+        "franco-parisi",
+        "paulina-vodanovic",
+        "javier-macaya",
+        "ivan-moreira"
+      ],
       "pole_actor_ids": {
         "left": [
           "gael-yeomans",
@@ -300,6 +323,12 @@
             "emol-environment-amendments"
           ]
         }
+      ],
+      "actor_ids": [
+        "jose-antonio-kast",
+        "jorge-quiroz",
+        "gael-yeomans",
+        "nicolas-grau"
       ]
     },
     {
@@ -337,6 +366,13 @@
             "dipres-financial-report"
           ]
         }
+      ],
+      "actor_ids": [
+        "jose-antonio-kast",
+        "jorge-quiroz",
+        "gael-yeomans",
+        "nicolas-grau",
+        "paulina-vodanovic"
       ]
     }
   ],
@@ -381,6 +417,15 @@
         "cfa-comments",
         "latercera-cfa-nine-risks",
         "cnn-quiroz-growth"
+      ],
+      "news_source_ids": [
+        "as-video-announcement",
+        "biobio-opposition-23-doubts",
+        "biobio-senate-advance",
+        "cnn-mayor-counterletters",
+        "cnn-quiroz-growth",
+        "latercera-cfa-nine-risks",
+        "latercera-grau-inequality"
       ]
     },
     {
@@ -419,6 +464,13 @@
         "dipres-financial-report",
         "elpais-opposition-tax-reform",
         "chamber-reports"
+      ],
+      "news_source_ids": [
+        "biobio-opposition-23-doubts",
+        "cnn-tc-challenges",
+        "latercera-video-details",
+        "meganoticias-quiroz-explains",
+        "t13-finance-committee-votes"
       ]
     },
     {
@@ -457,6 +509,15 @@
         "dipres-financial-report",
         "emol-environment-amendments",
         "cnn-tc-challenges"
+      ],
+      "news_source_ids": [
+        "cnn-opposition-mayors-letter",
+        "cnn-tc-challenges",
+        "eldinamo-municipal-front",
+        "emol-environment-amendments",
+        "emol-opposition-withdrawal",
+        "pauta-mayors-meeting",
+        "pauta-senate-general-approval"
       ]
     },
     {
@@ -504,6 +565,118 @@
         "biobio-opposition-mayors",
         "cooperativa-mixed-commission",
         "emol-quiroz-mayor-response"
+      ],
+      "news_source_ids": [
+        "24horas-opposition-mayors-letter",
+        "adn-castro-municipal-impact",
+        "adn-senate-mayors-july",
+        "biobio-achm-split",
+        "biobio-mayors-letter",
+        "biobio-opposition-mayors",
+        "ciper-final-compensation",
+        "cnn-mayor-counterletters",
+        "cnn-opposition-mayors-letter",
+        "cnn-quiroz-growth",
+        "cooperativa-mixed-commission",
+        "eldinamo-municipal-front",
+        "eldinamo-twelve-municipalities",
+        "emol-government-municipal-agreement",
+        "emol-mayors-hacienda-july",
+        "emol-quiroz-mayor-response",
+        "emol-twelve-municipalities",
+        "ladiscusion-rural-mayors",
+        "pauta-mayors-meeting",
+        "publimetro-rural-mayors",
+        "theclinic-mayor-split-june",
+        "theclinic-mayors-focalization"
+      ]
+    }
+  ],
+  "other_angles": [
+    {
+      "id": "legislative-durability",
+      "title": "Mayoría legislativa y durabilidad del acuerdo",
+      "question": "¿La aprobación expresa un acuerdo político estable o una mayoría suficiente pero circunstancial?",
+      "finding": "La reforma avanzó y superó votaciones reales, pero el corpus muestra márgenes estrechos, 365 indicaciones revisadas, una materia enviada a Comisión Mixta y advertencias explícitas de reversión futura. La aprobación acredita viabilidad legislativa; no acredita por sí sola un consenso duradero.",
+      "why_it_matters": "La estabilidad de reglas tributarias, ambientales y fiscales depende también de su legitimidad y resistencia a futuros cambios de mayoría.",
+      "limitation": "Las declaraciones de reversión son posiciones políticas, no una predicción. La durabilidad solo podrá observarse en la ley promulgada, su implementación y reformas posteriores.",
+      "source_ids": [
+        "timeline-final-chamber-stage",
+        "24horas-senate-committee-video",
+        "emol-fa-reversal",
+        "emol-senate-battle",
+        "cooperativa-senate-timing",
+        "elmostrador-senate-general-approval",
+        "biobio-quiroz-adjustments",
+        "emol-chamber-vote",
+        "biobio-presidential-decree-explainer",
+        "latercera-yeomans-dialogue"
+      ],
+      "actor_ids": [
+        "jorge-quiroz",
+        "gael-yeomans",
+        "paulina-nunez",
+        "paulina-vodanovic",
+        "javier-macaya",
+        "ivan-moreira"
+      ]
+    },
+    {
+      "id": "pivotal-negotiation",
+      "title": "El PDG como voto bisagra",
+      "question": "¿Qué revela la negociación con el PDG sobre el contenido y la gobernabilidad de la reforma?",
+      "finding": "Las tres capturas muestran que el apoyo del PDG fue negociado alrededor de beneficios para medicamentos, pañales y clase media, con quiebre y reapertura de conversaciones. Eso evidencia que el contenido cambió para construir mayoría; no demuestra todavía cuánto beneficio neto llegará a los hogares.",
+      "why_it_matters": "Permite distinguir el diseño inicial del Ejecutivo de las concesiones incorporadas para reunir votos durante la tramitación.",
+      "limitation": "Las entrevistas describen la negociación desde sus participantes. El alcance efectivo debe comprobarse en el texto promulgado, su reglamento y su costo fiscal observado.",
+      "source_ids": [
+        "cooperativa-parisi-interview",
+        "biobio-parisi-negotiation",
+        "24horas-parisi-negotiation"
+      ],
+      "actor_ids": [
+        "franco-parisi",
+        "jorge-quiroz"
+      ]
+    },
+    {
+      "id": "construction-first-mover",
+      "title": "Construcción como primer sector en reaccionar",
+      "question": "¿Hay evidencia de que la construcción será el primer motor de actividad tras la reforma?",
+      "finding": "La captura registra la expectativa del exdirector de Dipres Matías Acevedo de que la construcción reaccionará con mayor dinamismo en el corto plazo. Es una hipótesis sectorial plausible por el gasto de reconstrucción y los permisos, pero todavía no es un resultado económico observado.",
+      "why_it_matters": "Transforma una promesa agregada de crecimiento en una predicción sectorial que puede medirse con inversión, empleo, permisos y actividad de construcción.",
+      "limitation": "El corpus contiene una evaluación experta para esta arista. Se necesita una serie contrafactual y más fuentes independientes antes de atribuir cualquier cambio a la reforma.",
+      "source_ids": [
+        "cnn-acevedo-analysis"
+      ],
+      "actor_ids": []
+    },
+    {
+      "id": "copyright-data-mining",
+      "title": "Minería de datos y derechos de autor",
+      "question": "¿La excepción para minería de textos equilibra innovación, acceso lícito y derechos de los titulares?",
+      "finding": "El informe propone permitir reproducción, adaptación, distribución o comunicación para extracción y análisis de datos sin autorización ni remuneración. Una editorial capturada cuestiona ese diseño. La existencia de la excepción es verificable; su equilibrio económico y jurídico sigue abierto.",
+      "why_it_matters": "Es una modificación sustantiva que afecta a investigación, inteligencia artificial, editoriales, autores y otros titulares, aunque ocupa poco espacio en el debate político general.",
+      "limitation": "Una editorial no representa por sí sola a todos los sectores afectados. Faltan posiciones de autores, investigadores, empresas tecnológicas y análisis de implementación comparada.",
+      "source_ids": [
+        "dipres-financial-report",
+        "df-copyright-editorial"
+      ],
+      "actor_ids": []
+    },
+    {
+      "id": "government-framing",
+      "title": "Urgencia y encuadre gubernamental",
+      "question": "¿Cómo presentó el Gobierno la reforma antes de que el detalle técnico dominara el debate?",
+      "finding": "Las dos piezas del anuncio en cadena nacional encuadraron la iniciativa como una respuesta al estancamiento y la burocracia, asociándola a reconstrucción, desarrollo, empleo y rapidez. Ese marco explica la promesa política inicial, pero no sustituye la evaluación separada de sus treinta materias.",
+      "why_it_matters": "Permite comparar la narrativa de lanzamiento con el informe financiero, las modificaciones legislativas posteriores y los efectos que finalmente puedan medirse.",
+      "limitation": "Estas fuentes describen el mensaje del Ejecutivo y no constituyen evidencia independiente de impacto. Su valor analítico es de encuadre y secuencia temporal.",
+      "source_ids": [
+        "biobio-initial-measures",
+        "df-video-announcement"
+      ],
+      "actor_ids": [
+        "jose-antonio-kast",
+        "jorge-quiroz"
       ]
     }
   ],
