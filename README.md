@@ -80,6 +80,21 @@ sector halos make concentrations legible without turning either UMAP axis into a
 The general pipeline and upload API remain in this repository for local research and tests; they
 are not part of this benchmark deployment.
 
+The footer has a public audience counter designed for aggregate Cloudflare Web Analytics data:
+visits, countries and referring hosts only. Country/referrer groups appear only after five visits;
+it never publishes IP addresses or individual paths.
+Until an analytics property is connected it renders an honest dash instead of a fabricated zero.
+To activate it, create the `mezosky.github.io` Web Analytics property and configure the repository
+variable `CLOUDFLARE_ANALYTICS_ENABLED=true` plus these Actions secrets:
+
+- `CLOUDFLARE_WEB_ANALYTICS_TOKEN` — public beacon/site token embedded in the page.
+- `CLOUDFLARE_ANALYTICS_SITE_TAG` — site tag used to filter the aggregate export.
+- `CLOUDFLARE_ANALYTICS_ACCOUNT_ID` — account identifier.
+- `CLOUDFLARE_ANALYTICS_API_TOKEN` — private token with analytics-read permission; never bundled.
+
+The normal Pages deployment and the daily audience refresh both generate
+`data/site-analytics.json` at build time. No visitor-level analytics enter the repository.
+
 ---
 
 ## Quick start

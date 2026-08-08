@@ -15,12 +15,16 @@ const SECTIONS: readonly SectionDefinition[] = [
   { id: 'evidencia-comparada', es: 'Evidencia global', en: 'Global evidence' },
 ]
 const FIRST_SECTION_ID = 'resumen'
+// Natural Earth 1:110m Admin-0 (public domain), projected into this narrow viewBox.
+// A filled contour stays recognisable at sidebar size; the former centreline did not.
+const CHILE_OUTLINE =
+  'M33 200.5L33 213L37.6 213L40.1 213.2L38.7 215.4L35.1 217.2L33 217L30.5 216.6L27.4 214.9L23 214.1L17.6 210.9L13.3 207.9L7.4 201.6L10.9 202.8L16.9 206.5L22.5 208.5L24.7 206L26.1 202.1L30 199.8L33 200.5ZM29 3.4L31 7.3L31.6 11.3L33.8 13.7L32.5 19.1L34.8 25.4L36.5 33.2L39.5 32.4L40 33.8L38.6 39.7L33.9 42.4L34.1 51.8L33.2 53.6L34.5 55.8L31.5 59.3L28.7 64.6L27.2 69.7L27.6 75.1L25 80.9L26.9 90.6L28 91.6L28 96.8L25.6 102.3L25.7 107L22.5 110.7L22.5 115.8L23.8 121.3L21.2 123.4L20.1 128.4L19.1 134.1L19.8 141L18.1 142.1L19.1 148.6L21 150.7L19.6 153.1L21.6 154.2L22 156.3L20.2 157.4L20.6 160.7L19.1 168.1L16.8 172.9L17.3 175.8L16 179.3L12.7 181.8L13.1 187.8L14.6 189.8L17.4 189.5L17.3 193.7L19.1 196.9L29.4 197.7L33.3 198.6L29.5 198.5L27.5 199.9L23.6 201.9L22.9 207.2L21.1 207.3L16.4 205.5L11.5 201.6L6.2 198.4L4.9 194.8L6.1 191.5L3.9 187.8L3.4 178.2L5.2 172.8L9.7 168.4L3.2 166.8L7.3 161.8L8.7 152.5L13.5 154.5L15.7 142.8L12.8 141.4L11.5 148.4L8.8 147.6L10.1 139.5L11.6 129.1L13.6 125.3L12.3 119.8L12 113.5L13.8 113.3L16.4 104.2L19.3 95.2L21.1 86.8L20.1 78.4L21.4 73.8L20.9 66.9L23.4 60L24.1 49.1L25.5 37.4L26.8 24.9L26.5 15.7L25.6 7.8L27.8 6.3L29 3.4Z'
 const REGION_BANDS = [
-  { es: 'Norte Grande', en: 'Far North', x: 20, y: 18 },
-  { es: 'Norte Chico', en: 'Near North', x: 24, y: 64 },
-  { es: 'Zona Central', en: 'Central Chile', x: 18, y: 110 },
-  { es: 'Zona Sur', en: 'Southern Chile', x: 23, y: 156 },
-  { es: 'Zona Austral', en: 'Austral Chile', x: 18, y: 204 },
+  { es: 'Norte Grande', en: 'Far North', x: 34, y: 24 },
+  { es: 'Norte Chico', en: 'Near North', x: 28, y: 68 },
+  { es: 'Zona Central', en: 'Central Chile', x: 23, y: 110 },
+  { es: 'Zona Sur', en: 'Southern Chile', x: 20, y: 154 },
+  { es: 'Zona Austral', en: 'Austral Chile', x: 22, y: 202 },
 ] as const
 
 function ChileProgress({ activeIndex, compact = false }: { activeIndex: number; compact?: boolean }) {
@@ -34,18 +38,17 @@ function ChileProgress({ activeIndex, compact = false }: { activeIndex: number; 
       className={compact ? 'h-8 w-3 shrink-0' : 'h-56 w-11'}
     >
       <path
-        d="M20 4c5 8 1 15 5 23 3 7-2 14 1 22 3 7-5 12-2 20 2 6-5 11-4 18-1 7 5 12 2 19-3 8 3 14 1 22-2 7 4 13 1 20-4 8 2 15-1 23-3 8 2 15-2 23-2 7-5 13-6 20"
-        fill="none"
+        d={CHILE_OUTLINE}
+        fill="currentColor"
         stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth={compact ? 5 : 3}
-        className="text-ink-muted"
+        strokeLinejoin="round"
+        strokeWidth={compact ? 2.8 : 1.2}
+        className="text-ink-muted opacity-55"
       />
       {!compact && (
         <>
-          <path d="m13 201-4 7m14-9 5 8m-14 5-4 7m10-8 4 6" stroke="currentColor" strokeWidth="1.4" className="text-ink-muted" />
           {REGION_BANDS.map((band) => (
-            <circle key={band.es} cx={band.x} cy={band.y} r="1.8" className="fill-surface-page stroke-ink-muted" />
+            <circle key={band.es} cx={band.x} cy={band.y} r="1.4" className="fill-surface-page stroke-ink-muted" />
           ))}
         </>
       )}
@@ -55,8 +58,8 @@ function ChileProgress({ activeIndex, compact = false }: { activeIndex: number; 
           transition: 'transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1)',
         }}
       >
-        <circle r={compact ? 7 : 5.5} className="fill-ink-primary stroke-surface-page" strokeWidth="2" />
-        {!compact && <circle r="9" fill="none" className="stroke-ink-primary opacity-30" />}
+        <circle r={compact ? 6 : 4.8} className="fill-ink-primary stroke-surface-page" strokeWidth="2" />
+        {!compact && <circle r="8.5" fill="none" className="stroke-ink-primary opacity-35" />}
       </g>
     </svg>
   )
@@ -149,8 +152,8 @@ export default function DossierSectionNav() {
       </div>
 
       <aside className="hidden lg:block" aria-label={tr('Índice del dossier', 'Dossier contents')}>
-        <nav className="sticky top-24 grid grid-cols-[3rem_1fr] gap-2 py-2">
-          <div className="flex justify-center border-r border-line-hairline pr-2 text-ink-muted">
+        <nav className="sticky top-24 grid grid-cols-[4rem_1fr] gap-2 py-2">
+          <div className="flex justify-center border-r border-line-hairline pr-3 text-ink-muted">
             <ChileProgress activeIndex={activeIndex} />
           </div>
           <div>

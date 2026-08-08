@@ -1,0 +1,66 @@
+name: Refresh public audience snapshot
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Export aggregate analytics and build
+    if: vars.CLOUDFLARE_ANALYTICS_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+      - name: Bundle schemas
+        run: |
+          mkdir -p frontend/public/data/schemas
+          cp schemas/*.json frontend/public/data/schemas/
+      - name: Export privacy-preserving audience totals
+        env:
+          CLOUDFLARE_ANALYTICS_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ANALYTICS_ACCOUNT_ID }}
+          CLOUDFLARE_ANALYTICS_SITE_TAG: ${{ secrets.CLOUDFLARE_ANALYTICS_SITE_TAG }}
+          CLOUDFLARE_ANALYTICS_API_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_API_TOKEN }}
+        run: python scripts/export_site_analytics.py
+      - name: Build static site
+        working-directory: frontend
+        env:
+          VITE_BASE: /Aleph/
+          VITE_ALEPH_API_URL: ""
+          VITE_CLOUDFLARE_WEB_ANALYTICS_TOKEN: ${{ secrets.CLOUDFLARE_WEB_ANALYTICS_TOKEN }}
+        run: npm run build
+      - name: Ensure 404 fallback
+        run: cp frontend/dist/index.html frontend/dist/404.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  deploy:
+    name: Deploy refreshed snapshot
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

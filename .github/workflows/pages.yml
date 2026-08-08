@@ -69,6 +69,13 @@ jobs:
           mkdir -p frontend/public/data/schemas
           cp schemas/*.json frontend/public/data/schemas/
 
+      - name: Export aggregate audience snapshot
+        env:
+          CLOUDFLARE_ANALYTICS_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ANALYTICS_ACCOUNT_ID }}
+          CLOUDFLARE_ANALYTICS_SITE_TAG: ${{ secrets.CLOUDFLARE_ANALYTICS_SITE_TAG }}
+          CLOUDFLARE_ANALYTICS_API_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_API_TOKEN }}
+        run: python scripts/export_site_analytics.py
+
       - name: Build
         working-directory: frontend
         env:
@@ -78,6 +85,8 @@ jobs:
           # No API is reachable from Pages: the site reads the committed static
           # JSON payload instead.
           VITE_ALEPH_API_URL: ""
+          # Public property identifier, not the private GraphQL credential.
+          VITE_CLOUDFLARE_WEB_ANALYTICS_TOKEN: ${{ secrets.CLOUDFLARE_WEB_ANALYTICS_TOKEN }}
         run: npm run build
 
       # Pages has no SPA rewrite. The app uses a hash router, but a 404 fallback

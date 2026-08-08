@@ -16,6 +16,22 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def _validate_megareforma() -> list[str]:
     failures: list[str] = []
+    try:
+        analytics_schema = json.loads(
+            (ROOT / "schemas" / "site_analytics.json").read_text(encoding="utf-8")
+        )
+        analytics = json.loads(
+            (ROOT / "frontend" / "public" / "data" / "site-analytics.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        for error in Draft202012Validator(
+            analytics_schema, format_checker=FormatChecker()
+        ).iter_errors(analytics):
+            location = "/".join(str(part) for part in error.absolute_path) or "<root>"
+            failures.append(f"site-analytics.json:{location}: {error.message}")
+    except Exception as exc:
+        failures.append(f"site-analytics.json: {exc}")
     pairs = [
         ("megareforma_dossier.json", "dossier.json"),
         ("megareforma_sources.json", "sources.json"),

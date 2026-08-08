@@ -14,6 +14,8 @@ interface ImportMetaEnv {
    * datasets and the "analyse a PDF" flow explains that it is unavailable.
    */
   readonly VITE_ALEPH_API_URL?: string
+  /** Public Cloudflare Web Analytics site token. This is not an API credential. */
+  readonly VITE_CLOUDFLARE_WEB_ANALYTICS_TOKEN?: string
 }
 
 interface ImportMeta {

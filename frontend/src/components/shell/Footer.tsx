@@ -10,6 +10,7 @@
 import { Link } from 'react-router-dom'
 import { ALEPH_SCHEMA_VERSION } from '@/types/aleph'
 import { useLanguage } from '@/i18n/LanguageContext'
+import AudienceSnapshot from '@/components/shell/AudienceSnapshot'
 
 const REPO_URL = 'https://github.com/Mezosky/Aleph'
 
@@ -68,6 +69,8 @@ export default function Footer() {
             'This deployment presents only DIPRES financial report No. 84 of April 22, 2026 and sources retrieved by the stated cutoff. The model ran locally; this page does not call an AI or analyze visitor documents.',
           )}
         </p>
+
+        <AudienceSnapshot />
 
         <p className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-1 text-micro uppercase tracking-wide text-ink-muted">
           <span className="tabular">

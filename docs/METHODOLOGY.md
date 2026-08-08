@@ -92,6 +92,13 @@ The profile's claim track record is not a reputation score. It is a count of Ale
 verdicts, includes every underlying claim id and sample size, and always carries the warning that
 the sample is small, non-random, and non-predictive.
 
+Public audience statistics follow the same minimization rule. The browser may send a page-load
+beacon only when the deployment has an explicitly configured Cloudflare Web Analytics property.
+The footer receives a periodically generated aggregate snapshot containing totals, countries and
+referring hosts. Country and referrer groups are published only after five visits. It never
+receives or renders IP addresses, cities, user identifiers or individual browsing histories, and
+it shows no numeric count before the provider is connected.
+
 There is one deliberate escape hatch: when the speaker's identity genuinely *is* the fact at issue
 ("did X say Y?"), identity must be requested explicitly. It is never restored by default.
 

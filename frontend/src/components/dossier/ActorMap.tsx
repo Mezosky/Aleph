@@ -272,10 +272,10 @@ export default function ActorMap({ actors }: { actors: CensusActor[] }) {
       <div className="grid gap-6 lg:grid-cols-[1fr_21rem]">
         <div>
           <p className="text-micro font-semibold uppercase tracking-[0.18em] text-ink-muted">
-            {tr('Explorador interactivo', 'Interactive explorer')}
+            {tr('Mapa interactivo de actores', 'Interactive actor map')}
           </p>
           <h2 id="actor-map-title" className="mt-3 text-title font-semibold text-ink-primary">
-            {tr('Mapa UMAP: sectores y concentración de voces', 'UMAP: sectors and concentration of voices')}
+            {tr('Así se agrupan las voces del debate', 'How the voices in the debate cluster')}
           </h2>
           <p className="mt-4 max-w-3xl text-body text-ink-secondary">
             {tr(
@@ -297,8 +297,8 @@ export default function ActorMap({ actors }: { actors: CensusActor[] }) {
           </p>
           <p className="mt-2">
             {tr(
-              'Color y halo = sector declarado y su acumulación; icono = tipo de actor; tamaño = intervenciones verificadas en este corpus. La posición UMAP expresa similitud documental y puede rotar. Ninguna señal mide extremismo, honestidad ni quién tiene razón.',
-              'Color and halo = declared sector and its accumulation; icon = actor type; size = verified interventions in this corpus. UMAP position represents documentary similarity and may rotate. No signal measures extremism, honesty or who is right.',
+              'Color y halo = sector declarado y su acumulación; icono = tipo de actor; tamaño = intervenciones verificadas en este corpus. La cercanía expresa similitud documental y la disposición puede rotar. Ninguna señal mide extremismo, honestidad ni quién tiene razón.',
+              'Color and halo = declared sector and its accumulation; icon = actor type; size = verified interventions in this corpus. Proximity represents documentary similarity and the layout may rotate. No signal measures extremism, honesty or who is right.',
             )}
           </p>
         </aside>

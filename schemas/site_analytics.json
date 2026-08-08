@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mezosky.github.io/Aleph/schemas/site_analytics.json",
+  "title": "Public aggregate site analytics snapshot",
+  "type": "object",
+  "required": ["schema_version", "status", "source", "period_start", "generated_at", "visits", "page_views", "countries", "referrers", "privacy_note_es", "privacy_note_en"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "status": {"enum": ["awaiting_configuration", "active", "stale"]},
+    "source": {"const": "cloudflare_web_analytics"},
+    "period_start": {"type": ["string", "null"], "format": "date-time"},
+    "generated_at": {"type": ["string", "null"], "format": "date-time"},
+    "visits": {"type": ["integer", "null"], "minimum": 0},
+    "page_views": {"type": ["integer", "null"], "minimum": 0},
+    "countries": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["code", "label_es", "label_en", "visits"],
+        "properties": {
+          "code": {"type": "string", "minLength": 2, "maxLength": 3},
+          "label_es": {"type": "string", "minLength": 2},
+          "label_en": {"type": "string", "minLength": 2},
+          "visits": {"type": "integer", "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    },
+    "referrers": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["host", "visits"],
+        "properties": {
+          "host": {"type": "string", "minLength": 1},
+          "visits": {"type": "integer", "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    },
+    "privacy_note_es": {"type": "string", "minLength": 40},
+    "privacy_note_en": {"type": "string", "minLength": 40}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"enum": ["active", "stale"]}}},
+      "then": {
+        "properties": {
+          "period_start": {"type": "string", "format": "date-time"},
+          "generated_at": {"type": "string", "format": "date-time"},
+          "visits": {"type": "integer"},
+          "page_views": {"type": "integer"}
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}
