@@ -55,7 +55,7 @@ RUN [ -f dist/404.html ] || cp dist/index.html dist/404.html
 # ---------------------------------------------------------------------------
 # Stage: api — FastAPI service
 # ---------------------------------------------------------------------------
-FROM python:3.12-slim AS api
+FROM python:3.14-slim AS api
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
